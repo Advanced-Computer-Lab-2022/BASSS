@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const guestschema = new Schema({
+const instructorschema = new Schema({
     country: {
         type: String,
         required: true,

@@ -1,10 +1,10 @@
 const express = require("express");
 const mongoose = require('mongoose');
 require('dotenv').config();
-const guestM = require('./Models/guest');
+const guestM = require('./Models/guestSchema');
 
-const guestR = require('./Routes/guest');
-
+const guestR = require('./Routes/guestRoutes');
+// const index = require('./views/index.ejs');
 
 //App variables
 const app = express();
@@ -20,5 +20,7 @@ mongoose.connect(process.env.mongoURl)
   })
 })
 .catch(err => console.log(err));
+app.set('view engine', 'html');
 
+app.engine('html', require('ejs').renderFile);
 app.use('/guest', guestR)
