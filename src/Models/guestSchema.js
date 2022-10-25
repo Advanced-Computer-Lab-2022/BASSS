@@ -5,23 +5,23 @@ const Schema = mongoose.Schema;
 const guestSchema = new Schema({
     Name: {
         type: String,
-        required: true,
+        // required: true,
         unique: true,
       },
     Country: {
         type: String,
-        required: true,
+        // required: true,
       },
     Password: {
         type: String,
-        required: true,
+        // required: true,
       },
     Gender: {
         type: String,
-        required: true,
+        // required: true,
       }
       
 })
 
-const guests = mongoose.model('guests', guestSchema);
-module.exports = guests
+var guests = mongoose.model('guests', guestSchema);
+module.exports ={guestSchema,guests};

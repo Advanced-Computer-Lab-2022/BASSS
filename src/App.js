@@ -1,13 +1,16 @@
 const express = require("express");
 const mongoose = require('mongoose');
 require('dotenv').config();
-const guestM = require('./Models/guestSchema');
-
+const guestS = require('./Models/guestSchema');
+// const { route } = require("./Routes/guestRoutes");
+var bodyParser = require('body-parser')
 const guestR = require('./Routes/guestRoutes');
 // const index = require('./views/index.ejs');
 
 //App variables
 const app = express();
+
+app.use(bodyParser.urlencoded({ extended: false }))
 const port = process.env.PORT || "9000";
 
 
@@ -20,8 +23,7 @@ mongoose.connect(process.env.mongoURl)
   })
 })
 .catch(err => console.log(err));
-app.set('view engine', 'html');
+app.set('view engine', 'ejs');
+app.engine('ejs', require('ejs').renderFile);
 
-app.engine('html', require('ejs').renderFile);
 app.use('/guest', guestR)
-//aadahansjdnaksjdn
