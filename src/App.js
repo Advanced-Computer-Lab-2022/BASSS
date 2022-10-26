@@ -1,9 +1,12 @@
 const express = require("express");
 const mongoose = require('mongoose');
 require('dotenv').config();
-const guestM = require('./Models/guest');
 
-const guestR = require('./Routes/guest');
+
+const guestSchema = require('./Models/guestSchema');
+const guestRouter = require('./Routes/guestRouter');
+
+const courses = require('./Models/courseSchema');
 
 
 //App variables
@@ -14,11 +17,11 @@ const port = process.env.PORT || "9000";
 mongoose.connect(process.env.mongoURl)
 .then(()=>{
   console.log("MongoDB is now connected!")
-// Starting server
- app.listen(port, () => {
+  // Starting server
+  app.listen(port, () => {
     console.log(`Listening to requests on http://localhost:${port}`);
   })
 })
 .catch(err => console.log(err));
 
-app.use('/guest', guestR)
+app.use('/guest', guestRouter)

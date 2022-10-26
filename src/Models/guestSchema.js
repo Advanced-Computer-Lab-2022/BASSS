@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const guestschema = new Schema({
+const guestSchema = new Schema({
     Name: {
         type: String,
         required: true,
@@ -10,7 +10,7 @@ const guestschema = new Schema({
 
 
 
-const guest = mongoose.model('guest', guestschema);
+const guest = mongoose.model('guest', guestSchema);
 guest.create({
     Name:"bassel"
 })
