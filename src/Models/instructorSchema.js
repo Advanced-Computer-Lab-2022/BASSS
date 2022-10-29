@@ -46,7 +46,5 @@ const instructorschema = new Schema({
 
 
 const instructor = mongoose.model('instructor', instructorschema);
-/*instructor.create({
-    Name:"bassel"
-})*/
-module.exports = instructor;
+//module.exports = instructor;
+module.exports ={instructorschema,instructor};

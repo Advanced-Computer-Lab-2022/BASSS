@@ -5,6 +5,7 @@ const guestS = require('./Models/guestSchema');
 // const { route } = require("./Routes/guestRoutes");
 var bodyParser = require('body-parser')
 const guestR = require('./Routes/guestRoutes');
+const adminR = require('./Routes/adminRoutes');
 // const index = require('./views/index.ejs');
 
 //App variables
@@ -27,3 +28,4 @@ app.set('view engine', 'ejs');
 app.engine('ejs', require('ejs').renderFile);
 
 app.use('/guest', guestR)
+app.use('/admin', adminR)
