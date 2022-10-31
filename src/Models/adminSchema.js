@@ -9,7 +9,7 @@ const adminSchema = new Schema({
       },
     Country: {
         type: String,
-        required: true,
+       // required: true,
       },
     Password: {
         type: String,
@@ -17,19 +17,19 @@ const adminSchema = new Schema({
       },
     Gender: {
         type: String,
-        required: true,
+        //required: true,
       },
     requests: {
         type: String,
       },
        Email: {
         type: String,
-        required: true,
-        unique: true
+        //required: true,
+       // unique: true
       },
 })
 
 
 
 const admin = mongoose.model('admin', adminSchema);
-module.exports = admin;
+module.exports ={adminSchema,admin};

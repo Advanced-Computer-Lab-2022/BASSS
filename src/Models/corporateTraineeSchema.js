@@ -36,11 +36,5 @@ const corporateTraineeschema = new Schema({
 })
 
 const corporateTrainee = mongoose.model('corporateTrainee', corporateTraineeschema);
-
-/*
-corporateTrainee.create({
-    Name:"bassel"
-})
-*/
-
-module.exports = corporateTrainee;
+//module.exports = corporateTrainee;
+module.exports ={corporateTraineeschema,corporateTrainee};

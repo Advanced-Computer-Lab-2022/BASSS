@@ -5,10 +5,12 @@ const guestSchema = require('./Models/guestSchema');
 
 var bodyParser = require('body-parser')
 const guestR = require('./Routes/guestRoutes');
+const adminR = require('./Routes/adminRoutes');
 const courses = require('./Models/courseSchema');
 const instRouter = require('./Routes/instructorRoutes');
 const corporateRouter = require('./Routes/corporateTraineeRoutes');
 const indvidualRouter = require('./Routes/individualTraineeRoutes');
+
 //App variables
 const app = express();
 
@@ -28,6 +30,7 @@ mongoose.connect(process.env.mongoURl)
 app.set('view engine', 'ejs');
 app.engine('ejs', require('ejs').renderFile);
 app.use('/guest', guestR)
+app.use('/admin', adminR)
 app.use('/instructor', instRouter)
 app.use('/corporateTrainee', corporateRouter)
 app.use('/indvidualTrainee', indvidualRouter)
