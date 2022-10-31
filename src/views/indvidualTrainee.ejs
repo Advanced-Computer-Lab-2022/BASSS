@@ -1,65 +1,33 @@
 <html>
   <head>
-<<<<<<< HEAD
-    <title><%=list%></title>
-=======
     <title><%=subjects%></title>
->>>>>>> 327565635577ab09c1273dcc871baed92548ff1b
     </head>
   <body>
     <form method="post">
-      
+     
       
       <label for="country">Choose a country:</label>
-
       <input type="text" name="country"/>
-      <button type="submit" formaction="/guest/selectcountry">Submit</button>
+      <button type="submit" formaction="/indvidualTrainee/selectcountry">Submit</button>
       <br/>
       <br/>
-      <input type="text" name="searchtitle" placeholder="Search for a course by title?"/>
-      <button type="submit" formaction="/guest/searchtitle">search</button>
-      <br/>
-      <br/>
-      <input type="text" name="searchsubject" placeholder="Search for a course by subject ?"/>
-      <button type="submit" formaction="/guest/searchsubject">search</button>
-      <br/>
-      <br/>
-      <input type="text" name="searchinstructor" placeholder="Search for a course by instructor ?"/>
-      <button type="submit" formaction="/guest/searchinstructor">search</button>
-      <br>
-      
-      <!-- <label for="browser">Filter By:</label>
-      
-      <input list="Subject" name="browser" id="browser">
-      <datalist id="Subject" title="SubjectS">
-        <option value="Subject">
-        <option value="Rating">
-        <option value="Price">
-      </datalist> -->
-
-      <!-- <label for="country">Filter By</label>
-      <input type="range" name="hjbs" value="Subject"/> -->
-      <!-- <button type="submit" formaction="/guest/selectcountry">Submit</button> -->
-
+        <input type="text" name="searchtitle" placeholder="Search for a course by title?"/>
+        <button type="submit" formaction="/individualTrainee/searchtitle">search</button>
+        <br/>
+        <br/>
+        <input type="text" name="searchsubject" placeholder="Search for a course by subject ?"/>
+        <button type="submit" formaction="/individualTrainee/searchsubject">search</button>
+        <br/>
+        <br/>
+        <input type="text" name="searchinstructor" placeholder="Search for a course by instructor ?"/>
+        <button type="submit" formaction="/individualTrainee/searchinstructor">search</button>
+  
+      </form>
+  
 
     </form>
-<<<<<<< HEAD
-    <ul>
-        
-      <% list.forEach(function(course) { %>
-        
-        <li> Title:<%= course.Title %> </li>
-        <li><%= course.Price %></li>
-        <br>
-        <%});%>
-      </ul>
-    <script>
-      // var list = "<%=list%>";
-      // alert(list);
-=======
 
-    
-    <form method="post" action="/guest/filterBySubject">
+    <form method="post" action="/indvidualTrainee/filterBySubject">
       
       <label for="Filter" >Filter By:</label>
       <br>
@@ -75,9 +43,8 @@
       </ul>
         <input type='submit' value="submit" >
     </form>
->>>>>>> 327565635577ab09c1273dcc871baed92548ff1b
 
-    <form method="post" action="/guest/filterByRating">
+    <form method="post" action="/indvidualTrainee/filterByRating">
       <label for="Rate" >Rating</label>
       <input id="1" type="radio" name='Rating' value='1'>
       <label for="1">1</label>
@@ -93,7 +60,7 @@
 
     </form>
 
-    <form method="post" action="/guest/filterByPrice">
+    <form method="post" action="/indvidualTrainee/filterByPrice">
       <label for="Price" >Price</label>
       <br>
       <input id="1" type="radio" name='Price' value='0'>
@@ -120,6 +87,7 @@
 
 
     <script>
+
     </script>
   </body>
 
