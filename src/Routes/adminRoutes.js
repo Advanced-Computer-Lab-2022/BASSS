@@ -1,6 +1,8 @@
 const { adminSchema,admin } = require("../Models/adminSchema");
 const { instructorschema,instructor } = require("../Models/instructorSchema");
 const { corporateTraineeschema,corporateTrainee } = require("../Models/corporateTraineeSchema");
+const course = require("../Models/courseSchema");
+
 
 const express = require("express");
 const adminR = express.Router();
@@ -44,12 +46,13 @@ adminR.post("/addAdmin",function(req,res){
 })
 
 adminR.post("/addInstructor",function(req,res){
-    var userName = req.body.instructorUserName;
-    var password = req.body.instructorPassword;
+    var userName   = req.body.instructorUserName;
+    var password   = req.body.instructorPassword;
+    var allCourses = course.find();
 
   instructor.create({
     country:"sara's world",
-      rating: 1.2345, reviews: "no reviews we ehda shewaya", email: userName, courses: "this is an empty string", username: userName,
+      rating: 1.2345, reviews: "no reviews we ehda shewaya", email: userName, courses: [], username: userName,
       password: password , miniBio: "ab2as 5al2 ellah",gender: "prefer not to say"
      });
    res.render("../views/admin.ejs",{title:"admin home page"});

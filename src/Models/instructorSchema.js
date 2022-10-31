@@ -18,7 +18,8 @@ const instructorschema = new Schema({
         required: true,
         unique: true,
       },courses: {
-       /**/ type: String,
+        type: [mongoose.Types.ObjectId],
+        ref: 'Course',
         required: true,
       },username: {
         type: String,
