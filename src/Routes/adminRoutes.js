@@ -1,6 +1,6 @@
 const { adminSchema,admin } = require("../Models/adminSchema");
-const { instructorschema,instructor } = require("../Models/instructorSchema");
-const { corporateTraineeschema,corporateTrainee } = require("../Models/corporateTraineeSchema");
+const instructors = require("../Models/instructorSchema");
+const corporateTrainees = require("../Models/corporateTraineeSchema");
 const course = require("../Models/courseSchema");
 
 
@@ -50,7 +50,7 @@ adminR.post("/addInstructor",function(req,res){
     var password   = req.body.instructorPassword;
     var allCourses = course.find();
 
-  instructor.create({
+  instructors.create({
     country:"sara's world",
       rating: 1.2345, reviews: "no reviews we ehda shewaya", email: userName, courses: [], username: userName,
       password: password , miniBio: "ab2as 5al2 ellah",gender: "prefer not to say"
@@ -63,7 +63,7 @@ adminR.post("/addCoTrainee",function(req,res){
     var userName = req.body.coTraineeUserName;
     var password = req.body.coTraineePassword;
 
-  corporateTrainee.create({
+  corporateTrainees.create({
     email: userName,
     username: userName,
     password: password,
