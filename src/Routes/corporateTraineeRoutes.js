@@ -1,31 +1,30 @@
-const { guestSchema,guests } = require("../Models/guestSchema");
 const express = require("express");
-const guestR = express.Router();
+const corporateTraineeR = express.Router();
 const mongoose = require('mongoose');
-const courses = require("../Models/courseSchema")
-const instructors = require("../Models/instructorSchema")
+const corporateTrainees = require("../Models/corporateTraineeSchema");
+const courses = require("../Models/courseSchema");
 
 
-guestR.get("/",(req, res) => {
-    res.render("../views/guest.ejs",{title:"guest country"})});
+corporateTraineeR.get("/",(req, res) => {
+    res.render("../views/corporateTrainee.ejs",{title:"corporateTrainee"})});
 
-guestR.post("/selectcountry",function(req,res){
-    // console.log(req.body)
+corporateTraineeR.post("/selectcountry",function(req,res){
+    console.log(req.body)
     var country = req.body.country;
-    var query = guests.find({Name:"sara"})
+    var query = corporateTrainees.find({username:"adham"})
         query.exec(function(err,result){
             if (err) throw err;
             if(result.length==0){
-                res.render("../views/guest.ejs",{title:"guest country"});
+                res.render("../views/corporateTrainee.ejs",{title:"corporateTrainee country"});
             }else{
-                guests.findOneAndUpdate({Name:"sara"},{Country:country},{upsert:true},function(err,doc){
+                corporateTrainees.findOneAndUpdate({username:"adham"},{country:country},{upsert:true},function(err,doc){
                     if(err) throw err;
                   });         
-              res.render("../views/guest.ejs",{title:"guest country"});
+              res.render("../views/corporateTrainee.ejs",{title:"corporateTrainee country"});
             }
 })
 })
-guestR.post("/searchtitle",async function(req,res){
+corporateTraineeR.post("/searchtitle",async function(req,res){
     var search = req.body.searchtitle
     var query = await courses.find({});
     var array = [];
@@ -39,7 +38,7 @@ guestR.post("/searchtitle",async function(req,res){
     res.send(array);
 })
 
-guestR.post("/searchsubject",async function(req,res){
+corporateTraineeR.post("/searchsubject",async function(req,res){
     var search = req.body.searchsubject
     var query = await courses.find({});
     var array = [];
@@ -52,7 +51,9 @@ guestR.post("/searchsubject",async function(req,res){
     }
     res.send(array);
 })
-guestR.post("/searchinstructor",async function(req,res){
+
+
+corporateTraineeR.post("/searchinstructor",async function(req,res){
     var search = req.body.searchinstructor
     var query = await courses.find({});
     var array = [];
@@ -65,8 +66,7 @@ guestR.post("/searchinstructor",async function(req,res){
     }
     res.send(array);
 })
-
-// guestR.post("/searchinstructor",async function(req,res){
+// corporateTraineeR.post("/searchinstructor",async function(req,res){
 //     var search = req.body.searchinstructor
 //     var ins = await instructors.find({});
 //     var array = [];
@@ -91,9 +91,6 @@ guestR.post("/searchinstructor",async function(req,res){
 //     }
 //     res.send(array2);
 // })
-    
-    
-    
-    
 
-module.exports = guestR;
+
+module.exports = corporateTraineeR;

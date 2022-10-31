@@ -1,28 +1,27 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
 const individualTraineeschema = new Schema({
     email: {
         type: String,
-        required: true,
+        // required: true,
         unique: true,
     },
     username: {
         type: String,
-        required: true,
+        // required: true,
         unique: true,
     },
     password: {
         type: String,
-        required: true,
+        // required: true,
     },
     gender: {
         type: String,
-        required: true,
+        // required: true,
     },
     country: {
         type: String,
-        required: true,
+        // required: true,
     },
     balance: {
         type: Number,
@@ -37,12 +36,5 @@ const individualTraineeschema = new Schema({
 
 })
 
-const individualTrainee = mongoose.model('individualTrainee', individualTraineeschema);
-
-/*
-individualTrainee.create({
-    Name:"bassel"
-})
-*/
-
-module.exports = individualTrainee;
+const individualTrainees = mongoose.model('individualTrainees', individualTraineeschema);
+module.exports = individualTrainees;

@@ -44,8 +44,19 @@ const courseSchema = new Schema ({
     Outline: String,
     ShortSummary: String,
     Notes: String,
-    Subtitles: subtitleSchema
-    //Instructor
+    Subtitles:{
+        type:mongoose.Types.ObjectId,
+        ref:'Subtitles'
+    },
+    Instructor:{
+        type:mongoose.Types.ObjectId,
+        ref:'Instructor',
+
+    },
+    Instructorname:{
+        type:String
+    }
+
     //Exercises
     //Certificate
 

@@ -4,25 +4,25 @@ const Schema = mongoose.Schema;
 const corporateTraineeschema = new Schema({
     email: {
         type: String,
-        required: true,
+        // required: true,
         unique: true,
     },
     username: {
         type: String,
-        required: true,
+        // required: true,
         unique: true,
     },
     password: {
         type: String,
-        required: true,
+        // required: true,
     },
     gender: {
         type: String,
-        required: true,
+        // required: true,
     },
     country: {
         type: String,
-        required: true,
+        // required: true,
     },
     problems: {
         type: String,
@@ -33,13 +33,5 @@ const corporateTraineeschema = new Schema({
 
 
 })
-
-const corporateTrainee = mongoose.model('corporateTrainee', corporateTraineeschema);
-
-/*
-corporateTrainee.create({
-    Name:"bassel"
-})
-*/
-
-module.exports = corporateTrainee;
+const corporateTrainees = mongoose.model('corporateTrainees', corporateTraineeschema);
+module.exports = corporateTrainees;

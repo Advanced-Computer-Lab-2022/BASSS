@@ -1,31 +1,31 @@
-const { guestSchema,guests } = require("../Models/guestSchema");
 const express = require("express");
-const guestR = express.Router();
+const instructorR = express.Router();
 const mongoose = require('mongoose');
-const courses = require("../Models/courseSchema")
-const instructors = require("../Models/instructorSchema")
+const instructors = require("../Models/instructorSchema");
+const courses = require("../Models/courseSchema");
 
 
-guestR.get("/",(req, res) => {
-    res.render("../views/guest.ejs",{title:"guest country"})});
+instructorR.get("/",(req, res) => {
+    res.render("../views/instructor.ejs",{title:"instructor"})});
 
-guestR.post("/selectcountry",function(req,res){
-    // console.log(req.body)
+instructorR.post("/selectcountry",function(req,res){
+    console.log(req.body)
     var country = req.body.country;
-    var query = guests.find({Name:"sara"})
+    var query = instructors.find({username:"adham"})
         query.exec(function(err,result){
             if (err) throw err;
             if(result.length==0){
-                res.render("../views/guest.ejs",{title:"guest country"});
+                res.render("../views/instructor.ejs",{title:"instructor country"});
             }else{
-                guests.findOneAndUpdate({Name:"sara"},{Country:country},{upsert:true},function(err,doc){
+                instructors.findOneAndUpdate({username:"adham"},{country:country},{upsert:true},function(err,doc){
                     if(err) throw err;
                   });         
-              res.render("../views/guest.ejs",{title:"guest country"});
+              res.render("../views/instructor.ejs",{title:"instructor country"});
             }
 })
+
 })
-guestR.post("/searchtitle",async function(req,res){
+instructorR.post("/searchtitle",async function(req,res){
     var search = req.body.searchtitle
     var query = await courses.find({});
     var array = [];
@@ -39,7 +39,7 @@ guestR.post("/searchtitle",async function(req,res){
     res.send(array);
 })
 
-guestR.post("/searchsubject",async function(req,res){
+instructorR.post("/searchsubject",async function(req,res){
     var search = req.body.searchsubject
     var query = await courses.find({});
     var array = [];
@@ -52,13 +52,15 @@ guestR.post("/searchsubject",async function(req,res){
     }
     res.send(array);
 })
-guestR.post("/searchinstructor",async function(req,res){
+
+
+instructorR.post("/searchinstructor",async function(req,res){
     var search = req.body.searchinstructor
     var query = await courses.find({});
     var array = [];
     for(let i = 0 ; i<query.length ; i++)
     {
-        if (query[i].Instructor.toLowerCase().includes(search.toLowerCase()))
+        if (query[i].Instructorname.toLowerCase().includes(search.toLowerCase()))
         {
             array=array.concat([query[i]]);
         }
@@ -66,7 +68,7 @@ guestR.post("/searchinstructor",async function(req,res){
     res.send(array);
 })
 
-// guestR.post("/searchinstructor",async function(req,res){
+// instructorR.post("/searchinstructor",async function(req,res){
 //     var search = req.body.searchinstructor
 //     var ins = await instructors.find({});
 //     var array = [];
@@ -83,7 +85,7 @@ guestR.post("/searchinstructor",async function(req,res){
 //     {
 //         for(let j =0; j<cour.length ; j++)
 //         {
-//             if(array[i]._id==cour[j].Instructor)
+//             if(array[i]==cour[j].Instructor)
 //             {
 //                 array2 = array2.concat([cour[j]]);
 //             }
@@ -92,8 +94,5 @@ guestR.post("/searchinstructor",async function(req,res){
 //     res.send(array2);
 // })
     
-    
-    
-    
 
-module.exports = guestR;
+module.exports = instructorR;
