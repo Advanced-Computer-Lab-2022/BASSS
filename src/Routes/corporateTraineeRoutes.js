@@ -5,8 +5,8 @@ const corporateTrainees = require("../Models/corporateTraineeSchema");
 const courses = require("../Models/courseSchema");
 
 
-corporateTraineeR.get("/",(req, res) => {
-    res.render("../views/corporateTrainee.ejs",{title:"corporateTrainee"})});
+// corporateTraineeR.get("/",(req, res) => {
+//     res.render("../views/corporateTrainee.ejs",{title:"corporateTrainee"})});
 
 corporateTraineeR.post("/selectcountry",function(req,res){
     console.log(req.body)
@@ -66,31 +66,36 @@ corporateTraineeR.post("/searchinstructor",async function(req,res){
     }
     res.send(array);
 })
-// corporateTraineeR.post("/searchinstructor",async function(req,res){
-//     var search = req.body.searchinstructor
-//     var ins = await instructors.find({});
-//     var array = [];
-//     for(let i = 0 ; i<ins.length ; i++)
-//     {
-//         if (ins[i].username.toLowerCase().includes(search.toLowerCase()))
-//         {
-//             array=array.concat([ins[i]]);
-//         }
-//     }
-//     var cour = await courses.find({});
-//     var array2 = [];
-//     for(let i =0 ; i<array.length ; i++)
-//     {
-//         for(let j =0; j<cour.length ; j++)
-//         {
-//             if(array[i]._id==cour[j].Instructor)
-//             {
-//                 array2 = array2.concat([cour[j]]);
-//             }
-//         }
-//     }
-//     res.send(array2);
-// })
+// const { corporateTraineeSchema,corporates } = require("../Models/corporateTraineeSchema");
 
+corporateTraineeR.get("/",(req, res) => {
+    courses.collection.distinct("Subject", function(error, results){
+        res.render("../views/corporateTrainee.ejs", {
+            subjects: results,
+          });
+      });
+
+});
+
+    corporateTraineeR.route('/filterBySubject')
+.post((req,res,next)=> {
+    const sub = req.body.Subject
+    courses.find({Subject: sub})
+    .then((courses) => {
+        res.send(courses)
+    }, (err) => next(err))
+    .catch((err) => next(err));
+})
+
+corporateTraineeR.route('/filterByRating')
+.post((req,res,next)=> {
+    const rating = req.body.Rating;
+    courses.find({Rating: rating})
+    .then((courses) => {
+        res.send(courses)
+    }, (err) => next(err))
+    .catch((err) => next(err));
+
+})
 
 module.exports = corporateTraineeR;

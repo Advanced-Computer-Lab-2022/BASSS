@@ -1,15 +1,22 @@
 const { guestSchema,guests } = require("../Models/guestSchema");
 const express = require("express");
-const guestR = express.Router();
+const guestRouter = express.Router();
 const mongoose = require('mongoose');
 const courses = require("../Models/courseSchema")
 const instructors = require("../Models/instructorSchema")
 
 
-guestR.get("/",(req, res) => {
-    res.render("../views/guest.ejs",{title:"guest country"})});
+guestRouter.get("/",(req, res) => {
+    // res.render("../views/guest.ejs",{title:"guest country"});
+    courses.collection.distinct("Subject", function(error, results){
+        res.render("../views/guest.ejs", {
+            subjects: results,
+          });;
+      });
 
-guestR.post("/selectcountry",function(req,res){
+});
+
+guestRouter.post("/selectcountry",function(req,res){
     // console.log(req.body)
     var country = req.body.country;
     var query = guests.find({Name:"sara"})
@@ -25,7 +32,7 @@ guestR.post("/selectcountry",function(req,res){
             }
 })
 })
-guestR.post("/searchtitle",async function(req,res){
+guestRouter.post("/searchtitle",async function(req,res){
     var search = req.body.searchtitle
     var query = await courses.find({});
     var array = [];
@@ -39,7 +46,7 @@ guestR.post("/searchtitle",async function(req,res){
     res.send(array);
 })
 
-guestR.post("/searchsubject",async function(req,res){
+guestRouter.post("/searchsubject",async function(req,res){
     var search = req.body.searchsubject
     var query = await courses.find({});
     var array = [];
@@ -52,7 +59,7 @@ guestR.post("/searchsubject",async function(req,res){
     }
     res.send(array);
 })
-guestR.post("/searchinstructor",async function(req,res){
+guestRouter.post("/searchinstructor",async function(req,res){
     var search = req.body.searchinstructor
     var query = await courses.find({});
     var array = [];
@@ -96,4 +103,60 @@ guestR.post("/searchinstructor",async function(req,res){
     
     
 
-module.exports = guestR;
+guestRouter.route('/filterBySubject')
+.post((req,res,next)=> {
+    const sub = req.body.Subject
+    courses.find({Subject: sub})
+    .then((courses) => {
+        res.send(courses)
+    }, (err) => next(err))
+    .catch((err) => next(err));
+})
+
+guestRouter.route('/filterByRating')
+.post((req,res,next)=> {
+    const rating = req.body.Rating;
+    courses.find({Rating: rating})
+    .then((courses) => {
+        res.send(courses)
+    }, (err) => next(err))
+    .catch((err) => next(err));
+
+})
+
+guestRouter.route('/filterByPrice')
+.post((req,res,next)=> {
+    if(req.body.Price == 0){
+        courses.find({Price: 0 })
+        .then((courses) => {
+            res.send(courses)
+        }, (err) => next(err))
+        .catch((err) => next(err));
+        }
+    else{
+        const parsedData = req.body.Price.toString()
+        const priceA = parsedData.split('-')[0];
+        const priceB = parsedData.split('-')[1];
+        // createdAt:{$gte:“01-03-2021”,$lt:“31-03-2021”}
+        if(priceB == ''){
+            courses.find({Price: {$gte:priceA}})
+            .then((courses) => {
+                res.send(courses)
+            }, (err) => next(err))
+            .catch((err) => next(err));
+        }
+        else {
+            courses.find({Price: {$gte:priceA,$lt:priceB}})
+            .then((courses) => {
+                res.send(courses)
+            }, (err) => next(err))
+            .catch((err) => next(err));
+
+        }
+    }
+
+
+
+})
+
+module.exports = guestRouter;

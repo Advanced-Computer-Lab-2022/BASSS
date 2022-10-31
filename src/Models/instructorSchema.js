@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const courses = require('./courseSchema');
 
 const instructorschema = new Schema({
     country: {
@@ -8,7 +9,6 @@ const instructorschema = new Schema({
       },
       rating: {
         type: Number ,min:1,max:5,
-        // required: true,
       },
       reviews: {
         type: String,
@@ -18,9 +18,9 @@ const instructorschema = new Schema({
         // required: true,
         unique: true,
       },courses: {
-       /**/ type: mongoose.Types.ObjectId,
-       ref:'Course'
-        // required: true,
+        type: [mongoose.Types.ObjectId],
+        ref: 'Course',
+        required: true,
       },username: {
         type: String,
         // required: true,
@@ -43,8 +43,6 @@ const instructorschema = new Schema({
         // required: false,
       },
 })
-
-
 
 const instructors = mongoose.model('instructors', instructorschema);
 /*instructor.create({
