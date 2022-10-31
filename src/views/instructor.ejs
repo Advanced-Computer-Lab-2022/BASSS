@@ -1,20 +1,109 @@
 <html>
   <head>
-    <title><%= title %></title>
+    <title></title>
     </head>
   <body>
     <form method="post">
      
-      
-      <label for="country">Choose a country:</label>
-      <input type="text" name="country"/>
-      <button type="submit" formaction="/guest/selectcountry">Submit</button>
+     
+      <label>Instructor:</label>
+      <input type="text" name="instructor" />
+      <label>Title:</label>
+      <input type="text" name="title" />
+      <label>Subject:</label>
+      <input type="text" name="subject" />
+      <label>Price:</label>
+      <input type="text" name="price" />
+      <label>Outline:</label>
+      <input type="text" name="outline" />
+      <label>ShortSummary:</label>
+      <input type="text" name="shortsummary" />
 
+      <br>
+      <div id="div1" hidden="true">
+        <Label>SUBTITLE 1:   </Label>
+        <label>TotalHours:</label>
+        <input type="text" name="totalhours" />
+        <label>ShortDescription:</label>
+        <input type="text" name="shortdescription" />
+      </div>
+
+      <!-- 
+
+      <div id="div2">
+        <Label>SUBTITLE 2:   </Label>
+        <label>TotalHours:</label>
+        <input type="text" name="totalhours2" />
+        <label>ShortDescription:</label>
+        <input type="text" name="shortdescription2" />
+      </div>
+
+      <div id="div3">
+        <Label>SUBTITLE 3:   </Label>
+        <label>TotalHours:</label>
+        <input type="text" name="totalhours3" />
+        <label>ShortDescription:</label>
+        <input type="text" name="shortdescription3" />
+      </div>
+
+      <div id="div4">
+        <Label>SUBTITLE 4:   </Label>
+        <label>TotalHours:</label>
+        <input type="text" name="totalhours4" />
+        <label>ShortDescription:</label>
+        <input type="text" name="shortdescription4" />
+      </div>
+
+      <div id="div5">
+        <Label>SUBTITLE 5:   </Label>
+        <label>TotalHours:</label>
+        <input type="text" name="totalhours5" />
+        <label>ShortDescription:</label>
+        <input type="text" name="shortdescription5" />
+      </div>
+
+      <div id="div6">
+        <Label>SUBTITLE 6:   </Label>
+        <label>TotalHours:</label>
+        <input type="text" name="totalhours6" />
+        <label>ShortDescription:</label>
+        <input type="text" name="shortdescription6" />
+      </div> -->
+
+      <input type="text" name="search" />
+    <button type="submit" formaction="/instructor/searchcourse">Search Course</button>
+
+      <button type="submit" formaction="/instructor/addcourse">Create Course</button>
     </form>
 
-    <script>
 
-    </script>
+  <!--<form method="get">
+
+    <input type="text" name="search" />
+    <button type="submit" formaction="/instructor/searchcourse">Search Course</button>
+
+
+    </form>-->
+
+    <!--<button type="submit" onclick="add()" action="addcourse">add </button>-->
+
+
+   <style>
+
+   </style>
+
+    <!--<script>
+
+
+      function add(){
+        let lab = document.createElement('input');
+        lab.name ="subtitle";
+        lab.id="subtitle";
+        document.body.appendChild(lab);
+      }
+      
+      </script>-->
+
   </body>
 
 </html>

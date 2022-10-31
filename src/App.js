@@ -1,10 +1,11 @@
 const express = require("express");
 const mongoose = require('mongoose');
 require('dotenv').config();
-const guestS = require('./Models/guestSchema');
+//const guestS = require('./Models/guestSchema');
 // const { route } = require("./Routes/guestRoutes");
 var bodyParser = require('body-parser')
 const guestR = require('./Routes/guestRoutes');
+const instructorR = require('./Routes/instructorRoutes');
 // const index = require('./views/index.ejs');
 
 //App variables
@@ -26,4 +27,4 @@ mongoose.connect(process.env.mongoURl)
 app.set('view engine', 'ejs');
 app.engine('ejs', require('ejs').renderFile);
 
-app.use('/guest', guestR)
+app.use('/instructor', instructorR)

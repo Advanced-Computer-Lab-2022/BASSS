@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title><%= title %></title>
+    <title><%=list%></title>
     </head>
   <body>
     <form method="post">
@@ -11,8 +11,18 @@
       <button type="submit" formaction="/guest/selectcountry">Submit</button>
 
     </form>
-
+    <ul>
+        
+      <% list.forEach(function(course) { %>
+        
+        <li> Title:<%= course.Title %> </li>
+        <li><%= course.Price %></li>
+        <br>
+        <%});%>
+      </ul>
     <script>
+      // var list = "<%=list%>";
+      // alert(list);
 
     </script>
   </body>

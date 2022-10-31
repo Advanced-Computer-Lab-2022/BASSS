@@ -10,18 +10,19 @@ guestR.get("/",(req, res) => {
 guestR.post("/selectcountry",function(req,res){
     // console.log(req.body)
     var country = req.body.country;
-    var query = guests.find({Name:"sara"})
+    var query = guests.find({Name:"salama"})
         query.exec(function(err,result){
             if (err) throw err;
             if(result.length==0){
                 res.render("../views/guest.ejs",{title:"guest country"});
             }else{
-                guests.findOneAndUpdate({Name:"sara"},{Country:country},{upsert:true},function(err,doc){
+                guests.findOneAndUpdate({Name:"salama"},{Country:country},{upsert:true},function(err,doc){
                     if(err) throw err;
                   });         
               res.render("../views/guest.ejs",{title:"guest country"});
             }
           })
     }) 
+
 
 module.exports = guestR;

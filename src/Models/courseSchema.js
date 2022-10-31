@@ -1,56 +1,60 @@
-const express = require('express');
+// const express = require('express');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 // require('mongoose-currency').loadType(mongoose);
 // var Currency = mongoose.Types.Currency;
 
-
-const subtitleSchema = new Schema ({
-    TotalHours:{
-        type: Number,
-        required: true
-    },
-    ShortDescription: String
-    
-    //Videos
-})
-
 const courseSchema = new Schema ({
+
+    Instructor:{
+        type: String,
+    },
 
     Title:{
         type: String,
-        required: true,
+        //required: true,
     },
     Subject:{
         type: String,
-        required: true,
+        //required: true,
     },
     TotalHours:{
         type: Number,
-        required: true,
+        //required: true,
     },
     Price:{
         type: Number,
-        required: true,
+        //required: true,
     },
     Rating:{
         type: Number,
         min: 1,
         max: 5,
     },
+    Subtitles:{
+        TotalHours:{
+            type:Number,
+        },
+        ShortDescription:{
+            type: String,
+        }
+        //videos
+    },
+
     Promotions: Number,
     Views: Number,
     Progress:Number,  
     Outline: String,
     ShortSummary: String,
     Notes: String,
-    Subtitles: subtitleSchema
-    //Instructor
+    //Subtitles: {[mongoose.Types.ObjectId], ref:"subtitles"},
     //Exercises
     //Certificate
 
 
 })
 
-const course = mongoose.model('courses', courseSchema);
-module.exports = course;
+
+
+var courses = mongoose.model('courses', courseSchema);
+module.exports = {courses};

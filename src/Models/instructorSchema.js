@@ -1,52 +1,59 @@
+const express = require('express');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const instructorschema = new Schema({
+
+const instructorSchema = new Schema({
     country: {
         type: String,
-        required: true,
+        //required: true,
       },
       rating: {
         type: Number ,min:1,max:5,
-        required: true,
+        //required: true,
       },
       reviews: {
         type: String,
         required: true,
-      },email: {
+      },
+      email: {
         type: String,
-        required: true,
+        //required: true,
         unique: true,
-      },courses: {
-       /**/ type: String,
-        required: true,
-      },username: {
+      },
+      username: {
         type: String,
         required: true,
-        unique: true
+        //unique: true
       },
       password: {
         type: String,
-        required: true,
-      },miniBio: {
-        type: String,
-        required: true,
-      },gender: {
-        type: String,
-        required: true,
-      },balance: {
-        type: Number,
-        required: false,
-      },problems: {
-        type: String,
-        required: false,
+        //required: false,
       },
+      miniBio: {
+        type: String,
+        //required: false,
+      },
+      gender: {
+        type: String,
+        //required: false,
+      },
+      balance: {
+        type: Number,
+        //required: false,
+      },
+      problems: {
+        type: String,
+        //required: false,
+      },
+      //courses: courseSchema
 })
 
 
 
-const instructor = mongoose.model('instructor', instructorschema);
+var instructors = mongoose.model('instructors', instructorSchema);
+module.exports ={instructorSchema,instructors};
+
 /*instructor.create({
     Name:"bassel"
 })*/
-module.exports = instructor;
