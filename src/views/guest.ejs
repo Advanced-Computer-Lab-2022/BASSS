@@ -1,19 +1,97 @@
 <html>
   <head>
-    <title><%= title %></title>
+    <title><%=subjects%></title>
     </head>
   <body>
     <form method="post">
      
+      <div id="countryChoice" visibility="hidden">
+      
       
       <label for="country">Choose a country:</label>
       <input type="text" name="country"/>
       <button type="submit" formaction="/guest/selectcountry">Submit</button>
 
+      </div>
+      <br>
+      
+      <!-- <label for="browser">Filter By:</label>
+      
+      <input list="Subject" name="browser" id="browser">
+      <datalist id="Subject" title="SubjectS">
+        <option value="Subject">
+        <option value="Rating">
+        <option value="Price">
+      </datalist> -->
+
+      <!-- <label for="country">Filter By</label>
+      <input type="range" name="hjbs" value="Subject"/> -->
+      <!-- <button type="submit" formaction="/guest/selectcountry">Submit</button> -->
+
+
     </form>
 
-    <script>
+    
+    <form method="post" action="/guest/filterBySubject">
+      
+      <label for="Filter" >Filter By:</label>
+      <br>
+  
+      <label for="Subject" >Subject</label>
+      <br> <br>
+      <ul>
+        <% subjects.forEach(function(sub) { %>
+          <input id="jgj" type="radio" name='Subject' value=<%= sub %>>
+          <label for="jgj" ><%= sub %></label>
+          <br>
+          <%});%>
+      </ul>
+        <input type='submit' value="submit" >
+    </form>
 
+    <form method="post" action="/guest/filterByRating">
+      <label for="Rate" >Rating</label>
+      <input id="1" type="radio" name='Rating' value='1'>
+      <label for="1">1</label>
+      <input id="2" type="radio" name='Rating' value='2'>
+      <label for="2">2</label>
+      <input id="3" type="radio" name='Rating' value='3'>
+      <label for="'3">3</label>
+      <input id="4" type="radio" name='Rating' value='4'>
+      <label for="4">4</label>
+      <input id="5" type="radio" name='Rating' value='5'>
+      <label for="5">5</label>
+      <input type='submit' value="submit" >
+
+    </form>
+
+    <form method="post" action="/guest/filterByPrice">
+      <label for="Price" >Price</label>
+      <br>
+      <input id="1" type="radio" name='Price' value='0'>
+      <label for="1">Free</label>
+      <br>
+      <input id="2" type="radio" name='Price' value='100-200'>
+      <label for="2">100-200</label>
+      <br>
+      <input id="3" type="radio" name='Price' value='200-300'>
+      <label for="'3">200-300</label>
+      <br>
+      <input id="4" type="radio" name='Price' value='300-400'>
+      <label for="4">300-400</label>
+      <br>
+      <input id="5" type="radio" name='Price' value='400-500'>
+      <label for="5">400-500</label>
+      <br>
+      <input id="6" type="radio" name='Price' value='500-'>
+      <label for="6">500 - </label>
+      <br>
+      <input type='submit' value="submit" >
+
+    </form>
+
+
+    <script>
     </script>
   </body>
 

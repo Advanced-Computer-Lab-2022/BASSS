@@ -31,7 +31,8 @@ const individualTraineeschema = new Schema({
         type: String,
     },
     /**/courses: {
-        type: String,
+        type: [mongoose.Types.ObjectId],
+        ref: 'courses'
     }
 
 

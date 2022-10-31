@@ -1,22 +1,20 @@
-const { guestSchema,guests } = require("../Models/guestSchema");
+const { indvidualSchema,indvidualTrainees } = require("../Models/individualTraineeSchema");
 const express = require("express");
-const guestRouter = express.Router();
+const indvidualRouter = express.Router();
 const mongoose = require('mongoose');
 const courses = require('../Models/courseSchema');
 
 
-guestRouter.get("/",(req, res) => {
-    // res.render("../views/guest.ejs",{title:"guest country"});
+indvidualRouter.get("/",(req, res) => {
     courses.collection.distinct("Subject", function(error, results){
-        res.render("../views/guest.ejs", {
+        res.render("../views/indvidualTrainee.ejs", {
             subjects: results,
           });;
       });
 
 });
 
-guestRouter.post("/selectcountry",function(req,res){
-    // console.log(req.body)
+indvidualRouter.post("/selectcountry",function(req,res){
     var country = req.body.country;
     var query = guests.find({Name:"sara"})
         query.exec(function(err,result){
@@ -32,7 +30,7 @@ guestRouter.post("/selectcountry",function(req,res){
           })
     }) 
 
-guestRouter.route('/filterBySubject')
+indvidualRouter.route('/filterBySubject')
 .post((req,res,next)=> {
     const sub = req.body.Subject
     courses.find({Subject: sub})
@@ -42,7 +40,7 @@ guestRouter.route('/filterBySubject')
     .catch((err) => next(err));
 })
 
-guestRouter.route('/filterByRating')
+indvidualRouter.route('/filterByRating')
 .post((req,res,next)=> {
     const rating = req.body.Rating;
     courses.find({Rating: rating})
@@ -53,7 +51,7 @@ guestRouter.route('/filterByRating')
 
 })
 
-guestRouter.route('/filterByPrice')
+indvidualRouter.route('/filterByPrice')
 .post((req,res,next)=> {
     if(req.body.Price == 0){
         courses.find({Price: 0 })
@@ -66,7 +64,6 @@ guestRouter.route('/filterByPrice')
         const parsedData = req.body.Price.toString()
         const priceA = parsedData.split('-')[0];
         const priceB = parsedData.split('-')[1];
-        // createdAt:{$gte:“01-03-2021”,$lt:“31-03-2021”}
         if(priceB == ''){
             courses.find({Price: {$gte:priceA}})
             .then((courses) => {
@@ -88,4 +85,4 @@ guestRouter.route('/filterByPrice')
 
 })
 
-module.exports = guestRouter;
+module.exports = indvidualRouter;
