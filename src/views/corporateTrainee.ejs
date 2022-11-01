@@ -1,16 +1,56 @@
 <html>
   <head>
-    <title><%= title %></title>
+    <title><%=subjects%></title>
     </head>
   <body>
-    <form method="post">
-     
-      
+    <form method="post" action="/corporateTrainee/filterBySubject">
       <label for="country">Choose a country:</label>
       <input type="text" name="country"/>
-      <button type="submit" formaction="/guest/selectcountry">Submit</button>
+      <button type="submit" formaction="/corporateTrainee/selectcountry">Submit</button>
+      <br/>
+      <br/>
+      <input type="text" name="searchtitle" placeholder="Search for a course by title?"/>
+      <button type="submit" formaction="/corporateTrainee/searchtitle">search</button>
+      <br/>
+      <br/>
+      <input type="text" name="searchsubject" placeholder="Search for a course by subject ?"/>
+      <button type="submit" formaction="/corporateTrainee/searchsubject">search</button>
+      <br/>
+      <br/>
+      <input type="text" name="searchinstructor" placeholder="Search for a course by instructor ?"/>
+      <button type="submit" formaction="/corporateTrainee/searchinstructor">search</button>
+      <label for="Filter" >Filter By:</label>
+      <br>
+  
+      <label for="Subject" >Subject</label>
+      <br> <br>
+      <ul>
+        <% subjects.forEach(function(sub) { %>
+          <input id="jgj" type="radio" name='Subject' value=<%= sub %>>
+          <label for="jgj" ><%= sub %></label>
+          <br>
+          <%});%>
+      </ul>
+        <input type='submit' value="submit" >
+    </form>
+
+    <form method="post" action="/corporateTrainee/filterByRating">
+      <label for="Rate" >Rating</label>
+      <input id="1" type="radio" name='Rating' value='1'>
+      <label for="1">1</label>
+      <input id="2" type="radio" name='Rating' value='2'>
+      <label for="2">2</label>
+      <input id="3" type="radio" name='Rating' value='3'>
+      <label for="'3">3</label>
+      <input id="4" type="radio" name='Rating' value='4'>
+      <label for="4">4</label>
+      <input id="5" type="radio" name='Rating' value='5'>
+      <label for="5">5</label>
+      <input type='submit' value="submit" >
 
     </form>
+
+
 
     <script>
 

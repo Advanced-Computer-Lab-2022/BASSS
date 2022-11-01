@@ -1,39 +1,31 @@
-const { guestSchema,guests } = require("../Models/guestSchema");
 const express = require("express");
-const guestRouter = express.Router();
+// const individualTraineeR = express.Router();
 const mongoose = require('mongoose');
-const courses = require("../Models/courseSchema")
-const instructors = require("../Models/instructorSchema")
+const individualTrainees = require("../Models/individualTraineeSchema");
+const courses = require("../Models/courseSchema");
+const indvidualRouter = express.Router();
 
 
-guestRouter.get("/",(req, res) => {
-    // res.render("../views/guest.ejs",{title:"guest country"});
-    courses.collection.distinct("Subject", function(error, results){
-        res.render("../views/guest.ejs", {
-            subjects: results,
-          });;
-      });
+// indvidualRouter.get("/",(req, res) => {
+//     res.render("../views/individualTrainee.ejs",{title:"individualTrainee"})});
 
-});
-
-guestRouter.post("/selectcountry",function(req,res){
-    // console.log(req.body)
+    indvidualRouter.post("/selectcountry",function(req,res){
+    console.log(req.body)
     var country = req.body.country;
-    var query = guests.find({Name:"salama"})
+    var query = individualTrainees.find({username:"adham"})
         query.exec(function(err,result){
             if (err) throw err;
             if(result.length==0){
-                res.render("../views/guest.ejs",{title:"guest country"});
+                res.render("../views/individualTrainee.ejs",{title:"individualTrainee country"});
             }else{
-                guests.findOneAndUpdate({Name:"salama"},{Country:country},{upsert:true},function(err,doc){
-                
+                individualTrainees.findOneAndUpdate({username:"adham"},{country:country},{upsert:true},function(err,doc){
                     if(err) throw err;
                   });         
-              res.render("../views/guest.ejs",{title:"guest country"});
+              res.render("../views/individualTrainee.ejs",{title:"individualTrainee country"});
             }
 })
 })
-guestRouter.post("/searchtitle",async function(req,res){
+indvidualRouter.post("/searchtitle",async function(req,res){
     var search = req.body.searchtitle
     var query = await courses.find({});
     var array = [];
@@ -47,7 +39,7 @@ guestRouter.post("/searchtitle",async function(req,res){
     res.send(array);
 })
 
-guestRouter.post("/searchsubject",async function(req,res){
+indvidualRouter.post("/searchsubject",async function(req,res){
     var search = req.body.searchsubject
     var query = await courses.find({});
     var array = [];
@@ -60,21 +52,24 @@ guestRouter.post("/searchsubject",async function(req,res){
     }
     res.send(array);
 })
-guestRouter.post("/searchinstructor",async function(req,res){
+
+
+indvidualRouter.post("/searchinstructor",async function(req,res){
     var search = req.body.searchinstructor
     var query = await courses.find({});
     var array = [];
     for(let i = 0 ; i<query.length ; i++)
     {
-        if (query[i].Instructor.toLowerCase().includes(search.toLowerCase()))
+        if (query[i].Instructorname.toLowerCase().includes(search.toLowerCase()))
         {
             array=array.concat([query[i]]);
         }
     }
     res.send(array);
 })
+    
 
-// guestR.post("/searchinstructor",async function(req,res){
+// individualTraineeR.post("/searchinstructor",async function(req,res){
 //     var search = req.body.searchinstructor
 //     var ins = await instructors.find({});
 //     var array = [];
@@ -99,12 +94,21 @@ guestRouter.post("/searchinstructor",async function(req,res){
 //     }
 //     res.send(array2);
 // })
-    
-    
-    
-    
 
-guestRouter.route('/filterBySubject')
+// module.exports = individualTraineeR;
+// const { indvidualSchema,indvidualTrainees } = require("../Models/individualTraineeSchema");
+
+indvidualRouter.get("/",(req, res) => {
+    courses.collection.distinct("Subject", function(error, results){
+        res.render("../views/indvidualTrainee.ejs", {
+            subjects: results,
+          });;
+      });
+
+});
+
+
+indvidualRouter.route('/filterBySubject')
 .post((req,res,next)=> {
     const sub = req.body.Subject
     courses.find({Subject: sub})
@@ -114,7 +118,7 @@ guestRouter.route('/filterBySubject')
     .catch((err) => next(err));
 })
 
-guestRouter.route('/filterByRating')
+indvidualRouter.route('/filterByRating')
 .post((req,res,next)=> {
     const rating = req.body.Rating;
     courses.find({Rating: rating})
@@ -125,7 +129,7 @@ guestRouter.route('/filterByRating')
 
 })
 
-guestRouter.route('/filterByPrice')
+indvidualRouter.route('/filterByPrice')
 .post((req,res,next)=> {
     if(req.body.Price == 0){
         courses.find({Price: 0 })
@@ -138,7 +142,6 @@ guestRouter.route('/filterByPrice')
         const parsedData = req.body.Price.toString()
         const priceA = parsedData.split('-')[0];
         const priceB = parsedData.split('-')[1];
-        // createdAt:{$gte:“01-03-2021”,$lt:“31-03-2021”}
         if(priceB == ''){
             courses.find({Price: {$gte:priceA}})
             .then((courses) => {
@@ -160,4 +163,4 @@ guestRouter.route('/filterByPrice')
 
 })
 
-module.exports = guestRouter;
+module.exports = indvidualRouter;
