@@ -3,12 +3,15 @@
     <title><%= title %></title>
     </head>
   <body>
-    <form method="post">
+    <form method="get">
      
       
-      <label for="country">Choose a country:</label>
-      <input type="text" name="country"/>
-      <button type="submit" formaction="/guest/selectcountry">Submit</button>
+      <label for="viewtitles">viewtitles:</label>
+      <button type="submit" formaction="/instructor/instructorViewtitles">Submit</button>
+      <label for="filtercourses">filtercourses:</label>
+      <button type="submit" formaction="/instructor/filtercourses">Submit</button>
+      <label for="viewcoures">viewcourses:</label>
+      <button type="submit" formaction="/instructor/instructorViewcourses">Submit</button>
 
     </form>
 

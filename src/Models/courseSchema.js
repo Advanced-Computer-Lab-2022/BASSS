@@ -17,6 +17,10 @@ const subtitleSchema = new Schema ({
 
 const courseSchema = new Schema ({
 
+    Instructor:{
+        type: String,
+        required: true,
+    },
     Title:{
         type: String,
         required: true,
@@ -44,7 +48,7 @@ const courseSchema = new Schema ({
     Outline: String,
     ShortSummary: String,
     Notes: String,
-    Subtitles: subtitleSchema
+    //Subtitles: subtitleSchema
     //Instructor
     //Exercises
     //Certificate
@@ -52,5 +56,11 @@ const courseSchema = new Schema ({
 
 })
 
+const subtitle = mongoose.model('subtitles', subtitleSchema);
+//subtitle.create({TotalHours:4,ShortDescription:"nice"})
+module.exports.subtitle;
+
 const course = mongoose.model('courses', courseSchema);
+//course.create({ Instructor: "salama",Title: "CSEN101", Subject: "CS",  TotalHours: 4, Price: 10,  Promotions: 4 , Views:101, Progress:3 ,  Outline: "ss" ,ShortSummary:"ss", Notes:"ss" })
 module.exports = course;
+
