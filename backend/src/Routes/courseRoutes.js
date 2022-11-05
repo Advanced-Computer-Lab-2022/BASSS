@@ -1,10 +1,13 @@
 const express = require("express");
 const courseR = express.Router();
 const mongoose = require('mongoose');
+const courses = require('../Models/courseSchema')
 
 
-courseR.get("/",(req, res) => {
-    res.render("../views/course.ejs",{title:"courses"})
+courseR.get("/",async(req, res) => {
+    // res.render("../views/course.ejs",{title:"courses"})
+    const result =await courses.find({})
+    res.send(result)
 });
 
 // courseR.post("/selectcountry",function(req,res){

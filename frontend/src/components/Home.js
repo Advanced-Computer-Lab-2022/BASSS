@@ -1,4 +1,4 @@
-import { useEffect,useState } from 'react';
+import { useState } from 'react';
 import fetchCourse from '../API/coursemethods';
 const Home = () =>{
     const [courses,setCourses] = useState([])
@@ -6,7 +6,7 @@ const Home = () =>{
         // alert(await fetchCourse())
         setCourses(await fetchCourse())
         
-    }
+    } 
     getCourses()
         return(
         <div className='Home'>

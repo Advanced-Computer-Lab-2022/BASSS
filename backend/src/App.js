@@ -9,7 +9,7 @@ const instructorR = require('./Routes/instructorRoutes');
 const individualTraineeR = require('./Routes/individualTraineeRoutes');
 const corporateTraineeR = require('./Routes/corporateTraineeRoutes');
 const courseR = require('./Routes/courseRoutes');
-
+const cors = require('cors')
 // const index = require('./views/index.ejs');
 
 //App variables
@@ -28,9 +28,9 @@ mongoose.connect(process.env.mongoURl)
   })
 })
 .catch(err => console.log(err));
+app.use(cors())
 app.set('view engine', 'ejs');
 app.engine('ejs', require('ejs').renderFile);
-
 app.use('/guest', guestR)
 app.use('/instructor', instructorR)
 app.use('/individualTrainee', individualTraineeR)
