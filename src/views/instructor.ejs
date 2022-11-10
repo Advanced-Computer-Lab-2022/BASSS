@@ -1,16 +1,10 @@
 <html>
   <head>
-<<<<<<< HEAD
-    <title></title>
-=======
     <title><%=subjects%></title>
->>>>>>> 327565635577ab09c1273dcc871baed92548ff1b
     </head>
   <body>
-    <form method="get">
-     
-<<<<<<< HEAD
-     
+
+    <form method="post">
       <label>Instructor:</label>
       <input type="text" name="instructor" />
       <label>Title:</label>
@@ -23,16 +17,34 @@
       <input type="text" name="outline" />
       <label>ShortSummary:</label>
       <input type="text" name="shortsummary" />
-=======
+
+      <br>
+      <div id="div1" hidden="true">
+        <Label>SUBTITLE 1:   </Label>
+        <label>TotalHours:</label>
+        <input type="text" name="totalhours" />
+        <label>ShortDescription:</label>
+        <input type="text" name="shortdescription" />
+      </div>
+    
+    <button type="submit" formaction="/instructor/addcourse">Create Course</button>
+
+    <input type="text" name="search" />
+    <button type="submit" formaction="/instructor/searchcourse">Search Course</button>
+
+    </form>
+
+
+
+
+    <form method="get">
       
-<<<<<<< HEAD
       <label for="viewtitles">viewtitles:</label>
       <button type="submit" formaction="/instructor/instructorViewtitles">Submit</button>
       <label for="filtercourses">filtercourses:</label>
       <button type="submit" formaction="/instructor/filtercourses">Submit</button>
       <label for="viewcoures">viewcourses:</label>
       <button type="submit" formaction="/instructor/instructorViewcourses">Submit</button>
-=======
       <label for="country">Choose a country:</label>
       <input type="text" name="country"/>
       <button type="submit" formaction="/instructor/selectcountry">Submit</button>
@@ -47,18 +59,11 @@
       <br/>
       <br/>
       <input type="text" name="searchinstructor" placeholder="Search for a course by instructor ?"/>
-      <button type="submit" formaction="/instructor/searchinstructor">search</button>
->>>>>>> 3819f8295f8b6c49cedacaa079559368d12ebcd9
->>>>>>> 327565635577ab09c1273dcc871baed92548ff1b
 
-      <br>
-      <div id="div1" hidden="true">
-        <Label>SUBTITLE 1:   </Label>
-        <label>TotalHours:</label>
-        <input type="text" name="totalhours" />
-        <label>ShortDescription:</label>
-        <input type="text" name="shortdescription" />
-      </div>
+      <button type="submit" formaction="/instructor/searchinstructor">search</button>
+
+    
+      
 
       <!-- 
 
@@ -101,15 +106,12 @@
         <label>ShortDescription:</label>
         <input type="text" name="shortdescription6" />
       </div> -->
+   
 
-      <input type="text" name="search" />
-    <button type="submit" formaction="/instructor/searchcourse">Search Course</button>
 
-      <button type="submit" formaction="/instructor/addcourse">Create Course</button>
+      
     </form>
 
-<<<<<<< HEAD
-=======
     <form method="post" action="/instructor/filterBySubject">
       
       <label for="Filter" >Filter By:</label>
@@ -167,18 +169,12 @@
       <input type='submit' value="submit" >
 
     </form>
+  <form method="get">
+
+    
 
 
-    <script>
->>>>>>> 327565635577ab09c1273dcc871baed92548ff1b
-
-  <!--<form method="get">
-
-    <input type="text" name="search" />
-    <button type="submit" formaction="/instructor/searchcourse">Search Course</button>
-
-
-    </form>-->
+    </form>
 
     <!--<button type="submit" onclick="add()" action="addcourse">add </button>-->
 

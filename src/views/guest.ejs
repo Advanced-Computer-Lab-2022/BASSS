@@ -1,10 +1,6 @@
 <html>
   <head>
-<<<<<<< HEAD
-    <title><%=list%></title>
-=======
-    <title><%=subjects%></title>
->>>>>>> 327565635577ab09c1273dcc871baed92548ff1b
+    <title><%=list%><%=subjects%></title>
     </head>
   <body>
     <form method="post">
@@ -43,7 +39,6 @@
 
 
     </form>
-<<<<<<< HEAD
     <ul>
         
       <% list.forEach(function(course) { %>
@@ -53,10 +48,7 @@
         <br>
         <%});%>
       </ul>
-    <script>
-      // var list = "<%=list%>";
-      // alert(list);
-=======
+  
 
     
     <form method="post" action="/guest/filterBySubject">
@@ -75,7 +67,6 @@
       </ul>
         <input type='submit' value="submit" >
     </form>
->>>>>>> 327565635577ab09c1273dcc871baed92548ff1b
 
     <form method="post" action="/guest/filterByRating">
       <label for="Rate" >Rating</label>

@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 const { instructors } = require("../Models/instructorSchema");
 const {courses} = require("../Models/courseSchema");
 const express = require("express");
@@ -6,8 +6,6 @@ const instructorR = express.Router();
 const mongoose = require('mongoose');
 const { json } = require("body-parser");
 
-instructorR.get("/",(req, res) => {
-    res.render("../views/instructor.ejs",{title:"add a course"})});
 
 instructorR.post("/addcourse",function(req,res){
         // console.log(req.body)
@@ -68,18 +66,9 @@ instructorR.post("/addcourse",function(req,res){
 
         })
 
-        module.exports = instructorR;
-=======
-<<<<<<< HEAD
-const { instructorSchema,instructors } = require("../Models/instructorSchema");
-const express = require("express");
-const instructorR = express.Router();
-const mongoose = require('mongoose');
-const course = require("../Models/courseSchema");
 
 
-instructorR.get("/",(req, res) => {
-    res.render("../views/instructor.ejs",{title:"instructor"})});
+
  instructorR.get('/instructorViewtitles', function(req, res) { 
     var query = course.find({Instructor:"salama"})
     query.exec(function(err,result){
@@ -126,19 +115,12 @@ instructorR.get("/",(req, res) => {
         })
  
 
-module.exports = instructorR;
-=======
-const express = require("express");
-const instRouter = express.Router();
-const mongoose = require('mongoose');
-const instructors = require("../Models/instructorSchema");
-const courses = require("../Models/courseSchema");
 
 
-// instRouter.get("/",(req, res) => {
+// instructorR.get("/",(req, res) => {
 //     res.render("../views/instructor.ejs",{title:"instructor"})});
 
-    instRouter.post("/selectcountry",function(req,res){
+    instructorR.post("/selectcountry",function(req,res){
     console.log(req.body)
     var country = req.body.country;
     var query = instructors.find({username:"adham"})
@@ -155,7 +137,7 @@ const courses = require("../Models/courseSchema");
 })
 
 })
-instRouter.post("/searchtitle",async function(req,res){
+instructorR.post("/searchtitle",async function(req,res){
     var search = req.body.searchtitle
     var query = await courses.find({});
     var array = [];
@@ -169,7 +151,7 @@ instRouter.post("/searchtitle",async function(req,res){
     res.send(array);
 })
 
-instRouter.post("/searchsubject",async function(req,res){
+instructorR.post("/searchsubject",async function(req,res){
     var search = req.body.searchsubject
     var query = await courses.find({});
     var array = [];
@@ -184,7 +166,7 @@ instRouter.post("/searchsubject",async function(req,res){
 })
 
 
-instRouter.post("/searchinstructor",async function(req,res){
+instructorR.post("/searchinstructor",async function(req,res){
     var search = req.body.searchinstructor
     var query = await courses.find({});
     var array = [];
@@ -226,7 +208,7 @@ instRouter.post("/searchinstructor",async function(req,res){
     
 
 // const { instructorSchema,instructors } = require("../Models/instructorSchema");
-instRouter.get("/",(req, res) => {
+instructorR.get("/",(req, res) => {
     courses.collection.distinct("Subject", function(error, results){
         res.render("../views/instructor.ejs", {
             subjects: results,
@@ -235,7 +217,7 @@ instRouter.get("/",(req, res) => {
 
 });
 
-instRouter.route('/filterBySubject')
+instructorR.route('/filterBySubject')
 .post((req,res,next)=> {
     const sub = req.body.Subject
     courses.find({Subject: sub})
@@ -245,7 +227,7 @@ instRouter.route('/filterBySubject')
     .catch((err) => next(err));
 })
 
-instRouter.route('/filterByRating')
+instructorR.route('/filterByRating')
 .post((req,res,next)=> {
     const rating = req.body.Rating;
     courses.find({Rating: rating})
@@ -256,7 +238,7 @@ instRouter.route('/filterByRating')
 
 })
 
-instRouter.route('/filterByPrice')
+instructorR.route('/filterByPrice')
 .post((req,res,next)=> {
     if(req.body.Price == 0){
         courses.find({Price: 0 })
@@ -290,6 +272,6 @@ instRouter.route('/filterByPrice')
 
 })
 
-module.exports = instRouter;
->>>>>>> 3819f8295f8b6c49cedacaa079559368d12ebcd9
->>>>>>> 327565635577ab09c1273dcc871baed92548ff1b
+module.exports = instructorR;
+//>>>>>>> 3819f8295f8b6c49cedacaa079559368d12ebcd9
+//>>>>>>> 327565635577ab09c1273dcc871baed92548ff1b

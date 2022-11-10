@@ -1,12 +1,12 @@
 const { guestSchema,guests } = require("../Models/guestSchema");
 const express = require("express");
-const guestRouter = express.Router();
+const guestR = express.Router();
 const mongoose = require('mongoose');
 const courses = require("../Models/courseSchema")
 const instructors = require("../Models/instructorSchema")
 
 
-guestRouter.get("/",(req, res) => {
+guestR.get("/",(req, res) => {
     // res.render("../views/guest.ejs",{title:"guest country"});
     courses.collection.distinct("Subject", function(error, results){
         res.render("../views/guest.ejs", {
@@ -16,7 +16,7 @@ guestRouter.get("/",(req, res) => {
 
 });
 
-guestRouter.post("/selectcountry",function(req,res){
+guestR.post("/selectcountry",function(req,res){
     // console.log(req.body)
     var country = req.body.country;
     var query = guests.find({Name:"salama"})
@@ -26,17 +26,14 @@ guestRouter.post("/selectcountry",function(req,res){
                 res.render("../views/guest.ejs",{title:"guest country"});
             }else{
                 guests.findOneAndUpdate({Name:"salama"},{Country:country},{upsert:true},function(err,doc){
-<<<<<<< HEAD
-=======
                 
->>>>>>> 327565635577ab09c1273dcc871baed92548ff1b
                     if(err) throw err;
                   });         
               res.render("../views/guest.ejs",{title:"guest country"});
             }
 })
 })
-guestRouter.post("/searchtitle",async function(req,res){
+guestR.post("/searchtitle",async function(req,res){
     var search = req.body.searchtitle
     var query = await courses.find({});
     var array = [];
@@ -50,11 +47,9 @@ guestRouter.post("/searchtitle",async function(req,res){
     res.send(array);
 })
 
-<<<<<<< HEAD
 
-module.exports = guestR;
-=======
-guestRouter.post("/searchsubject",async function(req,res){
+
+guestR.post("/searchsubject",async function(req,res){
     var search = req.body.searchsubject
     var query = await courses.find({});
     var array = [];
@@ -67,7 +62,7 @@ guestRouter.post("/searchsubject",async function(req,res){
     }
     res.send(array);
 })
-guestRouter.post("/searchinstructor",async function(req,res){
+guestR.post("/searchinstructor",async function(req,res){
     var search = req.body.searchinstructor
     var query = await courses.find({});
     var array = [];
@@ -111,7 +106,7 @@ guestRouter.post("/searchinstructor",async function(req,res){
     
     
 
-guestRouter.route('/filterBySubject')
+guestR.route('/filterBySubject')
 .post((req,res,next)=> {
     const sub = req.body.Subject
     courses.find({Subject: sub})
@@ -121,7 +116,7 @@ guestRouter.route('/filterBySubject')
     .catch((err) => next(err));
 })
 
-guestRouter.route('/filterByRating')
+guestR.route('/filterByRating')
 .post((req,res,next)=> {
     const rating = req.body.Rating;
     courses.find({Rating: rating})
@@ -132,7 +127,7 @@ guestRouter.route('/filterByRating')
 
 })
 
-guestRouter.route('/filterByPrice')
+guestR.route('/filterByPrice')
 .post((req,res,next)=> {
     if(req.body.Price == 0){
         courses.find({Price: 0 })
@@ -167,5 +162,4 @@ guestRouter.route('/filterByPrice')
 
 })
 
-module.exports = guestRouter;
->>>>>>> 327565635577ab09c1273dcc871baed92548ff1b
+module.exports = guestR;
