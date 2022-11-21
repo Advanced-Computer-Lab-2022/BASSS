@@ -94,5 +94,26 @@ instructorR.post("/searchinstructor",async function(req,res){
 //     res.send(array2);
 // })
     
+// instructorR.post("/addcourse",function(req,res){
+//     var instructor = req.body.InstructorUserName;
+//     var title = req.body.title;
+//     var subject = req.body.subject;
+//     var price = req.body.price;
+//     var outline = req.body.outline;
+//     var shortsummary = req.body.shortsummary;
+//     var totalhours = req.body.subtitle;
 
+
+//     courses.create({Instructor:instructor,
+//         Title:title,
+//         Subject:subject,
+//         Price:price,
+//         Outline:outline,
+//         ShortSummary:shortsummary,
+//         TotalHours:totalhours,
+
+//     }
+//       );    
+//       res.render("../views/instructor.ejs",{title:"add a course"});
+// })
 module.exports = instructorR;

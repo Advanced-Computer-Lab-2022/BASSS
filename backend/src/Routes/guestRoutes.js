@@ -5,12 +5,12 @@ const mongoose = require('mongoose');
 const courses = require("../Models/courseSchema")
 const instructors = require("../Models/instructorSchema")
 
-
 guestR.get("/",(req, res) => {
     res.render("../views/guest.ejs",{title:"guest country"})});
 
 guestR.post("/selectcountry",function(req,res){
-    // console.log(req.body)
+
+    console.log(req.body)
     var country = req.body.country;
     var query = guests.find({Name:"sara"})
         query.exec(function(err,result){

@@ -1,19 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-// require('mongoose-currency').loadType(mongoose);
-// var Currency = mongoose.Types.Currency;
-
-
-const subtitleSchema = new Schema ({
-    TotalHours:{
-        type: Number,
-        required: true
-    },
-    ShortDescription: String
-    
-    //Videos
-})
 
 const courseSchema = new Schema ({
 
@@ -38,30 +25,55 @@ const courseSchema = new Schema ({
         min: 1,
         max: 5,
     },
-    Promotions: Number,
-    Views: Number,
-    Progress:Number,  
-    Outline: String,
-    ShortSummary: String,
-    Notes: String,
-    Subtitles:{
-        type:mongoose.Types.ObjectId,
-        ref:'Subtitles'
+    
+    InstructorUserName:{
+        type:String,
+        required:true
     },
-    Instructor:{
-        type:mongoose.Types.ObjectId,
-        ref:'Instructor',
 
+    Subtitles:{
+        type: [[String]], //[[Subtitles.Hours , VideoLink, ShortVideoDescription, ExerciseID, %ofCourse ]]
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////
+        required:true
     },
-    Instructorname:{
-        type:String
+
+    Views: {
+        type: Number,
+        default: 0
+    },
+    
+    VideoPreviewLink: {
+        type: String,
+        required:true
+    },
+
+    Reviews: {
+        type: [String]
+    },
+
+    
+    ShortSummary: {
+        type: String,
+        required: true
+    },
+
+    PromotionPercentage: {
+        type: Number,
+        default: 0
+    },
+
+    PromotionEndTime: {type: Number, min: 0, max:24},
+    
+    PromotionEndDate: {type: Date},
+    
+    CertificateTemplate:{
+        type: String,
+        required: true
     }
 
-    //Exercises
-    //Certificate
+}, { timestamps: true });
 
 
-})
 
-const course = mongoose.model('courses', courseSchema);
+const course = mongoose.model('course', courseSchema);
 module.exports = course;

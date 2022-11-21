@@ -1,30 +1,19 @@
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
-import Navbar from './components/Navbar';
+import Guest from './components/guest/Guest';
+import Navbar from './components/Navbar/Navbar';
 
-import Courses from './components/Courses';
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
       <Navbar/> 
         <Routes>
-          <Route
-          path='/'
-          element={
-            <Home/>
-          }
-          />
-        </Routes>
-      </BrowserRouter>
+          <p>assc</p>
+        </Routes>  
+      </BrowserRouter>  
 
     </div>
   );
-}
-function Home() {
-  return <div className="Home">
-    {/* <Navbar  /> */}
-    {/* <Courses/> */}
-    </div>
 }
 
 
