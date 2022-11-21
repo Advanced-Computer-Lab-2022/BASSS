@@ -1,9 +1,27 @@
 import React from 'react';
 import NavBarGeneric from '../../NavBarComponent/NavBarGeneric';
 import AdminNavBar from '../AdminNavBar/AdminNavBar';
+import {
+  Nav,
+  NavLink,
+  Bars,
+  NavMenu,
+  NavBtn,
+  NavBtnLink,
+  Button,
+  Body,
+  ButtonLink
+} from './AddUsersCss';
 
 export default function AddUsers(){
-    return <div>
+    return <Body>
         <AdminNavBar/>
-    </div>
+        <div>
+            <Button>
+            <ButtonLink to='/sarasaad'>Ana hena</ButtonLink>
+            </Button>
+        </div>
+
+    </Body>
+
 }

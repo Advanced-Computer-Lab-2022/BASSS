@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require('mongoose');
 require('dotenv').config();
-const guestS = require('./Models/guestSchema');
+//const guestS = require('./Models/guestSchema');
 // const { route } = require("./Routes/guestRoutes");
 var bodyParser = require('body-parser')
 const guestR = require('./Routes/guestRoutes');

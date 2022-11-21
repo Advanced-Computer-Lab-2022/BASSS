@@ -1,10 +1,11 @@
 import { FaBars } from 'react-icons/fa';
 import { NavLink as Link } from 'react-router-dom';
 import styled from 'styled-components';
+import AdminAddUser from '../../../images/AdminAddUser.jpg';
 
 //background
 export const Nav = styled.nav`
-  background: rgba(22,53,77,0.8);
+  background: #16354D;
   height: 80px;
   display: flex;
   justify-content: space-between;
@@ -48,18 +49,11 @@ export const Bars = styled(FaBars)`
 `;
 
 
-export const NavMenu = styled.div`
-  display: flex;
-  align-items: center;
-  margin-right: -24px;
-  /* Second Nav */
-  /* margin-right: 24px; */
-  /* Third Nav */
-  /* width: 100vw;
-  white-space: nowrap; */
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
+export const Body = styled.body`
+background-image: url(${AdminAddUser});
+background-size:cover ;
+height: 100vh;
+
 `;
 
 export const NavBtn = styled.nav`
@@ -77,6 +71,38 @@ export const NavBtn = styled.nav`
 export const NavBtnLink = styled(Link)`
   border-radius: 4px;
   background: #256ce1;
+  padding: 10px 22px;
+  color: #fff;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  /* Second Nav */
+  margin-left: 24px;
+  &:hover {
+    transition: all 0.2s ease-in-out;
+    background: #fff;
+    color: #010606;
+  }
+`;
+
+export const Button = styled.nav`
+display: flex;
+align-items: center;
+margin-right: 24px;
+/* Third Nav */
+/* justify-content: flex-end;
+width: 100vw; */
+@media screen and (max-width: 768px) {
+  display: none;
+}
+`;
+
+
+export const ButtonLink = styled(Link)`
+  border-radius: 4px;
+  background: transparent;
   padding: 10px 22px;
   color: #fff;
   outline: none;

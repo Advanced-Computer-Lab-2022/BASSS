@@ -1,4 +1,4 @@
-const { guestSchema,guests } = require("../Models/guestSchema");
+//const { guestSchema,guests } = require("../Models/guestSchema");
 const express = require("express");
 const guestR = express.Router();
 const mongoose = require('mongoose');
@@ -12,16 +12,16 @@ guestR.get("/",(req, res) => {
 guestR.post("/selectcountry",function(req,res){
     // console.log(req.body)
     var country = req.body.country;
-    var query = guests.find({Name:"sara"})
+   // var query = guests.find({Name:"sara"})
         query.exec(function(err,result){
             if (err) throw err;
             if(result.length==0){
                 res.render("../views/guest.ejs",{title:"guest country"});
             }else{
-                guests.findOneAndUpdate({Name:"sara"},{Country:country},{upsert:true},function(err,doc){
-                    if(err) throw err;
-                  });         
-              res.render("../views/guest.ejs",{title:"guest country"});
+            //     guests.findOneAndUpdate({Name:"sara"},{Country:country},{upsert:true},function(err,doc){
+            //         if(err) throw err;
+            //       });         
+            //   res.render("../views/guest.ejs",{title:"guest country"});
             }
 })
 })
