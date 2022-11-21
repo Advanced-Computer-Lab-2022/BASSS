@@ -1,7 +1,7 @@
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import Navbar from './components/Navbar/Navbar';
-
-import Courses from './components/Courses';
+import './App.css';
+import Home from './components/Pages/Home'
 function App() {
   return (
     <div className="App">
@@ -20,12 +20,5 @@ function App() {
     </div>
   );
 }
-function Home() {
-  return <div className="Home">
-    {/* <Navbar  /> */}
-    {/* <Courses/> */}
-    </div>
-}
-
 
 export default App;
