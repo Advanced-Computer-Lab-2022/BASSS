@@ -1,20 +1,28 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const exerciseSchema = new Schema({
-    Grade: {
-        type: Number,
-        required: true,
-      },
-      Answers: {
-        type: String,
-        required: true,
-      },
-      CorrectAnswers: {
-        type: String,
-        required: true,
-      }
-})
+const ExerciseSchema = new Schema({
+   
+  Question:{
+      type:String,
+      required:true
+  },
+
+  Choices:{
+      type:[String],
+      required:true
+  },
+
+  MaxGrade:{
+      type: Number,
+      required: true,
+  },
+  CorrectAnswer:{
+      type: String,
+      required: true,
+  }
+  
+}, { timestamps: true });
 
 
 

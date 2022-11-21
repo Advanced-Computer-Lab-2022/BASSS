@@ -2,52 +2,59 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const instructorschema = new Schema({
-    country: {
-        type: String,
-        // required: true,
-      },
-      rating: {
-        type: Number ,min:1,max:5,
-        // required: true,
-      },
-      reviews: {
-        type: String,
-        // required: true,
-      },email: {
-        type: String,
-        // required: true,
-        unique: true,
-      },courses: {
-       /**/ type: mongoose.Types.ObjectId,
-       ref:'Course'
-        // required: true,
-      },username: {
-        type: String,
-        // required: true,
-        unique: true
-      },
-      password: {
-        type: String,
-        // required: true,
-      },miniBio: {
-        type: String,
-        // required: true,
-      },gender: {
-        type: String,
-        // required: true,
-      },balance: {
-        type: Number,
-        // required: false,
-      },problems: {
-        type: String,
-        // required: false,
-      },
-})
+  Username: {
+    type: String,
+    required: true,
+    unique: true,
+  },
 
+  Email: {
+    type: String,
+    //required: true,
+    unique: true,
+  },
+
+  Password: {
+    type: String,
+    required: true,
+  },
+
+  Country: {
+    type: String,
+    // required: true,
+  },
+
+  Wallet: {
+    type: Number,
+    default:0,
+    required:true
+  },
+
+  courses: {
+    type: [String], //[Course1.ID,Course2.ID,Course3.ID,...... ]
+  },
+
+  Reports: {
+    type: [[String]], //[[Report1.ID,Type,Status,FollowUp],[Report2.ID,Type,Status,FollowUp],[Report3.ID,Type,Status,FollowUp],......]
+  },
+
+  Rating: {
+    type: Number ,min:1,max:5,
+    // required: true,
+  },
+
+  reviews: {
+    type: [String],
+    // required: true,
+  },
+
+  MiniBio: {
+    type: String,
+    // required: true,
+  }
+
+}, { timestamps: true });
 
 
 const instructors = mongoose.model('instructors', instructorschema);
-/*instructor.create({
-    Name:"bassel"
-})*/
 module.exports = instructors;
