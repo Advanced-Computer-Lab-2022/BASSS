@@ -1,6 +1,6 @@
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import Navbar from './components/Navbar';
-
+import SearchBar from './components/SearchBar';
 import Courses from './components/Courses';
 function App() {
   return (
@@ -23,7 +23,8 @@ function App() {
 function Home() {
   return <div className="Home">
     {/* <Navbar  /> */}
-    {/* <Courses/> */}
+    <Courses/>
+    <SearchBar/>
     </div>
 }
 

@@ -24,6 +24,7 @@ const getCourses = async () =>{
             </div>
         )
     }
+    
 
     // alert(getCourses.length)
     getCourses();
