@@ -1,0 +1,7 @@
+.SCbody{
+    background-image: url('../../../public/images/country.jpg');
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 673px;
+}

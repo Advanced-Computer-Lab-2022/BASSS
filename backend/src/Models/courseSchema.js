@@ -1,8 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-// require('mongoose-currency').loadType(mongoose);
-// var Currency = mongoose.Types.Currency;
 
 const courseSchema = new Schema ({
 
@@ -74,7 +72,6 @@ const courseSchema = new Schema ({
     }
 
 }, { timestamps: true });
-
 
 
 const course = mongoose.model('course', courseSchema);

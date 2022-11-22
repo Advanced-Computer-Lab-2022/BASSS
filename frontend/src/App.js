@@ -1,4 +1,10 @@
-import {BrowserRouter,Routes,Route} from 'react-router-dom';
+import {BrowserRouter,Routes,Route} from 'react-router-dom'
+import Navbar from './components/Navbar/Navbar';
+import './App.css';
+import Home from './Pages/Home'
+import Instructor from './Pages/Instructor/Instructor'
+import SelectCountry from './components/SelectCountry/SelectCountry';
+
 import SearchBar from './components/SearchBar';
 import AddUsers from './components/Admin/AddUsers/AddUsers';
 import AdminHome from './components/Admin/AdminHome/AdminHome';
@@ -17,49 +23,14 @@ function App() {
       { /*<Navbar/>*/ }
       {/*<NavBarGeneric h1='sara' firstElement='ana hena' secondElement='wana kamaan' button='buttonnnnnn'/>*/}
         <Routes>
-          <Route
-          path='/'
-          element={
-            <AdminHome/>
-          }
-          />
-          <Route
-          path='/AdminProfile'
-          element={
-            <AdminProfile/>
-          }
-          />
-          <Route
-          path='/AddUsers'
-          element={
-            <AddUsers/>
-          }
-          />
-          <Route
-          path='/Reports'
-          element={
-            <Reports/>
-          }
-          />
-          <Route
-          path='/CoursesAdmin'
-          element={
-            <CoursesAdmin/>
-          }
-          />
-        </Routes>
+          <Route path='/' element = { <Home/> } /> 
+          <Route path='/instructor' element = { <Instructor/> } /> 
+          <Route path='/instructor/SelectCountry' element = { <SelectCountry/> } /> 
+          </Routes>
       </BrowserRouter>
 
     </div>
   );
 }
-function Home() {
-  return <div className="Home">
-    {/* <Navbar  /> */}
-    <Courses/>
-    <SearchBar/>
-    </div>
-}
-
 
 export default App;
