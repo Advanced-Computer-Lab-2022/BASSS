@@ -1,23 +1,37 @@
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
-import AddUsers from './components/Admin/AddUsers/AddUsers';
-import AdminHome from './components/Admin/AdminHome/AdminHome';
-import AdminProfile from './components/Admin/AdminProfile/AdminProfile';
-import CoursesAdmin from './components/Admin/CoursesAdmin/CoursesAdmin';
-import Reports from './components/Admin/Reports/Reports';
+import AddUsers from './Pages/Admin/AddUsers/AddUsers';
+import AdminHome from './Pages/Admin/AdminHome/AdminHome';
+import AdminProfile from './Pages/Admin/AdminProfile/AdminProfile';
+import CoursesAdmin from './Pages/Admin/CoursesAdmin/CoursesAdmin';
+import Reports from './Pages/Admin/Reports/Reports';
 //import Navbar from './components/GuestNavbar/GuestNavBar';
 //import AdminHome from './components/Admin/AdminHome/AdminHome'
 import Courses from './components/Courses';
 import NavBarGeneric from './components/NavBarComponent/NavBarGeneric'
+//adham's
+import Navbar from './components/Navbar/Navbar';
+import './App.css';
+import Instructor from './Pages/Instructor/Instructor'
+import SelectCountry from './components/SelectCountry/SelectCountry';
+import Home from './Pages/Home'
+
+
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      { /*<Navbar/>*/ }
+      { <Navbar/> }
       {/*<NavBarGeneric h1='sara' firstElement='ana hena' secondElement='wana kamaan' button='buttonnnnnn'/>*/}
         <Routes>
           <Route
           path='/'
+          element={
+            <Home/>
+          }
+          />
+          <Route
+          path='/Admin'
           element={
             <AdminHome/>
           }
@@ -46,18 +60,26 @@ function App() {
             <CoursesAdmin/>
           }
           />
+          <Route
+          path='/instructor'
+          element={
+            <Instructor/>
+          }
+          />
+          
+          <Route
+          path='/instructor/SelectCountry'
+          element={
+            <SelectCountry/>
+          }
+          />
         </Routes>
       </BrowserRouter>
 
     </div>
   );
 }
-function Home() {
-  return <div className="Home">
-    {/* <Navbar  /> */}
-    {/* <Courses/> */}
-    </div>
-}
+
 
 
 export default App;
