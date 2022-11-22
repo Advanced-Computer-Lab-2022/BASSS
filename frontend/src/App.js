@@ -1,5 +1,4 @@
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
-import Navbar from './components/Navbar/Navbar';
 import './App.css';
 import Home from './Pages/Home'
 import Instructor from './Pages/Instructor/Instructor'
@@ -11,16 +10,16 @@ import AdminHome from './components/Admin/AdminHome/AdminHome';
 import AdminProfile from './components/Admin/AdminProfile/AdminProfile';
 import CoursesAdmin from './components/Admin/CoursesAdmin/CoursesAdmin';
 import Reports from './components/Admin/Reports/Reports';
+import Navbar from './components/NavBarComponent/Navbar';
 //import Navbar from './components/GuestNavbar/GuestNavBar';
 //import AdminHome from './components/Admin/AdminHome/AdminHome'
-import Courses from './components/Courses';
-import NavBarGeneric from './components/NavBarComponent/NavBarGeneric'
+// import NavBarGeneric from './components/NavBarComponent/NavBarGeneric'
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      { /*<Navbar/>*/ }
+      { <Navbar/> }
       {/*<NavBarGeneric h1='sara' firstElement='ana hena' secondElement='wana kamaan' button='buttonnnnnn'/>*/}
         <Routes>
           <Route path='/' element = { <Home/> } /> 
