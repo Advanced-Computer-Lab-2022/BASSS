@@ -69,9 +69,14 @@ video {
     padding: 15px 15px;
     border: 2px solid white;
     text-align: center;
-    font-size: 16px;
+    font-size: 20px;
     border-radius: 10px;
     width: 120px;
+    cursor: pointer;
+  }
+  .search-btn:hover{
+    background-color: #fff;
+    color: black;
   }
   @media screen and (max-width: 960px) {
     .Landing-container > h1 {

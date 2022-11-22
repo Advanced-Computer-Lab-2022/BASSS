@@ -1,5 +1,5 @@
-import '../../App.css'
-import Landing from '../Landing/Landing'
+import '../App.css'
+import Landing from '../components/Landing/Landing'
 
 function Home (){
     return(

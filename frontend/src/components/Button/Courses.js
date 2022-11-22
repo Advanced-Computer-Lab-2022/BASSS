@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { fetchCourse } from '../API/CourseAPI';
+import { fetchCourse } from '../../API/CourseAPI';
 
 function Courses () {
 //get courses
