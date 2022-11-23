@@ -8,23 +8,23 @@ const courses = require("../Models/courseSchema");
 instructorR.get("/",(req, res) => {
     res.render("../views/instructor.ejs",{title:"instructor"})});
 
-instructorR.post("/selectcountry",function(req,res){
-    console.log(req.body)
-    var country = req.body.country;
-    var query = instructors.find({username:"adham"})
+instructorR.get("/:country",function(req,res){
+    const country = req.params.country;
+    console.log(country);
+    var query = instructors.find({Username:"adham"})
         query.exec(function(err,result){
             if (err) throw err;
             if(result.length==0){
-                res.render("../views/instructor.ejs",{title:"instructor country"});
+                // res.render("../views/instructor.ejs",{title:"instructor country"});
             }else{
-                instructors.findOneAndUpdate({username:"adham"},{country:country},{upsert:true},function(err,doc){
+                instructors.findOneAndUpdate({Username:"adham"},{Country:country},{upsert:true},function(err,doc){
                     if(err) throw err;
-                  });         
-              res.render("../views/instructor.ejs",{title:"instructor country"});
+                });         
+                // res.render("../views/instructor.ejs",{title:"instructor country"});
             }
+        })        
 })
 
-})
 instructorR.post("/searchtitle",async function(req,res){
     var search = req.body.searchtitle
     var query = await courses.find({});
