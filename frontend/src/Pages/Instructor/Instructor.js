@@ -1,5 +1,5 @@
 import '../../App.css'
-// import SelectCountry from '../../components/SelectCountry/SelectCountry';
+//import SelectCountry from '../../components/SelectCountry/SelectCountry';
 import { Link } from 'react-router-dom'
 import './Instructor.css'
 function Instructor(){
