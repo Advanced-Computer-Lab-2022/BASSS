@@ -2,13 +2,7 @@ import { useState } from 'react';
 import { fetchCourse } from '../../API/CourseAPI';
 
 function Courses () {
-//get courses
-// const [courses,setCourses] = useState([])
-// const GetCourses = async()=>{
-//     // alert(await fetchCourse())
-//     setCourses(await fetchCourse() ) 
-    
-// } 
+
 const [courses,setCourses] = useState([]);
 const getCourses = async () =>{
   setCourses ((await fetchCourse()));
