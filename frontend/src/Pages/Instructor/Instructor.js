@@ -2,6 +2,7 @@ import '../../App.css'
 //import SelectCountry from '../../components/SelectCountry/SelectCountry';
 import { Link } from 'react-router-dom'
 import './Instructor.css'
+import Courses from '../../components/Courses/Courses';
 function Instructor(){
     return(
         <>
@@ -10,6 +11,7 @@ function Instructor(){
         <button> select your country</button>
         </Link>
         {/* <SelectCountry/> */}
+        <Courses/>
         </div>
         </>
     )

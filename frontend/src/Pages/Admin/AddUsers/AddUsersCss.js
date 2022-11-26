@@ -1,7 +1,7 @@
 import { FaBars } from 'react-icons/fa';
 import { NavLink as Link } from 'react-router-dom';
 import styled from 'styled-components';
-import AdminAddUser from '../../../images/AdminAddUser.jpg';
+// import AdminAddUser from '../../../images/AdminAddUser.jpg';
 
 //background
 export const Nav = styled.nav`
@@ -50,7 +50,6 @@ export const Bars = styled(FaBars)`
 
 
 export const Body = styled.body`
-background-image: url(${AdminAddUser});
 background-size:cover ;
 height: 100vh;
 

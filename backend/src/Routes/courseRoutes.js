@@ -10,6 +10,28 @@ courseR.get("/",async(req, res) => {
     res.send(result)
 });
 
+
+
+courseR.get("/:name",async(req, res) => {
+  // res.render("../views/course.ejs",{title:"courses"})
+  const instName = req.params.name;
+  const result =await courses.find({InstructorUserName:instName})
+  res.status(200).json(result);
+});
+
+
+
+// const getCourses = async (req, res) => {
+//     const course = await courses.find({})
+  
+//     // for (let index = 0; index < users.length; index++) {
+//     //     const element = users[index];
+//     //     console.log(element.id);
+//     //}
+//     res.status(200).json(course)
+//   }
+
+
 // courseR.post("/selectcountry",function(req,res){
 //     console.log(req.body)
 //     var country = req.body.country;
@@ -26,4 +48,6 @@ courseR.get("/",async(req, res) => {
 //             }
 // })
 // })
+
+
 module.exports = courseR;
