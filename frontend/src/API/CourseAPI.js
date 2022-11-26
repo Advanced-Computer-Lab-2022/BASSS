@@ -4,9 +4,3 @@ export const fetchCourse = async()=>{
     return j
     
 }
-
-export const searchTitle = async()=>{
-    const response = await fetch("http://localhost:9000/guest/searchtitle")
-    const j = await response.json()
-    return j
-}

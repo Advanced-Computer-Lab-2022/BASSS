@@ -25,6 +25,25 @@ guestR.post("/selectcountry",function(req,res){
             }
 })
 })
+
+guestR.get("/:searchkey",async function(req,res){
+    const key = req.params.searchkey;
+    var array = [];
+    var query = await courses.find({});
+    for(let i = 0 ; i<query.length ; i++)
+    {
+        course = query[i];
+        if (course.Title.toLowerCase().includes(key.toLowerCase()) ||
+            course.Subject.toLowerCase().includes(key.toLowerCase()) ||
+            course.InstructorUserName.toLowerCase().includes(key.toLowerCase()))
+        {
+            array=array.concat(course);
+        }
+    }
+    res.status(200).json(array)
+})
+
+
 guestR.post("/searchtitle",async function(req,res){
     var search = req.body.searchtitle
     var query = await courses.find({});

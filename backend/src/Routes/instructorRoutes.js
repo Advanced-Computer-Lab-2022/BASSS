@@ -25,6 +25,7 @@ instructorR.post("/selectcountry",function(req,res){
 })
 
 })
+
 instructorR.post("/searchtitle",async function(req,res){
     var search = req.body.searchtitle
     var query = await courses.find({});

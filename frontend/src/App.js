@@ -4,7 +4,6 @@ import Home from './Pages/Home'
 import Instructor from './Pages/Instructor/Instructor'
 import SelectCountry from './components/SelectCountry/SelectCountry';
 
-import SearchBar from './components/SearchBar';
 import AddUsers from './components/Admin/AddUsers/AddUsers';
 import AdminHome from './components/Admin/AdminHome/AdminHome';
 import AdminProfile from './components/Admin/AdminProfile/AdminProfile';
