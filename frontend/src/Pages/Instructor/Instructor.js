@@ -9,6 +9,10 @@ function Instructor(){
         <Link to ="/instructor/SelectCountry">
         <button className='selectcountrybtn'> select your country</button>
         </Link>
+
+        <Link to ="/instructor/CreateCourse">
+        <button className='CreateCoursebtn'> Create a new Course</button>
+        </Link>
         </div>
         </>
     )
