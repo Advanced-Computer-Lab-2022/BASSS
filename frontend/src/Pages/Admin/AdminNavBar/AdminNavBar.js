@@ -1,5 +1,5 @@
 import React from 'react';
-import NavBarGeneric from '../../NavBarComponent/NavBarGeneric';
+import NavBarGeneric from '../../../components/NavBarComponent/NavBarGeneric';
 
 export default function AdminNavBar(){
     return <div>

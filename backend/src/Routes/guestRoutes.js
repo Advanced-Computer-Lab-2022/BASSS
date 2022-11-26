@@ -1,4 +1,3 @@
-// const { guestSchema,guests } = require("../Models/guestSchema");
 const express = require("express");
 const guestR = express.Router();
 const mongoose = require('mongoose');
@@ -44,46 +43,6 @@ guestR.get("/:searchkey",async function(req,res){
 })
 
 
-guestR.post("/searchtitle",async function(req,res){
-    var search = req.body.searchtitle
-    var query = await courses.find({});
-    var array = [];
-    for(let i = 0 ; i<query.length ; i++)
-    {
-        if (query[i].Title.toLowerCase().includes(search.toLowerCase()))
-        {
-            array=array.concat([query[i]]);
-        }
-    }
-    res.send(array);
-})
-
-guestR.post("/searchsubject",async function(req,res){
-    var search = req.body.searchsubject
-    var query = await courses.find({});
-    var array = [];
-    for(let i = 0 ; i<query.length ; i++)
-    {
-        if (query[i].Subject.toLowerCase().includes(search.toLowerCase()))
-        {
-            array=array.concat([query[i]]);
-        }
-    }
-    res.send(array);
-})
-guestR.post("/searchinstructor",async function(req,res){
-    var search = req.body.searchinstructor
-    var query = await courses.find({});
-    var array = [];
-    for(let i = 0 ; i<query.length ; i++)
-    {
-        if (query[i].Instructor.toLowerCase().includes(search.toLowerCase()))
-        {
-            array=array.concat([query[i]]);
-        }
-    }
-    res.send(array);
-})
 
 // guestR.post("/searchinstructor",async function(req,res){
 //     var search = req.body.searchinstructor

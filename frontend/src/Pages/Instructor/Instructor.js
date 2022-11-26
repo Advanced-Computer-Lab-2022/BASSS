@@ -7,7 +7,9 @@ function Instructor(){
     return(
         <>
         <div className='Instructor-body'>
-        
+        <Link to ="/instructor/SelectCountry">
+        <button> select your country</button>
+        </Link>
         
         
         

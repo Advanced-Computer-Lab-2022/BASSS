@@ -1,9 +1,10 @@
 import React from 'react';
-import NavBarGeneric from '../../NavBarComponent/NavBarGeneric';
+//import NavBarGeneric from '../../NavBarComponent/NavBarGeneric';
 import AdminNavBar from '../AdminNavBar/AdminNavBar';
 
-export default function CoursesAdmin(){
+export default function AdminProfile(){
     return <div>
         <AdminNavBar/>
     </div>
 }
+

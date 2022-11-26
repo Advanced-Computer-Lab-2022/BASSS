@@ -3,7 +3,7 @@ import './Landing.css'
 import '../../App.css'
 import '../Search/Search'
 import { Link } from 'react-router-dom'
-import Search from '../Search/Search'
+
 function Landing() {
   return (
     <div className='Landing-container'>
@@ -18,5 +18,6 @@ function Landing() {
     </div>
   )
 }
+
 
 export default Landing
