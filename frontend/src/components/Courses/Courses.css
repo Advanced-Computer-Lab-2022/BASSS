@@ -1,9 +1,18 @@
-.courses{
-    background-color: white;
-    position: absolute;
-    height: 200px;
-    margin: 20px 20px;
+.salama_instructor_allCourses{
+    text-align: center;
 }
-h1{
-    background-color: azure;
+
+.salama_instructor_allCourses_title{
+    background-color: darkgreen;
+    margin:  10px 10px;
+    border-radius: 5px;
+    text-align: center;
 }
+
+
+.salama_instructor_allCourses_others{
+    background-color: tomato;
+    margin:  10px 10px;
+    border-radius: 5px;
+    text-align: center;
+} 

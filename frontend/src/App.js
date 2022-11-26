@@ -14,6 +14,7 @@ import Instructor from './Pages/Instructor/Instructor'
 import SelectCountry from './components/SelectCountry/SelectCountry';
 import Home from './Pages/Home'
 import MyCourses from './components/MyCourses/MyCourses';
+import CourseDetails from './components/CourseDetails/CourseDetails';
 
 
 
@@ -76,6 +77,11 @@ function App() {
           />
 
           <Route path='/instructor/MyCourses' element={  <MyCourses/> }/>
+
+          <Route path='/instructor/CourseDetails' element={  <CourseDetails/> }/>
+
+          <Route path='/instructor/MyCourses/CourseDetails' element={  <CourseDetails/> }/>
+
           
         </Routes>
       </BrowserRouter>
