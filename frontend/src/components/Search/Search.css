@@ -1,0 +1,7 @@
+table, th, td {
+    border: "1px solid white";
+}
+
+th, td {
+    align-items: center;
+}

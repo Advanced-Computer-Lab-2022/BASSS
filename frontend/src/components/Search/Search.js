@@ -32,9 +32,10 @@ const Search = ()=>{
                 <button className='search-btn' onClick={clickhandler} >Search</button>
             </div>
 
-
+                <th>Search Results for {message}</th>
                  {results.map((result) => (
-                     <h1>Course:{result.Title}</h1>
+
+                     <td>Course:{result.Title}</td>
                  ))}
 
         </div>
