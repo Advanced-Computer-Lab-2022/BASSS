@@ -6,8 +6,8 @@ import CoursesAdmin from './Pages/Admin/CoursesAdmin/CoursesAdmin';
 import Reports from './Pages/Admin/Reports/Reports';
 //import Navbar from './components/GuestNavbar/GuestNavBar';
 //import AdminHome from './components/Admin/AdminHome/AdminHome'
-import Courses from './components/Courses';
-import NavBarGeneric from './components/NavBarComponent/NavBarGeneric'
+// import Courses from './components/Courses';
+// import NavBarGeneric from './components/NavBarComponent/NavBarGeneric'
 //adham's
 import Navbar from './components/Navbar/Navbar';
 import './App.css';
@@ -16,6 +16,7 @@ import SelectCountry from './components/SelectCountry/SelectCountry';
 import Home from './Pages/Home'
 import IndividualTrainee from './Pages/IndividualTrainee/IndividualTrainee';
 import CorporateTrainee from './Pages/CorporateTrainee/CorporateTrainee';
+import CreateCourse from './components/CreateCourse/CreateCourse';
 
 
 function App() {
@@ -61,19 +62,9 @@ function App() {
             <CoursesAdmin/>
           }
           />
-          <Route
-          path='/instructor'
-          element={
-            <Instructor/>
-          }
-          />
-          
-          <Route
-          path='/instructor/SelectCountry'
-          element={
-            <SelectCountry/>
-          }
-          />
+          <Route path='/instructor' element={<Instructor/> } />
+          <Route path='/instructor/SelectCountry' element= {<SelectCountry/>}/>
+          <Route path='/instructor/CreateCourse' element= {<CreateCourse/>}/>
           <Route path='/IndividualTrainee' element = { <IndividualTrainee/> } /> 
           <Route path='/IndividualTrainee/SelectCountry' element = { <SelectCountry/> } /> 
           <Route path='/CorporateTrainee' element = { <CorporateTrainee/> } /> 
