@@ -1,0 +1,62 @@
+
+
+.Admin_AddUsers_Div{
+    position: relative;
+   left: 2%;
+    width: 40%;
+    height: 25%;
+    background-color: rgba(0,0,0,0.3);
+    border-radius: 25px;
+}
+
+
+
+.Admin_AddUsers_TextBox{
+    position: relative;
+    left: 10%;
+    top:10px;
+    width: 300px;
+    height: 50px;
+    padding: 0px 0px;
+    margin: 0px 0;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid white;
+    background-color: transparent;
+    font-size: 20px;
+    color: #fff;
+    border-radius: 5px;
+  }
+  .Admin_AddUsers_TextBox:hover{
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  .Admin_AddUsers_TextBox:focus,input:focus{
+    outline: none;
+  }
+  .Admin_AddUsers_TextBox::placeholder{
+    font-size: 1.5rem;
+    color: white;
+  }
+
+
+  
+  .Admin_AddUsers_btn{
+    background-color: transparent;
+    color: #fff;
+    position: relative;
+    left: 20%;
+    bottom: 15px;
+    padding: 15px 15px;
+    border: 2px solid white;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 10px;
+    width: 120px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .Admin_AddUsers_btn:hover{
+    background-color: rgba(255, 255, 255, 0.712);
+    color: black;
+    font-weight: 600;
+  }

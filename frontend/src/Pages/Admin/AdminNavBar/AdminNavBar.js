@@ -1,9 +1,15 @@
 import React from 'react';
-import NavBarGeneric from '../../../components/NavBarComponent/NavBarGeneric';
+//import NavBarGeneric from '../../../components/NavBarComponent/NavBarGeneric';
+import Navbar from '../../../components/Navbar/Navbar';
 
 export default function AdminNavBar(){
     return <div>
-    <NavBarGeneric h1='Home' firstElement='My Profile' secondElement='Reports' thirdElement='Add User' fourthElement='Courses' button='Logout' 
-    Lh1='/Sara' L1='/AdminProfile' L2='/Reports' L3='/AddUsers' L4='/CoursesAdmin'/>;
+    <Navbar SecondLinkText='Courses' FirstLinkText='My Profile' ThirdLinkText='Reports' FourthLinkText='Add User'  
+    ButtonLinkText='Logout' 
+    LogoLink='/Admin' SecondLinkTo='/CoursesAdmin' FirstLinkTo='/AdminProfile' ThirdLinkTo='/AdminReports' FourthLinkTo='/AdminAddUsers' 
+    ButtonLinkTo='/'/>
     </div>
 }
+
+
+//FifthLinkTo='/CoursesAdmin' , FifthLinkText='Courses'
