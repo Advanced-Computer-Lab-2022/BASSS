@@ -1,6 +1,7 @@
 import axios from 'axios';
 import '../Courses/Courses.css';
 import { Link } from 'react-router-dom';
+import Search from '../../components/Search/Search';
 import '../../Pages/Instructor/Instructor.css'
 const { useState } = require("react");
 
@@ -29,9 +30,9 @@ const MyCourses = () => {
         2. map over the blogs and display them
         */
 
-
         <div className='Instructor-body'>
 
+            <Search/>
 
             {myCourses.map((course) => (
                 <div>

@@ -18,27 +18,64 @@ const Search = ()=>{
     const getResults=  async () => { 
         await axios.get(`http://localhost:9000/guest/${message}`).then(
             (res) => {
-                const adham = res.data;
-                setResults(adham);
+                const s = res.data;
+                setResults(s);
             }
        )
     }
 
     return(
-        <div className='Landing-container'>
-            <input placeholder='Search for a course ?' className='search' id='search' onChange={changehandler}></input>
+        <div>
 
-            <div className='Landing-btn'>
-                <button className='search-btn' onClick={clickhandler} >Search</button>
-            </div>
+        
+        
+        {/* // <div className='searchbar_div'>
+        //     <input placeholder='Search for a course ?' className='search_soha' id='search' onChange={changehandler}></input>
 
-                <th>Search Results for {message}</th>
-                 {results.map((result) => (
+        //     <div className='Landing-btn'>
+        //         <button className='search-btn' onClick={clickhandler} >Search</button>
+        //     </div>
 
-                     <td>Course:{result.Title}</td>
-                 ))}
+        //         <th>Search Results for {message}</th>
+        //          {results.map((result) => (
+ */}
+        {/* //              <td>                    >
+        //                 Course:{result.Title}
+        //             </td>
+        //          ))} */}
 
+        {/* // </div> */}
+        <div class="search-box">
+        <button class="btn-search" onClick={clickhandler}><i class="fas fa-search"></i></button>
+        <input type="text" class="input-search" onChange={changehandler} placeholder="Type to Search..."></input>
         </div>
+
+        <br></br>
+        <div class="table-wrapper" visibility="hidden">
+
+        
+        <table class="fl-table">
+
+        <thead>
+        <tr>
+            <th>Search Results for {message}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {results.map((result) => (
+            <tr 
+              onClick={() => alert(result.Title) } //window.location.href=`/filter?blogId=${blog._id}`
+            >
+                <td>{result.Title}</td>
+            </tr>
+
+
+        ))}  
+        </tbody>
+        </table>
+        </div>
+        </div>
+
 
     )
 

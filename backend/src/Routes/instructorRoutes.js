@@ -26,74 +26,22 @@ instructorR.post("/selectcountry",function(req,res){
 
 })
 
-instructorR.post("/searchtitle",async function(req,res){
-    var search = req.body.searchtitle
-    var query = await courses.find({});
+instructorR.get("/searchmycourses/:instructorName/:searchkey", async function(req,res){
+    const key = req.params.searchkey;
+    const name = req.params.instructorName;
     var array = [];
+    var query = await courses.find({InstructorUserName: name});
     for(let i = 0 ; i<query.length ; i++)
     {
-        if (query[i].Title.toLowerCase().includes(search.toLowerCase()))
+        course = query[i];
+        if (course.Title.toLowerCase().includes(key.toLowerCase()) ||
+            course.Subject.toLowerCase().includes(key.toLowerCase()) )
         {
-            array=array.concat([query[i]]);
+            array=array.concat(course);
         }
     }
-    res.send(array);
+    res.status(200).json(array)
+
 })
-
-instructorR.post("/searchsubject",async function(req,res){
-    var search = req.body.searchsubject
-    var query = await courses.find({});
-    var array = [];
-    for(let i = 0 ; i<query.length ; i++)
-    {
-        if (query[i].Subject.toLowerCase().includes(search.toLowerCase()))
-        {
-            array=array.concat([query[i]]);
-        }
-    }
-    res.send(array);
-})
-
-
-instructorR.post("/searchinstructor",async function(req,res){
-    var search = req.body.searchinstructor
-    var query = await courses.find({});
-    var array = [];
-    for(let i = 0 ; i<query.length ; i++)
-    {
-        if (query[i].Instructorname.toLowerCase().includes(search.toLowerCase()))
-        {
-            array=array.concat([query[i]]);
-        }
-    }
-    res.send(array);
-})
-
-// instructorR.post("/searchinstructor",async function(req,res){
-//     var search = req.body.searchinstructor
-//     var ins = await instructors.find({});
-//     var array = [];
-//     for(let i = 0 ; i<ins.length ; i++)
-//     {
-//         if (ins[i].username.toLowerCase().includes(search.toLowerCase()))
-//         {
-//             array=array.concat([ins[i]]);
-//         }
-//     }
-//     var cour = await courses.find({});
-//     var array2 = [];
-//     for(let i =0 ; i<array.length ; i++)
-//     {
-//         for(let j =0; j<cour.length ; j++)
-//         {
-//             if(array[i]==cour[j].Instructor)
-//             {
-//                 array2 = array2.concat([cour[j]]);
-//             }
-//         }
-//     }
-//     res.send(array2);
-// })
-    
 
 module.exports = instructorR;

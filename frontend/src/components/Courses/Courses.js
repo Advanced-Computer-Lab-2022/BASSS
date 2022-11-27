@@ -40,7 +40,10 @@ const Courses = () => {
             ))}
 
             <Link to ="/instructor/MyCourses">
-            <button>
+            <button 
+            //3yza a5alyh yb3at el instructor name m3ah 3shn a3raf a search byh??
+            // onClick={() => window.location.href=`/instructor/MyCourses`}
+            >
                 View My Courses</button>
             </Link>
             
