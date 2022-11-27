@@ -1,9 +1,39 @@
-.courses{
-    background-color: white;
+.salama_instructor_allCourses{
+    text-align: center;
+}
+
+.salama_instructor_allCourses_title{
+    background-color: darkgreen;
+    margin:  10px 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+
+.salama_instructor_allCourses_others{
+    background-color: tomato;
+    margin:  10px 10px;
+    border-radius: 5px;
+    text-align: center;
+} 
+
+.soha_viewCoursebtn
+{
+    background-color: transparent;
+    color: #fff;
+    padding: 10px 15px;
+    border: 2px solid white;
+    text-align: center;
+    font-size: 15px;
+    border-radius: 10px;
+    width: -moz-fit-content;
+    width: fit-content;
+    cursor: pointer;
     position: absolute;
-    height: 200px;
-    margin: 20px 20px;
+    top: 13%;
+    left: 4%;
 }
-h1{
-    background-color: azure;
-}
+  .soha_viewCoursebtn:hover{
+    background-color: #fff;
+    color: black;
+  }

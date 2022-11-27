@@ -9,12 +9,16 @@ function Instructor(){
     return(
         <>
         <div className='Instructor-body'>
-        {/* <Link to ="/instructor/SelectCountry">
-        <button> select your country</button>
-        </Link> */}
-        
-        
-        <Search/>
+        <Link to ="/instructor/SelectCountry">
+        <button className='instructor_selectcountrybtn'> Select your Country</button>
+        </Link>
+
+        <Link to ="/instructor/CreateCourse">
+        <button className='instructor_CreateCoursebtn'> Create a new Course</button>
+        </Link>
+        {/* <SelectCountry/> */}
+        <Search Type='instructor'/>
+
         <Courses/>
         </div>
         </>

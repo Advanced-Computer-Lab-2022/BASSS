@@ -6,6 +6,46 @@
     background-size:cover;
     background-repeat: no-repeat;
     background-position: center;
-    height: 673px;
+    height: 900px;
     
 }
+.instructor_selectcountrybtn
+{
+  background-color: transparent;
+  color: #fff;
+  padding: 10px 15px;
+  border: 2px solid white;
+  text-align: center;
+  font-size: 15px;
+  border-radius: 10px;
+  width: fit-content;
+  cursor: pointer;
+  position: absolute;
+  top: 13%;
+  right: 5%;
+}
+  .instructor_selectcountrybtn:hover{
+    background-color: #fff;
+    color: black;
+  }
+
+
+  .instructor_CreateCoursebtn
+{
+  background-color: transparent;
+  color: #fff;
+  padding: 10px 15px;
+  border: 2px solid white;
+  text-align: center;
+  font-size: 16px;
+  border-radius: 10px;
+  width: fit-content;
+  cursor: pointer;
+  position: absolute;
+  top: 13%;
+  right: 18%;
+}
+  .instructor_CreateCoursebtn:hover{
+    background-color: #fff;
+    color: black;
+  }

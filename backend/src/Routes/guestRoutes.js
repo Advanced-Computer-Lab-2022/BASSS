@@ -4,12 +4,12 @@ const mongoose = require('mongoose');
 const courses = require("../Models/courseSchema")
 const instructors = require("../Models/instructorSchema")
 
-
 guestR.get("/",(req, res) => {
     res.render("../views/guest.ejs",{title:"guest country"})});
 
 guestR.post("/selectcountry",function(req,res){
-    // console.log(req.body)
+
+    console.log(req.body)
     var country = req.body.country;
     var query = guests.find({Name:"sara"})
         query.exec(function(err,result){
@@ -28,50 +28,23 @@ guestR.post("/selectcountry",function(req,res){
 guestR.get("/:searchkey",async function(req,res){
     const key = req.params.searchkey;
     var array = [];
-    var query = await courses.find({});
-    for(let i = 0 ; i<query.length ; i++)
-    {
-        course = query[i];
-        if (course.Title.toLowerCase().includes(key.toLowerCase()) ||
-            course.Subject.toLowerCase().includes(key.toLowerCase()) ||
-            course.InstructorUserName.toLowerCase().includes(key.toLowerCase()))
+    if(key!= null){
+        var query = await courses.find({});
+        for(let i = 0 ; i<query.length ; i++)
         {
-            array=array.concat(course);
+            course = query[i];
+            if (course.Title.toLowerCase().includes(key.toLowerCase()) ||
+                course.Subject.toLowerCase().includes(key.toLowerCase()) ||
+                course.InstructorUserName.toLowerCase().includes(key.toLowerCase()))
+            {
+                array=array.concat(course);
+            }
         }
+        res.status(200).json(array)
     }
-    res.status(200).json(array)
+    else{
+        res.status(404);
+    }
 })
-
-
-
-// guestR.post("/searchinstructor",async function(req,res){
-//     var search = req.body.searchinstructor
-//     var ins = await instructors.find({});
-//     var array = [];
-//     for(let i = 0 ; i<ins.length ; i++)
-//     {
-//         if (ins[i].username.toLowerCase().includes(search.toLowerCase()))
-//         {
-//             array=array.concat([ins[i]]);
-//         }
-//     }
-//     var cour = await courses.find({});
-//     var array2 = [];
-//     for(let i =0 ; i<array.length ; i++)
-//     {
-//         for(let j =0; j<cour.length ; j++)
-//         {
-//             if(array[i]._id==cour[j].Instructor)
-//             {
-//                 array2 = array2.concat([cour[j]]);
-//             }
-//         }
-//     }
-//     res.send(array2);
-// })
     
-    
-    
-    
-
 module.exports = guestR;

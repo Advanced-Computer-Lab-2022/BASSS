@@ -31,6 +31,7 @@
   .search-box{
     width: fit-content;
     height: fit-content;
+    left: 20%;
     position: relative;
   }
   .input-search{

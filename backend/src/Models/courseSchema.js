@@ -65,7 +65,7 @@ const courseSchema = new Schema ({
     PromotionEndTime: {type: Number, min: 0, max:24},
     
     PromotionEndDate: {type: Date},
-    
+        
     CertificateTemplate:{
         type: String,
         required: true

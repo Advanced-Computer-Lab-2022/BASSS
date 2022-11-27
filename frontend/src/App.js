@@ -15,8 +15,12 @@ import Instructor from './Pages/Instructor/Instructor'
 import SelectCountry from './components/SelectCountry/SelectCountry';
 import Home from './Pages/Home'
 import MyCourses from './components/MyCourses/MyCourses';
+import CourseDetails from './components/CourseDetails/CourseDetails';
 
 
+import IndividualTrainee from './Pages/IndividualTrainee/IndividualTrainee';
+import CorporateTrainee from './Pages/CorporateTrainee/CorporateTrainee';
+import CreateCourse from './components/CreateCourse/CreateCourse';
 
 
 function App() {
@@ -61,7 +65,19 @@ function App() {
           />
 
           <Route path='/instructor/MyCourses' element={  <MyCourses/> }/>
+
+          <Route path='/instructor/CourseDetails' element={  <CourseDetails/> }/>
+
+          <Route path='/instructor/MyCourses/CourseDetails' element={  <CourseDetails/> }/>
+
           
+          <Route path='/instructor' element={<Instructor/> } />
+          <Route path='/instructor/SelectCountry' element= {<SelectCountry/>}/>
+          <Route path='/instructor/CreateCourse' element= {<CreateCourse/>}/>
+          <Route path='/IndividualTrainee' element = { <IndividualTrainee/> } /> 
+          <Route path='/IndividualTrainee/SelectCountry' element = { <SelectCountry/> } /> 
+          <Route path='/CorporateTrainee' element = { <CorporateTrainee/> } /> 
+          <Route path='/CorporateTrainee/SelectCountry' element = { <SelectCountry/> } /> 
         </Routes>
       </BrowserRouter>
 
