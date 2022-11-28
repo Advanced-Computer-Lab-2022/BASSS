@@ -4,9 +4,9 @@ const adminR = express.Router();
 
 
 
-adminR.route('/')
+//adminR.route('/')
 
-app.get("/" ,function(req,res){
-    res.render("index",{message:"",title:"login"});
-  });
-module.exports = guestR;
+/*app.get("/" ,function(req,res){
+    res.render("../views/admin.ejs",{message:"",title:"login"});
+  });*/
+module.exports = adminR;

@@ -15,12 +15,12 @@ instructorR.post("/selectcountry",function(req,res){
         query.exec(function(err,result){
             if (err) throw err;
             if(result.length==0){
-                res.render("../views/instructor.ejs",{title:"instructor country"});
+              //  res.render("../views/instructor.ejs",{title:"instructor country"});
             }else{
                 instructors.findOneAndUpdate({username:"adham"},{country:country},{upsert:true},function(err,doc){
                     if(err) throw err;
                   });         
-              res.render("../views/instructor.ejs",{title:"instructor country"});
+             // res.render("../views/instructor.ejs",{title:"instructor country"});
             }
 })
 
@@ -67,6 +67,24 @@ instructorR.post("/searchinstructor",async function(req,res){
     }
     res.send(array);
 })
+instructorR.get('/instructorViewtitles', function(req, res) { 
+    var query = courses.find({InstructorUserName:"salama"})
+    query.exec(function(err,result){
+        if (err) throw err;
+        if(result.length==0){
+           // res.render("../views/instructor.ejs",{title:"view course"});
+        }else{
+            courses.find({InstructorUserName:"salama"})      
+      
+        res.send(result);
+         // res.render("../views/instructorViewtitles.ejs",{title:"view courses"});
+        }
+      })
+
+   
+    })
+
+
 
 // instructorR.post("/searchinstructor",async function(req,res){
 //     var search = req.body.searchinstructor

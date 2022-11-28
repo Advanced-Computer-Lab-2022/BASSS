@@ -6,8 +6,10 @@ import CoursesAdmin from './Pages/Admin/CoursesAdmin/CoursesAdmin';
 import Reports from './Pages/Admin/Reports/Reports';
 //import Navbar from './components/GuestNavbar/GuestNavBar';
 //import AdminHome from './components/Admin/AdminHome/AdminHome'
-import Courses from './components/Courses';
+//import Courses from './components/Courses';
 import NavBarGeneric from './components/NavBarComponent/NavBarGeneric'
+import MyCourses from './components/MyCourses/MyCourses';
+
 //adham's
 import Navbar from './components/Navbar/Navbar';
 import './App.css';
@@ -73,7 +75,9 @@ function App() {
             <SelectCountry/>
           }
           />
+          <Route path='/instructor/MyCourses' element={  <MyCourses/> }/>
         </Routes>
+        
       </BrowserRouter>
 
     </div>

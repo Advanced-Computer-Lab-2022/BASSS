@@ -9,6 +9,82 @@ courseR.get("/",async(req, res) => {
     const result =await courses.find({})
     res.send(result)
 });
+// courseR.get("/:subject",async(req, res) => {
+//    const instsubject = req.params.subject
+//    var result = ""
+//    result =await courses.find({Subject:instsubject/* Price:instprice*/})
+//   res.status(200).json(result);
+// });
+// courseR.get("/:r/:rate",async(req, res) => {
+//     const instrate = req.params.rate
+//     var result = ""
+//     result =await courses.find({Rating:instrate/* Price:instprice*/})
+//    res.status(200).json(result);
+//  });
+//  courseR.get("/:price",async(req, res) => {
+//     const instprice = req.params.price
+//     var result = ""
+//     result =await courses.find({Price:instprice/* Price:instprice*/})
+//    res.status(200).json(result);
+//  });
+
+courseR.get("/:subject/:rate/:price",async(req, res) => {
+    // res.render("../views/course.ejs",{title:"courses"})
+    var subject = req.params.subject;
+    var rate = req.params.rate;
+    var price = req.params.price;
+    var result = []
+    if(subject == "empty" && rate == "empty" && price=="empty"){
+     
+      result = await courses.find({})
+   }
+   else
+      if(subject == "empty" && price=="empty"){
+        result =await courses.find({Rating:rate })
+        
+      }
+     else if(rate == "empty" && price=="empty"){
+        result =await courses.find({Subject:subject})
+        
+      }else if(rate == "empty" && subject=="empty"){
+           result =await courses.find({Price:price})
+      }else if (subject == "empty"){
+        result =await courses.find({Rating :rate ,Price:price})
+      }else if (rate == "empty"){
+        result =await courses.find({Subject :subject ,Price:price})
+      }else if (price == "empty"){
+        result =await courses.find({Rating :rate ,Subject :subject})
+      }
+      else{
+        result =await courses.find({Subject:subject, Rating:rate , Price:price})
+      
+      }
+  
+    res.status(200).json(result);
+  });
+  courseR.get("/:my/:name/:subject/:price",async(req, res) => {
+    // res.render("../views/course.ejs",{title:"courses"})
+    var subject = req.params.subject;
+    var price = req.params.price;
+    var result = []
+    if(subject == "empty" && price=="empty"){
+     
+      result = await courses.find({})
+      }else if (subject == "empty"){
+        result =await courses.find({Price:price})
+      }else if (price == "empty"){
+        result =await courses.find({Subject :subject})
+      }
+      else{
+        result =await courses.find({Subject:subject, Price:price})
+      
+      }
+  
+    res.status(200).json(result);
+  });
+
+
+
 
 // courseR.post("/selectcountry",function(req,res){
 //     console.log(req.body)
@@ -26,4 +102,5 @@ courseR.get("/",async(req, res) => {
 //             }
 // })
 // })
+
 module.exports = courseR;

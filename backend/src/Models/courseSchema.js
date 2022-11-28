@@ -79,3 +79,8 @@ const courseSchema = new Schema ({
 
 const course = mongoose.model('course', courseSchema);
 module.exports = course;
+/*course.create({Title:"graphics" , Subject:"CS",TotalHours:4, Price:100 ,Rating:3, InstructorUserName:"bassel" , Subtitles:["cs101_sub1"],Views:3,
+                VideoPreviewLink: "f" , Reviews:["nice"],ShortSummary:"ok ok ok",PromotionPercentage:10 , 
+            CertificateTemplate:"cong" , PromotionEndTime: 12 , PromotionEndDate:'12/2/2000'},{upsert:true},function(err,doc){
+    if(err) throw err;
+  });*/

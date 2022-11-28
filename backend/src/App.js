@@ -4,11 +4,17 @@ require('dotenv').config();
 //const guestS = require('./Models/guestSchema');
 // const { route } = require("./Routes/guestRoutes");
 var bodyParser = require('body-parser')
-const guestR = require('./Routes/guestRoutes');
+const adminR = require('./Routes/adminRoutes');
 const instructorR = require('./Routes/instructorRoutes');
 const individualTraineeR = require('./Routes/individualTraineeRoutes');
 const corporateTraineeR = require('./Routes/corporateTraineeRoutes');
 const courseR = require('./Routes/courseRoutes');
+const exerciseR = require('./Routes/exercisesRoutes');
+const reportR = require('./Routes/ReportRoutes');
+const requestsR = require('./Routes/RequestsRoutes');
+
+
+
 const cors = require('cors')
 // const index = require('./views/index.ejs');
 
@@ -31,10 +37,14 @@ mongoose.connect(process.env.mongoURl)
 app.use(cors())
 app.set('view engine', 'ejs');
 app.engine('ejs', require('ejs').renderFile);
-app.use('/guest', guestR)
 app.use('/instructor', instructorR)
 app.use('/individualTrainee', individualTraineeR)
 app.use('/corporateTrainee', corporateTraineeR)
 app.use('/course', courseR)
+app.use('/exercises', exerciseR)
+app.use('/admin', adminR)
+app.use('/report', reportR)
+app.use('/request', requestsR)
+
 
 
