@@ -7,7 +7,7 @@ function CorporateTrainee(){
         <>
         <div className='CorporateTrainee-body'>
         <Link to ="/CorporateTrainee/SelectCountry">
-        <button className='selectcountrybtn'> select your country</button>
+        <button className='instructor_selectcountrybtn'> select your country</button>
         </Link>
         <Search Type='corporate'/>
         </div>

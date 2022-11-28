@@ -8,7 +8,7 @@ function IndividualTrainee(){
         <>
         <div className='IndividualTrainee-body'>
         <Link to ="/IndividualTrainee/SelectCountry">
-        <button className='selectcountrybtn'> select your country</button>
+        <button className='instructor_selectcountrybtn'> select your country</button>
         </Link>
 
         <Search Type='indvidual'/>

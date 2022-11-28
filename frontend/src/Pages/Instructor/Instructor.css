@@ -18,11 +18,13 @@
   text-align: center;
   font-size: 15px;
   border-radius: 10px;
+  width: -moz-fit-content;
   width: fit-content;
   cursor: pointer;
   position: absolute;
   top: 13%;
-  right: 5%;
+  left: 4%;
+
 }
   .instructor_selectcountrybtn:hover{
     background-color: #fff;
@@ -43,7 +45,7 @@
   cursor: pointer;
   position: absolute;
   top: 13%;
-  right: 18%;
+  right: 30%;
 }
   .instructor_CreateCoursebtn:hover{
     background-color: #fff;

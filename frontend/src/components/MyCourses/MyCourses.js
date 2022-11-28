@@ -32,7 +32,7 @@ const MyCourses = () => {
     const [myCourses,setMyCourses] = useState([]);
 
     const getMyCourses=  async () => {
-        await axios.get(`http://localhost:9000/course/salama`).then(
+        await axios.get(`http://localhost:9000/course/bassel`).then(
             (res) => { 
                 const myCourses = res.data
                 console.log(myCourses)
@@ -45,52 +45,30 @@ const MyCourses = () => {
     getMyCourses();
 
     return(
-        /* 
-        1. create a button to load the blogs
-        2. map over the blogs and display them
-        */
-
         <div className='Instructor-body'>
 
-            <Search/>
-
-<TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell align="center">Title</StyledTableCell>
-            <StyledTableCell align="center">Total Hours</StyledTableCell>
-            <StyledTableCell align="center">Rating</StyledTableCell>
-            <StyledTableCell align="center">Price</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-            
-        {myCourses.map((course) => (
-            <TableRow
-            hover
-            sx={{
-                "&:hover":{
-                cursor: "pointer",
-                backgroundColor: "#f5f5f5",
-                width: "100%"
-                }
-            }}
-            onClick={() => window.location.href="/instructor/MyCourses/CourseDetails"}
-            //   key={author._id}
-
+            <Search Type="searchMyCourses"/>
+          <h1>My Courses</h1>
+          <table class="fl-table">
+          <thead>
+              <th> Course Title</th>
+              <th> Total Hours </th>
+              <th> Rating </th>
+              <th> Price </th>
+          </thead>
+          <tbody>
+          {myCourses.map((course) => (
+              <tr 
+                onClick={() => window.location.href= `/instructor/courseDetails?courseId=${course._id}` }
               >
-              <TableCell align="center">{course.Title}</TableCell>
-              <TableCell align="center">{course.TotalHours}</TableCell>
-              <TableCell align="center">{course.Rating}</TableCell>
-              <TableCell align="center">{course.Price}</TableCell>
-            </TableRow>
-
-))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-            
+                  <td>{course.Title}</td>
+                  <td>{course.TotalHours}</td>
+                  <td>{course.Rating}</td>
+                  <td>{course.Price}</td>
+              </tr>
+          ))}  
+          </tbody>
+          </table>
         </div>   
 
     )

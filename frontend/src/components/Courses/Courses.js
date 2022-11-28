@@ -50,56 +50,32 @@ const Courses = () => {
             <Link to ="/instructor/MyCourses">
             <button  className='soha_viewCoursebtn'
             //3yza a5alyh yb3at el instructor name m3ah 3shn a3raf a search byh??
-            // onClick={() => window.location.href=`/instructor/MyCourses`}
             >
                 View My Courses</button>
             </Link>
             
-            {/* {courses.map((course) => (
-                <div className='salama_instructor_allcourses' >
-                    <h1 className='salama_instructor_allCourses_title'>Title: {course.Title} </h1>
-                    <h2 className='salama_instructor_allCourses_others'>Total Hours: {course.TotalHours} , Rating: {course.Rating} , Price: {course.Price}</h2>
-                    <br></br>
-                </div>
-            ))} */} 
+          <h1>All Courses</h1>
+          <table class="fl-table">
 
-<TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell align="center">Title</StyledTableCell>
-            <StyledTableCell align="center">Total Hours</StyledTableCell>
-            <StyledTableCell align="center">Rating</StyledTableCell>
-            <StyledTableCell align="center">Price</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-            
-        {courses.map((course) => (
-            <TableRow
-            hover
-            sx={{
-                "&:hover":{
-                cursor: "pointer",
-                backgroundColor: "#f5f5f5",
-                width: "100%"
-                }
-            }}
-             onClick={() => window.location.href="/instructor/CourseDetails"}
-            //   key={author._id}
-
+          <thead>
+              <th> Course Title</th>
+              <th> Total Hours </th>
+              <th> Rating </th>
+              <th> Price </th>
+          </thead>
+          <tbody>
+          {courses.map((course) => (
+              <tr 
+                onClick={() => window.location.href= `/instructor/courseDetails?courseId=${course._id}` }
               >
-              <TableCell align="center">{course.Title}</TableCell>
-              <TableCell align="center">{course.TotalHours}</TableCell>
-              <TableCell align="center">{course.Rating}</TableCell>
-              <TableCell align="center">{course.Price}</TableCell>
-            </TableRow>
-
-))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-
+                  <td>{course.Title}</td>
+                  <td>{course.TotalHours}</td>
+                  <td>{course.Rating}</td>
+                  <td>{course.Price}</td>
+              </tr>
+          ))}  
+          </tbody>
+          </table>
             
         </div>   
 

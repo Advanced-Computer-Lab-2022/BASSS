@@ -27,18 +27,19 @@
     color: white;
   }
 
+  
 
   .search-box{
     width: fit-content;
     height: fit-content;
-    left: 20%;
+    left: 84%;
+    top: 22px;
     position: relative;
   }
   .input-search{
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: 40px;
     border-style: none;
-    padding: 10px;
     font-size: 18px;
     letter-spacing: 2px;
     outline: none;
@@ -50,13 +51,13 @@
   }
   .input-search::placeholder{
     color:rgba(255,255,255,.5);
-    font-size: 18px;
+    font-size: 15px;
     letter-spacing: 2px;
     font-weight: 100;
   }
   .btn-search{
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border-style: none;
     font-size: 20px;
     font-weight: bold;
@@ -65,24 +66,22 @@
     border-radius: 50%;
     position: absolute;
     right: 0px;
-    /* color:#ffffff ;
-    background-color:transparent; */
-    pointer-events: painted;  
   }
   .btn-search:focus ~ .input-search{
-    width: 300px;
+    width: 200px;
     border-radius: 0px;
     background-color: transparent;
     border-bottom:1px solid rgba(255,255,255,.5);
     transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
   }
   .input-search:focus{
-    width: 300px;
+    width: 200px;
     border-radius: 0px;
     background-color: transparent;
     border-bottom:1px solid rgba(255,255,255,.5);
     transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
-  }
+  } 
+
 
   /*table results*/
   .table-wrapper{
@@ -96,10 +95,12 @@
     font-weight: normal;
     border: none;
     border-collapse: collapse;
-    width: fit-content;
-    max-width: 50%;
+    width: -moz-fit-content;
+    width: 100%;
+    max-width: 100%;
+    margin: 20px 15px 30px 0px;
     white-space: nowrap;
-    background-color:rgba(255,255,255,.5);
+    background-color: rgba(255,255,255,.5);
 }
 
 .fl-table td, .fl-table th {
@@ -108,20 +109,19 @@
 }
 
 .fl-table td {
-    border-right: 1px solid rgba(255,255,255,.5);
     font-size: 12px;
 }
 
 .fl-table thead th {
     color: black;
-    background: transparent;
-}
-
-
-.fl-table thead th:nth-child(odd) {
-    color: black;
     background: rgba(255,255,255,.5);
 }
+
+
+/* .fl-table th:nth-child(odd) {
+    color: black;
+    background: rgba(255,255,255,.5);
+} */
 
 .fl-table tr:nth-child(even) {
     background: rgba(255,255,255,.5);
