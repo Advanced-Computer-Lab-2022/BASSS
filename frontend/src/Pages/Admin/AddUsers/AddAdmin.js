@@ -13,11 +13,11 @@ import axios from 'axios';
 //import { AxiosResponse, AxiosError } from 'axios'
 
 
-var ErrorVisibility = '1'
+//var ErrorVisibility = '1'
 
 export default function AddAdmin(){
-    const [meow,setMeow] = useState(false);
-    const handleMeow = () => { setMeow(!meow)} ;
+ //   const [meow,setMeow] = useState(false);
+ //   const handleMeow = () => { setMeow(!meow)} ;
 
 
     const [username , setusername] = useState([])
@@ -38,15 +38,15 @@ export default function AddAdmin(){
         //error()
     }
 
-    const error = () => {
-        alert('alertttt');
-      // return ErrorVisibility = '0'
-    }
+    // const error = () => {
+    //     alert('alertttt');
+    //   // return ErrorVisibility = '0'
+    // }
 
-    const getAdmin = async(req,res)=>{
-        await axios.get(`http://localhost:9000/admin/getAdmin/${username}`)
+    // const getAdmin = async(req,res)=>{
+    //     await axios.get(`http://localhost:9000/admin/getAdmin/${username}`)
+    // }
 
-    }
     const addAdmin = async(req,res)=>{
        return (await (await axios.get(`http://localhost:9000/admin/addAdmin/${username}/${password}`)).res.status)
        // return res.status;
@@ -88,8 +88,8 @@ export default function AddAdmin(){
         </Link>
         </div>
   <div>
-      {!meow && <h1> </h1>}
-      {meow && <h1>The besbes in not meowing</h1>}
+      {/* {!meow && <h1> </h1>}
+      {meow && <h1>The besbes in not meowing</h1>} */}
       </div>
 
     </Body>
