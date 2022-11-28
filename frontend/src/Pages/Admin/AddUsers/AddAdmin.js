@@ -7,7 +7,7 @@ import {
   Button,
   Body
 } from './AddUsersCss';
-import axios from 'axios';
+import axios, { all } from 'axios';
 //import ErrorMessage from '../../../components/ErrorMessage/ErrorMessage';
 
 //import { AxiosResponse, AxiosError } from 'axios'
@@ -19,9 +19,11 @@ export default function AddAdmin(){
  //   const [meow,setMeow] = useState(false);
  //   const handleMeow = () => { setMeow(!meow)} ;
 
-
+    // const x = ''
     const [username , setusername] = useState([])
     const [password , setpassword] = useState([])
+    const [checkadmin , setcheckadmin] = useState([])
+
     
     const usernamehandler = (event)=>{
         setusername(event.target.value)
@@ -43,25 +45,33 @@ export default function AddAdmin(){
     //   // return ErrorVisibility = '0'
     // }
 
-    // const getAdmin = async(req,res)=>{
-    //     await axios.get(`http://localhost:9000/admin/getAdmin/${username}`)
-    // }
+    const getAdmin = async(req,res)=>{
+        // alert(checkadmin)
+        const x = await axios.get(`http://localhost:9000/admin/getAdmin/${username}`)
+        if(x.data=="User Name Already Taken")
+        {
+               alert(x.data)
+        }
+        else{
+            addAdmin()
+            alert('admin added successfully')
+        }
+            
+    }
 
     const addAdmin = async(req,res)=>{
-       return (await (await axios.get(`http://localhost:9000/admin/addAdmin/${username}/${password}`)).res.status)
-       // return res.status;
+
+      await axios.get(`http://localhost:9000/admin/addAdmin/${username}/${password}`)
     }
     const adduser = async (req,res)=>{
-        addAdmin()
-    //    if(addAdmin() === '400'){handleMeow()}
+        getAdmin()
     }
-    // const user = addAdmin().catch(function (error) {if (error.response.status === "400"){handleMeow()}else{addAdmin()}});
     
 
     return <Body>
         <AdminNavBar/>
         <div>
-        <br></br>        <br></br> <br></br> <br></br>    
+        <br></br>        <br></br>        <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br>   
         </div>
         <div className='Admin_AddUsers_Div'>
         <input type='text' placeholder='User Name' className='Admin_AddUsers_TextBox' name="adminUserName" onChange={usernamehandler}></input>
