@@ -9,7 +9,8 @@ const instructorR = require('./Routes/instructorRoutes');
 const individualTraineeR = require('./Routes/individualTraineeRoutes');
 const corporateTraineeR = require('./Routes/corporateTraineeRoutes');
 const courseR = require('./Routes/courseRoutes');
-const cors = require('cors')
+const cors = require('cors');
+const admin = require("./Routes/adminRoutes");
 // const index = require('./views/index.ejs');
 
 //App variables
@@ -36,5 +37,6 @@ app.use('/instructor', instructorR)
 app.use('/individualTrainee', individualTraineeR)
 app.use('/corporateTrainee', corporateTraineeR)
 app.use('/course', courseR)
+app.use('/admin', admin)
 
 

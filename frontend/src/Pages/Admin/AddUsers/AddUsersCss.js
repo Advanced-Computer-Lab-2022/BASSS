@@ -1,7 +1,7 @@
 import { FaBars } from 'react-icons/fa';
 import { NavLink as Link } from 'react-router-dom';
 import styled from 'styled-components';
-import AdminAddUser from '../../../images/AdminAddUser.jpg';
+import AdminAddUser from '../../../images/systemadmin_text_2.jpg';
 
 //background
 export const Nav = styled.nav`
@@ -54,6 +54,7 @@ background-image: url(${AdminAddUser});
 background-size:cover ;
 height: 100vh;
 
+
 `;
 
 export const NavBtn = styled.nav`
@@ -88,16 +89,18 @@ export const NavBtnLink = styled(Link)`
 `;
 
 export const Button = styled.button`
+
+width:39.5%;
 appearance: none;
 background-color: transparent;
 border-width: 0;
 box-sizing: border-box;
-color: #000000;
+color: #ebebeb;
 cursor: pointer;
 display: inline-block;
 font-family: Clarkson,Helvetica,sans-serif;
-font-size: 14px;
-font-weight: 500;
+font-size: 30px;
+font-weight: 600;
 letter-spacing: 0;
 line-height: 1em;
 margin: 0;
@@ -119,7 +122,7 @@ white-space: nowrap;
 &:before {
     animation: opacityFallbackOut .5s step-end forwards;
     backface-visibility: hidden;
-    background-color: #EBEBEB;
+    background-color: rgba(1,1,1,0.2);
     clip-path: polygon(-1% 0, 0 0, -25% 100%, -1% 100%);
     content: "";
     height: 100%;
@@ -137,7 +140,7 @@ white-space: nowrap;
   }
 
 &:after {
-    background-color: #FFFFFF;
+    background-color: rgba(0,0,0,0.2);
   }
 
 &:span {
@@ -159,9 +162,11 @@ export const ButtonLink = styled(Link)`
   text-decoration: none;
   /* Second Nav */
   margin-left: 24px;
-  &:hover {
-    transition: all 0.2s ease-in-out;
-    background: #fff;
-    color: #010606;
-  }
+  
 `;
+
+// &:hover {
+//   transition: all 0.2s ease-in-out;
+//   background: #fff;
+//   color: #010606;
+// }

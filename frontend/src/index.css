@@ -1,0 +1,87 @@
+/* google font
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
+
+
+
+:root {
+  --primary: #000000;
+  --error: #e7195a;
+}
+body {
+  background: url("./images/home.jpg");
+  background-size:100% ;
+  margin: 0;
+  font-family: "Poppins";
+}
+header {
+  background: #222831;
+}
+header .container {
+  max-width: 1400px;
+  margin: 0 auto;
+  height: 90px;
+  padding: 20px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+header a {
+  
+  color: #EEEEEE;
+  text-decoration: none;
+}
+.pages{
+  max-width: 1400px;
+  padding: 20px;
+  margin: 0 auto;
+  font-size: small;
+}
+.logo{
+  width: 100px;
+  height: 100px;
+}
+.HOME{
+  color: #0092CA;
+}
+
+.workout-details {
+  background: #D2D2D4;
+  border-radius: 4px;
+  margin: 20px auto;
+  padding: 10px;
+  position: relative;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+  width: 1200px;
+  left: 50px;
+  top: 50px;
+}
+.workout-details h4 {
+  margin: 0 0 10px 0;
+  font-size: 1.2em;
+  color: var(--primary);
+}
+.workout-details p {
+  margin: 0;
+  font-size: 2em;
+  color: #555;
+}
+.workout-details span {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  background: #f1f1f1;
+  padding: 6px;
+  border-radius: 50%;
+  color: #333;
+}
+/* layout */
+/*
+@import url('https://fonts.googleapis.com/css2?family=Sora&display=swap');
+
+* {
+  font-family: 'Sora', sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+} */
