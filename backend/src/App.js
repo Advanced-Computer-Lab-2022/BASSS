@@ -15,6 +15,7 @@ const cors = require('cors')
 
 
 
+const admin = require("./Routes/adminRoutes");
 // const index = require('./views/index.ejs');
 
 //App variables
@@ -42,6 +43,5 @@ app.use('/guest', guestR)
 app.use('/instructor', instructorR)
 app.use('/individualTrainee', individualTraineeR)
 app.use('/corporateTrainee', corporateTraineeR)
-app.use('/course', courseR);
-
-
+app.use('/course', courseR)
+app.use('/admin', admin)

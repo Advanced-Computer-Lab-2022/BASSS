@@ -4,16 +4,19 @@ import AdminHome from './Pages/Admin/AdminHome/AdminHome';
 import AdminProfile from './Pages/Admin/AdminProfile/AdminProfile';
 import CoursesAdmin from './Pages/Admin/CoursesAdmin/CoursesAdmin';
 import Reports from './Pages/Admin/Reports/Reports';
-//import Navbar from './components/NavBarComponent/Navbar';
+
 //import Navbar from './components/GuestNavbar/GuestNavBar';
 //import AdminHome from './components/Admin/AdminHome/AdminHome'
 import NavBarGeneric from './components/NavBarComponent/NavBarGeneric'
 //adham's
-import Navbar from './components/Navbar/Navbar';
+//import Navbar from './components/Navbar/Navbar';
 import './App.css';
 import Instructor from './Pages/Instructor/Instructor'
 import SelectCountry from './components/SelectCountry/SelectCountry';
-import Home from './Pages/Home'
+import Home from './Pages/Guest/Home'
+import AddAdmin from './Pages/Admin/AddUsers/AddAdmin';
+import AddInstructor from './Pages/Admin/AddUsers/AddInstructor';
+import AddCoTrainee from './Pages/Admin/AddUsers/AddCoTrainee';
 import MyCourses from './components/MyCourses/MyCourses';
 import CourseDetails from './components/CourseDetails/CourseDetails';
 
@@ -21,17 +24,17 @@ import CourseDetails from './components/CourseDetails/CourseDetails';
 import IndividualTrainee from './Pages/IndividualTrainee/IndividualTrainee';
 import CorporateTrainee from './Pages/CorporateTrainee/CorporateTrainee';
 import CreateCourse from './components/CreateCourse/CreateCourse';
-
+import Courses from './components/Courses/Courses';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      { <Navbar/> }
+      {/* { <Navbar FirstLinkTo = '/Admin' FirstLinkText = 'Sara' SecondLinkTo = '/' /> } */}
       {/*<NavBarGeneric h1='sara' firstElement='ana hena' secondElement='wana kamaan' button='buttonnnnnn'/>*/}
         <Routes>
           <Route path='/' element = { <Home/> } /> 
-          <Route path='/instructor' element = { <Instructor/> } /> 
+          <Route path='/instructor' element = { <Instructor/> } />   
           <Route path='/instructor/SelectCountry' element = { <SelectCountry/> } /> 
           <Route
           path='/Admin'
@@ -46,13 +49,13 @@ function App() {
           }
           />
           <Route
-          path='/AddUsers'
+          path='/AdminAddUsers'
           element={
             <AddUsers/>
           }
           />
           <Route
-          path='/Reports'
+          path='/AdminReports'
           element={
             <Reports/>
           }
@@ -63,6 +66,26 @@ function App() {
             <CoursesAdmin/>
           }
           />
+          <Route
+          path='/AdminAddAdmin'
+          element={
+            <AddAdmin/>
+          }
+          />
+          <Route
+          path='/AdminAddInstructor'
+          element={
+            <AddInstructor/>
+          }
+          />
+          <Route
+          path='/AdminAddCoTrainee'
+          element={
+            <AddCoTrainee/>
+          }
+          />
+          
+          
 
           <Route path='/instructor/MyCourses' element={  <MyCourses/> }/>
 
@@ -70,7 +93,7 @@ function App() {
 
           <Route path='/instructor/MyCourses/CourseDetails' element={  <CourseDetails/> }/>
 
-          
+          <Route path='/Courses' element={  <Courses/> }/>
           <Route path='/instructor' element={<Instructor/> } />
           <Route path='/instructor/SelectCountry' element= {<SelectCountry/>}/>
           <Route path='/instructor/CreateCourse' element= {<CreateCourse/>}/>

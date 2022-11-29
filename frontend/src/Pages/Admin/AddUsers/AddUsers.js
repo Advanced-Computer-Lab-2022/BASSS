@@ -1,25 +1,40 @@
 import React from 'react';
 //import NavBarGeneric from '../../../components/NavBarComponent/NavBarGeneric';
 import AdminNavBar from '../AdminNavBar/AdminNavBar';
+import { Link } from 'react-router-dom';
 import {
-//   Nav,
-//   NavLink,
-//   Bars,
-//   NavMenu,
-//   NavBtn,
-//   NavBtnLink,
   Button,
   Body,
-  ButtonLink
 } from './AddUsersCss';
-
+import './AddUsers.css'
 export default function AddUsers(){
     return <Body>
         <AdminNavBar/>
         <div>
+        <br></br>        <br></br>        <br></br>       
+        </div>
+        <div>
+        <Link to='/AdminAddAdmin' >
             <Button>
-            <ButtonLink to='/sarasaad'>Ana hena</ButtonLink>
+                Add Admin
             </Button>
+        </Link>
+        </div>
+        <br></br>        <br></br>
+        <div>
+        <Link to='/AdminAddInstructor' >
+            <Button>
+            Add Instructor
+            </Button>
+        </Link>
+        </div>
+        <br></br>        <br></br>
+        <div>
+        {/* <Link to='/AdminAddCoTrainee'> */}
+            <Button>
+            Add Corporate Trainee
+            </Button>
+        {/* </Link> */}
         </div>
 
     </Body>

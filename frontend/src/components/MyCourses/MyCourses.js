@@ -3,6 +3,7 @@ import '../Courses/Courses.css';
 import { Link } from 'react-router-dom';
 import Search from '../../components/Search/Search';
 import '../../Pages/Instructor/Instructor.css'
+import InstructorNavBar from '../../Pages/Instructor/InstructorNavBar/InstructorNavBar';
 
 import Button from '@mui/material/Button';
 import Table from '@mui/material/Table';
@@ -46,7 +47,7 @@ const MyCourses = () => {
 
     return(
         <div className='Instructor-body'>
-
+            <InstructorNavBar/>
             <Search Type="searchMyCourses"/>
           <h1>My Courses</h1>
           <table class="fl-table">
