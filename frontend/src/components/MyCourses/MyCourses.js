@@ -27,21 +27,88 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 const { useState } = require("react");
 
 const MyCourses = () => { 
+    
+    
+  
+  var [choice,setchoice] = useState([]);
+  var [choice2,setchoice2] = useState([]);
+  const [choice3,setchoice3] = useState([]);
 
-    const [myCourses,setMyCourses] = useState([]);
 
-    const getMyCourses=  async () => {
-        await axios.get(`http://localhost:9000/course/salama`).then(
-            (res) => { 
-                const myCourses = res.data
-                console.log(myCourses)
-                setMyCourses(myCourses) 
-            }
-             );
-            
+  const [filtered,setfiltered] = useState([]);
+  const [first,setfirst] = useState(0);
+  //const [filteredbyRate,setfilteredbyRate] = useState([]);
+  //const [filteredbyPrice,setfilteredbyPrice] = useState([]);
+
+  
+  
+  const getfiltered=  async () => {
+    if(choice.length==0 &&  choice3.length==0){
+    await axios.get(`http://localhost:9000/course/my/salama/empty/empty`).then(
+        (res) => { 
+            const filtered = res.data
+            console.log(filtered)
+            setfiltered(filtered)
+        }
+         );
+
+}else if(choice.length==0){
+await axios.get(`http://localhost:9000/course/my/salama/empty/${choice3}`).then(
+    (res) => { 
+        const filteredbyRate = res.data
+        console.log(filteredbyRate)
+        setfiltered(filteredbyRate)
+        
     }
+     );
 
-    getMyCourses();
+}else if(choice3.length==0){
+await axios.get(`http://localhost:9000/course/my/salama/${choice}/empty`).then(
+    (res) => { 
+        const filteredbyRate = res.data
+        console.log(filteredbyRate)
+        setfiltered(filteredbyRate)
+        
+    }
+     );
+}
+else {
+await axios.get(`http://localhost:9000/course/my/salama/${choice}/${choice3}`).then(
+    (res) => { 
+        const filteredbyRate = res.data
+        console.log(filteredbyRate)
+        setfiltered(filteredbyRate)
+        
+    }
+     );
+}
+
+
+  }
+
+  const changehandler =  (e)=>{
+    //const c = e.target.value;
+    setchoice(e.target.value);  
+  
+ }
+ const changehandler3 =  (e)=>{
+    //const c = e.target.value;
+    setchoice3(e.target.value);             
+ }
+
+ const clickhandler1 = ()=>{
+  getfiltered()
+ }
+
+const clickhandler3 = ()=>{
+  getfiltered()
+ }
+
+ if(first==0)
+ {
+   getfiltered();
+   setfirst(1)
+ }
 
     return(
         /* 
@@ -53,19 +120,61 @@ const MyCourses = () => {
         <div className='Instructor-body'>
 
 
+
+            {/* <div> 
+
+    <label for="subs"> Subject:</label>
+    <select onChange={changehandler}     name="subs" id="subs">
+    <option value="fgfgf"></option>
+    <option value="CS">CS</option>
+  <option value="Managment">Managment</option>
+  <option value="Finance">Finance</option>
+  
+</select>
+
+
+            </div>
+            <div> 
+            <label for="subs"> price:</label>
+    <select onChange={changehandler3}     name="subs" id="subs">
+    <option value="fgfgf"></option>
+    <option value="0">free</option>
+  <option value="100">not free</option>
+ 
+</select>
+           
+    
+</div> */}
+
+<div> 
+
+    <button onClick={clickhandler1}>submit</button>
+    <input placeholder='subject' onChange={changehandler} value={choice}/>
+
+    </div>
+
+    <div> 
+    <button onClick={clickhandler3}>submit</button>
+    <input placeholder='price' onChange={changehandler3} value={choice3}/>
+    </div>
+
+
 <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
             <StyledTableCell align="center">Title</StyledTableCell>
-            <StyledTableCell align="center">Total Hours</StyledTableCell>
-            <StyledTableCell align="center">Rating</StyledTableCell>
             <StyledTableCell align="center">Price</StyledTableCell>
+            <StyledTableCell align="center">Rating</StyledTableCell>
+            <StyledTableCell align="center">Reviews</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
+
+     
+
             
-        {myCourses.map((course) => (
+        {filtered.map((course) => (
             <TableRow
             hover
             sx={{
@@ -80,9 +189,9 @@ const MyCourses = () => {
 
               >
               <TableCell align="center">{course.Title}</TableCell>
-              <TableCell align="center">{course.TotalHours}</TableCell>
-              <TableCell align="center">{course.Rating}</TableCell>
               <TableCell align="center">{course.Price}</TableCell>
+              <TableCell align="center">{course.Rating}</TableCell>
+              <TableCell align="center">{course.Reviews}</TableCell>
             </TableRow>
 
 ))}

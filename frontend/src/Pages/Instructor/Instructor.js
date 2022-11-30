@@ -3,6 +3,7 @@ import '../../App.css'
 import { Link } from 'react-router-dom'
 import './Instructor.css'
 import Courses from '../../components/Courses/Courses';
+
 function Instructor(){
     return(
         <>
@@ -14,8 +15,16 @@ function Instructor(){
         <Link to ="/instructor/CreateCourse">
         <button className='CreateCoursebtn'> Create a new Course</button>
         </Link>
+
+        <Link to ="/instructor/MyCourses">
+            <button>
+                View My Courses</button>
+            </Link>
         {/* <SelectCountry/> */}
-        <Courses/>
+
+
+
+        <Courses Link = "/instructor/CourseDetails" />
         </div>
         </>
     )

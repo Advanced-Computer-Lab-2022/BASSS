@@ -10,6 +10,7 @@ function SelectCountry() {
   const changeHandler = (e)=>{
      setcountry(e.target.value)
   }
+  
   // alert(country);
   const totalpath = window.location.pathname;
   var mySubString = totalpath.substring(

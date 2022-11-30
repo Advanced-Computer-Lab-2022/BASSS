@@ -11,25 +11,63 @@ courseR.get("/",async(req, res) => {
 });
 
 
-
-courseR.get("/:name",async(req, res) => {
-  // res.render("../views/course.ejs",{title:"courses"})
-  const instName = req.params.name;
-  const result =await courses.find({InstructorUserName:instName})
-  res.status(200).json(result);
-});
-
-
-
-// const getCourses = async (req, res) => {
-//     const course = await courses.find({})
+courseR.get("/:subject/:rate/:price",async(req, res) => {
+    // res.render("../views/course.ejs",{title:"courses"})
+    var subject = req.params.subject;
+    var rate = req.params.rate;
+    var price = req.params.price;
+    var result = []
+    if(subject == "empty" && rate == "empty" && price=="empty"){
+     
+      result = await courses.find({})
+   }
+   else
+      if(subject == "empty" && price=="empty"){
+        result =await courses.find({Rating:rate })
+        
+      }
+     else if(rate == "empty" && price=="empty"){
+        result =await courses.find({Subject:subject})
+        
+      }else if(rate == "empty" && subject=="empty"){
+           result =await courses.find({Price:price})
+      }else if (subject == "empty"){
+        result =await courses.find({Rating :rate ,Price:price})
+      }else if (rate == "empty"){
+        result =await courses.find({Subject :subject ,Price:price})
+      }else if (price == "empty"){
+        result =await courses.find({Rating :rate ,Subject :subject})
+      }
+      else{
+        result =await courses.find({Subject:subject, Rating:rate , Price:price})
+      
+      }
   
-//     // for (let index = 0; index < users.length; index++) {
-//     //     const element = users[index];
-//     //     console.log(element.id);
-//     //}
-//     res.status(200).json(course)
-//   }
+    res.status(200).json(result);
+  });
+  courseR.get("/:my/:name/:subject/:price",async(req, res) => {
+    // res.render("../views/course.ejs",{title:"courses"})
+    var name = req.params.name;
+    var subject = req.params.subject;
+    var price = req.params.price;
+    var result = []
+    if(subject == "empty" && price=="empty"){
+     
+      result = await courses.find({InstructorUserName:name})
+      }else if (subject == "empty"){
+        result =await courses.find({InstructorUserName:name, Price:price})
+      }else if (price == "empty"){
+        result =await courses.find({InstructorUserName:name, Subject :subject})
+      }
+      else{
+        result =await courses.find({InstructorUserName:name, Subject:subject, Price:price})
+      
+      }
+  
+    res.status(200).json(result);
+  });
+
+
 
 
 // courseR.post("/selectcountry",function(req,res){
@@ -48,6 +86,5 @@ courseR.get("/:name",async(req, res) => {
 //             }
 // })
 // })
-
 
 module.exports = courseR;
