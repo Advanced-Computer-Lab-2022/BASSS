@@ -1,11 +1,14 @@
-import React from 'react'
-import './CourseDetails.css'
-function CourseDetails(props) {
-  return (
-    <div className='coursedetails-body'>
+import axios from 'axios';
+import './CourseDetails.css';
 
-    </div>
-  )
+const CourseDetails = () => { 
+    return(
+
+        <div className='CourseDetails-body'>
+
+        </div>
+    )
 }
 
-export default CourseDetails
+
+export default CourseDetails;

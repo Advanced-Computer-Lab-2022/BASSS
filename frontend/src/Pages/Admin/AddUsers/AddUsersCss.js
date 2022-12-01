@@ -50,7 +50,6 @@ export const Bars = styled(FaBars)`
 
 
 export const Body = styled.body`
-background-image: url(${AdminAddUser});
 background-size:cover ;
 height: 100vh;
 

@@ -3,6 +3,8 @@ import '../../App.css'
 import { Link } from 'react-router-dom'
 import './Instructor.css'
 import InstructorNavBar from './InstructorNavBar/InstructorNavBar'
+import Courses from '../../components/Courses/Courses';
+
 function Instructor(){
     return(
         <>
@@ -19,6 +21,15 @@ function Instructor(){
         <Link to ="/instructor/promotion">
         <button className='promotion'> define a promotion</button>
         </Link>
+        <Link to ="/instructor/MyCourses">
+            <button>
+                View My Courses</button>
+            </Link>
+        {/* <SelectCountry/> */}
+
+
+
+        <Courses Link = "/instructor/CourseDetails" />
         </div>
         </>
     )

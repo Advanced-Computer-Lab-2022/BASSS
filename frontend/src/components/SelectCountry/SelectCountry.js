@@ -11,6 +11,7 @@ function SelectCountry() {
      setcountry(e.target.value)
      alert('country selected')
   }
+  
   // alert(country);
   const totalpath = window.location.pathname;
   var mySubString = totalpath.substring(
