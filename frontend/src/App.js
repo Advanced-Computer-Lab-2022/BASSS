@@ -18,10 +18,12 @@ import SelectCountry from './components/SelectCountry/SelectCountry';
 import IndividualTrainee from './Pages/IndividualTrainee/IndividualTrainee';
 import CorporateTrainee from './Pages/CorporateTrainee/CorporateTrainee';
 import CreateCourse from './components/CreateCourse/CreateCourse';
+import Promotion from './components/Promotion/Promotion';
 import Home from './Pages/Guest/Home'
 import AddAdmin from './Pages/Admin/AddUsers/AddAdmin';
 import AddInstructor from './Pages/Admin/AddUsers/AddInstructor';
 import AddCoTrainee from './Pages/Admin/AddUsers/AddCoTrainee';
+import CourseDetails from './components/CourseDetails/CourseDetails';
 // import Meow from './Pages/Admin/Meow';
 
 
@@ -44,14 +46,17 @@ function App() {
           <Route path='/instructor/SelectCountry' element= {<SelectCountry/>}/>
           <Route path='/instructor/CreateCourse' element= {<CreateCourse/>}/>
           <Route path='/IndividualTrainee' element = { <IndividualTrainee/> } /> 
-          <Route path='/IndividualTrainee/SelectCountry' element = { <SelectCountry/> } /> 
+          <Route path='/IndividualTrainee/SelectCountry' element = { <SelectCountry/> } />
+          <Route path='/IndividualTrainee/CourseDetails' element = { <CourseDetails/> } />  
           <Route path='/CorporateTrainee' element = { <CorporateTrainee/> } /> 
           <Route path='/CorporateTrainee/SelectCountry' element = { <SelectCountry/> } /> 
+          <Route path='/CorporateTrainee/CourseDetails' element = { <CourseDetails/> } />  
           <Route path='/AdminAddAdmin'  element={<AddAdmin/>}/>
           <Route path='/AdminAddInstructor'element={ <AddInstructor/>}/>
           <Route path='/AdminAddCoTrainee' element={ <AddCoTrainee/>} /> 
           <Route path='/instructor' element={<Instructor/> }/>
           <Route path='/instructor/SelectCountry' element={<SelectCountry/> } />
+          <Route path='/instructor/promotion' element={<Promotion/> } />
         </Routes>
       </BrowserRouter>
 

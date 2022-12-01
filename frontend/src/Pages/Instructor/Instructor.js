@@ -15,6 +15,10 @@ function Instructor(){
         <Link to ="/instructor/CreateCourse">
         <button className='CreateCoursebtn'> Create a new Course</button>
         </Link>
+
+        <Link to ="/instructor/promotion">
+        <button className='promotion'> define a promotion</button>
+        </Link>
         </div>
         </>
     )

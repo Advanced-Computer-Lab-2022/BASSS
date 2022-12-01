@@ -9,6 +9,7 @@ function SelectCountry() {
 
   const changeHandler = (e)=>{
      setcountry(e.target.value)
+     alert('country selected')
   }
   // alert(country);
   const totalpath = window.location.pathname;
@@ -16,7 +17,7 @@ function SelectCountry() {
     totalpath.indexOf("/") + 1, 
     totalpath.lastIndexOf("/")
 );
-  alert(mySubString)
+  // alert(mySubString)
   const select = async ()=>{
     await axios.get(`http://localhost:9000/${mySubString}/${country}`)
   }
