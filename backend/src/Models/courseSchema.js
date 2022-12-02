@@ -1,8 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-// require('mongoose-currency').loadType(mongoose);
-// var Currency = mongoose.Types.Currency;
+const subtitleSchema = require('./subtitleSchema');
 
 const courseSchema = new Schema ({
 
@@ -34,11 +33,8 @@ const courseSchema = new Schema ({
     },
 
     Subtitles:{
-        type: [[String]], //[[Subtitles.Hours , VideoLink, ShortVideoDescription, ExerciseID, %ofCourse ]]
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////
-        required:true
+        type: [String]
     },
-
     Views: {
         type: Number,
         default: 0
@@ -67,14 +63,14 @@ const courseSchema = new Schema ({
     PromotionEndTime: {type: Number, min: 0, max:24},
     
     PromotionEndDate: {type: Date},
-    
+        
     CertificateTemplate:{
         type: String,
         required: true
     }
 
-}, { timestamps: true });
 
+}, { timestamps: true });
 
 
 const course = mongoose.model('course', courseSchema);

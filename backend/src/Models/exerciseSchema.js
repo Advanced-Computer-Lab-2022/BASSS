@@ -3,6 +3,18 @@ const Schema = mongoose.Schema;
 
 const ExerciseSchema = new Schema({
    
+  CourseTitle:{
+    type:String
+  },
+
+  InstructorName:{
+    type:String
+  },
+
+  SubtitleNumber:{
+    type:String
+  },
+
   Question:{
       type:String,
       required:true
@@ -26,5 +38,5 @@ const ExerciseSchema = new Schema({
 
 
 
-const exercise = mongoose.model('exercise', exerciseSchema);
+const exercise = mongoose.model('exercise', ExerciseSchema);
 module.exports = exercise;

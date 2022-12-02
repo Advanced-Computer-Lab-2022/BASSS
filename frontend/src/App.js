@@ -19,6 +19,7 @@ import AddAdmin from './Pages/Admin/AddUsers/AddAdmin';
 import AddInstructor from './Pages/Admin/AddUsers/AddInstructor';
 import AddCoTrainee from './Pages/Admin/AddUsers/AddCoTrainee';
 import Meow from './Pages/Admin/Meow';
+import CreateCourse from './Pages/Instructor/CreateCourse/CreateCourse';
 
 
 
@@ -103,7 +104,14 @@ function App() {
             <SelectCountry/>
           }
           />
+          <Route
+         path='/instructor/CreateCourse' 
+         element= {
+          <CreateCourse/>
+         }
+         />
         </Routes>
+
       </BrowserRouter>
 
     </div>
