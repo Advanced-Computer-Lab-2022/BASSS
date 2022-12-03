@@ -6,11 +6,11 @@
     background-size:cover;
     background-repeat: no-repeat;
     background-position: center;
-    height: 673px;
+    height: 753px;
     
     
 }
-.selectcountrybtn
+.selectcountrybtnindividual
 {
     background-color: transparent;
     color: #fff;
@@ -22,10 +22,10 @@
     width: 120px;
     cursor: pointer;
     position: absolute;
-    top: 200px;
+    top: 500px;
     left: 200px;
 }
-  .selectcountrybtn:hover{
+  .selectcountrybtnindividual:hover{
     background-color: #fff;
     color: black;
   }

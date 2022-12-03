@@ -21,16 +21,13 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     },
     [`&.${tableCellClasses.body}`]: {
       fontSize: 14,
+      
     },
   }));
 
 const { useState, useEffect } = require("react");
 
 const Courses = (props) => { 
-
-   // const subj =  document.getElementById(subs).value;
-  //var selectElement = document.querySelector('#subs');
-  //var output = selectElement.value;
 
 
       var [choice,setchoice] = useState([]);
@@ -40,10 +37,6 @@ const Courses = (props) => {
    
       const [filtered,setfiltered] = useState([]);
       const [first,setfirst] = useState(0);
-      //const [filteredbyRate,setfilteredbyRate] = useState([]);
-      //const [filteredbyPrice,setfilteredbyPrice] = useState([]);
-
-      
       
       const getfiltered =  async () => {
         // alert(choice2)
@@ -126,32 +119,7 @@ await axios.get(`http://localhost:9000/course/${choice}/${choice2}/${choice3}`).
 
 
 }
-// const getfilteredbyRate=  async () => {
-//     await axios.get(`http://localhost:9000/course/r/${choice2}`).then(
-//         (res) => { 
-//             const filteredbyRate = res.data
-//             console.log(filteredbyRate)
-//             setfiltered(filteredbyRate)
-      
-//         }
-//          );
-// }
-
-
-
-
-
       }
-// const getfilteredbyRate=  async () => {
-//     await axios.get(`http://localhost:9000/course/r/${choice2}`).then(
-//         (res) => { 
-//             const filteredbyRate = res.data
-//             console.log(filteredbyRate)
-//             setfiltered(filteredbyRate)
-            
-//         }
-//          );
-// }
 
       
              const changehandler =  async(e)=>{
@@ -203,31 +171,7 @@ await axios.get(`http://localhost:9000/course/${choice}/${choice2}/${choice3}`).
     <input placeholder='price' onChange={changehandler3} value={choice3}/>
     </div>
 
-{/* <div> 
-
-<label for="subs"> Subject:</label>
-<select onChange={changehandler}     name="subs" id="subs">
-<option value="fgfgf"></option>
-<option value="CS">CS</option>
-<option value="Managment">Managment</option>
-<option value="Finance">Finance</option>
-
-</select>
-
-
-        </div>
-        <div> 
-        <label for="subs"> price:</label>
-<select onChange={changehandler3}     name="subs" id="subs">
-<option value="fgfgf"></option>
-<option value="0">free</option>
-<option value="100">not free</option>
-
-</select>
-       
-
-</div> */}
-
+{/* //all courses--------------------------------------------------------------- */}
             <div> 
             <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
@@ -260,7 +204,9 @@ await axios.get(`http://localhost:9000/course/${choice}/${choice2}/${choice3}`).
       </Table>
     </TableContainer>
 
-    </div> 
+    </div>  
+
+
         </div>   
     )
 }

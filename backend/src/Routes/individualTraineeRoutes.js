@@ -68,30 +68,18 @@ individualTraineeR.post("/searchinstructor",async function(req,res){
 })
     
 
-// individualTraineeR.post("/searchinstructor",async function(req,res){
-//     var search = req.body.searchinstructor
-//     var ins = await instructors.find({});
-//     var array = [];
-//     for(let i = 0 ; i<ins.length ; i++)
-//     {
-//         if (ins[i].username.toLowerCase().includes(search.toLowerCase()))
-//         {
-//             array=array.concat([ins[i]]);
-//         }
-//     }
-//     var cour = await courses.find({});
-//     var array2 = [];
-//     for(let i =0 ; i<array.length ; i++)
-//     {
-//         for(let j =0; j<cour.length ; j++)
-//         {
-//             if(array[i]._id==cour[j].Instructor)
-//             {
-//                 array2 = array2.concat([cour[j]]);
-//             }
-//         }
-//     }
-//     res.send(array2);
-// })
+individualTraineeR.get("/individualCourses/:username",async(req, res) => {
+    const username = req.params.username;
+    // const courseID = req.params.courseID;
+    // const result = await individualTrainees.find({ courses:{ $elemMatch:{0: courseID} } })
+    const trainee = await individualTrainees.find({UserName:username})
+    const courseID = trainee[0].courses
+    var list = []
+    for (let i = 0; i < courseID.length; i++) {
+        const course = await courses.findOne({_id:courseID[i][0]})
+        list = list.concat([course])
+    }
+  res.json(list)
+});
 
 module.exports = individualTraineeR;

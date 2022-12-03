@@ -75,5 +75,9 @@ const individualTraineeschema = new Schema({
 
 }, { timestamps: true });
 
+
 const individualTrainees = mongoose.model('individualTrainees', individualTraineeschema);
+// individualTrainees.create({UserName:'hazem123',FirstName:'hazem',LastName:'hegazy',Email:'hazemkhaled@gmail.com',
+// Country:'germany',Password:'123',Gender:'male',courses:[['637e73821194304d45a2fe5a','50%'],['6383a008cf44823c1f52d63a','20%']],
+// Wallet:20})
 module.exports = individualTrainees;
