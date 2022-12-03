@@ -8,6 +8,7 @@ const courses = require("../Models/courseSchema");
 individualTraineeR.get("/",(req, res) => {
     res.render("../views/individualTrainee.ejs",{title:"individualTrainee"})});
 
+
 individualTraineeR.post("/selectcountry",function(req,res){
     console.log(req.body)
     var country = req.body.country;

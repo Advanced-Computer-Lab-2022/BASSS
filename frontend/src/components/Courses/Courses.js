@@ -1,7 +1,7 @@
 import axios from 'axios';
 import './Courses.css';
 
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 import Button from '@mui/material/Button';
 import Table from '@mui/material/Table';
@@ -124,34 +124,10 @@ await axios.get(`http://localhost:9000/course/${choice}/${choice2}/${choice3}`).
          );
 }
 
-
 }
-// const getfilteredbyRate=  async () => {
-//     await axios.get(`http://localhost:9000/course/r/${choice2}`).then(
-//         (res) => { 
-//             const filteredbyRate = res.data
-//             console.log(filteredbyRate)
-//             setfiltered(filteredbyRate)
-      
-//         }
-//          );
-// }
-
-
-
-
 
       }
-// const getfilteredbyRate=  async () => {
-//     await axios.get(`http://localhost:9000/course/r/${choice2}`).then(
-//         (res) => { 
-//             const filteredbyRate = res.data
-//             console.log(filteredbyRate)
-//             setfiltered(filteredbyRate)
-            
-//         }
-//          );
-// }
+
 
       
              const changehandler =  async(e)=>{
@@ -177,8 +153,11 @@ await axios.get(`http://localhost:9000/course/${choice}/${choice2}/${choice3}`).
              if(first==0)
              {
                getfiltered();
-               setfirst(1)
+                setfirst(1)
              }
+
+const navigate = useNavigate();
+
     return(
 
         <div >
@@ -186,10 +165,8 @@ await axios.get(`http://localhost:9000/course/${choice}/${choice2}/${choice3}`).
 
    
     <div> 
-
     <button onClick={clickhandler1}>submit</button>
     <input placeholder='subject' onChange={changehandler} value={choice}/>
-
     </div>
 
     <div> 
@@ -203,30 +180,6 @@ await axios.get(`http://localhost:9000/course/${choice}/${choice2}/${choice3}`).
     <input placeholder='price' onChange={changehandler3} value={choice3}/>
     </div>
 
-{/* <div> 
-
-<label for="subs"> Subject:</label>
-<select onChange={changehandler}     name="subs" id="subs">
-<option value="fgfgf"></option>
-<option value="CS">CS</option>
-<option value="Managment">Managment</option>
-<option value="Finance">Finance</option>
-
-</select>
-
-
-        </div>
-        <div> 
-        <label for="subs"> price:</label>
-<select onChange={changehandler3}     name="subs" id="subs">
-<option value="fgfgf"></option>
-<option value="0">free</option>
-<option value="100">not free</option>
-
-</select>
-       
-
-</div> */}
 
             <div> 
             <TableContainer component={Paper}>
@@ -243,16 +196,17 @@ await axios.get(`http://localhost:9000/course/${choice}/${choice2}/${choice3}`).
              
             
           {filtered.map((course) => (
-            <TableRow
+            <TableRow id={course._id}
             hover
             sx={{ "&:hover":{cursor: "pointer",backgroundColor: "#f5f5f5",width: "100%"}
             }}
 
-            onClick={() => window.location.href=props.Link}
+            onClick={() => navigate(props.Link, {state:[course._id,course.InstructorUserName]} )}
+            //key={course.InstructorUserName}
               >
               <TableCell align="center">{course.Title}</TableCell>
               <TableCell align="center">{course.TotalHours}</TableCell>
-              <TableCell align="center">{course.Rating}</TableCell>
+              <TableCell align="center">{course.Rating.rate}</TableCell>
               <TableCell align="center">{course.Price}</TableCell>
             </TableRow>
 ))}

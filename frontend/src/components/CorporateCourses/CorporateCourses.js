@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
+
 
 import Button from '@mui/material/Button';
 import Table from '@mui/material/Table';
@@ -25,7 +26,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 const { useState } = require("react");
 
-const CorporateCourses = () => { 
+const CorporateCourses = (props) => { 
 
   var [choice,setchoice] = useState([]);
   var [choice2,setchoice2] = useState('');
@@ -168,6 +169,8 @@ await axios.get(`http://localhost:9000/course/${choice}/${choice2}/${choice3}`).
            setfirst(1)
          }
 
+         const navigate = useNavigate();
+
     return(
 
         <div >
@@ -208,13 +211,13 @@ await axios.get(`http://localhost:9000/course/${choice}/${choice2}/${choice3}`).
                 width: "100%"
                 }
             }}
-             onClick={() => window.location.href="/corporatetrainee/CourseDetails"}
+               onClick={() => navigate("/corporatetrainee/CourseDetails" , {state:[course._id,course.InstructorUserName]} )}
             //   key={author._id}
 
               >
               <TableCell align="center">{course.Title}</TableCell>
               <TableCell align="center">{course.TotalHours}</TableCell>
-              <TableCell align="center">{course.Rating}</TableCell>
+              <TableCell align="center">{course.Rating.rate}</TableCell>
             </TableRow>
 
 ))}

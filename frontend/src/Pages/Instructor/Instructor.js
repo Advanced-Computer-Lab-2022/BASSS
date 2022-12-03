@@ -3,6 +3,7 @@ import '../../App.css'
 import { Link } from 'react-router-dom'
 import './Instructor.css'
 import Courses from '../../components/Courses/Courses';
+import ViewRating from '../../components/ViewRating/ViewRating';
 
 function Instructor(){
     return(
@@ -16,13 +17,19 @@ function Instructor(){
         <button className='CreateCoursebtn'> Create a new Course</button>
         </Link>
 
+        <ViewRating/>
+
         <Link to ="/instructor/MyCourses">
             <button>
                 View My Courses</button>
             </Link>
+
+            <Link to ="/instructor/MyReviews">
+            <button>
+                My Reviews</button>
+            </Link>
+
         {/* <SelectCountry/> */}
-
-
 
         <Courses Link = "/instructor/CourseDetails" />
         </div>

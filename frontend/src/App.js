@@ -15,7 +15,9 @@ import SelectCountry from './components/SelectCountry/SelectCountry';
 import Home from './Pages/Home'
 import MyCourses from './components/MyCourses/MyCourses';
 import CourseDetails from './components/CourseDetails/CourseDetails';
+import CourseDetailsInstructor from './components/CourseDetailsInstructor/CourseDetailsInstructor';
 import AllCourses from './components/Courses/Courses';
+import MyReviews from './components/ViewReviews/ViewReviews';
 
 
 import IndividualTrainee from './Pages/IndividualTrainee/IndividualTrainee';
@@ -82,8 +84,9 @@ function App() {
 
             <Route path='/AllCourses' element={  <AllCourses Link = "/AllCourses/CourseDetails"/> }/>
           <Route path='/instructor/MyCourses' element={  <MyCourses/> }/>
-          <Route path='/instructor/MyCourses/CourseDetails' element={  <CourseDetails/> }/>
-          <Route path='/instructor/CourseDetails' element={  <CourseDetails/> }/>
+          <Route path='/instructor/MyCourses/CourseDetails' element={  <CourseDetailsInstructor/> }/>
+          <Route path='/instructor/CourseDetails' element={  <CourseDetailsInstructor/> }/>
+          <Route path='/instructor/MyReviews' element={  <MyReviews/> }/>
           <Route path='/individualtrainee/CourseDetails' element={  <CourseDetails/> }/>
           <Route path='/corporatetrainee/CourseDetails' element={  <CourseDetails/> }/>
           <Route path='/AllCourses/CourseDetails' element={  <CourseDetails/> }/>
