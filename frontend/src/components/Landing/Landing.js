@@ -6,7 +6,7 @@ function Landing() {
   return (
     <div className='Landing-container'>
         <video src="/videos/Landing-page.mp4" autoPlay loop muted/>
-        <h1>I HAVE LEARNED THAT I STILL HAVE A LOT TO LEARN !</h1>
+        <h1 className='land'>I HAVE LEARNED THAT I STILL HAVE A LOT TO LEARN !</h1>
         <input placeholder='Search for a course ?' className='search'></input>
         <div className='Landing-btn'>
             <Link to='/search'>

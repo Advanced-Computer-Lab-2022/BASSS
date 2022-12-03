@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios';
 import './Courses.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Table from '@mui/material/Table';
 import Box from '@mui/material/Box';
@@ -38,6 +38,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
              );
     }
     getmycourses()
+    const navigate = useNavigate()
    return (
      <div>
        <TableContainer component={Paper}>
@@ -59,11 +60,11 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
             sx={{ "&:hover":{cursor: "pointer",backgroundColor: "#f5f5f5",width: "100%"}
             }}
 
-            onClick={() => window.location.href=props.Link}
+            onClick={() => navigate(props.Link, {state:[course._id,course.InstructorUserName]} )}
               >
               <TableCell align="center">{course.Title}</TableCell>
               <TableCell align="center">{course.TotalHours}</TableCell>
-              <TableCell align="center">{course.Rating}</TableCell>
+              <TableCell align="center">{course.Rating.rate}</TableCell>
               <TableCell align="center">{course.Price}</TableCell>
             </TableRow>
 ))}
