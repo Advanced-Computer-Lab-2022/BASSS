@@ -20,6 +20,7 @@ const ExerciseSchema = new Schema({
       required:true
   },
 
+  
   Choices:{
       type:[String],
       required:true

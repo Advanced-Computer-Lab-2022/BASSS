@@ -18,7 +18,7 @@ const MultipleSubtitleDivs = (props) => {
         var temp = (
                 <div>
                     <br></br>
-                    {<AddSubtitleDiv createSubtitleProp = {props.createSubtitleProp} CreateExcerciseProp = {props.CreateExcerciseProp} DivID={i} CreateButton={props.CreateButton} Title={props.Title} InstructorName={props.InstructorName}/>}
+                    {<AddSubtitleDiv createSubtitle = {props.createSubtitle} CreateExcercise = {props.CreateExcercise} GetExcercise = {props.GetExcercise} createSubtitleProp = {props.createSubtitleProp} CreateExcerciseProp = {props.CreateExcerciseProp} DivID={i} CreateButton={props.CreateButton} Title={props.Title} InstructorName={props.InstructorName}/>}
                     <br></br>
                 </div>);
         usersDiv.push(temp);

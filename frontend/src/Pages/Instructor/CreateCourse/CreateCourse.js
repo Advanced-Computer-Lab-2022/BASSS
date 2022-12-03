@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './CreateCourse.css'
 import InstructorNavBar from '../InstructorNavBar/InstructorNavBar'
 import axios from 'axios';
@@ -11,25 +11,38 @@ import MultipleSubtitleDivs from './MultipleSubtitlesDivs';
 */
 
 function CreateCourse() {
-    const InstructorName = "sara saad"
-    const SubtitleNumber = "1"
+    //const InstructorName = "sara saad"
+    //const SubtitleNumber = "1"
     var Subtitles
+    const Title1 = 'ya salam'
 
+    const [ThisSubtitleNumber , setThisSubtitleNumber] = useState('')
+    const ThisSubtitleNumberhandler = (sara)=>{setThisSubtitleNumber(sara)}
+    useEffect(()=>{ThisSubtitleNumberhandler(ThisSubtitleNumber)});
+
+    const [InstructorName , setInstructorName] = useState('sara saad')
+    const InstructorNamehandler = (sara)=>{setInstructorName(sara)}
+    useEffect(()=>{InstructorNamehandler(InstructorName)});
 
     const [SubtitleNum , setSubtitleNum] = useState(1)
     const SubtitleNumhandler = (event)=>{setSubtitleNum(SubtitleNum+1)}
+    //useEffect(()=>{SubtitleNumhandler(SubtitleNum)})
 
     const [Exercise , setExercise] = useState([])
-    const Exercisehandler = (event)=>{setExercise(event.target.value)}
+    const Exercisehandler = (sara)=>{setExercise(sara)};
+    useEffect(()=>{Exercisehandler(Exercise)});
 
-    const [CourseID , setCourseID] = useState([])
-    const CourseIDhandler = (event)=>{setCourseID(event.target.value)}
+    const [CourseID , setCourseID] = useState('1')
+    const CourseIDhandler = (sara)=>{setCourseID(sara)}
+    useEffect(()=>{CourseIDhandler(CourseID)})
 
     const [Title , setTitle] = useState([])
     const courseTitlehandler = (event)=>{setTitle(event.target.value)}
+    //useEffect(()=>{courseTitlehandler(Title)})
     
     const [Subject , setSubject] = useState([])
     const courseSubjecthandler = (event)=>{setSubject(event.target.value)}
+    //useEffect(()=>{InstructorNamehandler(InstructorName)})
     
     const [TotalHours, setTotalHours] = useState([])
     const totalHourshandler = (event)=>{setTotalHours(event.target.value)}
@@ -46,43 +59,63 @@ function CreateCourse() {
     const [CertificateTemplate , setCertificateTemplate] = useState([])
     const certificateTemplatehandler = (event)=>{setCertificateTemplate(event.target.value)}
             
-    const [SubtitleHours , setSubtitleHours] = useState([])
-    const subtitleHourshandler = (event)=>{setSubtitleHours(event.target.value)}
+    const [SubtitleHours , setSubtitleHours] = useState()
+    const subtitleHourshandler = (sara)=>{setSubtitleHours(sara)}
+    useEffect(()=>{subtitleHourshandler(SubtitleHours)})
     
-    const [videolink , setvideolink] = useState([])
-    const videolinkhandler = (event)=>{setvideolink(event.target.value)}
+    const [videolink , setvideolink] = useState('')
+    const videolinkhandler = (sara)=>{setvideolink(sara)}
+    useEffect(()=>{videolinkhandler(videolink)})
     
-    const [VideoDescription , setVideoDescription] = useState([])
-    const videoDescriptionhandler = (event)=>{setVideoDescription(event.target.value)}
+    const [VideoDescription , setVideoDescription] = useState('')
+    const videoDescriptionhandler = (sara)=>{setVideoDescription(sara)}
+    useEffect(()=>{videoDescriptionhandler(VideoDescription)})
     
-    const [Question , setQuestion] = useState([])
-    const questionhandler = (event)=>{setQuestion(event.target.value)}
+    const [Question , setQuestion] = useState('')
+    const questionhandler = (sara)=>{setQuestion(sara)}
+    useEffect(()=>{questionhandler(Question)})
     
-    const [MaxGrade , setMaxGrade] = useState([])
-    const maxGradehandler = (event)=>{setMaxGrade(event.target.value)}
+    const [MaxGrade , setMaxGrade] = useState()
+    const maxGradehandler = (sara)=>{setMaxGrade(sara)}
+    useEffect(()=>{maxGradehandler(MaxGrade)})
     
-    const [CorrectAnswer , setCorrectAnswer] = useState([])
-    const correctAnswerhandler = (event)=>{setCorrectAnswer(event.target.value)}
+    const [CorrectAnswer , setCorrectAnswer] = useState('')
+    const correctAnswerhandler = (sara)=>{setCorrectAnswer(sara)}
+    useEffect(()=>{correctAnswerhandler(CorrectAnswer)})
     
-    const [Choice4 , setChoice4] = useState([])
-    const Choice4handler = (event)=>{setChoice4(event.target.value)}
+    const [Choice4 , setChoice4] = useState('')
+    const Choice4handler = (sara)=>{setChoice4(sara)}
+    useEffect(()=>{Choice4handler(Choice4)})
     
-    const [Choice3 , setChoice3] = useState([])
-    const Choice3handler = (event)=>{setChoice3(event.target.value)}
+    const [Choice3 , setChoice3] = useState('')
+    const Choice3handler = (sara)=>{setChoice3(sara)}
+    useEffect(()=>{Choice3handler(Choice3)})
     
-    const [Choice2 , setChoice2] = useState([])
-    const Choice2handler = (event)=>{setChoice2(event.target.value)}
+    const [Choice2 , setChoice2] = useState('')
+    const Choice2handler = (sara)=>{setChoice2(sara)}
+    useEffect(()=>{Choice2handler(Choice2)})
     
-    const [Choice1 , setChoice1] = useState([])
-    const choice1handler = (event)=>{setChoice1(event.target.value)}
+    const [Choice1 , setChoice1] = useState('')
+    const choice1handler = (sara)=>{setChoice1(sara)}
+    useEffect(()=>{choice1handler(Choice1)})
 
     const [CreateButton,setCreateButton] = useState(false)
     const handleCreateButton = () => { setCreateButton(true)} 
-    
+    useEffect(()=>{handleCreateButton()})
 
-    const CreateExcerciseProp = (Title,InstructorName,SubtitleNumber,Question,Choice1,Choice2,Choice3,Choice4,MaxGrade,CorrectAnswer)=>{
-        courseTitlehandler(Title) 
-        SubtitleNumhandler(SubtitleNumber)
+    function zeft() {//CreateExcerciseProp('sara saad keda kedaa','ya salam et2alet kam mara fe o3"neyet el fanan el 3azeem ehab tawfeeq?','1','2','3','ehab tawfeeq nafso maya3rfsh',100,'ahmed 3oraby')
+    AddCourse()
+    CreateExcercise()
+    createSubtitle()
+}
+
+    
+{/*Title,InstructorName,SubtitleNumber,Question,Choice1,Choice2,Choice3,Choice4,MaxGrade,CorrectAnswer*/}
+const CreateExcerciseProp = (InstructorName,ThisSubtitleNumber,Question,Choice1,Choice2,Choice3,Choice4,MaxGrade,CorrectAnswer)=>{
+    
+        //courseTitlehandler('ya salam') 
+        InstructorNamehandler(InstructorName)
+        ThisSubtitleNumberhandler(ThisSubtitleNumber)
         questionhandler(Question)
         choice1handler(Choice1)
         Choice2handler(Choice2)
@@ -90,36 +123,40 @@ function CreateCourse() {
         Choice4handler(Choice4)
         maxGradehandler(MaxGrade)
         correctAnswerhandler(CorrectAnswer)
-        Exercisehandler(CreateExcercise())
-    }
 
+        CreateExcercise()
+        //return true
+
+    }
+            //Title1,InstructorName1,SubtitleNumber1,Question1,Choice11,Choice21,Choice31,Choice41,MaxGrade1,CorrectAnswer1 
     const CreateExcercise = async(req,res)=>{
-        const Ex = (await axios.get(`http://localhost:9000/course/createExcercise/${Title}/${InstructorName}/${SubtitleNumber}/${Question}/${Choice1}/${Choice2}/${Choice3}/${Choice4}/${MaxGrade}/${CorrectAnswer}`).res.data)
-        return Ex._id
+        //alert('tmm')
+        const Ex = (await (await axios.get(`http://localhost:9000/course/createExcercise/${Title1}/${InstructorName}/${ThisSubtitleNumber}/${Question}/${Choice1}/${Choice2}/${Choice3}/${Choice4}/${MaxGrade}/${CorrectAnswer}`)).res.data._id).then(
+        alert(Ex))
+        //return (await axios.get(`http://localhost:9000/course/createExcercise/${Title1}/${InstructorName}/${SubtitleNumber}/${Question}/${Choice1}/${Choice2}/${Choice3}/${Choice4}/${MaxGrade}/${CorrectAnswer}`).then(
+        //alert('aywaaa')))
+
+        //return true
+        //return Ex._id
     }
 
 
-     const createSubtitleProp = (CourseID,SubtitleHours,VideoLink,ShortVideoDescription,Exercise,subtitleNumber)=>{
+     const createSubtitleProp = (CourseID,SubtitleHours,VideoLink,ShortVideoDescription,Exercise,ThisSubtitleNumber)=>{
         CourseIDhandler(CourseID) 
         subtitleHourshandler(SubtitleHours)
         videolinkhandler(VideoLink)
         videoDescriptionhandler(ShortVideoDescription)
         Exercisehandler(Exercise)
-        Choice3handler(subtitleNumber)
+        ThisSubtitleNumberhandler(ThisSubtitleNumber)
 
         createSubtitle()
     }
      const createSubtitle = async(req,res)=>{
-        const CourseID = ''
-        const VideoLink = ''
-        const ShortVideoDescription = ''
-        const Exercise = ''
-        const subtitleNumber = ''
-        return (await axios.get(`http://localhost:9000/course/createSubtitle/${CourseID}/${TotalHours}/${VideoLink}/${ShortVideoDescription}/${Exercise}/${subtitleNumber}`))
+        return (await axios.get(`http://localhost:9000/course/createSubtitle/${CourseID}/${SubtitleHours}/${videolink}/${VideoDescription}/${Exercise}/${ThisSubtitleNumber}`))
      }
 
      const GetExcercise = async(req,res)=>{
-        return (await axios.get(`http://localhost:9000/course/getExcercise/${Title}/${InstructorName}/${SubtitleNumber}/${Question}`))
+        return (await axios.get(`http://localhost:9000/course/getExcercise/${Title}/${InstructorName}/${SubtitleNum}/${Question}`))
      }
     
     const AddCourse = async(req,res)=>{
@@ -168,17 +205,25 @@ function CreateCourse() {
                     <h1 className='createcourse_courseinputs_h1'>Subtitles:</h1> <button onClick={SubtitleNumhandler}>+</button>
                 </div>
 
-                <div><MultipleSubtitleDivs createSubtitleProp = {createSubtitleProp} CreateExcerciseProp = {CreateExcerciseProp} SubtitlesNum = {SubtitleNum} CreateButton = {CreateButton} Title={Title} InstructorName={InstructorName}/></div>
+                <div><MultipleSubtitleDivs createSubtitle = {createSubtitle} CreateExcercise = {CreateExcercise} GetExcercise = {GetExcercise} createSubtitleProp = {createSubtitleProp} CreateExcerciseProp = {CreateExcerciseProp} SubtitlesNum = {SubtitleNum} CreateButton = {CreateButton} Title={Title} InstructorName={InstructorName}/></div>
             <br></br>
             </div>
-            <button className='CreateCourse_btn' onClick={handleCreateButton}>Create Course</button> {/*CreateCoursehandler*/}
+            <button className='CreateCourse_btn' onClick={zeft}>Create Course</button> {/*CreateCoursehandler*/}
+             {<h1 className='createcourse_courseinputs_h1'>hena ahooo,{InstructorName},{ThisSubtitleNumber},{Question},{Choice1},{Choice2},{Choice3},{Choice4},{MaxGrade},{CorrectAnswer}</h1>}
         </div>
     </div>
   )
 }
 
 export default CreateCourse
+//CreateButton && InstructorNamehandler() &&
 
+/*&&
+        // Choice2handler('2')&&
+        // Choice3handler('3')&&
+        // Choice4handler('ehab tawfeeq nafso maya3rfsh')&&
+        // maxGradehandler(0)&&
+        // correctAnswerhandler('ahmed 3oraby')*/
 
      /*
         FillSubtitlesArray{

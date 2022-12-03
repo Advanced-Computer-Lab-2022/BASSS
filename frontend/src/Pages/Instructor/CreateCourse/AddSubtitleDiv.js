@@ -8,8 +8,8 @@ const AddSubtitleDiv = (props) => {
     const Title = props.Title
     const InstructorName = props.InstructorName
 
-    const [Exercise , setExercise] = useState([])
-    const Exercisehandler = (event)=>{setExercise(event.target.value)}
+    const [Exercise , setExercise] = useState('')
+    const Exercisehandler = (sara)=>{setExercise(sara)}
 
 
     const [SubtitleHours , setSubtitleHours] = useState([])
@@ -42,11 +42,22 @@ const AddSubtitleDiv = (props) => {
     const [Choice1 , setChoice1] = useState([])
     const choice1handler = (event)=>{setChoice1(event.target.value)}
 
+    
+    const addAdmin = async(req,res)=>{
+        return (await (await axios.get(`http://localhost:9000/course/createExcercise/CourseTitle/InstructorName/SubtitleNumber/Question/Choice1/Choice2/Choice3/Choice4/MaxGrade/CorrectAnswer`)).res.status)
+        // return res.status;
+     }
 
-    const Excercise = () =>{
-        const Ex = props.CreateExcerciseProp('ya salam','sara saad keda kedaa',props.DivID,'ya salam et2alet kam mara fe o3"neyet el fanan el 3azeem ehab tawfeeq?','1','2','3','ehab tawfeeq nafso maya3rfsh',0,'ahmed 3oraby')
-        Exercisehandler(Ex._id)
-        const Sub = props.createSubtitleProp(111,20,'VideoLink','ShortVideoDescription',{Exercise},props.DivID)
+
+    const Add = () =>{
+        //return false                      InstructorName1,ThisSubtitleNumber,Question1,Choice11,Choice21,Choice31,Choice41,MaxGrade1,CorrectAnswer1
+        alert('o2mor!')
+        props.CreateExcerciseProp('sara saad keda kedaa',props.DivID,Question,Choice1,Choice2,Choice3,Choice4,MaxGrade,CorrectAnswer)
+        // props.CreateExcercise()
+        props.createSubtitleProp('ID = 1',SubtitleHours,videolink,VideoDescription,'ExID = 1',props.DivID)
+        // props.createSubtitle()
+        //Exercisehandler(Ex._id)
+        //const Sub = props.createSubtitleProp(111,20,'VideoLink','ShortVideoDescription',{Exercise},props.DivID)
 
     }
     
@@ -74,7 +85,8 @@ const AddSubtitleDiv = (props) => {
                     <input type='text' placeholder='Choice #4' className='createcourse_courseinputs' name="Choice4" onChange={Choice4handler}></input>
                 </div>
                 <div>
-             {props.CreateButton && Excercise()}
+                    <button onClick={Add}>button zeft 3ala dema3'y</button>
+             {/* {props.CreateButton && props.GetExcercise() && <h1>Aywaa ana hena ahoo</h1>} */}
              </div>
             </div>
 

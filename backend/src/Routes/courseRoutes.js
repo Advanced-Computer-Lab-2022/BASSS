@@ -71,7 +71,7 @@ courseR.get("/createCourse/:InstructorName/:Title/:Subject/:TotalHours/:Price/:V
         ShortSummary: shortSummary,
         CertificateTemplate: CertificateTemplate
     });
-      console.log("Done ya bashaaa")
+      console.log("Done ya bashaaa course ahoo")
     return res.status(200).json({courseahoo});
     }
     catch(error)
@@ -101,7 +101,7 @@ courseR.get("/createSubtitle/:CourseID/:SubtitleHours/:VideoLink/:ShortVideoDesc
         Exercise:Exercise,
         subtitleNumber:subtitleNumber
     });
-      console.log("Done ya bashaaa")
+      console.log("Done ya bashaaa subtitle ahoo")
     return res.status(200).json({subzeft});
     }
     catch(error)
@@ -114,6 +114,7 @@ courseR.get("/createSubtitle/:CourseID/:SubtitleHours/:VideoLink/:ShortVideoDesc
 
 
 courseR.get("/createExcercise/:CourseTitle/:InstructorName/:SubtitleNumber/:Question/:Choice1/:Choice2/:Choice3/:Choice4/:MaxGrade/:CorrectAnswer",async function(req,res){
+   console.log('wasalt')
     var CourseTitle = req.params.CourseTitle;
     var InstructorName = req.params.InstructorName;
     var SubtitleNumber = req.params.SubtitleNumber;    
@@ -136,7 +137,7 @@ courseR.get("/createExcercise/:CourseTitle/:InstructorName/:SubtitleNumber/:Ques
         MaxGrade:MaxGrade,
         CorrectAnswer:CorrectAnswer
     });
-      console.log("Done ya bashaaa")
+      console.log("Done ya bashaaa ex ahoo")
     return res.status(200).json({excercise});
     }
     catch(error)
