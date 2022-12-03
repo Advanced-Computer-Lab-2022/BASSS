@@ -43,10 +43,6 @@ const AddSubtitleDiv = (props) => {
     const choice1handler = (event)=>{setChoice1(event.target.value)}
 
     
-    const addAdmin = async(req,res)=>{
-        return (await (await axios.get(`http://localhost:9000/course/createExcercise/CourseTitle/InstructorName/SubtitleNumber/Question/Choice1/Choice2/Choice3/Choice4/MaxGrade/CorrectAnswer`)).res.status)
-        // return res.status;
-     }
 
 
     const Add = () =>{
@@ -54,7 +50,7 @@ const AddSubtitleDiv = (props) => {
         alert('o2mor!')
         props.CreateExcerciseProp('sara saad keda kedaa',props.DivID,Question,Choice1,Choice2,Choice3,Choice4,MaxGrade,CorrectAnswer)
         // props.CreateExcercise()
-        props.createSubtitleProp('ID = 1',SubtitleHours,videolink,VideoDescription,'ExID = 1',props.DivID)
+        props.createSubtitleProp('ID = 1',SubtitleHours,videolink,VideoDescription,props.DivID)
         // props.createSubtitle()
         //Exercisehandler(Ex._id)
         //const Sub = props.createSubtitleProp(111,20,'VideoLink','ShortVideoDescription',{Exercise},props.DivID)

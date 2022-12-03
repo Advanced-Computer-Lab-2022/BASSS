@@ -36,13 +36,12 @@ courseR.get("/getExcercise/:CourseTitle/:InstructorName/:SubtitleNumber/:Questio
     const excercise = await excercises.findOne({CourseTitle:CourseTitle,InstructorName:InstructorName,SubtitleNumber:SubtitleNumber,Question:Question})
     if(excercise) {
       console.log("Excercise Found")
-       return res.status(200).json({excercise});
+       return res.status(200).json(excercise);
     }
     else{
       console.log("Excercise Not Found")
        return res.status(400).json({msg: "Excercise Not Found"}); 
     }
-   // res.status(200).json(users)
 
 })
 
@@ -66,7 +65,7 @@ courseR.get("/createCourse/:InstructorName/:Title/:Subject/:TotalHours/:Price/:V
         TotalHours: TotalHours,
         Price: Price,
         InstructorUserName: InstructorName,
-        Subtitles: [],
+        Subtitles: Subtitles,
         VideoPreviewLink: VideoPreviewLink,
         ShortSummary: shortSummary,
         CertificateTemplate: CertificateTemplate

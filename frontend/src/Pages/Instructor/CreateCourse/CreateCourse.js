@@ -13,8 +13,13 @@ import MultipleSubtitleDivs from './MultipleSubtitlesDivs';
 function CreateCourse() {
     //const InstructorName = "sara saad"
     //const SubtitleNumber = "1"
-    var Subtitles
+    //var SubtitlesArray = [] 
     const Title1 = 'ya salam'
+
+
+    const [SubtitlesArray , setSubtitlesArray] = useState([])
+    const SubtitlesArrayhandler = (sara)=>{setSubtitlesArray(sara)}
+    useEffect(()=>{SubtitlesArrayhandler(SubtitlesArray)});
 
     const [ThisSubtitleNumber , setThisSubtitleNumber] = useState('')
     const ThisSubtitleNumberhandler = (sara)=>{setThisSubtitleNumber(sara)}
@@ -28,13 +33,19 @@ function CreateCourse() {
     const SubtitleNumhandler = (event)=>{setSubtitleNum(SubtitleNum+1)}
     //useEffect(()=>{SubtitleNumhandler(SubtitleNum)})
 
+    const [SubtitleID , setSubtitleID] = useState([])
+    const SubtitleIDhandler = (sara)=>{setSubtitleID(sara)}
+
+    const [ExerciseID , setExerciseID] = useState([])
+    const ExerciseIDhandler = (sara)=>{setExerciseID(sara)}
+
     const [Exercise , setExercise] = useState([])
     const Exercisehandler = (sara)=>{setExercise(sara)};
     useEffect(()=>{Exercisehandler(Exercise)});
 
-    const [CourseID , setCourseID] = useState('1')
+    const [CourseID , setCourseID] = useState('')
     const CourseIDhandler = (sara)=>{setCourseID(sara)}
-    useEffect(()=>{CourseIDhandler(CourseID)})
+ //   useEffect(()=>{CourseIDhandler(CourseID)})
 
     const [Title , setTitle] = useState([])
     const courseTitlehandler = (event)=>{setTitle(event.target.value)}
@@ -104,9 +115,13 @@ function CreateCourse() {
     useEffect(()=>{handleCreateButton()})
 
     function zeft() {//CreateExcerciseProp('sara saad keda kedaa','ya salam et2alet kam mara fe o3"neyet el fanan el 3azeem ehab tawfeeq?','1','2','3','ehab tawfeeq nafso maya3rfsh',100,'ahmed 3oraby')
-    AddCourse()
-    CreateExcercise()
-    createSubtitle()
+        //SubtitlesArrayhandler(SubtitlesArray.push('sara'))
+
+        alert(SubtitlesArray)
+        AddCourse()
+
+    //CreateExcercise()
+    //createSubtitle()
 }
 
     
@@ -130,52 +145,78 @@ const CreateExcerciseProp = (InstructorName,ThisSubtitleNumber,Question,Choice1,
     }
             //Title1,InstructorName1,SubtitleNumber1,Question1,Choice11,Choice21,Choice31,Choice41,MaxGrade1,CorrectAnswer1 
     const CreateExcercise = async(req,res)=>{
-        //alert('tmm')
-        const Ex = (await (await axios.get(`http://localhost:9000/course/createExcercise/${Title1}/${InstructorName}/${ThisSubtitleNumber}/${Question}/${Choice1}/${Choice2}/${Choice3}/${Choice4}/${MaxGrade}/${CorrectAnswer}`)).res.data._id).then(
-        alert(Ex))
-        //return (await axios.get(`http://localhost:9000/course/createExcercise/${Title1}/${InstructorName}/${SubtitleNumber}/${Question}/${Choice1}/${Choice2}/${Choice3}/${Choice4}/${MaxGrade}/${CorrectAnswer}`).then(
-        //alert('aywaaa')))
-
-        //return true
-        //return Ex._id
+        alert('tmm')
+        await axios.get(`http://localhost:9000/course/createExcercise/${Title1}/${InstructorName}/${ThisSubtitleNumber}/${Question}/${Choice1}/${Choice2}/${Choice3}/${Choice4}/${MaxGrade}/${CorrectAnswer}`).then(
+            (res) => {
+                const Ex1 = res.data
+                setExerciseID(Ex1)
+            })
+            return ExerciseID._id
     }
 
 
-     const createSubtitleProp = (CourseID,SubtitleHours,VideoLink,ShortVideoDescription,Exercise,ThisSubtitleNumber)=>{
+     const createSubtitleProp = (CourseID,SubtitleHours,VideoLink,ShortVideoDescription,ThisSubtitleNumber)=>{
+        alert('SubProp aho')
         CourseIDhandler(CourseID) 
         subtitleHourshandler(SubtitleHours)
         videolinkhandler(VideoLink)
         videoDescriptionhandler(ShortVideoDescription)
-        Exercisehandler(Exercise)
+        //Exercisehandler(Exercise)
         ThisSubtitleNumberhandler(ThisSubtitleNumber)
 
         createSubtitle()
     }
      const createSubtitle = async(req,res)=>{
-        return (await axios.get(`http://localhost:9000/course/createSubtitle/${CourseID}/${SubtitleHours}/${videolink}/${VideoDescription}/${Exercise}/${ThisSubtitleNumber}`))
+        alert(SubtitlesArray)
+        await axios.get(`http://localhost:9000/course/createSubtitle/${CourseID}/${SubtitleHours}/${videolink}/${VideoDescription}/${ExerciseID}/${ThisSubtitleNumber}`)
+        .then(
+            (res) => {
+                const Sub = res.data
+                setSubtitleID(Sub)
+                //alert(ExerciseID._id)
+                SubtitlesArrayhandler(SubtitlesArray.push(SubtitleID._id))
+
+            })
+            //SubtitlesArrayhandler(SubtitlesArray.push(SubtitleID._id))
+            return SubtitleID._id
      }
 
      const GetExcercise = async(req,res)=>{
-        return (await axios.get(`http://localhost:9000/course/getExcercise/${Title}/${InstructorName}/${SubtitleNum}/${Question}`))
-     }
+        await axios.get(`http://localhost:9000/course/getExcercise/ya salam/sara saad keda kedaa/2/42`).then(
+            (res) => {
+                const Ex1 = res.data
+                setExerciseID(Ex1)
+                //alert(ExerciseID._id)
+            })
+            return ExerciseID._id
+         
+    }
     
-    const AddCourse = async(req,res)=>{
-        return (await axios.get(`http://localhost:9000/course/createCourse/${InstructorName}/${Title}/${Subject}/${TotalHours}/${Price}/${VideoPreviewLink}/${shortSummary}/${CertificateTemplate}/${Subtitles}`))
+    const AddCourse = async(req,res)=>{             //${InstructorName}/${Title}/${Subject}/${TotalHours}/${Price}/${VideoPreviewLink}/${shortSummary}/${CertificateTemplate}/${Subtitles}
+        alert('fe add course aho')                  //createCourse/:InstructorName/:Title/:Subject/:TotalHours/:Price/:VideoPreviewLink/:shortSummary/:CertificateTemplate/:Subtitles  
+        const Subtitles1 = ['sara']
+
+        await axios.get(`http://localhost:9000/course/createCourse/${InstructorName}/${Title}/${Subject}/${TotalHours}/${Price}/${VideoPreviewLink}/${shortSummary}/${CertificateTemplate}/${Subtitles1}`).then(
+            (res) => {
+                const C = res.data
+                setCourseID(C)
+            })
+            return CourseID._id
      }
      
-     const FillSubtitlesArray = async(req,res)=>{
-        Subtitles = new Array(SubtitleNum) 
+    //  const FillSubtitlesArray = async(req,res)=>{
+    //     //Subtitles = new Array(SubtitleNum) 
 
-        for(let i=0; i < SubtitleNum; i++ ){
-            CreateExcercise()
-            var ExcerciseID = (await GetExcercise().data._id)
-            Subtitles[SubtitleNum][0] = SubtitleHours
-            Subtitles[SubtitleNum][1] = videolink
-            Subtitles[SubtitleNum][2] = VideoDescription
-            Subtitles[SubtitleNum][3] = ExcerciseID
-        }
-        return Subtitles
-     }
+    //     for(let i=0; i < SubtitleNum; i++ ){
+    //         CreateExcercise()
+    //         var ExcerciseID = (await GetExcercise().data._id)
+    //         Subtitles[SubtitleNum][0] = SubtitleHours
+    //         Subtitles[SubtitleNum][1] = videolink
+    //         Subtitles[SubtitleNum][2] = VideoDescription
+    //         Subtitles[SubtitleNum][3] = ExcerciseID
+    //     }
+    //     return Subtitles
+    //  }
 
      const CreateCoursehandler = async(req,res)=>{
         CreateExcercise()

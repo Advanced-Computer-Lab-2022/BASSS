@@ -22,5 +22,5 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-.Meow.js
-.index.css
+/src/Pages/Admin/Meow.js
+/index.css
