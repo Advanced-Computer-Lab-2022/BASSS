@@ -158,21 +158,21 @@ const navigate = useNavigate();
 
    
     <div> 
-    <button onClick={clickhandler1}>submit</button>
-    <input placeholder='subject' onChange={changehandler} value={choice}/>
+    <button onClick={clickhandler1} className='submitbtn'> submit</button>
+    <input placeholder='subject' onChange={changehandler} value={choice} className='subject'/>
     </div>
 
     <div> 
-    <button onClick={clickhandler2}>submit</button>
-    <input placeholder='rating' onChange={changehandler2} value={choice2} />
+    <button onClick={clickhandler2} className='submitbtn'>submit</button>
+    <input placeholder='rating' onChange={changehandler2} value={choice2} className='subject' />
     </div>
 
 
     <div> 
-    <button onClick={clickhandler3}>submit</button>
-    <input placeholder='price' onChange={changehandler3} value={choice3}/>
+    <button onClick={clickhandler3} className='submitbtn'>submit</button>
+    <input placeholder='price' onChange={changehandler3} value={choice3} className='subject'/>
     </div>
-
+    <h1>ALL COURSES</h1>
             <div> 
             <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">

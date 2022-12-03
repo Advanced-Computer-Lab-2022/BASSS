@@ -26,11 +26,11 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   }));
 
  
- function IndividualCourses(props) {
+ function CorporateTraineeCourses(props) {
     const [mycourses,setmycourses] = useState([]);
-    const individualUsername = 'hazem123'
+    const CorporateTusernam = 'sarasaad2001'
     const getmycourses = async()=>{
-        await axios.get(`http://localhost:9000/individualTrainee/individualCourses/${individualUsername}`).then(
+        await axios.get(`http://localhost:9000/corporateTrainee/CorporateCourses/${CorporateTusernam}`).then(
             (res) => { 
                 const result = res.data
                 setmycourses(result)
@@ -77,5 +77,5 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
    )
  }
  
- export default IndividualCourses
+ export default CorporateTraineeCourses
  

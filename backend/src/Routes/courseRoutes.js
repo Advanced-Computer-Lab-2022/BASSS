@@ -2,6 +2,7 @@ const express = require("express");
 const courseR = express.Router();
 const mongoose = require('mongoose');
 const courses = require('../Models/courseSchema')
+const subtitles = require('../Models/subtitleSchema')
 
 
 courseR.get("/",async(req, res) => {
@@ -30,6 +31,12 @@ courseR.get("/FindTitleAndUpdate/:title/:percentage/:enddate", async(req,res)=>{
 courseR.get("/getCourse/:id",async(req, res) => {
   var courseId = req.params.id;
   const result =await courses.findOne({_id:courseId})
+  res.json(result)
+});
+
+courseR.get("/getsubtitle/:courseID",async(req, res) => {
+  var courseId = req.params.courseID;
+  const result =await subtitles.find({CourseID:courseId})
   res.json(result)
 });
 

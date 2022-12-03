@@ -6,7 +6,7 @@
     background-size:cover;
     background-repeat: no-repeat;
     background-position: center;
-    height: 753px;
+    height: 100%;
     
     
 }
@@ -22,8 +22,8 @@
     width: 120px;
     cursor: pointer;
     position: absolute;
-    top: 500px;
-    left: 200px;
+    top: 200px;
+    left: 1000px;
 }
   .selectcountrybtnindividual:hover{
     background-color: #fff;

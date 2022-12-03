@@ -1,0 +1,39 @@
+.subject{
+    width: 500px;
+    height: 60px;
+    padding: 10px 10px;
+    margin: 20px -100px;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid white;
+    background-color: transparent;
+    font-size: 30px;
+    color: #fff;
+    position: relative;
+    left: 10px;
+  }
+  .subject:focus,input:focus{
+    outline: none;
+  }
+  .subject::placeholder{
+    font-size: 1.5rem;
+    color: white;
+  }
+
+  .submitbtn{
+    background-color: transparent;
+    color: #fff;
+    padding: 15px 15px;
+    border: 2px solid white;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 10px;
+    width: 120px;
+    cursor: pointer;
+    position: relative;
+    left: 600px;
+  }
+  .submitbtn:hover{
+    background-color: #fff;
+    color: black;
+  }

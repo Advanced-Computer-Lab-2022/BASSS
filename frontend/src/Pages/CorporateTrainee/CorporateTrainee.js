@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import './CorporateTrainee.css'
 import CorporateTraineeNavBar from './CorporateTraineeNavBar/CorporateTraineeNavBar';
 import CorporateCourses from '../../components/CorporateCourses/CorporateCourses';
-
+import CorporateTraineeCourse from '../../components/Courses/CorporateTraineeCourses'
 function CorporateTrainee(){
     return(
         <>
@@ -14,7 +14,7 @@ function CorporateTrainee(){
         </Link>
 
         <CorporateCourses/>
-
+        <CorporateTraineeCourse Link="/corporatetrainee/CourseDetails"/>
         </div>
         </>
     )

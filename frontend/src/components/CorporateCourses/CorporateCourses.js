@@ -35,13 +35,9 @@ const CorporateCourses = (props) => {
 
   const [filtered,setfiltered] = useState([]);
   const [first,setfirst] = useState(0);
-  //const [filteredbyRate,setfilteredbyRate] = useState([]);
-  //const [filteredbyPrice,setfilteredbyPrice] = useState([]);
 
   
-  
   const getfiltered =  async () => {
-    // alert(choice2)
     if(choice.length==0 && choice2.length==0 && choice3.length==0){
     await axios.get(`http://localhost:9000/course/empty/empty/empty`).then(
         (res) => { 
@@ -118,36 +114,7 @@ await axios.get(`http://localhost:9000/course/${choice}/${choice2}/${choice3}`).
     }
      );
 }
-
-
-}
-// const getfilteredbyRate=  async () => {
-//     await axios.get(`http://localhost:9000/course/r/${choice2}`).then(
-//         (res) => { 
-//             const filteredbyRate = res.data
-//             console.log(filteredbyRate)
-//             setfiltered(filteredbyRate)
-  
-//         }
-//          );
-// }
-
-
-
-
-
-  }
-// const getfilteredbyRate=  async () => {
-//     await axios.get(`http://localhost:9000/course/r/${choice2}`).then(
-//         (res) => { 
-//             const filteredbyRate = res.data
-//             console.log(filteredbyRate)
-//             setfiltered(filteredbyRate)
-        
-//         }
-//          );
-// }
-
+}}
   
          const changehandler =  async(e)=>{
             setchoice(e.target.value);
@@ -175,7 +142,7 @@ await axios.get(`http://localhost:9000/course/${choice}/${choice2}/${choice3}`).
 
         <div >
             
-
+            <br></br><br></br><br></br><br></br><br></br><br></br>
 <div> 
 
 <button onClick={clickhandler1}>submit</button>
@@ -187,7 +154,7 @@ await axios.get(`http://localhost:9000/course/${choice}/${choice2}/${choice3}`).
 <button onClick={clickhandler2}>submit</button>
 <input placeholder='rating' onChange={changehandler2} value={choice2} />
 </div>
-
+<br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
 
 
 <TableContainer component={Paper}>
@@ -211,7 +178,7 @@ await axios.get(`http://localhost:9000/course/${choice}/${choice2}/${choice3}`).
                 width: "100%"
                 }
             }}
-               onClick={() => navigate("/corporatetrainee/CourseDetails" , {state:[course._id,course.InstructorUserName]} )}
+               onClick={() => navigate( {state:[course._id,course.InstructorUserName]} )}
             //   key={author._id}
 
               >

@@ -1,19 +1,10 @@
-// import React from 'react'
-// import './CourseDetails.css'
-// function CourseDetails() {
-//   return (
-//     <div className='CourseDetails-body'>
-//               <video src="/videos/video-1.mp4" autoPlay loop muted/>
-//               <h1 className='coursetitle'>course title   </h1>
-//     </div>
-//   )
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import './CourseDetails.css';
 import { Link } from 'react-router-dom'
-
+import IndividualTraineeNavBar from '../../Pages/IndividualTrainee/IndividualTraineeNavBar/IndividualTraineeNavBar'
+import YoutubeEmbed from '../YoutubeEmbed/YoutubeEmbed';
 const { useState, useEffect } = require("react");
-
 
 const CourseDetails = () => { 
 
@@ -27,6 +18,7 @@ const CourseDetails = () => {
     
     var [course,setCourse] = useState([]);
     var [instructor,setInstructor] = useState([]);
+    var [subtitle,setsubtitle] = useState([]);
 
     var [choice,setchoice] = useState([]);
     var [choice2,setchoice2] = useState([]);
@@ -92,19 +84,37 @@ const CourseDetails = () => {
                     }
                     );
                 }  
-            
+
+                const getSubtitle =  async () => {
+                    await axios.get(`http://localhost:9000/course/getsubtitle/${location.state[0]}`).then(
+                        (res) => { 
+                            const sub = res.data
+                            setsubtitle(sub)
+                            // alert(subtitle)
+                        }
+                        );
+                    }  
+                    
 
 getCourse();
 getInstructor();
-
-
+getSubtitle();
+// alert(subtitle[0])
     return(
-
+        <>
         <div className='CourseDetails-body'>
+        <IndividualTraineeNavBar/>
+
+        <div className='videodiv'>
+          <video className='video1' src="/videos/video-1.mp4" autoPlay loop muted/>
+        </div>
+
             <div className='RateCourse-div'>
                 <h1>Course: {course.Title}</h1>
-                <h1>Rate Course</h1>
-                <select onChange={changehandler}     name="rate" id="rate">
+                <br></br>
+                <h1> Rate The Course :</h1>
+                <br></br>
+                <select  onChange={changehandler} name="rate" id="rate" className='selectnew'>
                 <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -112,16 +122,20 @@ getInstructor();
                 <option value="4">4</option>
                 <option value="5">5</option>
                 </select>
-                <button onClick={clickhandler}>Submit</button>
+                <br></br><br></br>
+                <button onClick={clickhandler} className='RateCoursebtn'>Submit</button>
+                <br></br><br></br><br></br><br></br>
                 <h1>Course Rating: {courseRate}</h1>
-            </div>
+                </div>
+                
+                <br></br><br></br><br></br><br></br><br></br><br></br><br></br>
 
-            <br></br><br></br><br></br><br></br><br></br><br></br><br></br>
-
-            <div>
+            <div className='RateInstructor-div'>
                 <h1>Instructor of this course: {course.InstructorUserName}</h1>
-                <h1>Rate Instructor</h1>
-                <select onChange={changehandler2}    name="rate2" id="rate2">
+                <br></br>
+                <h1>Rate The Instructor:</h1>
+                <br></br>
+                <select className='selectnew' onChange={changehandler2}    name="rate2" id="rate2">
                 <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -129,13 +143,42 @@ getInstructor();
                 <option value="4">4</option>
                 <option value="5">5</option>
                 </select>
-                <button onClick={clickhandler2}>Submit</button>
+                <br></br><br></br>
+                <button onClick={clickhandler2} className='RateInstructorbtn'>Submit</button>
+                <br></br><br></br><br></br><br></br>
                 <h1>Instructor Rating: {instructorRate}</h1>
-            </div>
-           
-  
+                </div>
+                <div className='info'>
+
+                <h1 className='total'>TotalHours for the course : {course.TotalHours}</h1>
+                <h1 className='views'> Course Views : {course.Views}</h1>
+                </div>
+                <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+                {
+
+                   subtitle.length>0 && subtitle.map((sub)=>
+                <div className='subtitleincoursedetails1'>
+                    <h1>subtitle Number : {sub.subtitleNumber}</h1>
+                    <h1>Subtitle total Hours : { sub.SubtitleHours} </h1>
+                    <h1>subtitle Short Video Description :{sub.ShortVideoDescription} </h1>
+                    <br></br><br></br><br></br>
+
+                 <YoutubeEmbed embedId={sub.VideoLink}/>
+                     <br></br><br></br><br></br>
+                    <Link to='/'>
+                        <button className='exercisebtn'>Solve Exercise</button>
+                    </Link>
+                 </div>
+                    )
+
+                }
+
+
+                
+
                 
         </div>
+            </>
         )
 }
 

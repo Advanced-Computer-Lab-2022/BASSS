@@ -30,7 +30,7 @@ function SelectCountry() {
 
       <div className='select'>
 
-        <select onChange={changeHandler} >
+        <select onChange={changeHandler} className='select1'>
           {countryNames.map((option) => (
             <option >
               {option}

@@ -19,7 +19,11 @@ function IndividualTrainee(){
         </Link>
 
         <Courses Link = "/individualtrainee/CourseDetails" />
+        <br></br><br></br><br></br><br></br><br></br><br></br>
+        
         <IndividualCourses Link = "/individualtrainee/myCourseDetails"/>
+        <br></br><br></br><br></br><br></br><br></br><br></br>
+
         </div>
         </>
     )
