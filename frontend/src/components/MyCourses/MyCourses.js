@@ -1,7 +1,7 @@
 import axios from 'axios';
 import '../Courses/Courses.css';
-import { Link } from 'react-router-dom';
 import '../../Pages/Instructor/Instructor.css'
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 import Button from '@mui/material/Button';
 import Table from '@mui/material/Table';
@@ -26,7 +26,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 const { useState } = require("react");
 
-const MyCourses = () => { 
+const MyCourses = (props) => { 
     
     
   
@@ -110,6 +110,9 @@ const clickhandler3 = ()=>{
    setfirst(1)
  }
 
+ const navigate = useNavigate();
+
+
     return(
         /* 
         1. create a button to load the blogs
@@ -184,13 +187,14 @@ const clickhandler3 = ()=>{
                 width: "100%"
                 }
             }}
-            onClick={() => window.location.href="/instructor/MyCourses/CourseDetails"}
+            //onClick={() => window.location.href="/instructor/MyCourses/CourseDetails"}
+            onClick={()=> navigate("/instructor/MyCourses/CourseDetails", {state:[course._id,course.InstructorUserName]})} 
             //   key={author._id}
 
               >
               <TableCell align="center">{course.Title}</TableCell>
               <TableCell align="center">{course.Price}</TableCell>
-              <TableCell align="center">{course.Rating}</TableCell>
+              <TableCell align="center">{course.Rating.rate}</TableCell>
               <TableCell align="center">{course.Reviews}</TableCell>
             </TableRow>
 

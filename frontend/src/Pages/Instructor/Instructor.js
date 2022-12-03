@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import './Instructor.css'
 import InstructorNavBar from './InstructorNavBar/InstructorNavBar'
 import Courses from '../../components/Courses/Courses';
+import ViewRating from '../../components/ViewRating/ViewRating';
 
 function Instructor(){
     return(
@@ -21,13 +22,19 @@ function Instructor(){
         <Link to ="/instructor/promotion">
         <button className='promotion'> define a promotion</button>
         </Link>
+        <ViewRating/>
+
         <Link to ="/instructor/MyCourses">
             <button>
                 View My Courses</button>
             </Link>
+
+            <Link to ="/instructor/MyReviews">
+            <button>
+                My Reviews</button>
+            </Link>
+
         {/* <SelectCountry/> */}
-
-
 
         <Courses Link = "/instructor/CourseDetails" />
         </div>

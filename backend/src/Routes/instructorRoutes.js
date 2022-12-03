@@ -11,13 +11,13 @@ instructorR.get("/",(req, res) => {
 instructorR.get("/:country",function(req,res){
     const country = req.params.country;
     console.log(country);
-    var query = instructors.find({Username:"adham"})
+    var query = instructors.find({Username:"soha"})
         query.exec(function(err,result){
             if (err) throw err;
             if(result.length==0){
                 // res.render("../views/instructor.ejs",{title:"instructor country"});
             }else{
-                instructors.findOneAndUpdate({Username:"adham"},{Country:country},{upsert:true},function(err,doc){
+                instructors.findOneAndUpdate({Username:"soha"},{Country:country},{upsert:true},function(err,doc){
                     if(err) throw err;
                 });         
                 // res.render("../views/instructor.ejs",{title:"instructor country"});
@@ -25,8 +25,34 @@ instructorR.get("/:country",function(req,res){
         })        
 })
 
+
+instructorR.get("/viewRating/review",async(req, res) => {
+   const result =await instructors.find({Username:"salama"})
+   res.json(result)
+});
+
+instructorR.get("/getInstructor/:name",async(req, res) => {
+    var name = req.params.name;
+    const result =await instructors.findOne({Username:name})
+    res.json(result)
+});
+
+
+
+instructorR.get("/updateRate/:name/:newRate",async(req, res) => {
+    var name = req.params.name;
+    var newRate = req.params.newRate;
+    var oldResult =await instructors.findOne({Username:name})
+    var oldCount = oldResult.Rating.count;
+    var oldSum = oldResult.Rating.sum;
+    const result =await instructors.findOneAndUpdate({Username:name},{Rating:{rate:(Number(oldSum)+Number(newRate))/(oldCount+1), count:(oldCount+1), 
+    sum:(Number(oldSum)+Number(newRate))}})
+    res.json(result)
+});
+
+
 instructorR.post("/searchtitle",async function(req,res){
-    var search = req.body.searchtitle
+    var search = req.params.searchtitle
     var query = await courses.find({});
     var array = [];
     for(let i = 0 ; i<query.length ; i++)

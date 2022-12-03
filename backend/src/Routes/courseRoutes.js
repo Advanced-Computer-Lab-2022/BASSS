@@ -27,6 +27,23 @@ courseR.get("/FindTitleAndUpdate/:title/:percentage/:enddate", async(req,res)=>{
     })    
 });
 
+courseR.get("/getCourse/:id",async(req, res) => {
+  var courseId = req.params.id;
+  const result =await courses.findOne({_id:courseId})
+  res.json(result)
+});
+
+courseR.get("/updateRate/:id/:newRate",async(req, res) => {
+  var courseId = req.params.id;
+  var newRate = req.params.newRate;
+  var oldResult =await courses.findOne({_id:courseId})
+  var oldCount = oldResult.Rating.count;
+  var oldSum = oldResult.Rating.sum;
+  const result =await courses.findOneAndUpdate({_id:courseId},{Rating:{rate:(Number(oldSum)+Number(newRate))/(oldCount+1), count:(oldCount+1), 
+  sum:(Number(oldSum)+Number(newRate))}})
+  res.json(result)
+});
+
 courseR.get("/:subject/:rate/:price",async(req, res) => {
     // res.render("../views/course.ejs",{title:"courses"})
     var subject = req.params.subject;
