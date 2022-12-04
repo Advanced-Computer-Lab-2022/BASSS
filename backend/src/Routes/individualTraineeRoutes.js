@@ -24,6 +24,23 @@ individualTraineeR.post("/selectcountry",function(req,res){
             }
 })
 })
+individualTraineeR.get("/myInfo/pass/:pass",function(req,res){
+    // console.log(req.body)
+     var pass = req.params.pass;
+     var query = individualTraineeR.find({Username:"soha"})
+         query.exec(function(err,result){
+             if (err) throw err;
+             if(result.length==0){
+               //  res.render("../views/instructor.ejs",{title:"instructor country"});
+             }else{
+                individualTrainees.findOneAndUpdate({Username:"soha"},{Password:pass},{upsert:true},function(err,doc){
+                     if(err) throw err;
+                   });         
+              // res.render("../views/instructor.ejs",{title:"instructor country"});
+             }
+ })
+ 
+ })
 individualTraineeR.post("/searchtitle",async function(req,res){
     var search = req.body.searchtitle
     var query = await courses.find({});

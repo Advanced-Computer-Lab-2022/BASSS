@@ -1,0 +1,48 @@
+.termsbody{
+    background-image: url('../../../public/images/contract.jpg');
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 673px;
+}
+
+.termshead {
+    font-size: 70px;
+    color: #222bdc;
+    font-weight: 600;
+    text-decoration:none;
+    margin-top: 50px;
+    margin-left: 490px;
+    top: 200px;
+    left:100px;
+    width: 400px;
+    }
+    /* Change Subtitles */
+    .termssubs {
+    font-size: 20px;
+    color: #ca2d2d;
+    font-weight: bold;
+    text-decoration:none;
+    }
+    .termssub {
+        font-size: 30px;
+        margin-top: 60px;
+        margin-left: 450px;
+        top: 200px;
+        left:100px;
+        width: 400px;
+        border: 9px solid #000000;
+      }
+      .terms-btn{
+        background-color: #000000;
+        color: #fff;
+        padding: 15px 15px;
+        border: 2px solid white;
+        text-align: center;
+        font-size: 20px;
+        border-radius: 10px;
+        width: 120px;
+        cursor: pointer;
+        margin-left: 580px;
+        
+      }

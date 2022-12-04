@@ -27,19 +27,6 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 const { useState } = require("react");
 
 const MyCourses = () => { 
-
-     const [myCourses,setMyCourses] = useState([]);
-
-    const getMyCourses=  async () => {
-        await axios.get(`http://localhost:9000/course/salama`).then(
-            (res) => { 
-                const myCourses = res.data
-                console.log(myCourses)
-                setMyCourses(myCourses) 
-            }
-             );
-            
-    }
     
     
   
@@ -49,6 +36,7 @@ const MyCourses = () => {
 
 
   const [filtered,setfiltered] = useState([]);
+  const [first,setfirst] = useState(0);
   //const [filteredbyRate,setfilteredbyRate] = useState([]);
   //const [filteredbyPrice,setfilteredbyPrice] = useState([]);
 
@@ -100,20 +88,28 @@ await axios.get(`http://localhost:9000/course/my/salama/${choice}/${choice3}`).t
 
   const changehandler =  (e)=>{
     //const c = e.target.value;
-    choice=[];
     setchoice(e.target.value);  
-    
-
+  
  }
  const changehandler3 =  (e)=>{
     //const c = e.target.value;
     setchoice3(e.target.value);             
  }
 
+ const clickhandler1 = ()=>{
+  getfiltered()
+ }
 
-    getMyCourses();
+const clickhandler3 = ()=>{
+  getfiltered()
+ }
 
-    getfiltered();
+ if(first==0)
+ {
+   getfiltered();
+   setfirst(1)
+ }
+
     return(
         /* 
         1. create a button to load the blogs
@@ -122,8 +118,11 @@ await axios.get(`http://localhost:9000/course/my/salama/${choice}/${choice3}`).t
 
 
         <div className='Instructor-body'>
-            
-            <div> 
+
+
+
+            {/* <div> 
+
     <label for="subs"> Subject:</label>
     <select onChange={changehandler}     name="subs" id="subs">
     <option value="fgfgf"></option>
@@ -145,7 +144,19 @@ await axios.get(`http://localhost:9000/course/my/salama/${choice}/${choice3}`).t
 </select>
            
     
-</div>
+</div> */}
+
+<div> 
+
+    <button onClick={clickhandler1}>submit</button>
+    <input placeholder='subject' onChange={changehandler} value={choice}/>
+
+    </div>
+
+    <div> 
+    <button onClick={clickhandler3}>submit</button>
+    <input placeholder='price' onChange={changehandler3} value={choice3}/>
+    </div>
 
 
 <TableContainer component={Paper}>
@@ -153,6 +164,9 @@ await axios.get(`http://localhost:9000/course/my/salama/${choice}/${choice3}`).t
         <TableHead>
           <TableRow>
             <StyledTableCell align="center">Title</StyledTableCell>
+            <StyledTableCell align="center">Price</StyledTableCell>
+            <StyledTableCell align="center">Rating</StyledTableCell>
+            <StyledTableCell align="center">Reviews</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -175,6 +189,9 @@ await axios.get(`http://localhost:9000/course/my/salama/${choice}/${choice3}`).t
 
               >
               <TableCell align="center">{course.Title}</TableCell>
+              <TableCell align="center">{course.Price}</TableCell>
+              <TableCell align="center">{course.Rating}</TableCell>
+              <TableCell align="center">{course.Reviews}</TableCell>
             </TableRow>
 
 ))}

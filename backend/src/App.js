@@ -12,8 +12,30 @@ const courseR = require('./Routes/courseRoutes');
 const exerciseR = require('./Routes/exercisesRoutes');
 const reportR = require('./Routes/ReportRoutes');
 const requestsR = require('./Routes/RequestsRoutes');
+var nodemailer = require('nodemailer');
 
+// var transporter = nodemailer.createTransport({
+//   service: 'gmail',
+//   auth: {
+//     user: 'acltest321@gmail.com',
+//     pass: 'yzdnccfnpqvmwpgr'
+//   }
+// });
 
+// var mailOptions = {
+//   from: 'acltest321@gmail.com',
+//   to: 'basselbassel28@gmail.com',
+//   subject: 'Sending Email using Node.js',
+//   text: 'To reset your password please click hereeeeeeeee , http://localhost:3000/instructor/myInfo'
+// };
+
+// transporter.sendMail(mailOptions, function(error, info){
+//   if (error) {
+//     console.log(error);
+//   } else {
+//     console.log('Email sent: ' + info.response);
+//   }
+// });
 
 const cors = require('cors')
 // const index = require('./views/index.ejs');

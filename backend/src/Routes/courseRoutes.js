@@ -9,24 +9,7 @@ courseR.get("/",async(req, res) => {
     const result =await courses.find({})
     res.send(result)
 });
-// courseR.get("/:subject",async(req, res) => {
-//    const instsubject = req.params.subject
-//    var result = ""
-//    result =await courses.find({Subject:instsubject/* Price:instprice*/})
-//   res.status(200).json(result);
-// });
-// courseR.get("/:r/:rate",async(req, res) => {
-//     const instrate = req.params.rate
-//     var result = ""
-//     result =await courses.find({Rating:instrate/* Price:instprice*/})
-//    res.status(200).json(result);
-//  });
-//  courseR.get("/:price",async(req, res) => {
-//     const instprice = req.params.price
-//     var result = ""
-//     result =await courses.find({Price:instprice/* Price:instprice*/})
-//    res.status(200).json(result);
-//  });
+
 
 courseR.get("/:subject/:rate/:price",async(req, res) => {
     // res.render("../views/course.ejs",{title:"courses"})
@@ -64,19 +47,20 @@ courseR.get("/:subject/:rate/:price",async(req, res) => {
   });
   courseR.get("/:my/:name/:subject/:price",async(req, res) => {
     // res.render("../views/course.ejs",{title:"courses"})
+    var name = req.params.name;
     var subject = req.params.subject;
     var price = req.params.price;
     var result = []
     if(subject == "empty" && price=="empty"){
      
-      result = await courses.find({})
+      result = await courses.find({InstructorUserName:name})
       }else if (subject == "empty"){
-        result =await courses.find({Price:price})
+        result =await courses.find({InstructorUserName:name, Price:price})
       }else if (price == "empty"){
-        result =await courses.find({Subject :subject})
+        result =await courses.find({InstructorUserName:name, Subject :subject})
       }
       else{
-        result =await courses.find({Subject:subject, Price:price})
+        result =await courses.find({InstructorUserName:name, Subject:subject, Price:price})
       
       }
   
