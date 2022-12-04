@@ -36,9 +36,8 @@ const Search = (props)=>{
         if(props.Type === 'corporate'){
             rowhandler();
         }
-        if(props.Type === "searchMycourses"){
-            //dyman by search 3la courses bassel bas
-            await axios.get(`http://localhost:9000/bassel/${message}`).then(
+        if(props.Type === "searchMyCourses"){
+            await axios.get(`http://localhost:9000/instructor/searchmycourses/salama/${message}`).then(
                 (res)=> {
                     const mycourses = res.data;
                     setResults(mycourses);
@@ -47,7 +46,7 @@ const Search = (props)=>{
 
         }
         else{
-            await axios.get(`http://localhost:9000/guest/${message}`).then(
+            await axios.get(`http://localhost:9000/guest/search/${message}`).then(
                 (res) => {
                     if(res.status===200){
                         const s = res.data;

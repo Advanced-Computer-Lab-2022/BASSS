@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import './IndividualTrainee.css'
 import Search from '../../components/Search/Search';
 import Navbar from '../../components/Navbar/Navbar';
+import Courses from '../../components/Courses/Courses';
 function IndividualTrainee(){
     return(
         <>
@@ -12,11 +13,16 @@ function IndividualTrainee(){
         LogoLinkTo='/Instructor' FirstLinkTo='/IndividualTrainee' SecondLinkTo='/IndividualTrainee0/MyCourses' ThirdLinkTo='/Courses' FourthLinkTo='' 
         ButtonLinkTo='/'/>
 
+        <Search Type='indvidual'/>
         <Link to ="/IndividualTrainee/SelectCountry">
         <button className='instructor_selectcountrybtn'> select your country</button>
         </Link>
+        <Link to ="/IndividualTrainee/myInfo">
+        <button> edit my info</button>
+        </Link>
 
-        <Search Type='indvidual'/>
+        <Courses/>
+
         </div>
         </>
     )

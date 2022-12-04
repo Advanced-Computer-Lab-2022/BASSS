@@ -11,10 +11,13 @@ function CorporateTrainee(){
         ButtonLinkText='Logout' 
         LogoLinkTo='/Instructor' FirstLinkTo='/CorporateTrainee' SecondLinkTo='/CorporateTrainee/MyCourses' ThirdLinkTo='/Courses' FourthLinkTo='' 
         ButtonLinkTo='/'/>
+        <Search Type='corporate'/>
         <Link to ="/CorporateTrainee/SelectCountry">
         <button className='instructor_selectcountrybtn'> select your country</button>
         </Link>
-        <Search Type='corporate'/>
+        <Link to ="/CorporateTrainee/myInfo">
+        <button> edit my info</button>
+        </Link>
         </div>
         </>
     )

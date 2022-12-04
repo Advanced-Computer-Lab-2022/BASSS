@@ -25,7 +25,7 @@ guestR.post("/selectcountry",function(req,res){
 })
 })
 
-guestR.get("/:searchkey",async function(req,res){
+guestR.get("/search/:searchkey",async function(req,res){
     const key = req.params.searchkey;
     var array = [];
     if(key!= null){

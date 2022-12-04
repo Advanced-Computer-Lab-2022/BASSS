@@ -1,0 +1,98 @@
+.infobody{
+    background-image: url('../../../public/images/contract.jpg');
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 673px;
+}
+.info-textbox1{
+    border-radius: 5px;
+    
+    
+    width: 180px;
+    height: 60px;
+}
+.info-textbox2{
+    border-radius: 5px;
+   
+    width: 180px;
+    height: 60px;
+}
+.info-textbox3{
+    border-radius: 5px;
+   
+    width: 180px;
+    height: 60px;
+}
+.info-btn1{
+    background-color: #000000;
+    color: #fff;
+    padding: 15px 15px;
+    border: 2px solid white;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 10px;
+    width: 120px;
+    cursor: pointer;
+    
+    
+  }
+  .info-btn2{
+    background-color: #000000;
+    color: #fff;
+    padding: 15px 15px;
+    border: 2px solid white;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 10px;
+    width: 120px;
+    cursor: pointer;
+    
+    
+  }
+  .info-btn3{
+    background-color: #000000;
+    color: #fff;
+    padding: 15px 15px;
+    border: 2px solid white;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 10px;
+    width: 120px;
+    cursor: pointer;
+    
+    
+  }
+  .info-btn4{
+    background-color: #0e0bbb;
+    color: #fff;
+    padding: 15px 15px;
+    border: 2px solid white;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 10px;
+    width: 120px;
+    cursor: pointer;
+    width: 140px;
+    
+  }
+  .shift4{
+    position: relative;
+   top: 340px;
+   left: 550px;
+  }
+  .shift1{
+    position: relative;
+    left: 500px;
+    top: 170px;
+  }
+  .shift2{
+    position: relative;
+    left: 500px;
+    top: 230px;
+  }
+  .shift3{
+    position: relative;
+    left: 500px;
+    top:290px;
+  }

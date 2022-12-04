@@ -1,0 +1,27 @@
+.infobody{
+    background-image: url('../../../public/images/contract.jpg');
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 673px;
+}
+.info-textbox1{
+    border-radius: 5px;
+    
+    
+    width: 180px;
+    height: 60px;
+}
+info-btn1{
+    background-color: #000000;
+    color: #fff;
+    padding: 15px 15px;
+    border: 2px solid white;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 10px;
+    width: 120px;
+    cursor: pointer;
+    
+    
+  }

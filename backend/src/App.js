@@ -1,25 +1,22 @@
 const express = require("express");
 const mongoose = require('mongoose');
 require('dotenv').config();
-
-// const guestS = require('./Models/guestSchema');
-// const { route } = require("./Routes/guestRoutes");
-var bodyParser = require('body-parser')
-const guestR = require('./Routes/guestRoutes');
+var bodyParser = require('body-parser');
+const adminR = require('./Routes/adminRoutes');
 const instructorR = require('./Routes/instructorRoutes');
 const individualTraineeR = require('./Routes/individualTraineeRoutes');
 const corporateTraineeR = require('./Routes/corporateTraineeRoutes');
 const courseR = require('./Routes/courseRoutes');
-const cors = require('cors')
+const exerciseR = require('./Routes/exercisesRoutes');
+const reportR = require('./Routes/reportRoutes');
+const requestsR = require('./Routes/requestsRoutes');
 
+const nodemailer = require('nodemailer');
+const cors = require('cors');
+const guestR = require("./Routes/guestRoutes");
 
-
-
-const admin = require("./Routes/adminRoutes");
-// const index = require('./views/index.ejs');
-
-//App variables
 const app = express();
+
 
 app.use(bodyParser.urlencoded({ extended: false }))
 const port = process.env.PORT || "9000";
@@ -39,9 +36,12 @@ mongoose.connect(process.env.mongoURl)
 app.use(cors())
 app.set('view engine', 'ejs');
 app.engine('ejs', require('ejs').renderFile);
-app.use('/guest', guestR)
 app.use('/instructor', instructorR)
 app.use('/individualTrainee', individualTraineeR)
 app.use('/corporateTrainee', corporateTraineeR)
 app.use('/course', courseR)
-app.use('/admin', admin)
+app.use('/exercises', exerciseR)
+app.use('/admin', adminR)
+app.use('/report', reportR)
+app.use('/request', requestsR)
+app.use('/guest', guestR)
