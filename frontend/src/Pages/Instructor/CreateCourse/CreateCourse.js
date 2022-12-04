@@ -201,7 +201,7 @@ const CreateExcerciseProp = (InstructorName,ThisSubtitleNumber,Question,Choice1,
     const AddCourse = async(req,res)=>{             //${InstructorName}/${Title}/${Subject}/${TotalHours}/${Price}/${VideoPreviewLink}/${shortSummary}/${CertificateTemplate}/${Subtitles}
         alert('fe add course aho')                  //createCourse/:InstructorName/:Title/:Subject/:TotalHours/:Price/:VideoPreviewLink/:shortSummary/:CertificateTemplate/:Subtitles  
         const Subtitles1 = ['sara']
-        const request={
+        const data={
             InstructorName: InstructorName,
             Title:Title,
             Subject:Subject,
@@ -214,7 +214,11 @@ const CreateExcerciseProp = (InstructorName,ThisSubtitleNumber,Question,Choice1,
         }
         //${InstructorName}/${Title}/${Subject}/${TotalHours}/${Price}/${VideoPreviewLink}/${shortSummary}/${CertificateTemplate}/${SubtitlesArray}
 
-        await axios.get(`http://localhost:9000/course/createCourse/${InstructorName}/${Title}/${Subject}/${TotalHours}/${Price}/${VideoPreviewLink}/${shortSummary}/${CertificateTemplate}/${SubtitlesArray}`).then(
+        await axios({
+            method: 'post',
+            url: 'http://localhost:9000/course/createCourse',
+            data: data
+          }).then(
             (res) => {
                 const C = res.data._id
                 setCourseID(C)

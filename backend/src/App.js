@@ -16,7 +16,9 @@ const admin = require("./Routes/adminRoutes");
 //App variables
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+
 const port = process.env.PORT || "9000";
 
 
