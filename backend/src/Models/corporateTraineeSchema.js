@@ -25,11 +25,11 @@ const corporateTraineeschema = new Schema({
     },
 
     courses: {
-        type: [[String]], //[[Course1.ID,Progress%],[Course2.ID,Progress%],[Course3.ID,Progress%],...... ]
+        type: [{Course:mongoose.Schema.Types.ObjectId, Progress:Number }], //[[Course1.ID,Progress%],[Course2.ID,Progress%],[Course3.ID,Progress%],...... ]
     },
     
     Exercises: {
-        type: [[String]], //[[Ex1.ID,MyAnswer,MyGrade],[Ex2.ID,MyAnswer,MyGrade],[Ex3.ID,MyAnswer,MyGrade],......]
+        type: [{Subtitle: mongoose.Schema.Types.ObjectId, MyAnswer: String, MyGrade:String}], //[[Ex1.ID,MyAnswer,MyGrade],[Ex2.ID,MyAnswer,MyGrade],[Ex3.ID,MyAnswer,MyGrade],......]
     },
 
     Certificates: {

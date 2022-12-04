@@ -19,7 +19,7 @@ import AddInstructor from './Pages/Admin/AddUsers/AddInstructor';
 import AddCoTrainee from './Pages/Admin/AddUsers/AddCoTrainee';
 import MyCourses from './components/MyCourses/MyCourses';
 import CourseDetails from './components/CourseDetails/CourseDetails';
-
+import ExerciseP from './Pages/Exercise/ExerciseP';
 
 import IndividualTrainee from './Pages/IndividualTrainee/IndividualTrainee';
 import CorporateTrainee from './Pages/CorporateTrainee/CorporateTrainee';
@@ -86,7 +86,7 @@ function App() {
           />
           
           
-
+          <Route path='/exercise' element={  <ExerciseP/> }/>
           <Route path='/instructor/MyCourses' element={  <MyCourses/> }/>
 
           <Route path='/instructor/CourseDetails' element={  <CourseDetails/> }/>
