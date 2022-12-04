@@ -13,7 +13,7 @@ function IndividualTrainee(){
 
     return(
         <>
-        <IndividualTraineeNavBar/>
+        {/* <IndividualTraineeNavBar/> */}
         <div className='IndividualTrainee-body'>
         <Search Type='indvidual'/>
         <Link to ="/IndividualTrainee/myInfo">
