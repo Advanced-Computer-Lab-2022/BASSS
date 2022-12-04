@@ -28,7 +28,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
  
  function CorporateTraineeCourses(props) {
     const [mycourses,setmycourses] = useState([]);
-    const CorporateTusernam = 'sarasaad2001'
+    const CorporateTusernam = 'nour'
     const getmycourses = async()=>{
         await axios.get(`http://localhost:9000/corporateTrainee/CorporateCourses/${CorporateTusernam}`).then(
             (res) => { 

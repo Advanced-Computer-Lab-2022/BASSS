@@ -53,4 +53,6 @@ const corporateTraineeschema = new Schema({
 
 
 const corporateTrainee = mongoose.model('corporateTrainee', corporateTraineeschema);
+// corporateTrainee.create({Username:'nour',Email:'nour@gmail.com',
+// Country:'germany',Password:'123',courses:[['637e73821194304d45a2fe5a','50%'],['6383a008cf44823c1f52d63a','20%']]})
 module.exports = corporateTrainee;

@@ -75,8 +75,8 @@ function App() {
           element={  <MyCourses/> }/>
           <Route path='/instructor/myInfo' element={  <EditmyInfo/> }/>
           <Route path='/instructor/contract' element={  <Contract/> }/>
-          <Route path='/individualtrainee/CourseDetails' element={  <CourseDetails/> }/>
-          <Route path='/corporatetrainee/CourseDetails' element={  <CourseDetails/> }/>
+          <Route path='/individualtrainee/myCourseDetails' element={  <CourseDetails/> }/>
+          <Route path='/corporatetrainee/myCourseDetails' element={  <CourseDetails/> }/>
           <Route path='/individualtrainee/myInfo' element={  <EditPass/> }/>
           <Route path='/corporatetrainee/myInfo' element={  <EditPass/> }/>
           <Route path='/instructor/forgetpass' element={  <EditPass/> }/>

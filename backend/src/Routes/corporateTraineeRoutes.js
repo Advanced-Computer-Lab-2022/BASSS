@@ -103,11 +103,11 @@ corporateTraineeR.get("/forgetpass",function(req,res){
 
 corporateTraineeR.get("/CorporateCourses/:username",async(req, res) => {
     const username = req.params.username;
-    const trainee = await corporateTrainees.find({UserName:username})
+    const trainee = await corporateTrainees.find({Username:username})
     const courseID = trainee[0].courses
     var list = []
-    for (let i = 0; i < courseID.length; i++) {
-        const course = await courses.findOne({_id:courseID[i][0]})
+    for (let i = 0; i < courseID.length-1; i++) {
+        const course = await courses.findOne({_id:courseID[i].Course})
         list = list.concat([course])
     }
   res.json(list)

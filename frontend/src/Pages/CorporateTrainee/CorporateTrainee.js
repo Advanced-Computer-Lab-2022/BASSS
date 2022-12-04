@@ -24,7 +24,7 @@ function CorporateTrainee(){
         </Link>
 
         <CorporateCourses Link="/corporatetrainee/CourseDetails"/>
-        {/* <CorporateTraineeCourse Link="/corporatetrainee/CourseDetails"/> */}
+        <CorporateTraineeCourse Link="/corporatetrainee/myCourseDetails"/>
         </div>
         </>
     )

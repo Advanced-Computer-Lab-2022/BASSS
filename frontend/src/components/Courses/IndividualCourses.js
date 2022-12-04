@@ -28,12 +28,13 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
  
  function IndividualCourses(props) {
     const [mycourses,setmycourses] = useState([]);
-    const individualUsername = 'hazem123'
+    const individualUsername = 'kkkkk'
     const getmycourses = async()=>{
         await axios.get(`http://localhost:9000/individualTrainee/individualCourses/${individualUsername}`).then(
             (res) => { 
                 const result = res.data
                 setmycourses(result)
+                // alert(mycourses)
             }
              );
     }
