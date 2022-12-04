@@ -126,7 +126,7 @@ const clickhandler3 = ()=>{
 
     return(
         <div className='Instructor-body'>
-            <InstructorNavBar/>
+            {/* <InstructorNavBar/> */}
             <Search Type="searchMyCourses"/>
           {/* <h1>My Courses</h1>
           <table class="fl-table">

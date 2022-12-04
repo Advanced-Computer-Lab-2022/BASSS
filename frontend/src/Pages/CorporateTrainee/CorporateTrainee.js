@@ -9,12 +9,12 @@ import CorporateTraineeCourse from '../../components/Courses/CorporateTraineeCou
 function CorporateTrainee(){
     return(
         <>
-        <CorporateTraineeNavBar/>
+        {/* <CorporateTraineeNavBar/> */}
         <div className='CorporateTrainee-body'>
-        <NavBar  FirstLinkText='Home' SecondLinkText='My Courses' ThirdLinkText='View Courses' FourthLinkText=''  
+        {/* <NavBar  FirstLinkText='Home' SecondLinkText='My Courses' ThirdLinkText='View Courses' FourthLinkText=''  
         ButtonLinkText='Logout' 
         LogoLinkTo='/Instructor' FirstLinkTo='/CorporateTrainee' SecondLinkTo='/CorporateTrainee/MyCourses' ThirdLinkTo='/Courses' FourthLinkTo='' 
-        ButtonLinkTo='/'/>
+        ButtonLinkTo='/'/> */}
         <Search Type='corporate'/>
         <Link to ="/CorporateTrainee/SelectCountry">
         <button className='instructor_selectcountrybtn'> select your country</button>
