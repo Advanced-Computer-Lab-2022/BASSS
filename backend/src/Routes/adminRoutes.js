@@ -20,11 +20,11 @@ adminR.get("/" , function(req,res){
       const user = await admin.findOne({UserName: name })
       if(user) {
         console.log("User Name Already Taken")
-         return res.status(400).json({msg: "User Name Already Taken"});
+         return res.json( "User Name Already Taken");
       }
       else{
         console.log("User Name Not Taken")
-         return res.status(200).json({user}); 
+         return res.json("ok"); 
       }
      // res.status(200).json(users)
   

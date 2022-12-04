@@ -1,9 +1,9 @@
 import axios from 'axios';
 import '../Courses/Courses.css';
-import { Link } from 'react-router-dom';
 import Search from '../../components/Search/Search';
 import '../../Pages/Instructor/Instructor.css'
 import InstructorNavBar from '../../Pages/Instructor/InstructorNavBar/InstructorNavBar';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 import Button from '@mui/material/Button';
 import Table from '@mui/material/Table';
@@ -28,29 +28,23 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 const { useState } = require("react");
 
-const MyCourses = () => { 
-
-    const [myCourses,setMyCourses] = useState([]);
-
-    const getMyCourses=  async () => {
-        await axios.get(`http://localhost:9000/course/bassel`).then(
-            (res) => { 
-                const myCourses = res.data
-                console.log(myCourses)
-                setMyCourses(myCourses) 
-            }
-             );
-            
-    }
-
-        
+const MyCourses = (props) => { 
+    
     
   
   var [choice,setchoice] = useState([]);
   var [choice2,setchoice2] = useState([]);
   const [choice3,setchoice3] = useState([]);
 
-
+    // const getMyCourses=  async () => {
+    //     await axios.get(`http://localhost:9000/course/bassel`).then(
+    //         (res) => { 
+    //             const myCourses = res.data
+    //             console.log(myCourses)
+    //             setMyCourses(myCourses) 
+    //         }
+    //          );
+            
   const [filtered,setfiltered] = useState([]);
   const [first,setfirst] = useState(0);
   //const [filteredbyRate,setfilteredbyRate] = useState([]);
@@ -126,8 +120,9 @@ const clickhandler3 = ()=>{
    setfirst(1)
  }
 
+ const navigate = useNavigate();
 
-    getMyCourses();
+    // getMyCourses();
 
     return(
         <div className='Instructor-body'>
@@ -169,6 +164,45 @@ const clickhandler3 = ()=>{
     </div>
 
 
+
+            {/* <div> 
+
+    <label for="subs"> Subject:</label>
+    <select onChange={changehandler}     name="subs" id="subs">
+    <option value="fgfgf"></option>
+    <option value="CS">CS</option>
+  <option value="Managment">Managment</option>
+  <option value="Finance">Finance</option>
+  
+</select>
+
+
+            </div>
+            <div> 
+            <label for="subs"> price:</label>
+    <select onChange={changehandler3}     name="subs" id="subs">
+    <option value="fgfgf"></option>
+    <option value="0">free</option>
+  <option value="100">not free</option>
+ 
+</select>
+           
+    
+</div> */}
+
+<div> 
+
+    <button onClick={clickhandler1}>submit</button>
+    <input placeholder='subject' onChange={changehandler} value={choice}/>
+
+    </div>
+
+    <div> 
+    <button onClick={clickhandler3}>submit</button>
+    <input placeholder='price' onChange={changehandler3} value={choice3}/>
+    </div>
+
+
 <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>
@@ -194,13 +228,14 @@ const clickhandler3 = ()=>{
                 width: "100%"
                 }
             }}
-            onClick={() => window.location.href="/instructor/MyCourses/CourseDetails"}
+            //onClick={() => window.location.href="/instructor/MyCourses/CourseDetails"}
+            onClick={()=> navigate("/instructor/MyCourses/CourseDetails", {state:[course._id,course.InstructorUserName]})} 
             //   key={author._id}
 
               >
               <TableCell align="center">{course.Title}</TableCell>
               <TableCell align="center">{course.Price}</TableCell>
-              <TableCell align="center">{course.Rating}</TableCell>
+              <TableCell align="center">{course.Rating.rate}</TableCell>
               <TableCell align="center">{course.Reviews}</TableCell>
             </TableRow>
 

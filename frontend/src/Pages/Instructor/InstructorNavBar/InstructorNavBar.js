@@ -1,11 +1,12 @@
 import React from 'react';
 import Navbar from '../../../components/Navbar/Navbar';
 
-export default function AdminNavBar(){
+export default function InstructorNavBar(){
     return <div>
-    <Navbar SecondLinkText='My Courses' FirstLinkText='Home' ThirdLinkText='View Courses' FourthLinkText=''  
+    <Navbar SecondLinkText='Courses' FirstLinkText=' ' ThirdLinkText='Reports' FourthLinkText='Add User'  
     ButtonLinkText='Logout' 
-    LogoLinkTo='/Instructor' SecondLinkTo='/instructor/MyCourses' FirstLinkTo='/instructor' ThirdLinkTo='/Courses' FourthLinkTo='' 
+    LogoLink='/' SecondLinkTo='/CoursesAdmin' FirstLinkTo='/AdminProfile' ThirdLinkTo='/AdminReports' FourthLinkTo='/AdminAddUsers' 
     ButtonLinkTo='/'/>
     </div>
 }
+

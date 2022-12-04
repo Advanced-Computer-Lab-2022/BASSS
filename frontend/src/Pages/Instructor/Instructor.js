@@ -9,6 +9,8 @@ import editmyInfo from '../../components/EditmyInfo/EditmyInfo';
 import Search from '../../components/Search/Search';
 import MyCourses from '../../components/MyCourses/MyCourses';
 import InstructorNavBar from './InstructorNavBar/InstructorNavBar';
+import ViewRating from '../../components/ViewRating/ViewRating';
+
 function Instructor(){
 
     const clickhandler1 = ()=>{
@@ -18,6 +20,7 @@ function Instructor(){
     
     return(
         <>
+        <InstructorNavBar/>
         <div className='Instructor-body'>
         <InstructorNavBar/>
         <Link to ="/instructor/SelectCountry">
@@ -40,6 +43,24 @@ function Instructor(){
         
 
         {/* <Courses/> */}
+
+        <Link to ="/instructor/promotion">
+        <button className='promotion'> define a promotion</button>
+        </Link>
+        <ViewRating/>
+
+        <Link to ="/instructor/MyCourses">
+            <button>
+                View My Courses</button>
+            </Link>
+
+            <Link to ="/instructor/MyReviews">
+            <button>
+                My Reviews</button>
+            </Link>
+
+        {/* <SelectCountry/> */}
+
         </div>
         </>
     )

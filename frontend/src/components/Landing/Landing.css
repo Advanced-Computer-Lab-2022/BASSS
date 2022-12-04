@@ -5,6 +5,10 @@ video {
     position: fixed;
     z-index: -1;
   }
+.land{
+  font-family: Lucida Handwriting;
+  width: 70%;
+}
   .Landing-container {
     /* background: url('/images/img-home.jpg') center center/cover no-repeat; */
     height: 100vh;

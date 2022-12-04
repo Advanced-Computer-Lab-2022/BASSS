@@ -40,7 +40,7 @@ export default function AddInstructor(){
 return <Body>
         <AdminNavBar/>
         <div>
-        <br></br>        <br></br>        <br></br>        
+        <br></br>        <br></br>        <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br>   
         </div>
         <div>
         <Link to='/AdminAddAdmin' >

@@ -1,7 +1,6 @@
 const express = require("express");
 const courseR = express.Router();
 const mongoose = require('mongoose');
-const course = require("../Models/courseSchema");
 const courses = require('../Models/courseSchema');
 const exercises = require('../Models/exerciseSchema');
 const subtitles = require('../Models/subtitleSchema');
@@ -22,7 +21,35 @@ courseR.get("/courseDetails/:courseId", async(req,res) => {
     var result = await courses.find({_id:id});
     res.status(200).json(result);
 })
+courseR.get("/FindTitleAndUpdate/:title/:percentage/:enddate", async(req,res)=>{
+    const title = req.params.title
+    const percentage = req.params.percentage
+    const enddate = req.params.enddate
+    var query = courses.find({Title:title})
+    query.exec(function(err,result){
+        if (err) throw err;
+        if(result.length==0){
+            // res.render("../views/instructor.ejs",{title:"instructor country"});
+        }else{
+            courses.findOneAndUpdate({Title:title},{PromotionPercentage:percentage,PromotionEndDate:enddate},{upsert:true},function(err,doc){
+                if(err) throw err;
+            });         
+            // res.render("../views/instructor.ejs",{title:"instructor country"});
+        }
+    })    
+});
 
+courseR.get("/getCourse/:id",async(req, res) => {
+  var courseId = req.params.id;
+  const result =await courses.findOne({_id:courseId})
+  res.json(result)
+});
+
+courseR.get("/getsubtitle/:courseID",async(req, res) => {
+  var courseId = req.params.courseID;
+  const result =await subtitles.find({CourseID:courseId})
+  res.json(result)
+});
 
 courseR.get("/exercise/:courseID/:subtitleID", async(req,res) => {
     const courseId = req.params.courseID;
@@ -46,7 +73,19 @@ courseR.get("/correctAnswer/:courseID/:subtitleID", async(req,res) => {
     res.status(200).json(exercise.CorrectAnswer);
 });
 
+courseR.get("/updateRate/:id/:newRate",async(req, res) => {
+  var courseId = req.params.id;
+  var newRate = req.params.newRate;
+  var oldResult =await courses.findOne({_id:courseId})
+  var oldCount = oldResult.Rating.count;
+  var oldSum = oldResult.Rating.sum;
+  const result =await courses.findOneAndUpdate({_id:courseId},{Rating:{rate:(Number(oldSum)+Number(newRate))/(oldCount+1), count:(oldCount+1), 
+  sum:(Number(oldSum)+Number(newRate))}})
+  res.json(result)
+});
+
 courseR.get("/:subject/:rate/:price",async(req, res) => {
+    // res.render("../views/course.ejs",{title:"courses"})
     var subject = req.params.subject;
     var rate = req.params.rate;
     var price = req.params.price;

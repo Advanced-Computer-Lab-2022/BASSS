@@ -21,10 +21,14 @@ const courseSchema = new Schema ({
         type: Number,
         required: true,
     },
+
+    // Ratings:{
+    //     type:[Number]
+    // },
+
     Rating:{
-        type: Number,
-        min: 1,
-        max: 5,
+        type: {rate:Number, count:Number , sum:Number},
+        default: {rate:0, count:0, sum:0} 
     },
     
     InstructorUserName:{
@@ -74,4 +78,8 @@ const courseSchema = new Schema ({
 
 
 const course = mongoose.model('course', courseSchema);
+
+ //course.create({Title:"React for react", Subject:"React", TotalHours:10, Price:911, InstructorUserName:"salama", Subtitles:[[]], 
+ //VideoPreviewLink:"video link", ShortSummary:"el basha galkoo", CertificateTemplate:"edeko foo2"})
+
 module.exports = course;

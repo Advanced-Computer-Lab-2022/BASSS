@@ -5,7 +5,6 @@ import AdminProfile from './Pages/Admin/AdminProfile/AdminProfile';
 import CoursesAdmin from './Pages/Admin/CoursesAdmin/CoursesAdmin';
 import Reports from './Pages/Admin/Reports/Reports';
 import Courses from './components/Courses/Courses.js';
-import NavBarGeneric from './components/NavBarComponent/NavBarGeneric'
 import MyCourses from './components/MyCourses/MyCourses';
 import AllCourses from './components/Courses/Courses';
 
@@ -24,16 +23,19 @@ import AddCoTrainee from './Pages/Admin/AddUsers/AddCoTrainee';
 import CourseDetails from './components/CourseDetails/CourseDetails';
 import ExerciseP from './Pages/Exercise/ExerciseP';
 
+import CourseDetailsInstructor from './components/CourseDetailsInstructor/CourseDetailsInstructor';
+import MyReviews from './components/ViewReviews/ViewReviews';
+
 import IndividualTrainee from './Pages/IndividualTrainee/IndividualTrainee';
 import CorporateTrainee from './Pages/CorporateTrainee/CorporateTrainee';
 import CreateCourse from './components/CreateCourse/CreateCourse';
+import Promotion from './components/Promotion/Promotion';
+
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      {/* { <Navbar FirstLinkTo = '/Admin' FirstLinkText = 'Sara' SecondLinkTo = '/' /> } */}
-      {/*<NavBarGeneric h1='sara' firstElement='ana hena' secondElement='wana kamaan' button='buttonnnnnn'/>*/}
         <Routes>
           <Route path='/' element = { <Home/> } /> 
           <Route path='/instructor' element = { <Instructor/> } />   
@@ -68,30 +70,11 @@ function App() {
             <CoursesAdmin/>
           }
           />
-          <Route
-          path='/AdminAddAdmin'
-          element={
-            <AddAdmin/>
-          }
-          />
-          <Route
-          path='/AdminAddInstructor'
-          element={
-            <AddInstructor/>
-          }
-          />
-          <Route
-          path='/AdminAddCoTrainee'
-          element={
-            <AddCoTrainee/>
-          }
-          />
           <Route 
           path='/instructor/MyCourses' 
           element={  <MyCourses/> }/>
           <Route path='/instructor/myInfo' element={  <EditmyInfo/> }/>
           <Route path='/instructor/contract' element={  <Contract/> }/>
-          <Route path='/instructor/CourseDetails' element={  <CourseDetails/> }/>
           <Route path='/individualtrainee/CourseDetails' element={  <CourseDetails/> }/>
           <Route path='/corporatetrainee/CourseDetails' element={  <CourseDetails/> }/>
           <Route path='/individualtrainee/myInfo' element={  <EditPass/> }/>
@@ -107,18 +90,27 @@ function App() {
           <Route path='/exercise' element={  <ExerciseP/> }/>
           <Route path='/instructor/MyCourses' element={  <MyCourses/> }/>
 
-          <Route path='/instructor/CourseDetails' element={  <CourseDetails/> }/>
 
-          <Route path='/instructor/MyCourses/CourseDetails' element={  <CourseDetails/> }/>
 
           <Route path='/Courses' element={  <Courses/> }/>
           <Route path='/instructor' element={<Instructor/> } />
           <Route path='/instructor/SelectCountry' element= {<SelectCountry/>}/>
+
+//merged
+          <Route path='/instructor/MyCourses/CourseDetails' element={  <CourseDetailsInstructor/> }/>
+          <Route path='/instructor/CourseDetails' element={  <CourseDetailsInstructor/> }/>
+          <Route path='/instructor/MyReviews' element={  <MyReviews/> }/>
+         
+         
           <Route path='/instructor/CreateCourse' element= {<CreateCourse/>}/>
           <Route path='/IndividualTrainee' element = { <IndividualTrainee/> } /> 
-          <Route path='/IndividualTrainee/SelectCountry' element = { <SelectCountry/> } /> 
+          <Route path='/IndividualTrainee/SelectCountry' element = { <SelectCountry/> } />
           <Route path='/CorporateTrainee' element = { <CorporateTrainee/> } /> 
           <Route path='/CorporateTrainee/SelectCountry' element = { <SelectCountry/> } /> 
+          <Route path='/AdminAddAdmin'  element={<AddAdmin/>}/>
+          <Route path='/AdminAddInstructor'element={ <AddInstructor/>}/>
+          <Route path='/AdminAddCoTrainee' element={ <AddCoTrainee/>} /> 
+          <Route path='/instructor/promotion' element={<Promotion/> } />
         </Routes>
         
       </BrowserRouter>

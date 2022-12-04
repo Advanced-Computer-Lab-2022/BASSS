@@ -9,14 +9,16 @@ function SelectCountry() {
 
   const changeHandler = (e)=>{
      setcountry(e.target.value)
+     alert('country selected')
   }
+  
   // alert(country);
   const totalpath = window.location.pathname;
   var mySubString = totalpath.substring(
     totalpath.indexOf("/") + 1, 
     totalpath.lastIndexOf("/")
 );
-  alert(mySubString)
+  // alert(mySubString)
   const select = async ()=>{
     await axios.get(`http://localhost:9000/${mySubString}/${country}`)
   }
@@ -28,7 +30,7 @@ function SelectCountry() {
 
       <div className='select'>
 
-        <select onChange={changeHandler} >
+        <select onChange={changeHandler} className='select1'>
           {countryNames.map((option) => (
             <option >
               {option}

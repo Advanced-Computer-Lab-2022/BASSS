@@ -1,53 +1,186 @@
 import axios from 'axios';
+import { useLocation } from 'react-router-dom';
 import './CourseDetails.css';
-import { useState} from 'react';
+import { Link } from 'react-router-dom'
+import IndividualTraineeNavBar from '../../Pages/IndividualTrainee/IndividualTraineeNavBar/IndividualTraineeNavBar'
+import YoutubeEmbed from '../YoutubeEmbed/YoutubeEmbed';
+const { useState, useEffect } = require("react");
 
 const CourseDetails = () => { 
-    const params = new URLSearchParams(window.location.search);
-    const courseID = params.get('courseId');
 
-    const [coursedetails,setcoursedetails] = useState([])
+    const location = useLocation();
 
-    const getCourseDetails = async ()=>{
-        await axios.get(`http://localhost:9000/course/courseDetails/${courseID}`).then(
-            (res) => {
-                const details = res.data;
-                setcoursedetails(details);
-            }
-        )
+    const [courseRate,setCourseRate] = useState("");
+    const [instructorRate,setInstructorRate] = useState("");
+
+    const [rateCourse,setRateCourse] = useState([]);
+    const [rateInstructor,setRateInstructor] = useState([]);
+    
+    var [course,setCourse] = useState([]);
+    var [instructor,setInstructor] = useState([]);
+    var [subtitle,setsubtitle] = useState([]);
+
+    var [choice,setchoice] = useState([]);
+    var [choice2,setchoice2] = useState([]);
+
+    const changehandler = (e)=>{
+        setchoice(e.target.value);
     }
 
-    getCourseDetails();
+    const changehandler2 = (e)=>{
+        setchoice2(e.target.value);
+    }
+
+    const clickhandler = ()=>{
+        alert("Submission Done")
+        getRateCourse();
+    }
+    const clickhandler2 = ()=>{
+        alert("Submission Done")
+        getRateInstructor();
+    }
+
     
+        const getRateCourse =  async () => {
+            await axios.get(`http://localhost:9000/course/updateRate/${location.state[0]}/${choice}`).then(
+                (res) => { 
+                    const rateCourse = res.data
+                    console.log(rateCourse)
+                    setRateCourse(rateCourse)
+
+                }
+                );
+            }
+
+            const getRateInstructor =  async () => {
+                await axios.get(`http://localhost:9000/instructor/updateRate/${location.state[1]}/${choice2}`).then(
+                    (res) => { 
+                        const rateInstructor = res.data
+                        console.log(rateInstructor)
+                        setRateInstructor(rateInstructor)
+    
+                    }
+                    );
+                }    
+        
+        const getCourse =  async () => {
+            await axios.get(`http://localhost:9000/course/getCourse/${location.state[0]}`).then(
+                (res) => { 
+                    const course = res.data
+                    console.log(course)
+                    setCourse(course)
+                    setCourseRate(course.Rating.rate)
+                }
+                );
+            }
+
+            const getInstructor =  async () => {
+                await axios.get(`http://localhost:9000/instructor/getInstructor/${location.state[1]}`).then(
+                    (res) => { 
+                        const instructor = res.data
+                        console.log(instructor)
+                        setInstructor(instructor)
+                        setInstructorRate(instructor.Rating.rate)
+                    }
+                    );
+                }  
+
+                const getSubtitle =  async () => {
+                    await axios.get(`http://localhost:9000/course/getsubtitle/${location.state[0]}`).then(
+                        (res) => { 
+                            const sub = res.data
+                            setsubtitle(sub)
+                            // alert(subtitle)
+                        }
+                        );
+                    }  
+                    
+
+getCourse();
+getInstructor();
+getSubtitle();
+// alert(subtitle[0])
     return(
-
+        <>
         <div className='CourseDetails-body'>
-            <div>
+        <IndividualTraineeNavBar/>
+
+        <div className='videodiv'>
+          <video className='video1' src="/videos/video-1.mp4" autoPlay loop muted/>
+        </div>
+
+            <div className='RateCourse-div'>
+                <h1>Course: {course.Title}</h1>
                 <br></br>
-        <table class="fl-table">
+                <h1> Rate The Course :</h1>
+                <br></br>
+                <select  onChange={changehandler} name="rate" id="rate" className='selectnew'>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                </select>
+                <br></br><br></br>
+                <button onClick={clickhandler} className='RateCoursebtn'>Submit</button>
+                <br></br><br></br><br></br><br></br>
+                <h1>Course Rating: {courseRate}</h1>
+                </div>
+                
+                <br></br><br></br><br></br><br></br><br></br><br></br><br></br>
 
-            <thead>
-                <th> Subtitles</th>
-                <th> Total Hours</th>
-                <th> Price</th>
-                <th> Discount %</th>
+            <div className='RateInstructor-div'>
+                <h1>Instructor of this course: {course.InstructorUserName}</h1>
+                <br></br>
+                <h1>Rate The Instructor:</h1>
+                <br></br>
+                <select className='selectnew' onChange={changehandler2}    name="rate2" id="rate2">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                </select>
+                <br></br><br></br>
+                <button onClick={clickhandler2} className='RateInstructorbtn'>Submit</button>
+                <br></br><br></br><br></br><br></br>
+                <h1>Instructor Rating: {instructorRate}</h1>
+                </div>
+                <div className='info'>
 
-            </thead>
-            <tbody>
-        {coursedetails.map((course) => (
-                <tr>
-                    <td>{course.Subtitles}</td>
-                    <td>{course.TotalHours}</td>
-                    <td>{course.Price}</td>
-                    <td>{course.PromotionPercentage}</td>
-                </tr>
-        ))}
-            </tbody>
-        </table>
+                <h1 className='total'>TotalHours for the course : {course.TotalHours}</h1>
+                <h1 className='views'> Course Views : {course.Views}</h1>
+                </div>
+                <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+                {
+
+                   subtitle.length>0 && subtitle.map((sub)=>
+                <div className='subtitleincoursedetails1'>
+                    <h1>subtitle Number : {sub.subtitleNumber}</h1>
+                    <h1>Subtitle total Hours : { sub.SubtitleHours} </h1>
+                    <h1>subtitle Short Video Description :{sub.ShortVideoDescription} </h1>
+                    <br></br><br></br><br></br>
+
+                 <YoutubeEmbed embedId={sub.VideoLink}/>
+                     <br></br><br></br><br></br>
+                    <Link to='/'>
+                        <button className='exercisebtn'>Solve Exercise</button>
+                    </Link>
+                 </div>
+                    )
+
+                }
+
+
+                
+
+                
         </div>
-        </div>
-    )
+            </>
+        )
 }
 
+export default CourseDetails
 
-export default CourseDetails;

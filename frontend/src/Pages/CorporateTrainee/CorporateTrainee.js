@@ -3,9 +3,13 @@ import { Link } from 'react-router-dom'
 import './CorporateTrainee.css'
 import Search from '../../components/Search/Search';
 import NavBar from '../../components/Navbar/Navbar';
+import CorporateTraineeNavBar from './CorporateTraineeNavBar/CorporateTraineeNavBar';
+import CorporateCourses from '../../components/CorporateCourses/CorporateCourses';
+import CorporateTraineeCourse from '../../components/Courses/CorporateTraineeCourses'
 function CorporateTrainee(){
     return(
         <>
+        <CorporateTraineeNavBar/>
         <div className='CorporateTrainee-body'>
         <NavBar  FirstLinkText='Home' SecondLinkText='My Courses' ThirdLinkText='View Courses' FourthLinkText=''  
         ButtonLinkText='Logout' 
@@ -18,6 +22,9 @@ function CorporateTrainee(){
         <Link to ="/CorporateTrainee/myInfo">
         <button> edit my info</button>
         </Link>
+
+        <CorporateCourses Link="/corporatetrainee/CourseDetails"/>
+        {/* <CorporateTraineeCourse Link="/corporatetrainee/CourseDetails"/> */}
         </div>
         </>
     )

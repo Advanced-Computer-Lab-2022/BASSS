@@ -12,6 +12,7 @@ individualTraineeR.get("/",(req, res) => {
     res.render("../views/individualTrainee.ejs",{title:"individualTrainee"})
 });
 
+
 individualTraineeR.post("/selectcountry",function(req,res){
     console.log(req.body)
     var country = req.body.country;
@@ -100,5 +101,19 @@ individualTraineeR.get("/forgetpass",function(req,res){
       });
 
 })
+
+individualTraineeR.get("/individualCourses/:username",async(req, res) => {
+    const username = req.params.username;
+    // const courseID = req.params.courseID;
+    // const result = await individualTrainees.find({ courses:{ $elemMatch:{0: courseID} } })
+    const trainee = await individualTrainees.find({UserName:username})
+    const courseID = trainee[0].courses
+    var list = []
+    for (let i = 0; i < courseID.length; i++) {
+        const course = await courses.findOne({_id:courseID[i][0]})
+        list = list.concat([course])
+    }
+  res.json(list)
+});
 
 module.exports = individualTraineeR;
