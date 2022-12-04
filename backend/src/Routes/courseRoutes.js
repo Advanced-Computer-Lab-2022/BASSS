@@ -45,8 +45,8 @@ courseR.get("/getExcercise/:CourseTitle/:InstructorName/:SubtitleNumber/:Questio
 
 })
 
-courseR.get("/createCourse/:InstructorName/:Title/:Subject/:TotalHours/:Price/:VideoPreviewLink/:shortSummary/:CertificateTemplate/:Subtitles",async function(req,res){
-    
+ courseR.get("/createCourse/:InstructorName/:Title/:Subject/:TotalHours/:Price/:VideoPreviewLink/:shortSummary/:CertificateTemplate/:Subtitles",async function(req,res){
+    var Array = []
     var Title = req.params.Title;
     var Subject = req.params.Subject;
     var TotalHours = req.params.TotalHours;
@@ -56,7 +56,9 @@ courseR.get("/createCourse/:InstructorName/:Title/:Subject/:TotalHours/:Price/:V
     var CertificateTemplate = req.params.CertificateTemplate;
     var Subtitles = req.params.Subtitles;
     var InstructorName = req.params.InstructorName; 
-    
+    Array = Subtitles.split(',')
+    console.log(Array)
+
     try{
 
         const courseahoo = await courses.create({
@@ -65,7 +67,7 @@ courseR.get("/createCourse/:InstructorName/:Title/:Subject/:TotalHours/:Price/:V
         TotalHours: TotalHours,
         Price: Price,
         InstructorUserName: InstructorName,
-        Subtitles: Subtitles,
+        Subtitles: Array,
         VideoPreviewLink: VideoPreviewLink,
         ShortSummary: shortSummary,
         CertificateTemplate: CertificateTemplate
@@ -80,7 +82,43 @@ courseR.get("/createCourse/:InstructorName/:Title/:Subject/:TotalHours/:Price/:V
     }        
 })
 
+// courseR.post("/createCourse",async function(req,res){
+//     console.log("Request:")
+//     console.log(req.data)
+//     var Title = req.body.Title;
+//     var Subject = req.body.Subject;
+//     var TotalHours = req.body.TotalHours;
+//     var Price = req.body.Price;
+//     var VideoPreviewLink = req.body.VideoPreviewLink;
+//     var shortSummary = req.body.shortSummary;
+//     var CertificateTemplate = req.body.CertificateTemplate;
+//     var Subtitles = req.body.Subtitles;
+//     var InstructorName = req.body.InstructorName; 
+   
+    
+//     try{
 
+//         const courseahoo = await courses.create({
+//         Title: Title,
+//         Subject: Subject,
+//         TotalHours: TotalHours,
+//         Price: Price,
+//         InstructorUserName: InstructorName,
+//         Subtitles: Subtitles,
+//         VideoPreviewLink: VideoPreviewLink,
+//         ShortSummary: shortSummary,
+//         CertificateTemplate: CertificateTemplate
+//     });
+//     console.log("Done ya bashaaa course ahoo")
+//     return res.status(200).json({courseahoo});
+//     }
+//     catch(error)
+//     {
+//       console.log("La mesh naf3a")
+//      // console.log(error)
+//       return res.status(400).json({msg: error});
+//     }        
+// })
 
 courseR.get("/createSubtitle/:CourseID/:SubtitleHours/:VideoLink/:ShortVideoDescription/:Exercise/:subtitleNumber",async function(req,res){
     var SubtitleHours = req.params.SubtitleHours;

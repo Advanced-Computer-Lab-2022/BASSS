@@ -35,9 +35,13 @@ function CreateCourse() {
 
     const [SubtitleID , setSubtitleID] = useState([])
     const SubtitleIDhandler = (sara)=>{setSubtitleID(sara)}
+    useEffect(()=>{SubtitleIDhandler(SubtitleID)});
+
 
     const [ExerciseID , setExerciseID] = useState([])
     const ExerciseIDhandler = (sara)=>{setExerciseID(sara)}
+    useEffect(()=>{ExerciseIDhandler(ExerciseID)});
+
 
     const [Exercise , setExercise] = useState([])
     const Exercisehandler = (sara)=>{setExercise(sara)};
@@ -149,9 +153,9 @@ const CreateExcerciseProp = (InstructorName,ThisSubtitleNumber,Question,Choice1,
         await axios.get(`http://localhost:9000/course/createExcercise/${Title1}/${InstructorName}/${ThisSubtitleNumber}/${Question}/${Choice1}/${Choice2}/${Choice3}/${Choice4}/${MaxGrade}/${CorrectAnswer}`).then(
             (res) => {
                 const Ex1 = res.data
-                setExerciseID(Ex1)
+ 
+                ExerciseIDhandler(Ex1.excercise._id)
             })
-            return ExerciseID._id
     }
 
 
@@ -172,13 +176,15 @@ const CreateExcerciseProp = (InstructorName,ThisSubtitleNumber,Question,Choice1,
         .then(
             (res) => {
                 const Sub = res.data
-                setSubtitleID(Sub)
-                //alert(ExerciseID._id)
-                SubtitlesArrayhandler(SubtitlesArray.push(SubtitleID._id))
+                SubtitleIDhandler(Sub.subzeft._id)
+                SubtitlesArray.push(Sub.subzeft._id)
+                console.log(SubtitlesArray)
+                SubtitlesArrayhandler(SubtitlesArray)
+                alert(SubtitlesArray)
+
 
             })
             //SubtitlesArrayhandler(SubtitlesArray.push(SubtitleID._id))
-            return SubtitleID._id
      }
 
      const GetExcercise = async(req,res)=>{
@@ -195,10 +201,22 @@ const CreateExcerciseProp = (InstructorName,ThisSubtitleNumber,Question,Choice1,
     const AddCourse = async(req,res)=>{             //${InstructorName}/${Title}/${Subject}/${TotalHours}/${Price}/${VideoPreviewLink}/${shortSummary}/${CertificateTemplate}/${Subtitles}
         alert('fe add course aho')                  //createCourse/:InstructorName/:Title/:Subject/:TotalHours/:Price/:VideoPreviewLink/:shortSummary/:CertificateTemplate/:Subtitles  
         const Subtitles1 = ['sara']
+        const request={
+            InstructorName: InstructorName,
+            Title:Title,
+            Subject:Subject,
+            TotalHours:TotalHours,
+            Price:Price,
+            VideoPreviewLink:VideoPreviewLink,
+            shortSummary:shortSummary,
+            CertificateTemplate:CertificateTemplate,
+            SubtitlesArray:SubtitlesArray
+        }
+        //${InstructorName}/${Title}/${Subject}/${TotalHours}/${Price}/${VideoPreviewLink}/${shortSummary}/${CertificateTemplate}/${SubtitlesArray}
 
-        await axios.get(`http://localhost:9000/course/createCourse/${InstructorName}/${Title}/${Subject}/${TotalHours}/${Price}/${VideoPreviewLink}/${shortSummary}/${CertificateTemplate}/${Subtitles1}`).then(
+        await axios.get(`http://localhost:9000/course/createCourse/${InstructorName}/${Title}/${Subject}/${TotalHours}/${Price}/${VideoPreviewLink}/${shortSummary}/${CertificateTemplate}/${SubtitlesArray}`).then(
             (res) => {
-                const C = res.data
+                const C = res.data._id
                 setCourseID(C)
             })
             return CourseID._id

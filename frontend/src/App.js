@@ -18,7 +18,7 @@ import Home from './Pages/Guest/Home'
 import AddAdmin from './Pages/Admin/AddUsers/AddAdmin';
 import AddInstructor from './Pages/Admin/AddUsers/AddInstructor';
 import AddCoTrainee from './Pages/Admin/AddUsers/AddCoTrainee';
-//import Meow from './Pages/Admin/Meow';
+import Meow from './Pages/Admin/Meow';
 import CreateCourse from './Pages/Instructor/CreateCourse/CreateCourse';
 
 
@@ -30,12 +30,12 @@ function App() {
       {/* { <Navbar FirstLinkTo = '/Admin' FirstLinkText = 'Sara' SecondLinkTo = '/' /> } */}
       {/*<NavBarGeneric h1='sara' firstElement='ana hena' secondElement='wana kamaan' button='buttonnnnnn'/>*/}
         <Routes>
-        {/* <Route
+        <Route
           path='/sara'
           element={
             <Meow/>
           }
-          /> */}
+          />
           <Route
           path='/'
           element={
