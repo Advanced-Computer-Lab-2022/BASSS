@@ -47,7 +47,11 @@ courseR.get("/getCourse/:id",async(req, res) => {
 
 courseR.get("/getsubtitle/:courseID",async(req, res) => {
   var courseId = req.params.courseID;
-  const result =await subtitles.find({CourseID:courseId})
+  const list = [] ;
+  const result =await subtitles.find({Course:courseId})
+  // for (let i = 0; i < result.length; i++) {
+
+  // }
   res.json(result)
 });
 

@@ -107,13 +107,13 @@ individualTraineeR.get("/individualCourses/:username",async(req, res) => {
     // const courseID = req.params.courseID;
     // const result = await individualTrainees.find({ courses:{ $elemMatch:{0: courseID} } })
     const trainee = await individualTrainees.find({UserName:username})
-    const courseID = trainee[0].Courses
+     const courseID = trainee[0].Courses
     // console.log(courseID)
     var list = []
-    for (let i = 0; i < courseID.length-1; i++) {
+    for (let i = 0; i < courseID.length; i++) {
         const course = await courses.findOne({_id:courseID[i].Course})
+        // console.log(course)
         list = list.concat([course])
-        // console.log(list)
     }
   res.json(list)
 });
