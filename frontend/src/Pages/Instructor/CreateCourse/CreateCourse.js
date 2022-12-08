@@ -49,7 +49,7 @@ function CreateCourse() {
 
     const [CourseID , setCourseID] = useState('')
     const CourseIDhandler = (sara)=>{setCourseID(sara)}
- //   useEffect(()=>{CourseIDhandler(CourseID)})
+    useEffect(()=>{CourseIDhandler(CourseID)})
 
     const [Title , setTitle] = useState([])
     const courseTitlehandler = (event)=>{setTitle(event.target.value)}
@@ -181,7 +181,7 @@ const CreateExcerciseProp = (InstructorName,ThisSubtitleNumber,Question,Choice1,
                 console.log(SubtitlesArray)
                 SubtitlesArrayhandler(SubtitlesArray)
                 alert(SubtitlesArray)
-
+                //SubtitleIDhandler(Sub.subzeft._id)
 
             })
             //SubtitlesArrayhandler(SubtitlesArray.push(SubtitleID._id))
@@ -191,10 +191,10 @@ const CreateExcerciseProp = (InstructorName,ThisSubtitleNumber,Question,Choice1,
         await axios.get(`http://localhost:9000/course/getExcercise/ya salam/sara saad keda kedaa/2/42`).then(
             (res) => {
                 const Ex1 = res.data
-                setExerciseID(Ex1)
+                ExerciseIDhandler(Ex1.excercise._id)
                 //alert(ExerciseID._id)
             })
-            return ExerciseID._id
+            return ExerciseID
          
     }
     
@@ -219,11 +219,24 @@ const CreateExcerciseProp = (InstructorName,ThisSubtitleNumber,Question,Choice1,
             url: 'http://localhost:9000/course/createCourse',
             data: data
           }).then(
-            (res) => {
-                const C = res.data._id
-                setCourseID(C)
+            (res) = async(req,res) => {
+                const C = res.data.courseahoo._id
+                CourseIDhandler(C)
+
+                // for(var i = 0 ; i < SubtitlesArray.length ; i++){
+                //     var SubOfI = SubtitlesArray[i]
+                //     var Sub = await axios.get(`http://localhost:9000/getSubtitle1/${SubOfI}`).then(
+                //     (res) => {
+                //         const Ex1 = res.data
+                //         ExerciseIDhandler(Ex1.excercise._id)
+                //         //alert(ExerciseID._id)
+                //     })
+                // }
+
+                console.log('Course ID ya sara:')
+                console.log(CourseID)
             })
-            return CourseID._id
+            return CourseID
      }
      
     //  const FillSubtitlesArray = async(req,res)=>{
