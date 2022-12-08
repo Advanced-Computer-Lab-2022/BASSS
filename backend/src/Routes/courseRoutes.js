@@ -87,32 +87,32 @@ courseR.get("/updateRate/:id/:newRate",async(req, res) => {
 courseR.get("/:subject/:rate/:price",async(req, res) => {
     // res.render("../views/course.ejs",{title:"courses"})
     var subject = req.params.subject;
-    var rate = req.params.rate;
+    var frate = req.params.rate;
     var price = req.params.price;
     var result = []
-    if(subject == "empty" && rate == "empty" && price=="empty"){
+    if(subject == "empty" && frate == "empty" && price=="empty"){
      
       result = await courses.find({})
    }
    else
       if(subject == "empty" && price=="empty"){
-        result =await courses.find({Rating:rate })
+        result =await courses.find({"Rating.rate": frate})
         
       }
-     else if(rate == "empty" && price=="empty"){
+     else if(frate == "empty" && price=="empty"){
         result =await courses.find({Subject:subject})
         
-      }else if(rate == "empty" && subject=="empty"){
+      }else if(frate == "empty" && subject=="empty"){
            result =await courses.find({Price:price})
       }else if (subject == "empty"){
-        result =await courses.find({Rating :rate ,Price:price})
+        result =await courses.find({"Rating.rate": frate ,Price:price})
       }else if (rate == "empty"){
         result =await courses.find({Subject :subject ,Price:price})
       }else if (price == "empty"){
-        result =await courses.find({Rating :rate ,Subject :subject})
+        result =await courses.find({"Rating.rate": frate  ,Subject :subject})
       }
       else{
-        result =await courses.find({Subject:subject, Rating:rate , Price:price})
+        result =await courses.find({Subject:subject, "Rating.rate": frate  , Price:price})
       
       }
   

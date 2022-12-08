@@ -2,15 +2,15 @@ import React from 'react'
 import axios from 'axios';
 import './EditPass.css'
 const { useState, useEffect } = require("react");
-function EditPass() {
-    
+function EditPass(props) {
+    const type = props.Type;
     const [pass,setpass] = useState([]);
     const totalpath = window.location.pathname;
     var mysubstring = totalpath.substring(totalpath.indexOf("/")+1 , totalpath.lastIndexOf("/"))
       alert(mysubstring)
             const getpassword =  async () => {
         
-                await axios.get(`http://localhost:9000/${mysubstring}/myInfo/pass/${choice}`).then(
+                await axios.get(`http://localhost:9000/${type}/myInfo/pass/${choice}`).then(
                     (res) => { 
                         const password = res.data
                         console.log(password)

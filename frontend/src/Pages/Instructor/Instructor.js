@@ -5,7 +5,7 @@ import './Instructor.css'
 import Courses from '../../components/Courses/Courses';
 import editmyInfo from '../../components/EditmyInfo/EditmyInfo';
 //import app from '../../../../backend/App.js';
-
+import Forgetpass from '../../components/Forgetpass/Forgetpass';
 import Search from '../../components/Search/Search';
 import MyCourses from '../../components/MyCourses/MyCourses';
 import InstructorNavBar from './InstructorNavBar/InstructorNavBar';
@@ -20,13 +20,12 @@ function Instructor(){
     
     return(
         <>
-        <InstructorNavBar/>
+         <InstructorNavBar/>
         <div className='Instructor-body'>
-        <InstructorNavBar/>
         <Link to ="/instructor/SelectCountry">
         <button className='instructor_selectcountrybtn'> Select your Country</button>
         </Link>
-
+        <Forgetpass Type="instructor"/>
         <Link to ="/instructor/CreateCourse">
         <button className='instructor_CreateCoursebtn'> Create a new Course</button>
         </Link>

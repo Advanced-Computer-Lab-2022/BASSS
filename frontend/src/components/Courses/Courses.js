@@ -136,10 +136,10 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
             const clickhandler3 = ()=>{
               getfiltered()
              }
-             const clickhandler4 = ()=>{
+        /*     const clickhandler4 = ()=>{
                 forgotpass()
                 alert('check you mail:) ')
-               }
+               }*/
 
              if(first==0)
              {
@@ -150,14 +150,14 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     const totalpath = window.location.pathname;
     var mysubstring = totalpath.substring(totalpath.indexOf("/")+1 , totalpath.lastIndexOf("/"))
 
-    const forgotpass =  async () => {
-        await axios.get(`http://localhost:9000/instructor/forgetpass`).then(
+ /*   const forgotpass =  async () => {
+        await axios.get(`http://localhost:9000/individualtrainee/forgetpass`).then(
             (res) => { 
                 alert('check your mail')
             }
             
              );
-    }
+    }*/
 
 
 const navigate = useNavigate();
@@ -196,7 +196,7 @@ const navigate = useNavigate();
           </table> */}
             
 
-            <button  onClick={clickhandler4}> forget password</button>
+           
    
    
     <div> 

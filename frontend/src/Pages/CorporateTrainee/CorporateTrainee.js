@@ -2,6 +2,7 @@ import '../../App.css'
 import { Link } from 'react-router-dom'
 import './CorporateTrainee.css'
 import Search from '../../components/Search/Search';
+import Forgetpass from '../../components/Forgetpass/Forgetpass';
 import NavBar from '../../components/Navbar/Navbar';
 import CorporateTraineeNavBar from './CorporateTraineeNavBar/CorporateTraineeNavBar';
 import CorporateCourses from '../../components/CorporateCourses/CorporateCourses';
@@ -22,6 +23,8 @@ function CorporateTrainee(){
         <Link to ="/CorporateTrainee/myInfo">
         <button> edit my info</button>
         </Link>
+        <Forgetpass Type="corporateTrainee"/>
+        
 
         <CorporateCourses Link="/corporatetrainee/CourseDetails"/>
         {/* <CorporateTraineeCourse Link="/corporatetrainee/CourseDetails"/> */}
