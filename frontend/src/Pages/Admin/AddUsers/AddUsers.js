@@ -30,11 +30,11 @@ export default function AddUsers(){
         </div>
         <br></br>        <br></br>
         <div>
-        {/* <Link to='/AdminAddCoTrainee'> */}
+        <Link to='/AdminAddCoTrainee'>
             <Button>
             Add Corporate Trainee
             </Button>
-        {/* </Link> */}
+        </Link>
         </div>
 
     </Body>

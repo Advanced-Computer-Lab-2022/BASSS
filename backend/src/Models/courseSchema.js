@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const subtitleSchema = require('./subtitleSchema');
 const subtitlesSchema = require('./subtitleSchema');
 
 const courseSchema = new Schema ({
@@ -40,6 +41,7 @@ const courseSchema = new Schema ({
         type: [mongoose.Schema.Types.ObjectId],
         ref : 'Subtitle'
     },
+
     Views: {
         type: Number,
         default: 0

@@ -22,13 +22,14 @@ import AddInstructor from './Pages/Admin/AddUsers/AddInstructor';
 import AddCoTrainee from './Pages/Admin/AddUsers/AddCoTrainee';
 import CourseDetails from './components/CourseDetails/CourseDetails';
 import ExerciseP from './Pages/Exercise/ExerciseP';
+import CreateCourse from './Pages/Instructor/CreateCourse/CreateCourse';
+// import CreateCourse from './components/CreateCourse/CreateCourse';
 
 import CourseDetailsInstructor from './components/CourseDetailsInstructor/CourseDetailsInstructor';
 import MyReviews from './components/ViewReviews/ViewReviews';
 
 import IndividualTrainee from './Pages/IndividualTrainee/IndividualTrainee';
 import CorporateTrainee from './Pages/CorporateTrainee/CorporateTrainee';
-import CreateCourse from './components/CreateCourse/CreateCourse';
 import Promotion from './components/Promotion/Promotion';
 
 
@@ -96,7 +97,6 @@ function App() {
           <Route path='/instructor' element={<Instructor/> } />
           <Route path='/instructor/SelectCountry' element= {<SelectCountry/>}/>
 
-//merged
           <Route path='/instructor/MyCourses/CourseDetails' element={  <CourseDetailsInstructor/> }/>
           <Route path='/instructor/CourseDetails' element={  <CourseDetailsInstructor/> }/>
           <Route path='/instructor/MyReviews' element={  <MyReviews/> }/>
@@ -111,8 +111,14 @@ function App() {
           <Route path='/AdminAddInstructor'element={ <AddInstructor/>}/>
           <Route path='/AdminAddCoTrainee' element={ <AddCoTrainee/>} /> 
           <Route path='/instructor/promotion' element={<Promotion/> } />
-        </Routes>
         
+          <Route
+         path='/instructor/CreateCourse' 
+         element= {
+          <CreateCourse/>
+         }
+         />
+        </Routes>
       </BrowserRouter>
 
     </div>

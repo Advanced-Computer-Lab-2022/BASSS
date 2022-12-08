@@ -8,6 +8,7 @@ const adminR = express.Router();
 
 // adminR.route('/')
 
+
 adminR.get("/" , function(req,res){
     res.render("../views/admin.ejs",{message:"",title:"login"});
   });
