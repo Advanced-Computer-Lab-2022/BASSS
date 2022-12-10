@@ -19,9 +19,10 @@ function Instructor(){
 
     
     return(
-        <div>
-         {/* <InstructorNavBar/> */}
+        <>
+        {/* <InstructorNavBar/> */}
         <div className='Instructor-body'>
+        {/* <InstructorNavBar/> */}
         <Link to ="/instructor/SelectCountry">
         <button className='instructor_selectcountrybtn'> Select your Country</button>
         </Link>

@@ -204,4 +204,22 @@ instructorR.get("/:country",function(req,res){
 
 })
 
+instructorR.get("/:country",function(req,res){
+  const country = req.params.country;
+  console.log(country);
+  var query = instructors.find({Username:"soha"})
+      query.exec(function(err,result){
+          if (err) throw err;
+          if(result.length==0){
+            //  res.render("../views/instructor.ejs",{title:"instructor country"});
+          }else{
+              instructors.findOneAndUpdate({Username:"soha"},{Country:country},{upsert:true},function(err,doc){
+                  if(err) throw err;
+                });         
+            // res.render("../views/instructor.ejs",{title:"instructor country"});
+          }
+})
+
+})
+
 module.exports = instructorR;

@@ -34,6 +34,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
             (res) => { 
                 const result = res.data
                 setmycourses(result)
+                // alert(mycourses)
             }
              );
     }

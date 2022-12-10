@@ -7,10 +7,10 @@ function ExerciseP(){
     return(
         <>
         <div className='exercise-body'>
-        <Navbar  FirstLinkText='Home' SecondLinkText='My Courses' ThirdLinkText='View Courses' FourthLinkText=''  
+        {/* <Navbar  FirstLinkText='Home' SecondLinkText='My Courses' ThirdLinkText='View Courses' FourthLinkText=''  
         ButtonLinkText='Logout' 
         LogoLinkTo='/Instructor' FirstLinkTo='/IndividualTrainee' SecondLinkTo='/IndividualTrainee0/MyCourses' ThirdLinkTo='/Courses' FourthLinkTo='' 
-        ButtonLinkTo='/'/>
+        ButtonLinkTo='/'/> */}
 
         <Exercise Type='corporate'/>
 

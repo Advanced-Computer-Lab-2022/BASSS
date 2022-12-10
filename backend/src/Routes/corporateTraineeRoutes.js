@@ -88,20 +88,19 @@ corporateTraineeR.get("/forgetpass",function(req,res){
 
 corporateTraineeR.get("/CorporateCourses/:username",async(req, res) => {
     const username = req.params.username;
-    const trainee = await corporateTrainees.find({UserName:username})
-    console.log(trainee)
+    const trainee = await corporateTrainees.find({Username:username})
     const courseID = trainee[0].courses
     console.log('CourseID sara')
     console.log(courseID[0].Exercises)
     var list = []
-    // for (let i = 0; i < courseID.length; i++) {
-    //     const course = await courses.findOne({_id:courseID[i].Course})
-    //     console.log(course)
-
-    //     list = list.concat([course])
-    // }
+    for (let i = 0; i < courseID.length-1; i++) {
+        const course = await courses.findOne({_id:courseID[i].Course})
+        list = list.concat([course])
+    }
   res.json(list)
 });
+
+
 corporateTraineeR.get("/:country",function(req,res){
   const country = req.params.country;
   console.log(country);
