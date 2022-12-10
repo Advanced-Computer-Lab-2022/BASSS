@@ -62,7 +62,7 @@ function Instructor(){
         {/* <SelectCountry/> */}
 
         </div>
-        </div>
+        </>
     )
 }
 export default Instructor;
