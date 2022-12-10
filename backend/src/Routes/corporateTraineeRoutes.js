@@ -12,22 +12,6 @@ corporateTraineeR.get("/",(req, res) => {
 });
 
 
-corporateTraineeR.get("/:country",function(req,res){
-    const country = req.params.country;
-    console.log(country);
-    var query = corporateTrainees.find({Username:"sara"})
-        query.exec(function(err,result){
-            if (err) throw err;
-            if(result.length==0){
-                // res.render("../views/instructor.ejs",{title:"instructor country"});
-            }else{
-                corporateTrainees.findOneAndUpdate({Username:"sara"},{Country:country},{upsert:true},function(err,doc){
-                    if(err) throw err;
-                });         
-                // res.render("../views/instructor.ejs",{title:"instructor country"});
-            }
-})
-})
 
 corporateTraineeR.get("/myInfo/pass/:pass",function(req,res){
     // console.log(req.body)
@@ -112,5 +96,23 @@ corporateTraineeR.get("/CorporateCourses/:username",async(req, res) => {
     }
   res.json(list)
 });
+
+
+corporateTraineeR.get("/:country",function(req,res){
+  const country = req.params.country;
+  console.log(country);
+  var query = corporateTrainees.find({Username:"sara"})
+      query.exec(function(err,result){
+          if (err) throw err;
+          if(result.length==0){
+              // res.render("../views/instructor.ejs",{title:"instructor country"});
+          }else{
+              corporateTrainees.findOneAndUpdate({Username:"sara"},{Country:country},{upsert:true},function(err,doc){
+                  if(err) throw err;
+              });         
+              // res.render("../views/instructor.ejs",{title:"instructor country"});
+          }
+})
+})
 
 module.exports = corporateTraineeR;

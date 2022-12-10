@@ -58,23 +58,7 @@ instructorR.get("/searchmycourses/:instructorName/:searchkey", async function(re
   
   })
     
-instructorR.get("/:country",function(req,res){
-    const country = req.params.country;
-    console.log(country);
-    var query = instructors.find({Username:"soha"})
-        query.exec(function(err,result){
-            if (err) throw err;
-            if(result.length==0){
-              //  res.render("../views/instructor.ejs",{title:"instructor country"});
-            }else{
-                instructors.findOneAndUpdate({Username:"soha"},{Country:country},{upsert:true},function(err,doc){
-                    if(err) throw err;
-                  });         
-              // res.render("../views/instructor.ejs",{title:"instructor country"});
-            }
-})
 
-})
 instructorR.get("/myInfo/second/:mail",function(req,res){
   //  console.log(req.body)
     var mail = req.params.mail;
@@ -174,6 +158,24 @@ instructorR.get("/forgetpass",function(req,res){
         console.log('Email sent: ' + info.response);
       }
     });
+
+})
+
+instructorR.get("/:country",function(req,res){
+  const country = req.params.country;
+  console.log(country);
+  var query = instructors.find({Username:"soha"})
+      query.exec(function(err,result){
+          if (err) throw err;
+          if(result.length==0){
+            //  res.render("../views/instructor.ejs",{title:"instructor country"});
+          }else{
+              instructors.findOneAndUpdate({Username:"soha"},{Country:country},{upsert:true},function(err,doc){
+                  if(err) throw err;
+                });         
+            // res.render("../views/instructor.ejs",{title:"instructor country"});
+          }
+})
 
 })
 
