@@ -16,7 +16,7 @@ const cors = require('cors');
 const guestR = require("./Routes/guestRoutes");
 
 const app = express();
-
+app.use(express.json());
 
 app.use(bodyParser.urlencoded({ extended: false }))
 const port = process.env.PORT || "9000";

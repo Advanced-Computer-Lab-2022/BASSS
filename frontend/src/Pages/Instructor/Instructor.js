@@ -19,8 +19,8 @@ function Instructor(){
 
     
     return(
-        <>
-         <InstructorNavBar/>
+        <div>
+         {/* <InstructorNavBar/> */}
         <div className='Instructor-body'>
         <Link to ="/instructor/SelectCountry">
         <button className='instructor_selectcountrybtn'> Select your Country</button>
@@ -61,7 +61,7 @@ function Instructor(){
         {/* <SelectCountry/> */}
 
         </div>
-        </>
+        </div>
     )
 }
 export default Instructor;
