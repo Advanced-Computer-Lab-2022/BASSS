@@ -58,6 +58,18 @@ courseR.get("/getsubtitle/:courseID",async(req, res) => {
   res.json(result)
 });
 
+courseR.get("/allcourses/mostviewd",async(req, res) => {
+  var list =[] ;
+  const result =await courses.find({})
+  for (let i = 0; i < result.length; i++) {    
+    if(result[i].Views>2 )
+    {
+       list = list.concat(result[i]);
+    }
+  }
+  res.json(list)
+});
+
 courseR.get("/exercise/:courseID/:subtitleID", async(req,res) => {
     const courseId = req.params.courseID;
     const subtitleId = req.params.subtitleID;
@@ -245,7 +257,7 @@ courseR.post("/createCourse",async (req,res)=>{
     var CertificateTemplate = req.body.CertificateTemplate;
     var Subtitles = req.body.SubtitlesArray;
     console.log("Subtitles:")
-    console.log(Subtitles)
+    // console.log(Subtitles)
     var InstructorName = req.body.InstructorName; 
    
     try{

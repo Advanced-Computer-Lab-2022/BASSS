@@ -90,8 +90,8 @@ corporateTraineeR.get("/CorporateCourses/:username",async(req, res) => {
     const username = req.params.username;
     const trainee = await corporateTrainees.find({Username:username})
     const courseID = trainee[0].courses
-    console.log('CourseID sara')
-    console.log(courseID[0].Exercises)
+    // console.log('CourseID sara')
+    // console.log(courseID[0].Exercises)
     var list = []
     for (let i = 0; i < courseID.length-1; i++) {
         const course = await courses.findOne({_id:courseID[i].Course})

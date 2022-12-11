@@ -39,8 +39,15 @@ function Instructor(){
         
         <Search Type='instructor'/>
        
-        <Courses Link="/instructor/courseDetails"/>
+        {/* <Courses Link="/instructor/courseDetails"/> */}
         
+        <Link to ="/AllCourses">
+        <button >View AllCourses </button>
+        </Link>
+        <br></br>
+        <Link to ="/mostViewd">
+        <button >View our most popular Courses </button>
+        </Link>
 
         {/* <Courses/> */}
 
@@ -53,7 +60,7 @@ function Instructor(){
             <button>
                 View My Courses</button>
             </Link>
-
+            <br></br>
             <Link to ="/instructor/MyReviews">
             <button>
                 My Reviews</button>

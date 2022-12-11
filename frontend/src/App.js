@@ -31,6 +31,9 @@ import MyReviews from './components/ViewReviews/ViewReviews';
 import IndividualTrainee from './Pages/IndividualTrainee/IndividualTrainee';
 import CorporateTrainee from './Pages/CorporateTrainee/CorporateTrainee';
 import Promotion from './components/Promotion/Promotion';
+import MostViewd from './components/Courses/MostViewd';
+import CorporateCourses from './components/CorporateCourses/CorporateCourses';
+
 
 
 function App() {
@@ -85,14 +88,8 @@ function App() {
           <Route path='/corporatetrainee/forgetpass' element={  <EditPass Type = "corporateTrainee"/> }/>
           <Route path='/AllCourses/CourseDetails' element={  <CourseDetails/> }/>
           <Route path='/AllCourses' element={  <AllCourses Link = "/AllCourses/CourseDetails"/> }/>
-
-          
-          
           <Route path='/exercise' element={  <ExerciseP/> }/>
           <Route path='/instructor/MyCourses' element={  <MyCourses/> }/>
-
-
-
           <Route path='/Courses' element={  <Courses/> }/>
           <Route path='/instructor' element={<Instructor/> } />
           <Route path='/instructor/SelectCountry' element= {<SelectCountry/>}/>
@@ -107,11 +104,13 @@ function App() {
           <Route path='/IndividualTrainee/SelectCountry' element = { <SelectCountry/> } />
           <Route path='/CorporateTrainee' element = { <CorporateTrainee/> } /> 
           <Route path='/CorporateTrainee/SelectCountry' element = { <SelectCountry/> } /> 
+          <Route path='/CorporateTrainee/Allcourser' element = { <CorporateCourses/> } /> 
           <Route path='/AdminAddAdmin'  element={<AddAdmin/>}/>
           <Route path='/AdminAddInstructor'element={ <AddInstructor/>}/>
           <Route path='/AdminAddCoTrainee' element={ <AddCoTrainee/>} /> 
           <Route path='/instructor/promotion' element={<Promotion/> } />
-        
+          <Route path='/mostViewd' element={<MostViewd/> } />
+
           <Route
          path='/instructor/CreateCourse' 
          element= {

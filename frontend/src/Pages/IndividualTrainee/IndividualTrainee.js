@@ -26,7 +26,14 @@ function IndividualTrainee(){
         </Link>
         <Forgetpass Type="individualTrainee"/>
 
-        <Courses Link = "/individualtrainee/CourseDetails" />
+        {/* <Courses Link = "/individualtrainee/CourseDetails" /> */}
+        <Link to ="/AllCourses">
+        <button >View AllCourses </button>
+        </Link>
+        <br></br>
+        <Link to ="/mostViewd">
+        <button >View our most popular Courses </button>
+        </Link>
         <br></br><br></br><br></br><br></br><br></br><br></br>
         
         <IndividualCourses Link = "/individualtrainee/myCourseDetails"/>

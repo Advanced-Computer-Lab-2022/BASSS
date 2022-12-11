@@ -2,7 +2,7 @@ import axios from 'axios';
 import './Courses.css';
 
 import { Link, Navigate, useNavigate } from 'react-router-dom';
-
+import YoutubeEmbed from '../YoutubeEmbed/YoutubeEmbed';
 import Button from '@mui/material/Button';
 import Table from '@mui/material/Table';
 import Box from '@mui/material/Box';
@@ -163,96 +163,46 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 const navigate = useNavigate();
     return(
 
-        <div >
-            
-            {/* <Link to ="/instructor/MyCourses">
-            <button  className='soha_viewCoursebtn'
-            //3yza a5alyh yb3at el instructor name m3ah 3shn a3raf a search byh??
-            >
-                View My Courses</button>
-            </Link> */}
-            
-          {/* <h1>All Courses</h1>
-          <table class="fl-table">
-
-          <thead>
-              <th> Course Title</th>
-              <th> Total Hours </th>
-              <th> Rating </th>
-              <th> Price </th>
-          </thead>
-          <tbody>
-          {courses.map((course) => (
-              <tr 
-                onClick={() => window.location.href= `/instructor/courseDetails?courseId=${course._id}` }
-              >
-                  <td>{course.Title}</td>
-                  <td>{course.TotalHours}</td>
-                  <td>{course.Rating}</td>
-                  <td>{course.Price}</td>
-              </tr>
-          ))}  
-          </tbody>
-          </table> */}
-            
-
-           
-   
-   
+        <div className='CoursesBody-adham' >
     <div> 
     <button onClick={clickhandler1} className='submitbtn'> submit</button>
-    <input placeholder='subject' onChange={changehandler} value={choice} className='subject'/>
+    <input placeholder='Filter By Subject' onChange={changehandler} value={choice} className='subject'/>
     </div>
 
     <div> 
     <button onClick={clickhandler2} className='submitbtn'>submit</button>
-    <input placeholder='rating' onChange={changehandler2} value={choice2} className='subject' />
+    <input placeholder='Filter By Rating' onChange={changehandler2} value={choice2} className='subject' />
     </div>
 
 
     <div> 
     <button onClick={clickhandler3} className='submitbtn'>submit</button>
-    <input placeholder='price' onChange={changehandler3} value={choice3} className='subject'/>
+    <input placeholder='Filter By Price' onChange={changehandler3} value={choice3} className='subject'/>
     </div>
-    <h1>ALL COURSES</h1>
-            <div> 
-            <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-            <TableHead>
-            <TableRow>
-            <StyledTableCell align="center">Title</StyledTableCell>
-            <StyledTableCell align="center">Total Hours</StyledTableCell>
-            <StyledTableCell align="center">Rating</StyledTableCell>
-            <StyledTableCell align="center">Price</StyledTableCell>
-            </TableRow>
-            </TableHead>
-            <TableBody>
-             
-            
-          {filtered.map((course) => (
-            <TableRow id={course._id}
-            hover
-            sx={{ "&:hover":{cursor: "pointer",backgroundColor: "#f5f5f5",width: "100%"}
-            }}
 
-            onClick={() => navigate(props.Link, {state:[course._id,course.InstructorUserName]} )}
-            //key={course.InstructorUserName}
-              >
-              <TableCell align="center">{course.Title}</TableCell>
-              <TableCell align="center">{course.TotalHours}</TableCell>
-              <TableCell align="center">{course.Rating.rate}</TableCell>
-              <TableCell align="center">{course.Price}</TableCell>
-            </TableRow>
-))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+      {filtered.map((course) => (
+        <div className='AllCourses-adham'>
+            <h1 className='h1-adham'>Course Title : {course.Title}</h1>
+            <h1  className='h1-adham'>Course Total Hours : {course.TotalHours}</h1>
+            <h1  className='h1-adham'>Course Price : {course.Price}</h1>
+            <h1  className='h1-adham'>Course Rating : {course.Rating.rate}</h1>
+            <br></br><br></br>
+            <h2 className='h1-adham'>in this Course you will learn : {course.ShortSummary}</h2>
+            <br></br><br></br>
+            <h3 className='h3-adham'>Course video Preview</h3>
+            <br></br><br></br>
+            <YoutubeEmbed embedId={course.VideoPreviewLink}/>
+            <br></br><br></br>
+            <button className='register-now-adham'>REGISTER NOW </button>
+            <br></br><br></br>
+        </div>
 
-    </div>  
-
-
+      )
+      
+      )}
         </div>   
     )
 }
 
 export default Courses;
+// onClick={() => navigate(props.Link, {state:[course._id,course.InstructorUserName]} )}
