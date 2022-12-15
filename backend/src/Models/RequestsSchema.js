@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const RequestSchema = new Schema({
+    
     Reporter: {
         type: String,
         required: true
@@ -11,6 +12,11 @@ const RequestSchema = new Schema({
         type:String,
         required:true,
         default:'Unseen'
+    },
+
+    CourseID:{
+        type:String,
+        required:true,
     }
     
 }, { timestamps: true });

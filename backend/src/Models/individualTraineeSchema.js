@@ -63,15 +63,21 @@ const individualTraineeschema = new Schema({
     },
     
     Notes: {
-        type: [String], //[Note1,Note2,Note3,......]
+        type: [{
+            Note:String,
+            SubtitleID:String
+        }], //[Note1,Note2,Note3,......]
     },
 
     Reports: {
-        type: [[String]], //[[Report1.ID,Type,Status,FollowUp],[Report2.ID,Type,Status,FollowUp],[Report3.ID,Type,Status,FollowUp],......]
+        type: [String], // ReportID
     },
 
     RefundRequests: {
-        type: [[String]], //[[Course1.ID,Status],[Course2.ID,Status],[Course3.ID,Status],...... ]
+        type: [{
+            CourseID:String,
+            Status:String
+        }], //[{Course1.ID,Status},{Course2.ID,Status},{Course3.ID,Status},...... ]
     }
 
 
