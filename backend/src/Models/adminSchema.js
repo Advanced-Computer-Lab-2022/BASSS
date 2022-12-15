@@ -17,9 +17,15 @@ const adminSchema = new Schema({
         type: [String]
     },
   
-    requests: {
+    CourseRequests: {
         type: [String],
-    }
+    },
+
+    RefundRequests: {
+        type: [String],
+    },
+
+
 
 }, { timestamps: true });
 

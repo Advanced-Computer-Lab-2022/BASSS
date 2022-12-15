@@ -1,0 +1,47 @@
+
+.Admin_Body {
+background: rgb(0,108,177);
+background: radial-gradient(circle, rgba(0,108,177,1) 0%, rgba(15,39,92,1) 100%);
+background-size:cover;
+background-position: center;
+height: 100%;
+}
+
+
+
+.h1_Admin_Courses {
+color: black;
+}
+
+.Admin_CoursesPage_CoursesDiv{
+    position: relative;
+    margin-top: 8%;
+    left:5%;
+    bottom: 30px;
+    width: 90%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 15px;
+
+
+}
+
+.Admin_CorporateCourses_Div{
+    position: relative;
+    left: 3%;
+    margin-top: 0%;
+    width: 35%;
+    top: 20px;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 15px;
+}
+
+.Admin_AllCourses_Div{
+    position: relative;
+    margin-top: -84%;
+    bottom: 30px;
+    width: 57%;
+    left:  40%;
+    background-color: rgba(52, 0, 0, 0.5);
+    border-radius: 15px;
+}

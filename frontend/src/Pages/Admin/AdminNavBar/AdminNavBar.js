@@ -4,12 +4,13 @@ import Navbar from '../../../components/Navbar/Navbar';
 
 export default function AdminNavBar(){
     return <div>
-    <Navbar SecondLinkText='Courses' FirstLinkText=' ' ThirdLinkText='Reports' FourthLinkText='Add User'  
+    <Navbar SecondLinkText='Courses' FirstLinkText='' ThirdLinkText='Reports' FourthLinkText='Add User'  
     ButtonLinkText='Logout' 
-    LogoLink='/adham' SecondLinkTo='/CoursesAdmin' FirstLinkTo='/AdminProfile' ThirdLinkTo='/AdminReports' FourthLinkTo='/AdminAddUsers' 
+    LogoLink='/Admin' SecondLinkTo='/CoursesAdmin'  ThirdLinkTo='/AdminReports' FourthLinkTo='/AdminAddUsers' 
     ButtonLinkTo='/'/>
     </div>
 }
 
+//FirstLinkTo='/AdminProfile'
 
 //FifthLinkTo='/CoursesAdmin' , FifthLinkText='Courses'
