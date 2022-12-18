@@ -4,13 +4,14 @@
     /* background-image: linear-gradient(-100deg,rgba(76, 79, 81, 0.7),rgba(3, 35, 46, 0.7)),url('../../public/images/instructor.jpg'); */
 
     background-size:cover;
+    /* object-fit: contain; */
     background-repeat: no-repeat;
     background-position: center;
-    height: 673px;
+    height: 100%;
     
     
 }
-.selectcountrybtn
+.selectcountrybtnindividual
 {
     background-color: transparent;
     color: #fff;
@@ -23,9 +24,9 @@
     cursor: pointer;
     position: absolute;
     top: 200px;
-    left: 200px;
+    left: 1000px;
 }
-  .selectcountrybtn:hover{
+  .selectcountrybtnindividual:hover{
     background-color: #fff;
     color: black;
   }

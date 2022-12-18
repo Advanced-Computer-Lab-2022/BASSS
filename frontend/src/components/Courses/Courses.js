@@ -2,7 +2,7 @@ import axios from 'axios';
 import './Courses.css';
 
 import { Link, Navigate, useNavigate } from 'react-router-dom';
-
+import YoutubeEmbed from '../YoutubeEmbed/YoutubeEmbed';
 import Button from '@mui/material/Button';
 import Table from '@mui/material/Table';
 import Box from '@mui/material/Box';
@@ -21,16 +21,13 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     },
     [`&.${tableCellClasses.body}`]: {
       fontSize: 14,
+      
     },
   }));
 
-const { useState, useEffect } = require("react");
-
-const Courses = (props) => { 
-
-   // const subj =  document.getElementById(subs).value;
-  //var selectElement = document.querySelector('#subs');
-  //var output = selectElement.value;
+  const { useState, useEffect } = require("react");
+  
+  const Courses = (props) => { 
 
 
       var [choice,setchoice] = useState([]);
@@ -40,10 +37,6 @@ const Courses = (props) => {
    
       const [filtered,setfiltered] = useState([]);
       const [first,setfirst] = useState(0);
-      //const [filteredbyRate,setfilteredbyRate] = useState([]);
-      //const [filteredbyPrice,setfilteredbyPrice] = useState([]);
-
-      
       
       const getfiltered =  async () => {
         // alert(choice2)
@@ -55,81 +48,75 @@ const Courses = (props) => {
                 setfiltered(filtered)
             }
              );
-}else {
-  if(choice.length==0 && choice3.length==0 && choice2!=0){
-    await axios.get(`http://localhost:9000/course/empty/${choice2}/empty`).then(
-        (res) => { 
-            const filteredbyRate = res.data
-            console.log(filteredbyRate)
-            setfiltered(filteredbyRate)
-            
+        }else if(choice.length==0 && choice3.length==0 && choice2!=0){
+            await axios.get(`http://localhost:9000/course/empty/${choice2}/empty`).then(
+                (res) => { 
+                    const filteredbyRate = res.data
+                    console.log(filteredbyRate)
+                    setfiltered(filteredbyRate)
+                    
+                }
+                );
         }
-         );
-}
-
- else if(choice2.length==0 && choice3.length==0){
-    await axios.get(`http://localhost:9000/course/${choice}/empty/empty`).then(
-        (res) => { 
-            const filteredbyRate = res.data
-            console.log(filteredbyRate)
-            setfiltered(filteredbyRate)
-            
+        else if(choice2.length==0 && choice3.length==0){
+            await axios.get(`http://localhost:9000/course/${choice}/empty/empty`).then(
+                (res) => { 
+                    const filteredbyRate = res.data
+                    console.log(filteredbyRate)
+                    setfiltered(filteredbyRate)
+                    
+                }
+                );
         }
-         );
-}else if(choice.length==0 && choice2.length==0){
-    await axios.get(`http://localhost:9000/course/empty/empty/${choice3}`).then(
-        (res) => { 
-            const filteredbyRate = res.data
-            console.log(filteredbyRate)
-            setfiltered(filteredbyRate)
-            
+        else if(choice.length==0 && choice2.length==0){
+            await axios.get(`http://localhost:9000/course/empty/empty/${choice3}`).then(
+                (res) => { 
+                    const filteredbyRate = res.data
+                    console.log(filteredbyRate)
+                    setfiltered(filteredbyRate)
+                    
+                }
+                );
+        }else if(choice.length==0){
+            await axios.get(`http://localhost:9000/course/empty/${choice2}/${choice3}`).then(
+                (res) => { 
+                    const filteredbyRate = res.data
+                    console.log(filteredbyRate)
+                    setfiltered(filteredbyRate)
+                    
+                }
+                );
+        }else if(choice2.length==0){
+            await axios.get(`http://localhost:9000/course/${choice}/empty/${choice3}`).then(
+                (res) => { 
+                    const filteredbyRate = res.data
+                    console.log(filteredbyRate)
+                    setfiltered(filteredbyRate)
+                    
+                }
+                );
+        }else if(choice3.length==0){
+            await axios.get(`http://localhost:9000/course/${choice}/${choice2}/empty`).then(
+                (res) => { 
+                    const filteredbyRate = res.data
+                    console.log(filteredbyRate)
+                    setfiltered(filteredbyRate)
+                    
+                }
+                );
         }
-         );
-}else if(choice.length==0){
-    await axios.get(`http://localhost:9000/course/empty/${choice2}/${choice3}`).then(
-        (res) => { 
-            const filteredbyRate = res.data
-            console.log(filteredbyRate)
-            setfiltered(filteredbyRate)
-            
+        else {
+            await axios.get(`http://localhost:9000/course/${choice}/${choice2}/${choice3}`).then(
+                    (res) => { 
+                        const filteredbyRate = res.data
+                        console.log(filteredbyRate)
+                        setfiltered(filteredbyRate)
+                        
+                    }
+                    );
         }
-         );
-}else if(choice2.length==0){
-    await axios.get(`http://localhost:9000/course/${choice}/empty/${choice3}`).then(
-        (res) => { 
-            const filteredbyRate = res.data
-            console.log(filteredbyRate)
-            setfiltered(filteredbyRate)
-            
-        }
-         );
-}else if(choice3.length==0){
-    await axios.get(`http://localhost:9000/course/${choice}/${choice2}/empty`).then(
-        (res) => { 
-            const filteredbyRate = res.data
-            console.log(filteredbyRate)
-            setfiltered(filteredbyRate)
-            
-        }
-         );
-}
-else {
-await axios.get(`http://localhost:9000/course/${choice}/${choice2}/${choice3}`).then(
-        (res) => { 
-            const filteredbyRate = res.data
-            console.log(filteredbyRate)
-            setfiltered(filteredbyRate)
-            
-        }
-         );
-}
-
-}
-
-      }
-
-
-      
+    }
+    
              const changehandler =  async(e)=>{
                 setchoice(e.target.value);
              }
@@ -149,6 +136,10 @@ await axios.get(`http://localhost:9000/course/${choice}/${choice2}/${choice3}`).
             const clickhandler3 = ()=>{
               getfiltered()
              }
+        /*     const clickhandler4 = ()=>{
+                forgotpass()
+                alert('check you mail:) ')
+               }*/
 
              if(first==0)
              {
@@ -156,67 +147,62 @@ await axios.get(`http://localhost:9000/course/${choice}/${choice2}/${choice3}`).
                 setfirst(1)
              }
 
-const navigate = useNavigate();
+    const totalpath = window.location.pathname;
+    var mysubstring = totalpath.substring(totalpath.indexOf("/")+1 , totalpath.lastIndexOf("/"))
 
+ /*   const forgotpass =  async () => {
+        await axios.get(`http://localhost:9000/individualtrainee/forgetpass`).then(
+            (res) => { 
+                alert('check your mail')
+            }
+            
+             );
+    }*/
+
+
+const navigate = useNavigate();
     return(
 
-        <div >
-            
-
-   
+        <div className='CoursesBody-adham' >
     <div> 
-    <button onClick={clickhandler1}>submit</button>
-    <input placeholder='subject' onChange={changehandler} value={choice}/>
+    <button onClick={clickhandler1} className='submitbtn'> submit</button>
+    <input placeholder='Filter By Subject' onChange={changehandler} value={choice} className='subject'/>
     </div>
 
     <div> 
-    <button onClick={clickhandler2}>submit</button>
-    <input placeholder='rating' onChange={changehandler2} value={choice2} />
+    <button onClick={clickhandler2} className='submitbtn'>submit</button>
+    <input placeholder='Filter By Rating' onChange={changehandler2} value={choice2} className='subject' />
     </div>
 
 
     <div> 
-    <button onClick={clickhandler3}>submit</button>
-    <input placeholder='price' onChange={changehandler3} value={choice3}/>
+    <button onClick={clickhandler3} className='submitbtn'>submit</button>
+    <input placeholder='Filter By Price' onChange={changehandler3} value={choice3} className='subject'/>
     </div>
 
+      {filtered.map((course) => (
+        <div className='AllCourses-adham'>
+            <h1 className='h1-adham'>Course Title : {course.Title}</h1>
+            <h1  className='h1-adham'>Course Total Hours : {course.TotalHours}</h1>
+            <h1  className='h1-adham'>Course Price : {course.Price}</h1>
+            <h1  className='h1-adham'>Course Rating : {course.Rating.rate}</h1>
+            <br></br><br></br>
+            <h2 className='h1-adham'>in this Course you will learn : {course.ShortSummary}</h2>
+            <br></br><br></br>
+            <h3 className='h3-adham'>Course video Preview</h3>
+            <br></br><br></br>
+            <YoutubeEmbed embedId={course.VideoPreviewLink}/>
+            <br></br><br></br>
+            <button className='register-now-adham'>REGISTER NOW </button>
+            <br></br><br></br>
+        </div>
 
-            <div> 
-            <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-            <TableHead>
-            <TableRow>
-            <StyledTableCell align="center">Title</StyledTableCell>
-            <StyledTableCell align="center">Total Hours</StyledTableCell>
-            <StyledTableCell align="center">Rating</StyledTableCell>
-            <StyledTableCell align="center">Price</StyledTableCell>
-            </TableRow>
-            </TableHead>
-            <TableBody>
-             
-            
-          {filtered.map((course) => (
-            <TableRow id={course._id}
-            hover
-            sx={{ "&:hover":{cursor: "pointer",backgroundColor: "#f5f5f5",width: "100%"}
-            }}
-
-            onClick={() => navigate(props.Link, {state:[course._id,course.InstructorUserName]} )}
-            //key={course.InstructorUserName}
-              >
-              <TableCell align="center">{course.Title}</TableCell>
-              <TableCell align="center">{course.TotalHours}</TableCell>
-              <TableCell align="center">{course.Rating.rate}</TableCell>
-              <TableCell align="center">{course.Price}</TableCell>
-            </TableRow>
-))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-
-    </div> 
+      )
+      
+      )}
         </div>   
     )
 }
 
 export default Courses;
+// onClick={() => navigate(props.Link, {state:[course._id,course.InstructorUserName]} )}

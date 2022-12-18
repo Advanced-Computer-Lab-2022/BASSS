@@ -3,40 +3,124 @@ const instructorR = express.Router();
 const mongoose = require('mongoose');
 const instructors = require("../Models/instructorSchema");
 const courses = require("../Models/courseSchema");
+var nodemailer = require('nodemailer');
 
+instructorR.get("/searchmycourses/:instructorName/:searchkey", async function(req,res){
+     const key = req.params.searchkey;
+     const name = req.params.instructorName;
+     var array = [];
+     var query = await courses.find({InstructorUserName:name});
+     for(let i = 0 ; i<query.length ; i++)
+     {
+         course = query[i];
+         if (course.Title.toLowerCase().includes(key.toLowerCase()) ||
+             course.Subject.toLowerCase().includes(key.toLowerCase()))
+         {
+             array=array.concat(course);
+         }
+     }
+     res.status(200).json(array)
+ 
+ })
 
-instructorR.get("/",(req, res) => {
-    res.render("../views/instructor.ejs",{title:"instructor"})});
+ instructorR.get('/instructorViewtitles', function(req, res) { 
+    var query = courses.find({InstructorUserName:"salama"})
+    query.exec(function(err,result){
+        if (err) throw err;
+        if(result.length==0){
+           // res.render("../views/instructor.ejs",{title:"view course"});
+        }else{
+            courses.find({InstructorUserName:"salama"})      
+      
+        res.send(result);
+         // res.render("../views/instructorViewtitles.ejs",{title:"view courses"});
+        }
+      })
 
-instructorR.get("/:country",function(req,res){
-    const country = req.params.country;
-    console.log(country);
+   
+    })
+
+    instructorR.get("/myInfo/first/:minibio",function(req,res){
+      //console.log(req.body)
+      var minibio = req.params.minibio;
+      var query = instructors.find({Username:"soha"})
+          query.exec(function(err,result){
+              if (err) throw err;
+              if(result.length==0){
+                //  res.render("../views/instructor.ejs",{title:"instructor country"});
+              }else{
+                  instructors.findOneAndUpdate({Username:"soha"},{MiniBio:minibio},{upsert:true},function(err,doc){
+                      if(err) throw err;
+                    });         
+                // res.render("../views/instructor.ejs",{title:"instructor country"});
+              }
+  })
+  
+  })
+    
+
+instructorR.get("/myInfo/second/:mail",function(req,res){
+  //  console.log(req.body)
+    var mail = req.params.mail;
     var query = instructors.find({Username:"soha"})
         query.exec(function(err,result){
             if (err) throw err;
             if(result.length==0){
-                // res.render("../views/instructor.ejs",{title:"instructor country"});
+              //  res.render("../views/instructor.ejs",{title:"instructor country"});
             }else{
-                instructors.findOneAndUpdate({Username:"soha"},{Country:country},{upsert:true},function(err,doc){
+                instructors.findOneAndUpdate({Username:"soha"},{Email:mail},{upsert:true},function(err,doc){
                     if(err) throw err;
-                });         
-                // res.render("../views/instructor.ejs",{title:"instructor country"});
+                  });         
+              // res.render("../views/instructor.ejs",{title:"instructor country"});
             }
-        })        
 })
 
+})
+instructorR.get("/myInfo/third/:pass",function(req,res){
+    // console.log(req.body)
+    var pass = req.params.pass;
+    var query = instructors.find({Username:"soha"})
+        query.exec(function(err,result){
+            if (err) throw err;
+            if(result.length==0){
+              //  res.render("../views/instructor.ejs",{title:"instructor country"});
+            }else{
+                instructors.findOneAndUpdate({Username:"soha"},{Password:pass},{upsert:true},function(err,doc){
+                    if(err) throw err;
+                  });         
+              // res.render("../views/instructor.ejs",{title:"instructor country"});
+            }
+})
+
+})
+  
+instructorR.get("/myInfo/pass/:pass",function(req,res){
+    // console.log(req.body)
+      var pass = req.params.pass;
+      var query = instructors.find({Username:"soha"})
+          query.exec(function(err,result){
+              if (err) throw err;
+              if(result.length==0){
+                //  res.render("../views/instructor.ejs",{title:"instructor country"});
+              }else{
+                instructors.findOneAndUpdate({Username:"soha"},{Password:pass},{upsert:true},function(err,doc){
+                      if(err) throw err;
+                    });         
+              // res.render("../views/instructor.ejs",{title:"instructor country"});
+              }
+  })
+})
 
 instructorR.get("/viewRating/review",async(req, res) => {
-   const result =await instructors.findOne({Username:"salama"})
-   res.json(result)
+  const result =await instructors.find({Username:"salama"})
+  res.json(result)
 });
 
 instructorR.get("/getInstructor/:name",async(req, res) => {
-    var name = req.params.name;
-    const result =await instructors.findOne({Username:name})
-    res.json(result)
+   var name = req.params.name;
+   const result =await instructors.findOne({Username:name})
+   res.json(result)
 });
-
 
 
 instructorR.get("/updateRate/:name/:newRate",async(req, res) => {
@@ -50,96 +134,74 @@ instructorR.get("/updateRate/:name/:newRate",async(req, res) => {
     res.json(result)
 });
 
-
-instructorR.post("/searchtitle",async function(req,res){
-    var search = req.params.searchtitle
-    var query = await courses.find({});
-    var array = [];
-    for(let i = 0 ; i<query.length ; i++)
-    {
-        if (query[i].Title.toLowerCase().includes(search.toLowerCase()))
-        {
-            array=array.concat([query[i]]);
-        }
-    }
-    res.send(array);
-})
-
-instructorR.post("/searchsubject",async function(req,res){
-    var search = req.body.searchsubject
-    var query = await courses.find({});
-    var array = [];
-    for(let i = 0 ; i<query.length ; i++)
-    {
-        if (query[i].Subject.toLowerCase().includes(search.toLowerCase()))
-        {
-            array=array.concat([query[i]]);
-        }
-    }
-    res.send(array);
-})
-
-
-instructorR.post("/searchinstructor",async function(req,res){
-    var search = req.body.searchinstructor
-    var query = await courses.find({});
-    var array = [];
-    for(let i = 0 ; i<query.length ; i++)
-    {
-        if (query[i].Instructorname.toLowerCase().includes(search.toLowerCase()))
-        {
-            array=array.concat([query[i]]);
-        }
-    }
-    res.send(array);
-})
-
-// instructorR.post("/searchinstructor",async function(req,res){
-//     var search = req.body.searchinstructor
-//     var ins = await instructors.find({});
-//     var array = [];
-//     for(let i = 0 ; i<ins.length ; i++)
-//     {
-//         if (ins[i].username.toLowerCase().includes(search.toLowerCase()))
-//         {
-//             array=array.concat([ins[i]]);
-//         }
-//     }
-//     var cour = await courses.find({});
-//     var array2 = [];
-//     for(let i =0 ; i<array.length ; i++)
-//     {
-//         for(let j =0; j<cour.length ; j++)
-//         {
-//             if(array[i]==cour[j].Instructor)
-//             {
-//                 array2 = array2.concat([cour[j]]);
-//             }
-//         }
-//     }
-//     res.send(array2);
-// })
+      
+// instructorR.get("/forget2pass",function(req,res){
+//   var transporter = nodemailer.createTransport({
+//       service: 'gmail',
+//       auth: {
+//         user: 'acltest321@gmail.com',
+//         pass: 'yzdnccfnpqvmwpgr'
+//       }
+//     });
     
-// instructorR.post("/addcourse",function(req,res){
-//     var instructor = req.body.InstructorUserName;
-//     var title = req.body.title;
-//     var subject = req.body.subject;
-//     var price = req.body.price;
-//     var outline = req.body.outline;
-//     var shortsummary = req.body.shortsummary;
-//     var totalhours = req.body.subtitle;
+//     var mailOptions = {
+//       from: 'acltest321@gmail.com',
+//       to: 'basselbassel28@gmail.com',
+//       subject: 'Sending Email using Node.js',
+//       text: 'To reset your password please click here , http://localhost:3000/instructor/forgetpass'
+//     };
+    
+//     transporter.sendMail(mailOptions, function(error, info){
+//       // if (error) {
+//       //   console.log(error);
+//       // } else {
+//       //   console.log('Email sent: ' + info.response);
+//       // }
+//     });
 
-
-//     courses.create({Instructor:instructor,
-//         Title:title,
-//         Subject:subject,
-//         Price:price,
-//         Outline:outline,
-//         ShortSummary:shortsummary,
-//         TotalHours:totalhours,
-
-//     }
-//       );    
-//       res.render("../views/instructor.ejs",{title:"add a course"});
 // })
+
+instructorR.get("/forgetpass", (req,res) => {
+  var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'acltest321@gmail.com',
+      pass: 'yzdnccfnpqvmwpgr'
+    }
+  });
+  
+  var mailOptions = {
+    from: 'acltest321@gmail.com',
+    to: 'basselbassel28@gmail.com',
+    subject: 'Sending Email using Node.js',
+    text: 'To reset your password please click here , http://localhost:3000/instructor/forgetpass'
+  };
+  
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  });
+})
+
+instructorR.get("/:country",function(req,res){
+  const country = req.params.country;
+  // console.log(country);
+  var query = instructors.find({Username:"soha"})
+      query.exec(function(err,result){
+          if (err) throw err;
+          if(result.length==0){
+            //  res.render("../views/instructor.ejs",{title:"instructor country"});
+          }else{
+              instructors.findOneAndUpdate({Username:"soha"},{Country:country},{upsert:true},function(err,doc){
+                  if(err) throw err;
+                });         
+            // res.render("../views/instructor.ejs",{title:"instructor country"});
+          }
+})
+
+})
+
 module.exports = instructorR;

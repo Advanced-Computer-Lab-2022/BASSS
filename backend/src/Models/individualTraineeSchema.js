@@ -48,12 +48,14 @@ const individualTraineeschema = new Schema({
         required:true
     },
 
-    courses: {
-        type: [[String]], //[[Course1.ID,Progress%],[Course2.ID,Progress%],[Course3.ID,Progress%],...... ]
+    Courses: {
+        type: [{Course:mongoose.Schema.Types.ObjectId, Progress:Number }]
+        // type: [[String]], //[[Course1.ID,Progress%],[Course2.ID,Progress%],[Course3.ID,Progress%],...... ]
     },
     
     Exercises: {
-        type: [[String]], //[[Ex1.ID,MyAnswer,MyGrade],[Ex2.ID,MyAnswer,MyGrade],[Ex3.ID,MyAnswer,MyGrade],......]
+        type: [{Subtitle: mongoose.Schema.Types.ObjectId, MyAnswer: String, MyGrade:String}]
+        // type: [[String]], //[[Ex1.ID,MyAnswer,MyGrade],[Ex2.ID,MyAnswer,MyGrade],[Ex3.ID,MyAnswer,MyGrade],......]
     },
 
     Certificates: {
@@ -61,19 +63,29 @@ const individualTraineeschema = new Schema({
     },
     
     Notes: {
-        type: [String], //[Note1,Note2,Note3,......]
+        type: [{
+            Note:String,
+            SubtitleID:String
+        }], //[Note1,Note2,Note3,......]
     },
 
     Reports: {
-        type: [[String]], //[[Report1.ID,Type,Status,FollowUp],[Report2.ID,Type,Status,FollowUp],[Report3.ID,Type,Status,FollowUp],......]
+        type: [String], // ReportID
     },
 
     RefundRequests: {
-        type: [[String]], //[[Course1.ID,Status],[Course2.ID,Status],[Course3.ID,Status],...... ]
+        type: [{
+            CourseID:String,
+            Status:String
+        }], //[{Course1.ID,Status},{Course2.ID,Status},{Course3.ID,Status},...... ]
     }
 
 
 }, { timestamps: true });
 
+
 const individualTrainees = mongoose.model('individualTrainees', individualTraineeschema);
+// individualTrainees.create({UserName:'kkkkk',FirstName:'yasso',LastName:'yasso',Email:'kkkkk@gmail.com',
+// Country:'germany',Password:'123',Gender:'male',Courses:[['637e73821194304d45a2fe5a','50%'],['6383a008cf44823c1f52d63a','20%']],
+// Wallet:20})
 module.exports = individualTrainees;

@@ -14,7 +14,6 @@ const corporateTraineeschema = new Schema({
         //required: true,
         unique: true,
     },
-
     Password: {
         type: String,
         required: true,
@@ -26,27 +25,37 @@ const corporateTraineeschema = new Schema({
     },
 
     courses: {
-        type: [[String]], //[[Course1.ID,Progress%],[Course2.ID,Progress%],[Course3.ID,Progress%],...... ]
+        type: [{Course:mongoose.Schema.Types.ObjectId, Progress:Number }], //[[Course1.ID,Progress%],[Course2.ID,Progress%],[Course3.ID,Progress%],...... ]
+    },
+
+    AccessibleCourses:{
+        type: [mongoose.Schema.Types.ObjectId], //[[Course1.ID,Course2.ID,,Course3.ID,...... ]
     },
     
     Exercises: {
-        type: [[String]], //[[Ex1.ID,MyAnswer,MyGrade],[Ex2.ID,MyAnswer,MyGrade],[Ex3.ID,MyAnswer,MyGrade],......]
+        type: [{Subtitle: mongoose.Schema.Types.ObjectId, MyAnswer: String, MyGrade:String}], //[[Ex1.ID,MyAnswer,MyGrade],[Ex2.ID,MyAnswer,MyGrade],[Ex3.ID,MyAnswer,MyGrade],......]
     },
 
     Certificates: {
-        type: [String], //[Certificates1,Certificates2,Certificates3,......]
+        type: [{
+            Certificates:String,
+            CourseID:String
+        }], //[Certificates1,Certificates2,Certificates3,......]
     },
     
     Notes: {
-        type: [String], //[Note1,Note2,Note3,......]
+        type: [{
+            Note:String,
+            SubtitleID:String
+        }], //[Note1,Note2,Note3,......]
     },
 
     Reports: {
-        type: [[String]], //[[Report1.ID,Type,Status,FollowUp],[Report2.ID,Type,Status,FollowUp],[Report3.ID,Type,Status,FollowUp],......]
+        type: [String], // ReportID
     },
 
     courseRequests: {
-        type: [[String]], //[[Course1.ID,Status],[Course2.ID,Status],[Course3.ID,Status],...... ]
+        type: [String], //[Request1 ID,Request2 ID,Request3 ID,...... ]
     }
 
 
@@ -54,4 +63,6 @@ const corporateTraineeschema = new Schema({
 
 
 const corporateTrainee = mongoose.model('corporateTrainee', corporateTraineeschema);
+// corporateTrainee.create({Username:'nour',Email:'nour@gmail.com',
+// Country:'germany',Password:'123',courses:[['637e73821194304d45a2fe5a','50%'],['6383a008cf44823c1f52d63a','20%']]})
 module.exports = corporateTrainee;

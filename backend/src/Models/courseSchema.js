@@ -1,8 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-// require('mongoose-currency').loadType(mongoose);
-// var Currency = mongoose.Types.Currency;
+const subtitleSchema = require('./subtitleSchema');
+const subtitlesSchema = require('./subtitleSchema');
 
 const courseSchema = new Schema ({
 
@@ -38,9 +38,8 @@ const courseSchema = new Schema ({
     },
 
     Subtitles:{
-        type: [[String]], //[[Subtitles.Hours , VideoLink, ShortVideoDescription, ExerciseID, %ofCourse ]]
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////
-        required:true
+        type: [mongoose.Schema.Types.ObjectId],
+        ref : 'Subtitle'
     },
 
     Views: {
@@ -56,8 +55,7 @@ const courseSchema = new Schema ({
     Reviews: {
         type: [String]
     },
-
-    
+  
     ShortSummary: {
         type: String,
         required: true
@@ -77,8 +75,8 @@ const courseSchema = new Schema ({
         required: true
     }
 
-}, { timestamps: true });
 
+}, { timestamps: true });
 
 
 const course = mongoose.model('course', courseSchema);
