@@ -7,6 +7,11 @@ const ReportSchema = new Schema({
         required: true
     },
 
+    CourseID:{
+        type:String,
+        required:true,
+    },
+
     Status:{
         type:String,
         required:true,

@@ -3,7 +3,7 @@ import React from 'react';
 import AdminNavBar from '../AdminNavBar/AdminNavBar';
 
 export default function Reports(){
-    return <div>
+    return <div className='Admin_Body'>
         <AdminNavBar/>
     </div>
 }
