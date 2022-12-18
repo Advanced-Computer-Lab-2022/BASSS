@@ -48,24 +48,37 @@ individualTraineeR.get("/myInfo/pass/:pass",function(req,res){
  })
 
 
- individualTraineeR.get("/updateprogress/:username/:couID" , async(req,res)=>{
+ individualTraineeR.get("/updateprogressind/:username/:couID" , async(req,res)=>{
   const username = req.params.username;
   const couID = req.params.couID;
   const trainee = await individualTrainees.find({UserName:username})
   const courseID = trainee[0].Courses
   var list = []
-  // const newarr = courseID.concat(obj)
-  for (let i = 0; i < courseID.length; i++) {
+  var ratio = 0;
+  var count =0;
+  const sub = await subtitles.find({Course:couID})
+
+  for (let i = 0; i < sub.length; i++) {
+    count++
+  }
+  for (let i =+ 0; i < courseID.length; i++) {
     
     if(courseID[i].Course == couID)
     {
-      const prog = courseID[i].Progress+10
-      const obj = {'Course':couID , Progress:prog}
-      var newarr = courseID 
-      newarr[i]=obj
-         individualTrainees.findOneAndUpdate({UserName:username},{Courses:newarr},{upsert:true},function(err,doc){
-          if(err) throw err;
-        });         
+      console.log('adham')
+      ratio = (1/count)*100
+      
+      const prog = (courseID[i].Progress)+ratio;
+      if(prog<=100)
+      {
+        const obj = {'Course':couID , Progress:prog}
+        var newarr = courseID 
+        newarr[i]=obj
+           individualTrainees.findOneAndUpdate({UserName:username},{Courses:newarr},{upsert:true},function(err,doc){
+            if(err) throw err;
+          });         
+      }
+      
       }
 
   }

@@ -25,7 +25,7 @@ function CorporateTrainee(){
         </Link>
         <Forgetpass Type="corporateTrainee"/>
         
-        <Link to ="/CorporateTrainee/Allcourser">
+        <Link to ="/CorporateTrainee/Allcourses">
         <button> view All Courses </button>
         </Link>
         <br></br>

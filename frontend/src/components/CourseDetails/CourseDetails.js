@@ -9,11 +9,6 @@ const { useState, useEffect } = require("react");
 const CourseDetails = () => { 
     
     const location = useLocation();
-
-    const [progressincrease,setprogressincrease] = useState(0)
-    const progressincreaseHandler = (sara)=>{setprogressincrease(sara)} 
-    useEffect(()=>{progressincreaseHandler(progressincrease)})
-
     const [courseRate,setCourseRate] = useState("");
     const [instructorRate,setInstructorRate] = useState("");
 
@@ -51,9 +46,17 @@ const CourseDetails = () => {
     )
     const videoclickhandler = async()=>{
         alert('congratulation , you have finished the Video')
-        await axios.get(`http://localhost:9000/${mySubString}/updateprogress/kkkkk/${location.state[0]}`)
-        var progress1 = progressincrease+10  ;
-        progressincreaseHandler(50)
+     //------------------------put instead of "nour" the username that soha will do ---------------------------------------------------
+     if(mySubString==='corporatetrainee')
+     {
+
+         await axios.get(`http://localhost:9000/${mySubString}/updateprogresscorp/nour/${location.state[0]}`)
+     }   
+     else if (mySubString === 'individualtrainee')
+     {
+        await axios.get(`http://localhost:9000/${mySubString}/updateprogressind/kkkkk/${location.state[0]}`)
+     }
+
              
     }
 

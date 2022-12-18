@@ -90,15 +90,58 @@ corporateTraineeR.get("/CorporateCourses/:username",async(req, res) => {
     const username = req.params.username;
     const trainee = await corporateTrainees.find({Username:username})
     const courseID = trainee[0].courses
-
+// console.log(courseID)
     var list = []
-    for (let i = 0; i < courseID.length-1; i++) {
+    for (let i = 0; i < courseID.length; i++) {
         const course = await courses.findOne({_id:courseID[i].Course})
+        // console.log(course)
         const progress = courseID[i].Progress
         list = list.concat([[course,progress]])
     }
   res.json(list)
 });
+
+
+
+corporateTraineeR.get("/updateprogresscorp/:username/:couID" , async(req,res)=>{
+  const username = req.params.username;
+  const couID = req.params.couID;
+  const trainee = await corporateTrainees.find({Username:username})
+  const courseID = trainee[0].courses
+  // console.log(trainee)
+  // console.log(courseID)
+  var list = []
+  var ratio = 0;
+  var count =0;
+  const sub = await subtitles.find({Course:couID})
+
+  for (let j = 0; j < sub.length; j++) {
+    count++
+  }
+  // console.log(count)
+  for (let i = 0; i < courseID.length; i++) {
+    
+    if(courseID[i].Course == couID)
+    {
+      ratio = (1/count)*100
+      
+      const prog = (courseID[i].Progress)+ratio;
+      if(prog<=100)
+      {
+        const obj = {'Course':couID , Progress:prog}
+        var newarr = courseID 
+        newarr[i]=obj
+        corporateTrainees.findOneAndUpdate({Username:username},{courses:newarr},{upsert:true},function(err,doc){
+            if(err) throw err;
+          });         
+      }
+      
+      }
+
+  }
+//  console.log(newarr)
+res.json(newarr)
+})
 
 
 corporateTraineeR.get("/:country",function(req,res){

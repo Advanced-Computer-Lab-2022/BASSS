@@ -149,10 +149,10 @@ const getfilteredbyRate=  async () => {
                             
              }
              const clickhandler1 = ()=>{
-            //  getfiltered()
+             getfiltered()
             }
            const clickhandler2 = ()=>{
-            //  getfiltered()
+             getfiltered()
             }
    
             if(first==0)
@@ -170,7 +170,7 @@ const getfilteredbyRate=  async () => {
 
         <div className='CoursesBody-adham'>
             
-            <br></br><br></br><br></br><br></br><br></br><br></br>
+            <br></br><br></br>
 <div> 
 
 <button onClick={clickhandler1} className='submitbtn'>submit</button>
@@ -182,7 +182,7 @@ const getfilteredbyRate=  async () => {
 <button onClick={clickhandler2} className='submitbtn'>submit</button>
 <input placeholder='rating' className='subject' onChange={changehandler2} value={choice2} />
 </div>
-<br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+{/* <br></br><br></br> */}
 {filtered.map((course) => (
         <div className='AllCourses-adham'>
             <h1 className='h1-adham'>Course Title : {course.Title}</h1>
