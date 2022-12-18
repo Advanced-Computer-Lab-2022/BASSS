@@ -69,13 +69,15 @@ individualTraineeR.get("/myInfo/pass/:pass",function(req,res){
     if(trainee){
         const arr = trainee.Exercises.concat(ex)
         const newT = await individualTrainees.findOneAndUpdate({_id: traineeID},{Exercises:arr}, {new:true});
-        res.status(200).json(garde);
+        res.status(200).json(grade);
     }
     else{
         res.status(400).json({message: "couldn't submit"})
     }
     
 });
+
+
 individualTraineeR.get("/forgetpass",function(req,res){
     var transporter = nodemailer.createTransport({
         service: 'gmail',

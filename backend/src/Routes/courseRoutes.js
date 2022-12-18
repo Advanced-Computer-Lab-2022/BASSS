@@ -7,10 +7,13 @@ const instructors = require('../Models/instructorSchema')
 const subtitleSchema = require('../Models/subtitleSchema')
 const subtitles = require('../Models/subtitleSchema');
 const exercises = require('../Models/exerciseSchema');
+
+
 courseR.get("/",async(req, res) => {
     const result =await courses.find({})
     res.send(result)
 });
+
 
 
 courseR.get("/:name",async(req, res) => {
