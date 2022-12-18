@@ -48,6 +48,34 @@ individualTraineeR.get("/myInfo/pass/:pass",function(req,res){
  })
 
 
+ individualTraineeR.get("/updateprogress/:username/:couID" , async(req,res)=>{
+  const username = req.params.username;
+  const couID = req.params.couID;
+  const trainee = await individualTrainees.find({UserName:username})
+  const courseID = trainee[0].Courses
+  var list = []
+  // const newarr = courseID.concat(obj)
+  for (let i = 0; i < courseID.length; i++) {
+    
+    if(courseID[i].Course == couID)
+    {
+      const prog = courseID[i].Progress+10
+      const obj = {'Course':couID , Progress:prog}
+      var newarr = courseID 
+      newarr[i]=obj
+         individualTrainees.findOneAndUpdate({UserName:username},{Courses:newarr},{upsert:true},function(err,doc){
+          if(err) throw err;
+        });         
+      }
+
+  }
+ console.log(newarr)
+res.json(newarr)
+})
+
+
+
+
  individualTraineeR.get("/submitAnswer/:traineeid/:subtitleid/:answer", async(req,res) => {
     const traineeID = req.params.traineeid;
     const subid = req.params.subtitleid;
@@ -104,18 +132,13 @@ individualTraineeR.get("/forgetpass",function(req,res){
 
 individualTraineeR.get("/individualCourses/:username",async(req, res) => {
     const username = req.params.username;
-    // const courseID = req.params.courseID;
-    // const result = await individualTrainees.find({ courses:{ $elemMatch:{0: courseID} } })
     const trainee = await individualTrainees.find({UserName:username})
      const courseID = trainee[0].Courses
-    // console.log(courseID)
     var list = []
-    //console.log(courseID)
     for (let i = 0; i < courseID.length; i++) {
         const course = await courses.findOne({_id:courseID[i].Course})
-        // console.log(course)
-        list = list.concat([course])
-        // console.log(list)
+        const progress = courseID[i].Progress
+        list = list.concat([[course,progress]])
     }
   res.json(list)
 });

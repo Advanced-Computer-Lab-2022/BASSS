@@ -7,8 +7,12 @@ import YoutubeEmbed from '../YoutubeEmbed/YoutubeEmbed';
 const { useState, useEffect } = require("react");
 
 const CourseDetails = () => { 
-
+    
     const location = useLocation();
+
+    const [progressincrease,setprogressincrease] = useState(0)
+    const progressincreaseHandler = (sara)=>{setprogressincrease(sara)} 
+    useEffect(()=>{progressincreaseHandler(progressincrease)})
 
     const [courseRate,setCourseRate] = useState("");
     const [instructorRate,setInstructorRate] = useState("");
@@ -25,6 +29,7 @@ const CourseDetails = () => {
 
     const changehandler = (e)=>{
         setchoice(e.target.value);
+
     }
 
     const changehandler2 = (e)=>{
@@ -38,6 +43,18 @@ const CourseDetails = () => {
     const clickhandler2 = ()=>{
         alert("Submission Done")
         getRateInstructor();
+    }
+    const totalpath = window.location.pathname;
+    var mySubString = totalpath.substring(
+      totalpath.indexOf("/") + 1, 
+      totalpath.lastIndexOf("/")
+    )
+    const videoclickhandler = async()=>{
+        alert('congratulation , you have finished the Video')
+        await axios.get(`http://localhost:9000/${mySubString}/updateprogress/kkkkk/${location.state[0]}`)
+        var progress1 = progressincrease+10  ;
+        progressincreaseHandler(50)
+             
     }
 
     
@@ -110,9 +127,9 @@ getSubtitle();
         </div>
 
             <div className='RateCourse-div'>
-                <h1>Course: {course.Title}</h1>
+                <h1 className='white-adham'>Course: {course.Title}</h1>
                 <br></br>
-                <h1> Rate The Course :</h1>
+                <h1 className='white-adham'> Rate The Course :</h1>
                 <br></br>
                 <select  onChange={changehandler} name="rate" id="rate" className='selectnew'>
                 <option value="0">0</option>
@@ -125,15 +142,15 @@ getSubtitle();
                 <br></br><br></br>
                 <button onClick={clickhandler} className='RateCoursebtn'>Submit</button>
                 <br></br><br></br><br></br><br></br>
-                <h1>Course Rating: {courseRate}</h1>
+                <h1 className='white-adham'>Course Rating: {courseRate}</h1>
                 </div>
                 
                 <br></br><br></br><br></br><br></br><br></br><br></br><br></br>
 
             <div className='RateInstructor-div'>
-                <h1>Instructor of this course: {course.InstructorUserName}</h1>
+                <h1 className='white-adham'>Instructor of this course: {course.InstructorUserName}</h1>
                 <br></br>
-                <h1>Rate The Instructor:</h1>
+                <h1 className='white-adham'>Rate The Instructor:</h1>
                 <br></br>
                 <select className='selectnew' onChange={changehandler2}    name="rate2" id="rate2">
                 <option value="0">0</option>
@@ -146,7 +163,7 @@ getSubtitle();
                 <br></br><br></br>
                 <button onClick={clickhandler2} className='RateInstructorbtn'>Submit</button>
                 <br></br><br></br><br></br><br></br>
-                <h1>Instructor Rating: {instructorRate}</h1>
+                <h1 className='white-adham'>Instructor Rating: {instructorRate}</h1>
                 </div>
                 <div className='info'>
 
@@ -158,13 +175,16 @@ getSubtitle();
 
                    subtitle.length>0 && subtitle.map((sub)=>
                 <div className='subtitleincoursedetails1'>
-                    <h1>subtitle Number : {sub.subtitleNumber}</h1>
-                    <h1>Subtitle total Hours : { sub.SubtitleHours} </h1>
-                    <h1>subtitle Short Video Description :{sub.ShortVideoDescription} </h1>
+                    <h1 className='white-adham'>subtitle Number : {sub.subtitleNumber}</h1>
+                    <h1 className='white-adham'>Subtitle total Hours : { sub.SubtitleHours} </h1>
+                    <h1 className='white-adham'>subtitle Short Video Description :{sub.ShortVideoDescription} </h1>
                     <br></br><br></br><br></br>
 
                  <YoutubeEmbed embedId={sub.VideoLink}/>
                      <br></br><br></br><br></br>
+                    <button className='watchvideo-adham' onClick={videoclickhandler}>click here if you finished the video</button>
+                    <br></br><br></br><br></br>
+                    <br></br><br></br><br></br>
                     <Link to='/'>
                         <button className='exercisebtn'>Solve Exercise</button>
                     </Link>

@@ -93,7 +93,6 @@ function App() {
           <Route path='/Courses' element={  <Courses/> }/>
           <Route path='/instructor' element={<Instructor/> } />
           <Route path='/instructor/SelectCountry' element= {<SelectCountry/>}/>
-
           <Route path='/instructor/MyCourses/CourseDetails' element={  <CourseDetailsInstructor/> }/>
           <Route path='/instructor/CourseDetails' element={  <CourseDetailsInstructor/> }/>
           <Route path='/instructor/MyReviews' element={  <MyReviews/> }/>
