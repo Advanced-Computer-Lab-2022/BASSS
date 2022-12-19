@@ -427,19 +427,27 @@ adminR.get("/ResolveReport/:ReportID",async function(req,res){   //:Status/
 
 ///////////////////////////////////////////////////////////////////////// Set Promotions ///////////////////////////////////////////////
 
-adminR.get("/SetPromotion/:CourseID/:PromotionPercentage/:PromotionEndTime/:PromotionEndDate",async function(req,res){   //:Status/
+adminR.get("/SetPromotion/:CourseID/:PromotionState/:PromotionPercentage/:PromotionStartTime/:PromotionEndTime/:PromotionStartDate/:PromotionEndDate",async function(req,res){   //:Status/
   var CourseID = req.params.CourseID;
+  var PromotionState = req.params.PromotionState;
   var PromotionPercentage = req.params.PromotionPercentage;
+  var PromotionStartTime = req.params.PromotionStartTime;
   var PromotionEndTime = req.params.PromotionEndTime;
+  var PromotionStartDate = req.params.PromotionStartDate;
   var PromotionEndDate = req.params.PromotionEndDate;
-
   try{
 
-    var SplitDate = []
-    SplitDate = PromotionEndDate.split('-')
-    var Day = SplitDate[2]
-    var Month = SplitDate[1]
-    var Year = SplitDate[0]
+    var SplitStartDate = []
+    SplitStartDate = PromotionStartDate.split('-')
+    var StartDay = SplitStartDate[2]
+    var StartMonth = SplitStartDate[1]
+    var StartYear = SplitStartDate[0]
+
+    var SplitEndDate = []
+    SplitEndDate = PromotionEndDate.split('-')
+    var EndDay = SplitEndDate[2]
+    var EndMonth = SplitEndDate[1]
+    var EndYear = SplitEndDate[0]
   
   
   
@@ -447,25 +455,34 @@ adminR.get("/SetPromotion/:CourseID/:PromotionPercentage/:PromotionEndTime/:Prom
     console.log('ts:')
     console.log(ts)
     let date_ob = new Date(ts);
-    let date = date_ob.getDate();
-    let month = date_ob.getMonth() + 1;
-    let year = date_ob.getFullYear();
+    let currentDate = date_ob.getDate();
+    let currentMonth = date_ob.getMonth() + 1;
+    let currentYear = date_ob.getFullYear();
+    let currentHour = date_ob.getHours();
   
+    //(10/10/2010) // Year> , year== + month> , year== + month== + day>, year== + month== + day== + hour>
+    //(11/9/2010)
     // prints date & time in YYYY-MM-DD format
-    console.log(year + "-" + month + "-" + date);
-
-    if(date > Day && month > Month && year > Year ){
-
+    console.log(currentYear + "-" + currentMonth + "-" + currentDate);
+    //       Year>,                    year== + month>,                                 year== + month== + day>,                                              year== + month== + day== + hour>
+    if((currentYear > EndYear)||(currentMonth > EndMonth && currentYear == EndYear)||(currentDate > EndDay && currentMonth == EndMonth && currentYear == EndYear)||(currentDate == EndDay && currentMonth == EndMonth && currentYear == EndYear && currentHour > PromotionEndTime)){ //Expired 5alas
+        const course1 = await courses.findOneAndUpdate({_id : CourseID} , {PromotionState: 'Expired' });
     }
-    if(date > Day && month > Month && year > Year ){
 
-    const course = await courses.findOneAndUpdate({_id : CourseID} , {$set: {PromotionPercentage: PromotionPercentage, PromotionEndTime:PromotionEndTime, PromotionEndDate:PromotionEndDate }});
-    var PriceOld = course.Price;
-    var PriceNew = PriceOld*(100-PromotionPercentage)/100;
-    console.log(PriceOld)
-    console.log(PriceNew)
-    console.log("Promotion Added");
-    return res.status(200).json({course});
+    else if((currentYear > StartYear)||(currentMonth > StartMonth && currentYear == StartYear)||(currentDate > StartDay && currentMonth == StartMonth && currentYear == StartYear)||(currentDate == StartDay && currentMonth == StartMonth && currentYear == StartYear && currentHour > PromotionStartTime)){
+
+      const course = await courses.find({_id: CourseID });
+
+        var PriceOld = course.Price;
+        var PriceNew = PriceOld*(100-PromotionPercentage)/100;
+        console.log(PriceOld)
+        console.log(PriceNew)
+
+        const courseUpdated = await courses.findOneAndUpdate({_id : CourseID} , {$set: {PromotionPercentage: PromotionPercentage, PromotionState: 'Ongoing', PromotionStartTime:PromotionStartTime, PromotionEndTime: PromotionEndTime, PromotionStartDate:PromotionStartDate, PromotionEndDate: PromotionEndDate, PromotedPrice:PriceNew }});
+        
+        console.log("Promotion Added");
+        return res.status(200).json({course});
+
     }
   }
   catch(error)

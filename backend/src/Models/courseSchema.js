@@ -23,6 +23,10 @@ const courseSchema = new Schema ({
         required: true,
     },
 
+    PromotedPrice:{
+        type: Number
+    },
+
     // Ratings:{
     //     type:[Number]
     // },
@@ -61,12 +65,19 @@ const courseSchema = new Schema ({
         required: true
     },
 
+    PromotionState:{
+        type: String
+    },
+
     PromotionPercentage: {
         type: Number,
         default: 0
     },
+    PromotionStartTime: {type: Number, min: 0, max:23},
 
-    PromotionEndTime: {type: Number, min: 0, max:24},
+    PromotionEndTime: {type: Number, min: 0, max:23},
+    
+    PromotionStartDate: {type: Date},  // Format: YEAR-MONTH-DAY
     
     PromotionEndDate: {type: Date},  // Format: YEAR-MONTH-DAY
         
