@@ -21,6 +21,7 @@ import Home from './Pages/Home'
 import EditPass from './components/EditPass/EditPass';
 import EditmyInfo from './components/EditmyInfo/EditmyInfo';
 import Contract from './components/Contract/Contract';
+import Individualtrainee from './Pages/Individualtrainee/Individualtrainee';
 
 function App() {
   return (
@@ -69,6 +70,12 @@ function App() {
           path='/instructor'
           element={
             <Instructor/>
+          }
+          />
+          <Route
+          path='/Individualtrainee'
+          element={
+            <Individualtrainee/>
           }
           />
           
