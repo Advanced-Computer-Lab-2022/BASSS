@@ -2,6 +2,7 @@ const express = require("express");
 const admin = require('../Models/adminSchema');
 const user = require('../Models/userSchema');
 const instructors = require('../Models/instructorSchema');
+const courses = require('../Models/courseSchema');
 const corporateTrainee = require('../Models/corporateTraineeSchema');
 const corporateRequest = require('../Models/RequestsSchema');
 const reports = require('../Models/ReportSchema');
@@ -41,7 +42,7 @@ adminR.get("/" , function(req,res){
   });
 
   adminR.get("/AddUser",async(req, res) => {
-    const users = await user.create({UserName: 'Sara', Password: 's', Type:'Admin'});
+    const users = await user.create({UserName: 'hazem123', Password: '123', Type:'individualTrainee'});
     return res.status(200).json(users);
   });
 
@@ -136,12 +137,12 @@ adminR.get("/createCoReq/:Reporter/:CourseID",async function(req,res){   //:Stat
   var Status = req.params.Status;
   var CourseID = req.params.CourseID;    
   
-      try{
   
-        const CorporateTrainee = await corporateTrainee.find({Username : Reporter});
-        const AccessibleCourses = CorporateTrainee.AccessibleCourses;
+      try{
+        //courseRequests
+        const CorporateTrainee = await corporateTrainee.findOne({Username : Reporter});
       
-        for(let i = 0 ; i<AccessibleCourses.length ; i++){
+        for(let i = 0 ; i < CorporateTrainee.AccessibleCourses.length ; i++){
           if(CourseID == AccessibleCourses[i]){
             return res.status(400).json('Course Already Accesible');
           }
@@ -152,7 +153,9 @@ adminR.get("/createCoReq/:Reporter/:CourseID",async function(req,res){   //:Stat
             //Status:Status,
             CourseID:CourseID
       });
-        console.log("Course Request Sent")
+      const arr = CorporateTrainee.courseRequests.concat(coReq._id);
+      const UpdatedTrainee = await corporateTrainee.findOneAndUpdate({Username : Reporter} , {courseRequests:arr});
+      console.log("Course Request Sent")
       return res.status(200).json({coReq});
       }
       catch(error)
@@ -322,12 +325,33 @@ adminR.get("/createReport/:Reporter/:CourseID/:Type",async function(req,res){   
   var CourseID = req.params.CourseID;    
   
   try{
-  
+    const user1 = await user.findOne({UserName: Reporter })
     const Report = await reports.create({
       Reporter:Reporter,
       Type:Type,
       CourseID:CourseID
-});
+    });
+
+    console.log(user1.Type)
+
+    if(user1.Type == "individualTrainee"){
+      const individualTrainee = await individualTrainees.findOne({UserName: Reporter })
+      const arr = individualTrainee.Reports.concat(Report._id);
+      const UpdatedTrainee = await individualTrainees.findOneAndUpdate({UserName : Reporter} , {Reports:arr});
+    }
+
+    else if(user1.Type == "corporateTrainee"){
+      const corporateTrainee1 = await corporateTrainee.findOne({Username: Reporter })
+      const arr1 = corporateTrainee1.Reports.concat(Report._id);
+      const UpdatedTrainee1 = await corporateTrainee.findOneAndUpdate({Username : Reporter} , {Reports:arr1});
+    }
+
+    else if(user1.Type == "Instructor"){
+      const Instructor1 = await instructors.findOne({Username: Reporter })
+      const arr2 = Instructor1.Reports.concat(Report._id);
+      const UpdatedTrainee1 = await instructors.findOneAndUpdate({Username : Reporter} , {Reports:arr2});
+    }
+    
 
   console.log("Report Sent")
   return res.status(200).json({Report});
@@ -402,7 +426,55 @@ adminR.get("/ResolveReport/:ReportID",async function(req,res){   //:Status/
 })
 
 ///////////////////////////////////////////////////////////////////////// Set Promotions ///////////////////////////////////////////////
-//
+
+adminR.get("/SetPromotion/:CourseID/:PromotionPercentage/:PromotionEndTime/:PromotionEndDate",async function(req,res){   //:Status/
+  var CourseID = req.params.CourseID;
+  var PromotionPercentage = req.params.PromotionPercentage;
+  var PromotionEndTime = req.params.PromotionEndTime;
+  var PromotionEndDate = req.params.PromotionEndDate;
+
+  try{
+
+    var SplitDate = []
+    SplitDate = PromotionEndDate.split('-')
+    var Day = SplitDate[2]
+    var Month = SplitDate[1]
+    var Year = SplitDate[0]
+  
+  
+  
+    let ts = Date.now();
+    console.log('ts:')
+    console.log(ts)
+    let date_ob = new Date(ts);
+    let date = date_ob.getDate();
+    let month = date_ob.getMonth() + 1;
+    let year = date_ob.getFullYear();
+  
+    // prints date & time in YYYY-MM-DD format
+    console.log(year + "-" + month + "-" + date);
+
+    if(date > Day && month > Month && year > Year ){
+
+    }
+    if(date > Day && month > Month && year > Year ){
+
+    const course = await courses.findOneAndUpdate({_id : CourseID} , {$set: {PromotionPercentage: PromotionPercentage, PromotionEndTime:PromotionEndTime, PromotionEndDate:PromotionEndDate }});
+    var PriceOld = course.Price;
+    var PriceNew = PriceOld*(100-PromotionPercentage)/100;
+    console.log(PriceOld)
+    console.log(PriceNew)
+    console.log("Promotion Added");
+    return res.status(200).json({course});
+    }
+  }
+  catch(error)
+  {
+    console.log("Couldn't Add Promotion");
+    console.log(error);
+    return res.status(400).json({msg: error});
+  }        
+})
 
 
 module.exports = adminR;
