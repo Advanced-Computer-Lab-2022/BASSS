@@ -51,14 +51,16 @@ courseR.get("/getCourse/:id",async(req, res) => {
   res.json(result)
 });
 
-courseR.get("/getsubtitle/:courseID",async(req, res) => {
+courseR.get("/adham/getsubtitle/:courseID",async(req, res) => {
   var courseId = req.params.courseID;
+  const Course =await courses.findOne({_id:courseId})
   const list = [] ;
-  const result =await subtitles.find({Course:courseId})
+  const result =Course.Subtitles
+  const sub = await subtitles.find({_id:result})
   // for (let i = 0; i < result.length; i++) {
 
   // }
-  res.json(result)
+  res.json(sub)
 });
 
 courseR.get("/allcourses/mostviewd",async(req, res) => {
