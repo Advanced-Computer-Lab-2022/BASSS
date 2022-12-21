@@ -25,7 +25,7 @@ const corporateTraineeschema = new Schema({
     },
 
     courses: {
-        type: [{Course:mongoose.Schema.Types.ObjectId, Progress:Number }], //[[Course1.ID,Progress%],[Course2.ID,Progress%],[Course3.ID,Progress%],...... ]
+        type: [{Course:mongoose.Schema.Types.ObjectId, Progress:Number, DateEnrolled:String }], //[[Course1.ID,Progress%],[Course2.ID,Progress%],[Course3.ID,Progress%],...... ]
     },
 
     AccessibleCourses:{
