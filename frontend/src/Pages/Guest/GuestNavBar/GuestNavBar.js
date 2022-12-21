@@ -3,9 +3,9 @@ import Navbar from '../../../components/Navbar/Navbar';
 
 export default function GuestNavBar(){
     return <div>
-    <Navbar SecondLinkText='Sara' FirstLinkText='meow' ThirdLinkText='jojo' FourthLinkText='koky'  
-    ButtonLinkText='Logout' 
-    LogoLinkTo='/adham' SecondLinkTo='/Sara' FirstLinkTo='/meow' ThirdLinkTo='/jojo' FourthLinkTo='/koky' 
-    ButtonLinkTo='/signUp'/>
+    <Navbar SecondLinkText='Sara' FirstLinkText='Courses' ThirdLinkText='' FourthLinkText='Signup'  
+    ButtonLinkText='Login' 
+    LogoLinkTo='/adham' SecondLinkTo='/Sara' FirstLinkTo='/meow' ThirdLinkTo='/signup' FourthLinkTo='/signup' 
+    ButtonLinkTo='/login'/>
     </div>
 }

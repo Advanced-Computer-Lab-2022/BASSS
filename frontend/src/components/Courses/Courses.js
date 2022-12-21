@@ -1,5 +1,7 @@
 import axios from 'axios';
 import './Courses.css';
+import CardItem from '../Cards/CardItem';
+import '../Cards/Cards.css';
 
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 
@@ -215,7 +217,21 @@ const navigate = useNavigate();
     <input placeholder='price' onChange={changehandler3} value={choice3} className='subject'/>
     </div>
     <h1>ALL COURSES</h1>
-            <div> 
+          <ul>
+
+    {filtered.map((course) => (
+
+            <CardItem 
+            src  = '/images/html.jpg'
+            text = {"Title: " + course.Title + "\n " + "Total Hours: " + course.TotalHours + "\n " + "Price =" + course.Price }
+            label= {"Rating = " +  course.Rating.rate } 
+            path = {props.Link}
+            />  
+
+        
+    ))}
+</ul>
+            {/* <div> 
             <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
             <TableHead>
@@ -248,7 +264,7 @@ const navigate = useNavigate();
       </Table>
     </TableContainer>
 
-    </div>  
+    </div>   */}
 
 
         </div>   

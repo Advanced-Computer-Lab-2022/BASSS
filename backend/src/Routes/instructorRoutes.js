@@ -5,21 +5,26 @@ const instructors = require("../Models/instructorSchema");
 const courses = require("../Models/courseSchema");
 var nodemailer = require('nodemailer');
 
-instructorR.get("/searchmycourses/:instructorName/:searchkey", async function(req,res){
-     const key = req.params.searchkey;
-     const name = req.params.instructorName;
-     var array = [];
-     var query = await courses.find({InstructorUserName:name});
-     for(let i = 0 ; i<query.length ; i++)
-     {
-         course = query[i];
-         if (course.Title.toLowerCase().includes(key.toLowerCase()) ||
-             course.Subject.toLowerCase().includes(key.toLowerCase()))
-         {
-             array=array.concat(course);
-         }
-     }
-     res.status(200).json(array)
+instructorR.get("/getWallet", async function (req,res){
+  console.log(res.locals.user)
+})
+
+instructorR.get("/searchmycourses/:searchkey", async function(req,res){
+
+    const key = req.params.searchkey;
+    const name = res.locals.user;
+    var array = [];
+    var query = await courses.find({InstructorUserName:name});
+    for(let i = 0 ; i<query.length ; i++)
+    {
+        course = query[i];
+        if (course.Title.toLowerCase().includes(key.toLowerCase()) ||
+            course.Subject.toLowerCase().includes(key.toLowerCase()))
+        {
+            array=array.concat(course);
+        }
+    }
+    res.status(200).json(array)
  
  })
 

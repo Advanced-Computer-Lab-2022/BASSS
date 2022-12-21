@@ -39,7 +39,7 @@ const individualTraineeschema = new Schema({
     },
 
     CreditCardsInfo: {
-       type: [[String]]
+       type: [{CardHolderName: String, CardNumber:Number , ExpDay: Number, ExpYear:Number, CVV:Number}]
     },
 
     Wallet: {

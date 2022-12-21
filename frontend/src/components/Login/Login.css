@@ -1,0 +1,267 @@
+.Login_body {
+    margin:0;
+    padding:0;
+    font-family: sans-serif;
+    background-image: url('../../../public/images/login.jpg');
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 800px;
+  
+}
+
+
+.login-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+  }
+  
+  .login-box .soha_login_h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+    font-size: x-large;
+    display: block;
+  }
+
+  .login-box .soha_login_h1 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #0DB8DE;
+    text-align: center;
+    font-size: x-large;
+    display: block;
+    font-weight: bold;
+  }
+  
+  .login-box .user-box {
+    position: relative;
+  }
+  
+  .login-box .user-box .soha_login_input{
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 20px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+  }
+  .login-box .user-box .soha_login_label {
+    position: absolute;
+    top:0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+  }
+  
+  .login-box .user-box .soha_login_input:focus ~ .soha_login_label,
+  .login-box .user-box .soha_login_input:valid ~ .soha_login_label {
+    top: -20px;
+    left: 0;
+    color: #0DB8DE;
+    font-size: 12px;
+  }
+  
+  .login-box .soha_login_form .soha_login_a {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    letter-spacing: 4px;
+    background-color:  #0DB8DE;
+    border-radius: 5px;
+    width: -webkit-fill-available;
+    align-self: center;
+  }
+  
+  .login-box .soha_login_a:hover {
+    background: transparent;
+    color: #0DB8DE;
+    border: 2px solid #0DB8DE;
+    cursor: pointer;
+    
+  }
+
+  .login-box .soha_forgot_password {
+    color: #0DB8DE;
+    align-self: center;
+    font-size: small;
+    margin-top: 5px;
+  }
+
+  .login-box .soha_forgot_password:hover {
+    color: #12d3ff;
+    transition: .5s;
+  }
+
+  .login-box .soha_signup{
+    color: #fff;
+    align-self: center;
+    font-size: small;
+    margin-top: 5px;
+  }
+
+  .login-box .soha_required{
+    color: rgb(213, 13, 13);
+    align-self: center;
+    font-size: small;
+    margin-bottom: 3px;
+  }
+
+
+.admin_login_body{
+  margin:0;
+  padding:0;
+  font-family: sans-serif;
+  background-image: url('../../images/systemadmin_text_2.jpg');
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 800px;
+}
+
+.admin_login{
+  margin-top: 15px;
+ text-align: center;
+ font-size: 30px;
+ letter-spacing: 2px;
+ margin-top: 15px;
+ font-weight: bold;
+ color: #ECF0F5;
+}  
+
+.admin_login-key {
+  height: 100px;
+  font-size: 80px;
+  line-height: 100px;
+  background: -webkit-linear-gradient(#27EF9F, #0DB8DE);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: -webkit-center;
+}
+
+.admin_login-box {
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  width: 400px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,.5);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  border-radius: 10px;
+}
+.admin_login-box .soha_login_h1 {
+  margin: 0 0 30px;
+  padding: 0;
+  color: #0DB8DE;
+  text-align: center;
+  font-size: x-large;
+  display: block;
+  font-weight: bold;
+}
+
+.admin_login-box .user-box {
+  position: relative;
+}
+
+.admin_login-box .user-box .soha_login_input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+.admin_login-box .user-box .soha_login_label {
+  position: absolute;
+  top:0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  pointer-events: none;
+  transition: .5s;
+}
+
+.admin_login-box .user-box .soha_login_input:focus ~ .soha_login_label,
+.admin_login-box .user-box .soha_login_input:valid ~ .soha_login_label {
+  top: -20px;
+  left: 0;
+  color: #0DB8DE;
+  font-size: 12px;
+}
+
+.admin_login-box .soha_login_form .soha_login_a {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  color: #fff;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  letter-spacing: 4px;
+  background-color:  #0DB8DE;
+  border-radius: 5px;
+  width: -webkit-fill-available;
+  align-self: center;
+}
+
+.admin_login-box .soha_login_a:hover {
+  background: transparent;
+  color: #0DB8DE;
+  border: 2px solid #0DB8DE;
+  cursor: pointer;
+  
+}
+
+.admin_login-box .soha_forgot_password {
+  color: #0DB8DE;
+  align-self: center;
+  font-size: small;
+  margin-top: 5px;
+}
+
+.login-box .soha_forgot_password:hover {
+  color: #12d3ff;
+  transition: .5s;
+}
+
+.fa{
+  color: white;
+      position: relative;
+      left: 90%;
+      top: -45px;
+
+}

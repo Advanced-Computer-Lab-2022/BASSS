@@ -1,4 +1,4 @@
-import {BrowserRouter,Routes,Route} from 'react-router-dom'
+import {BrowserRouter,Routes,Route, Navigate, useLocation} from 'react-router-dom'
 import AddUsers from './Pages/Admin/AddUsers/AddUsers';
 import AdminHome from './Pages/Admin/AdminHome/AdminHome';
 import AdminProfile from './Pages/Admin/AdminProfile/AdminProfile';
@@ -7,7 +7,7 @@ import Reports from './Pages/Admin/Reports/Reports';
 import Courses from './components/Courses/Courses.js';
 import MyCourses from './components/MyCourses/MyCourses';
 import AllCourses from './components/Courses/Courses';
-
+import  Cookies from 'universal-cookie';
 import './App.css';
 import Instructor from './Pages/Instructor/Instructor'
 import SelectCountry from './components/SelectCountry/SelectCountry';
@@ -25,21 +25,28 @@ import ExerciseP from './Pages/Exercise/ExerciseP';
 import CreateCourse from './Pages/Instructor/CreateCourse/CreateCourse';
 // import CreateCourse from './components/CreateCourse/CreateCourse';
 
+import ProtectedRoute from './components/ProtectedRoutes/ProtectedRoute';
 import CourseDetailsInstructor from './components/CourseDetailsInstructor/CourseDetailsInstructor';
 import MyReviews from './components/ViewReviews/ViewReviews';
-
+import Payment from './Pages/Payment/Payment';
 import IndividualTrainee from './Pages/IndividualTrainee/IndividualTrainee';
 import CorporateTrainee from './Pages/CorporateTrainee/CorporateTrainee';
 import Promotion from './components/Promotion/Promotion';
-
+import LoginPage from './Pages/Login/LoginPage';
+import AdminLoginPage from './Pages/Login/AdminLoginPage';
+import {useNavigate} from 'react-router-dom';
+import Logout from './components/Logout/Logout';
 
 function App() {
+  const type = localStorage.getItem('type')
+  // const navigate = useNavigate();
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
+          <Route path='/pay' element={<Payment/>} />
+          <Route path='/logout' element={<Logout/>}/>
           <Route path='/' element = { <Home/> } /> 
-          <Route path='/instructor' element = { <Instructor/> } />   
           <Route path='/instructor/SelectCountry' element = { <SelectCountry/> } /> 
           <Route
           path='/Admin'
@@ -99,25 +106,27 @@ function App() {
 
           <Route path='/instructor/MyCourses/CourseDetails' element={  <CourseDetailsInstructor/> }/>
           <Route path='/instructor/CourseDetails' element={  <CourseDetailsInstructor/> }/>
-          <Route path='/instructor/MyReviews' element={  <MyReviews/> }/>
+          <Route path='/instructor/MyReviews' element={  type== 'instructor' ? <MyReviews/> : (<Navigate to='/login'/>) }/>
          
-         
-          <Route path='/instructor/CreateCourse' element= {<CreateCourse/>}/>
-          <Route path='/IndividualTrainee' element = { <IndividualTrainee/> } /> 
+          
+          <Route path='/instructor/CreateCourse' element= {
+            <ProtectedRoute isSignedIn="false">
+              <CreateCourse/>
+            </ProtectedRoute>
+          }/>
+
+          <Route path='/IndividualTrainee' element = { <IndividualTrainee/> } />
           <Route path='/IndividualTrainee/SelectCountry' element = { <SelectCountry/> } />
-          <Route path='/CorporateTrainee' element = { <CorporateTrainee/> } /> 
+          <Route exact path='/CorporateTrainee' element = {<CorporateTrainee/> } />
           <Route path='/CorporateTrainee/SelectCountry' element = { <SelectCountry/> } /> 
-          <Route path='/AdminAddAdmin'  element={<AddAdmin/>}/>
+          {/* <Route path='/AdminAddAdmin'  element={type== 'admin' ? <AddAdmin/> : (alert('UnAuthorized'), <Navigate to='/'/>) }/> */}
           <Route path='/AdminAddInstructor'element={ <AddInstructor/>}/>
           <Route path='/AdminAddCoTrainee' element={ <AddCoTrainee/>} /> 
           <Route path='/instructor/promotion' element={<Promotion/> } />
         
-          <Route
-         path='/instructor/CreateCourse' 
-         element= {
-          <CreateCourse/>
-         }
-         />
+          <Route path='/login' element={<LoginPage/> } />
+          <Route path='/adminlogin' element={<AdminLoginPage/> } />
+
         </Routes>
       </BrowserRouter>
 

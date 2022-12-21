@@ -12,33 +12,17 @@ import InstructorNavBar from './InstructorNavBar/InstructorNavBar';
 import ViewRating from '../../components/ViewRating/ViewRating';
 
 function Instructor(){
-
-    const clickhandler1 = ()=>{
-       
-       }
-
     
     return(
         <>
-        {/* <InstructorNavBar/> */}
         <div className='Instructor-body'>
-        {/* <InstructorNavBar/> */}
-        <Link to ="/instructor/SelectCountry">
-        <button className='instructor_selectcountrybtn'> Select your Country</button>
-        </Link>
-        <Forgetpass Type="instructor"/>
-        <Link to ="/instructor/CreateCourse">
-        <button className='instructor_CreateCoursebtn'> Create a new Course</button>
-        </Link>
-        
+        <InstructorNavBar/>
+        <Search Type='instructor'/>        
 
-        <Link to ="/instructor/myInfo">
+        {/* <Link to ="/instructor/myInfo">
         <button> edit my info</button>
-        </Link>
-        
-        
-        <Search Type='instructor'/>
-       
+        </Link> */}
+
         <Courses Link="/instructor/courseDetails"/>
         
 
@@ -49,10 +33,6 @@ function Instructor(){
         </Link>
         <ViewRating/>
 
-        <Link to ="/instructor/MyCourses">
-            <button>
-                View My Courses</button>
-            </Link>
 
             <Link to ="/instructor/MyReviews">
             <button>

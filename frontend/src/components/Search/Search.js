@@ -37,7 +37,7 @@ const Search = (props)=>{
             rowhandler();
         }
         if(props.Type === "searchMyCourses"){
-            await axios.get(`http://localhost:9000/instructor/searchmycourses/salama/${message}`).then(
+            await axios.get(`http://localhost:9000/instructor/searchmycourses/${message}`, {withCredentials: true}).then(
                 (res)=> {
                     const mycourses = res.data;
                     setResults(mycourses);
@@ -46,7 +46,7 @@ const Search = (props)=>{
 
         }
         else{
-            await axios.get(`http://localhost:9000/guest/search/${message}`).then(
+            await axios.get(`http://localhost:9000/search/${message}`).then(
                 (res) => {
                     if(res.status===200){
                         const s = res.data;

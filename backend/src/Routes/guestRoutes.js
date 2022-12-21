@@ -2,30 +2,83 @@ const express = require("express");
 const guestR = express.Router();
 const mongoose = require('mongoose');
 const courses = require("../Models/courseSchema")
-const instructors = require("../Models/instructorSchema")
+const users = require('../Models/userSchema');
+const individualTrainees = require('../Models/individualTraineeSchema')
+// import { requireAuth } from "../Authenticator/authenticator";
 
-guestR.get("/",(req, res) => {
-    res.render("../views/guest.ejs",{title:"guest country"})});
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
-guestR.post("/selectcountry",function(req,res){
+// create json web token
+const maxAge = 3 * 24 * 60 * 60; //3 days
 
-    console.log(req.body)
-    var country = req.body.country;
-    var query = guests.find({Name:"sara"})
-        query.exec(function(err,result){
-            if (err) throw err;
-            if(result.length==0){
-                res.render("../views/guest.ejs",{title:"guest country"});
-            }else{
-                guests.findOneAndUpdate({Name:"sara"},{Country:country},{upsert:true},function(err,doc){
-                    if(err) throw err;
-                  });         
-              res.render("../views/guest.ejs",{title:"guest country"});
+const createToken = (username) => {
+    return jwt.sign({ username },process.env.secret , {
+        expiresIn: maxAge
+    });
+};
+
+guestR.post("/signUp", async (req, res) => {
+    const { username, password, email, firstname, lastname, gender}= req.body;
+    const exists = await users.findOne({UserName: username})
+    if(exists){
+        throw Error('Username already exists')
+    }
+    try {
+        const salt = await bcrypt.genSalt();
+        const hashedPassword = await bcrypt.hash(password, salt);
+        const user = await users.create({ UserName: username, Password: hashedPassword, Type: "Individual Trainee" });
+        await individualTrainees.create({UserName: username, FirstName: firstname, LastName: lastname, Email: email,Password: hashedPassword, Gender: gender})
+        const token = createToken(user.UserName);
+        res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
+        res.status(200).json(user)
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+})
+
+
+guestR.post("/login" , async (req, res) => {
+    const {username, pass}= req.body;
+    
+    if(!username) {
+        throw 'Username Required'
+    }
+    if(!pass){
+        throw 'Password Required'
+    }
+    const user = await users.findOne({UserName:username});
+    if(!user){
+        throw 'Username not found'
+    }
+    try{
+        const hashedpass = user.Password;
+        bcrypt.compare(pass,hashedpass,(err,data)=>{
+            if(err){
+                return res.status(400).json({error: err.message})
             }
-})
+            if(!data){
+                throw 'Incorrect Password'
+            }
+            const token = createToken(user.UserName, user.Type);
+            res.cookie('token', token, { httpOnly: true, maxAge: maxAge * 1000 });
+            res.status(200).json({token: token, type: user.Type})
+            // console.log(res.getHeader('set-cookie').split(';')[0]);           
+        });
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
 })
 
-guestR.get("/search/:searchkey",async function(req,res){
+guestR.post("/logout", (req,res) => {
+    return res
+    .clearCookie('token')
+    .status(200)
+    .json({ message: "Successfully logged out" })
+})
+
+guestR.get("/search/:searchkey",async (req,res) => {
     const key = req.params.searchkey;
     var array = [];
     if(key!= null){

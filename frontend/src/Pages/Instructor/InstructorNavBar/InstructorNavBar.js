@@ -3,9 +3,12 @@ import Navbar from '../../../components/Navbar/Navbar';
 
 export default function InstructorNavBar(){
     return <div>
-    <Navbar SecondLinkText='Courses' FirstLinkText=' ' ThirdLinkText='Reports' FourthLinkText='Add User'  
+    <Navbar  FirstLinkText='My Courses ' SecondLinkText='Create Course' 
+    ThirdLinkText='Select Country' FourthLinkText='My Profile'  
     ButtonLinkText='Logout' 
-    LogoLink='/' SecondLinkTo='/CoursesAdmin' FirstLinkTo='/AdminProfile' ThirdLinkTo='/AdminReports' FourthLinkTo='/AdminAddUsers' 
+
+    LogoLink='/'  FirstLinkTo='/instructor/MyCourses' SecondLinkTo='/instructor/CreateCourse'
+    ThirdLinkTo='/instructor/SelectCountry' FourthLinkTo='/instructor/myInfo' 
     ButtonLinkTo='/'/>
     </div>
 }

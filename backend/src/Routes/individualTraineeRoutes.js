@@ -115,9 +115,26 @@ individualTraineeR.get("/individualCourses/:username",async(req, res) => {
         const course = await courses.findOne({_id:courseID[i].Course})
         // console.log(course)
         list = list.concat([course])
-        console.log(list)
+        // console.log(list)
     }
   res.json(list)
 });
+
+individualTraineeR.get("/viewWallet", async(req,res) => {
+  //username from token
+  const trainee = await individualTrainees.findOne({UserName: username})
+  if(trainee){
+    res.status(200).json(trainee.Wallet)
+  }
+})
+// 
+individualTraineeR.post("/creditCardDetails", async(req,res) => {
+  //username from token
+  // const{}
+  const trainee = await individualTrainees.findOne({UserName: username})
+  if(trainee){
+    res.status(200).json(trainee.Wallet)
+  }
+})
 
 module.exports = individualTraineeR;
