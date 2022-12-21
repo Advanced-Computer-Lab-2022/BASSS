@@ -151,9 +151,12 @@ individualTraineeR.get("/individualCourses/:username",async(req, res) => {
      const courseID = trainee[0].Courses
     var list = []
     for (let i = 0; i < courseID.length; i++) {
+      if(courseID[i].Course != null)
+      {
         const course = await courses.findOne({_id:courseID[i].Course})
         const progress = courseID[i].Progress
         list = list.concat([[course,progress]])
+      }
     }
   res.json(list)
 });

@@ -106,7 +106,7 @@ const CourseDetails = () => {
                 }  
 
                 const getSubtitle =  async () => {
-                    await axios.get(`http://localhost:9000/course/getsubtitle/${location.state[0]}`).then(
+                    await axios.get(`http://localhost:9000/course/adham/getsubtitle/${location.state[0]}`).then(
                         (res) => { 
                             const sub = res.data
                             setsubtitle(sub)

@@ -7,6 +7,7 @@ const MultipleSubtitleDivs = (props) => {
     const Subtitles = new Array(props.SubtitleNum)
 
     const getSubtitles = (i) =>{
+      
         return 
     }
 
