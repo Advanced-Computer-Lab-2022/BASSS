@@ -70,7 +70,7 @@ const courseSchema = new Schema ({
     },
 
     PromotionPercentage: {
-        type: Number,
+        type: Number, min: 0, max:100,
         default: 0
     },
     PromotionStartTime: {type: Number, min: 0, max:23},

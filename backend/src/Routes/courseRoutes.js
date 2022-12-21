@@ -24,7 +24,7 @@ courseR.get("/:name",async(req, res) => {
 
 courseR.get("/courseDetails/:courseId", async(req,res) => {
     var id = req.params.courseId;
-    var result = await courses.find({_id:id});
+    var result = await courses.findOne({_id:id});
     res.status(200).json(result);
 })
 courseR.get("/FindTitleAndUpdate/:title/:percentage/:enddate", async(req,res)=>{
