@@ -112,7 +112,7 @@ instructorR.get("/myInfo/pass/:pass",function(req,res){
 })
 
 instructorR.get("/viewRating/review",async(req, res) => {
-  const result =await instructors.find({Username:"salama"})
+  const result =await instructors.findOne({Username:"salama"})
   res.json(result)
 });
 

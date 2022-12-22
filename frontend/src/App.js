@@ -34,6 +34,9 @@ import Promotion from './components/Promotion/Promotion';
 import MostViewd from './components/Courses/MostViewd';
 import CorporateCourses from './components/CorporateCourses/CorporateCourses';
 
+// Salama Sprint 3
+import MyReports from './components/MyReports/MyReports';
+
 
 
 function App() {
@@ -109,6 +112,11 @@ function App() {
           <Route path='/AdminAddCoTrainee' element={ <AddCoTrainee/>} /> 
           <Route path='/instructor/promotion' element={<Promotion/> } />
           <Route path='/mostViewd' element={<MostViewd/> } />
+          
+          {/* Salama Sprint 3 */}
+          <Route path='/individualTrainee/myReports' element={<MyReports/> } />
+
+
 
           <Route
          path='/instructor/CreateCourse' 

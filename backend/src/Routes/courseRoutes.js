@@ -128,7 +128,7 @@ courseR.get("/:subject/:rate/:price",async(req, res) => {
            result =await courses.find({Price:price})
       }else if (subject == "empty"){
         result =await courses.find({"Rating.rate": frate ,Price:price})
-      }else if (rate == "empty"){
+      }else if (frate == "empty"){
         result =await courses.find({Subject :subject ,Price:price})
       }else if (price == "empty"){
         result =await courses.find({"Rating.rate": frate  ,Subject :subject})

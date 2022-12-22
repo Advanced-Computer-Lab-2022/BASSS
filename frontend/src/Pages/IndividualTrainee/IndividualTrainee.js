@@ -34,6 +34,10 @@ function IndividualTrainee(){
         <Link to ="/mostViewd">
         <button >View our most popular Courses </button>
         </Link>
+
+        <Link to ="/individualTrainee/myReports">
+        <button >View My Reports </button>
+        </Link>
         <br></br><br></br><br></br><br></br><br></br><br></br>
         
         <IndividualCourses Link = "/individualtrainee/myCourseDetails"/>

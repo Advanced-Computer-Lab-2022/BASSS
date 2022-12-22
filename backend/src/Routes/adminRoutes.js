@@ -6,6 +6,8 @@ const corporateTrainee = require('../Models/corporateTraineeSchema');
 const corporateRequest = require('../Models/RequestsSchema');
 const reports = require('../Models/ReportSchema');
 const individualTrainees = require('../Models/individualTraineeSchema');
+const courses = require('../Models/courseSchema');
+
 const adminR = express.Router();
 
 
@@ -315,6 +317,7 @@ adminR.get("/getRefundReq/:Username",async function(req,res){
 })
 
 ///////////////////////////////////////////////////////////////////////// Reports ///////////////////////////////////////////////
+//eh el tanzim el gamd da ya sara ^_^
 
 adminR.get("/createReport/:Reporter/:CourseID/:Type",async function(req,res){   //:Status/
   var Reporter = req.params.Reporter;
@@ -350,11 +353,17 @@ adminR.get("/getAllReports",async(req, res) => {
 adminR.get("/getReport/:Username",async function(req,res){
   var Username = req.params.Username;
   
-  const report = await reports.find({Reporter: Username })
+  const reportList = await reports.find({Reporter: Username })
 
-  if(report) {
+  var list = []
+    for (let i = 0; i < reportList.length; i++) {
+        const course = await courses.findOne({_id:reportList[i].CourseID})
+        list = list.concat([[reportList[i],course]])
+    }
+
+  if(list) {
     console.log('report Found')
-     return res.json(report);
+     return res.json(list);
   }
   else{
     console.log('report Not Found')

@@ -6,6 +6,7 @@ const courses = require("../Models/courseSchema");
 // const { default: ErrorMessage } = require("../../../frontend/src/components/ErrorMessage/ErrorMessage");
 const exercises = require('../Models/exerciseSchema')
 const subtitles = require('../Models/subtitleSchema')
+const reports = require('../Models/ReportSchema')
 var nodemailer = require('nodemailer');
 
 individualTraineeR.get("/",(req, res) => {
@@ -144,5 +145,6 @@ individualTraineeR.get("/individualCourses/:username",async(req, res) => {
     }
   res.json(list)
 });
+
 
 module.exports = individualTraineeR;
