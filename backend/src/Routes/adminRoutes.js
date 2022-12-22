@@ -2,6 +2,7 @@ const express = require("express");
 const admin = require('../Models/adminSchema');
 const user = require('../Models/userSchema');
 const instructors = require('../Models/instructorSchema');
+const courses = require('../Models/courseSchema');
 const corporateTrainee = require('../Models/corporateTraineeSchema');
 const corporateRequest = require('../Models/RequestsSchema');
 const reports = require('../Models/ReportSchema');
@@ -9,6 +10,8 @@ const individualTrainees = require('../Models/individualTraineeSchema');
 const courses = require('../Models/courseSchema');
 
 const adminR = express.Router();
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken');
 
 
 
@@ -43,7 +46,7 @@ adminR.get("/" , function(req,res){
   });
 
   adminR.get("/AddUser",async(req, res) => {
-    const users = await user.create({UserName: 'Sara', Password: 's', Type:'Admin'});
+    const users = await user.create({UserName: 'hazem123', Password: '123', Type:'individualTrainee'});
     return res.status(200).json(users);
   });
 
@@ -58,9 +61,10 @@ adminR.get("/addAdmin/:username/:password",async function(req,res){
     var password = req.params.password;
     
     try{
-
-      await admin.create({UserName: userName, Password: password});
-      const users = await user.create({UserName: userName, Password: password, Type:'Admin'});
+      const salt = await bcrypt.genSalt();
+      const hashedPassword = await bcrypt.hash(password, salt);
+      await admin.create({UserName: userName, Password: hashedPassword});
+      const users = await user.create({UserName: userName, Password: hashedPassword, Type:'Admin'});
       console.log("Done ya bashaaa")
     //  alert('User Added To System')
     return res.status(200).json({msg: "User Added"});
@@ -88,8 +92,10 @@ adminR.get("/addInstructor/:username/:password",async function(req,res){
   var password = req.params.password;
   
   try{
-    await instructors.create({Username: userName, Password: password , Email: userName});
-    await user.create({UserName: userName, Password: password, Type:'Instructor'});
+    const salt = await bcrypt.genSalt();
+    const hashedPassword = await bcrypt.hash(password, salt);
+    await instructors.create({Username: userName, Password: hashedPassword , Email: userName});
+    await user.create({UserName: userName, Password: hashedPassword, Type:'Instructor'});
     console.log("Done ya bashaaa")
   return res.status(200).json({msg: "User Added"});
   }
@@ -107,8 +113,10 @@ adminR.get("/addCoTrainee/:username/:password",async function(req,res){
   var password = req.params.password;
   
   try{
-    await corporateTrainee.create({Username: userName, Password: password , Email: userName});
-    await user.create({UserName: userName, Password: password, Type:'corporateTrainee'});
+    const salt = await bcrypt.genSalt();
+    const hashedPassword = await bcrypt.hash(password, salt);
+    await corporateTrainee.create({Username: userName, Password: hashedPassword , Email: userName});
+    await user.create({UserName: userName, Password: hashedPassword, Type:'corporateTrainee'});
     console.log("Done ya bashaaa")
   return res.status(200).json({msg: "User Added"});
   }
@@ -131,19 +139,19 @@ adminR.get("/addCoTrainee/:username/:password",async function(req,res){
 ///////////////////////////////////////////////////////////////////////// CORPORATE REQUESTS ///////////////////////////////////////////////
 
 
-
 ////////// Don't Forget to check if the course is already in their accessible courses
 adminR.get("/createCoReq/:Reporter/:CourseID",async function(req,res){   //:Status/
   var Reporter = req.params.Reporter;
   var Status = req.params.Status;
   var CourseID = req.params.CourseID;    
   
-      try{
   
-        const CorporateTrainee = await corporateTrainee.find({Username : Reporter});
-        const AccessibleCourses = CorporateTrainee.AccessibleCourses;
-      
-        for(let i = 0 ; i<AccessibleCourses.length ; i++){
+      try{
+        //courseRequests
+        const Course1 = await courses.findOne({_id: CourseID })
+        const CorporateTrainee = await corporateTrainee.findOne({Username : Reporter});
+        const CourseTitle = Course1.Title
+        for(let i = 0 ; i < CorporateTrainee.AccessibleCourses.length ; i++){
           if(CourseID == AccessibleCourses[i]){
             return res.status(400).json('Course Already Accesible');
           }
@@ -152,9 +160,12 @@ adminR.get("/createCoReq/:Reporter/:CourseID",async function(req,res){   //:Stat
         const coReq = await corporateRequest.create({
             Reporter:Reporter,
             //Status:Status,
-            CourseID:CourseID
+            CourseID:CourseID,
+            CourseTitle:CourseTitle
       });
-        console.log("Course Request Sent")
+      const arr = CorporateTrainee.courseRequests.concat(coReq._id);
+      const UpdatedTrainee = await corporateTrainee.findOneAndUpdate({Username : Reporter} , {courseRequests:arr});
+      console.log("Course Request Sent")
       return res.status(200).json({coReq});
       }
       catch(error)
@@ -325,12 +336,36 @@ adminR.get("/createReport/:Reporter/:CourseID/:Type",async function(req,res){   
   var CourseID = req.params.CourseID;    
   
   try{
-  
+    const Course1 = await courses.findOne({_id: CourseID })
+    const CourseTitle = Course1.Title
+    const user1 = await user.findOne({UserName: Reporter })
     const Report = await reports.create({
       Reporter:Reporter,
       Type:Type,
-      CourseID:CourseID
-});
+      CourseID:CourseID,
+      CourseTitle:CourseTitle
+    });
+
+    console.log(user1.Type)
+
+    if(user1.Type == "individualTrainee"){
+      const individualTrainee = await individualTrainees.findOne({UserName: Reporter })
+      const arr = individualTrainee.Reports.concat(Report._id);
+      const UpdatedTrainee = await individualTrainees.findOneAndUpdate({UserName : Reporter} , {Reports:arr});
+    }
+
+    else if(user1.Type == "corporateTrainee"){
+      const corporateTrainee1 = await corporateTrainee.findOne({Username: Reporter })
+      const arr1 = corporateTrainee1.Reports.concat(Report._id);
+      const UpdatedTrainee1 = await corporateTrainee.findOneAndUpdate({Username : Reporter} , {Reports:arr1});
+    }
+
+    else if(user1.Type == "Instructor"){
+      const Instructor1 = await instructors.findOne({Username: Reporter })
+      const arr2 = Instructor1.Reports.concat(Report._id);
+      const UpdatedTrainee1 = await instructors.findOneAndUpdate({Username : Reporter} , {Reports:arr2});
+    }
+    
 
   console.log("Report Sent")
   return res.status(200).json({Report});
@@ -411,7 +446,160 @@ adminR.get("/ResolveReport/:ReportID",async function(req,res){   //:Status/
 })
 
 ///////////////////////////////////////////////////////////////////////// Set Promotions ///////////////////////////////////////////////
-//
+
+adminR.get("/SetPromotion/:CourseID/:PromotionPercentage/:PromotionStartTime/:PromotionEndTime/:PromotionStartDate/:PromotionEndDate",async function(req,res){   //:Status/
+  var CourseID = req.params.CourseID;
+  var PromotionPercentage = req.params.PromotionPercentage;
+  var PromotionStartTime = req.params.PromotionStartTime;
+  var PromotionEndTime = req.params.PromotionEndTime;
+  var PromotionStartDate = req.params.PromotionStartDate;
+  var PromotionEndDate = req.params.PromotionEndDate;
+  try{
+
+    var SplitStartDate = []
+    SplitStartDate = PromotionStartDate.split('-')
+    var StartDay = SplitStartDate[2]
+    console.log('Start Day:')
+    console.log(StartDay)
+    var StartMonth = SplitStartDate[1]
+    console.log('Start Month:')
+    console.log(StartMonth)
+    var StartYear = SplitStartDate[0]
+    console.log('Star tYear:')
+    console.log(StartYear)
+
+    var SplitEndDate = []
+    SplitEndDate = PromotionEndDate.split('-')
+    var EndDay = SplitEndDate[2]
+    console.log('End Day:')
+    console.log(EndDay)
+    var EndMonth = SplitEndDate[1]
+    console.log('End Month:')
+    console.log(EndMonth)
+    var EndYear = SplitEndDate[0]
+    console.log('End Year:')
+    console.log(EndYear)
+  
+  
+    let ts = Date.now();
+    console.log('ts:')
+    console.log(ts)
+    let date_ob = new Date(ts);
+    let currentDate = date_ob.getDate();
+    let currentMonth = date_ob.getMonth() + 1;
+    let currentYear = date_ob.getFullYear();
+    let currentHour = date_ob.getHours();
+  
+    //(10/10/2010) // Year> , year== + month> , year== + month== + day>, year== + month== + day== + hour>
+    //(11/9/2010)
+    // prints date & time in YYYY-MM-DD format
+    console.log(currentYear + "-" + currentMonth + "-" + currentDate);
+    //       Year>,                    year== + month>,                                 year== + month== + day>,                                              year== + month== + day== + hour>
+    if((currentYear > EndYear)||(currentMonth > EndMonth && currentYear == EndYear)||(currentDate > EndDay && currentMonth == EndMonth && currentYear == EndYear)||(currentDate == EndDay && currentMonth == EndMonth && currentYear == EndYear && currentHour > PromotionEndTime)){ //Expired 5alas
+      console.log('Expired Condition')  
+      const course1 = await courses.findOneAndUpdate({_id : CourseID} , {$set: {PromotionPercentage: 0, PromotionState: 'Expired',PromotedPrice:0 } });
+    }
+
+    else if((currentYear > StartYear)||(currentMonth > StartMonth && currentYear == StartYear)||(currentDate > StartDay && currentMonth == StartMonth && currentYear == StartYear)||(currentDate == StartDay && currentMonth == StartMonth && currentYear == StartYear && currentHour > PromotionStartTime)){
+      console.log('Ongoing Condition')  
+
+      const courseSara = await courses.findOne({_id: CourseID });
+      console.log(courseSara)
+        var PriceOld = courseSara.Price;
+        var PriceNew = PriceOld*(100-PromotionPercentage)/100;
+        console.log('Price Old :')
+        console.log(PriceOld)
+        console.log('Price New :')
+        console.log(PriceNew)
+
+        const courseUpdated = await courses.findOneAndUpdate({_id : CourseID} , {$set: {PromotionPercentage: PromotionPercentage, PromotionState: 'Ongoing', PromotionStartTime:PromotionStartTime, PromotionEndTime: PromotionEndTime, PromotionStartDate:PromotionStartDate, PromotionEndDate: PromotionEndDate, PromotedPrice:PriceNew }});
+        console.log(courseUpdated);
+    }
+    console.log("Promotion Added");
+    return res.status(200).json({msg: 'Done'});
+  }
+  catch(error)
+  {
+    console.log("Couldn't Add Promotion");
+    console.log(error);
+    return res.status(400).json({msg: error});
+  }        
+})
+
+
+adminR.get("/GetPromotionState/:CourseID",async function(req,res){   //:Status/
+  var CourseID = req.params.CourseID;
+  
+  try{
+
+    const course = await courses.findOne({_id: CourseID });
+
+    var PromotionPercentage = course.PromotionPercentage;
+    var PromotionStartTime = course.PromotionStartTime;
+    console.log(PromotionStartTime)
+    var PromotionEndTime = course.PromotionEndTime;
+    console.log(PromotionEndTime)
+    var PromotionStartDate = course.PromotionStartDate;
+    console.log(PromotionStartDate)
+    var PromotionEndDate = course.PromotionEndDate;
+    console.log(PromotionEndDate)
+
+    var SplitStartDate = []
+//    SplitStartDate = PromotionStartDate.split('-')
+    var StartDay = PromotionStartDate.getDay();
+    console.log(StartDay)
+    var StartMonth = PromotionStartDate.getMonth();
+    console.log(StartMonth)
+    var StartYear = PromotionStartDate.getFullYear();
+    console.log(StartYear)
+
+    var SplitEndDate = []
+//    SplitEndDate = PromotionEndDate.split('-')
+    var EndDay = PromotionEndDate.getDay();
+    console.log(EndDay)
+    var EndMonth = PromotionEndDate.getMonth();
+    console.log(EndMonth)
+    var EndYear = PromotionEndDate.getFullYear();
+    console.log(EndYear)
+
+
+    let ts = Date.now();
+    console.log('ts:')
+    console.log(ts)
+    let date_ob = new Date(ts);
+    let currentDate = date_ob.getDate();
+    let currentMonth = date_ob.getMonth() + 1;
+    let currentYear = date_ob.getFullYear();
+    let currentHour = date_ob.getHours();
+  
+    //(10/10/2010) // Year> , year== + month> , year== + month== + day>, year== + month== + day== + hour>
+    //(11/9/2010)
+    // prints date & time in YYYY-MM-DD format
+    console.log(currentYear + "-" + currentMonth + "-" + currentDate);
+    //       Year>,                    year== + month>,                                 year== + month== + day>,                                              year== + month== + day== + hour>
+    if((currentYear > EndYear)||(currentMonth > EndMonth && currentYear == EndYear)||(currentDate > EndDay && currentMonth == EndMonth && currentYear == EndYear)||(currentDate == EndDay && currentMonth == EndMonth && currentYear == EndYear && currentHour > PromotionEndTime)){ //Expired 5alas
+        const course1 = await courses.findOneAndUpdate({_id : CourseID} , {$set: {PromotionPercentage: 0, PromotionState: 'Expired',PromotedPrice:0 } });
+    }
+
+    else if((currentYear > StartYear)||(currentMonth > StartMonth && currentYear == StartYear)||(currentDate > StartDay && currentMonth == StartMonth && currentYear == StartYear)||(currentDate == StartDay && currentMonth == StartMonth && currentYear == StartYear && currentHour > PromotionStartTime)){
+
+        var PriceOld = course.Price;
+        var PriceNew = PriceOld*(100-PromotionPercentage)/100;
+        console.log(PriceOld)
+        console.log(PriceNew)
+
+        const courseUpdated = await courses.findOneAndUpdate({_id : CourseID} , {$set: {PromotionPercentage: PromotionPercentage, PromotionState: 'Ongoing', PromotionStartTime:PromotionStartTime, PromotionEndTime: PromotionEndTime, PromotionStartDate:PromotionStartDate, PromotionEndDate: PromotionEndDate, PromotedPrice:PriceNew }});
+    }
+    console.log("Promotion Status");
+    return res.status(200).json(course.PromotionState);
+  }
+  catch(error)
+  {
+    console.log("Couldn't Get Promotion Status");
+    console.log(error);
+    return res.status(400).json({msg: error});
+  }        
+})
 
 
 module.exports = adminR;
