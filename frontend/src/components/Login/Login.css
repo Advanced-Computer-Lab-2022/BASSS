@@ -258,6 +258,15 @@
   transition: .5s;
 }
 
+.admin_login-box .soha_required{
+  color: rgb(213, 13, 13);
+  align-self: center;
+  font-size: small;
+  margin-bottom: 3px;
+}
+
+
+
 .fa{
   color: white;
       position: relative;

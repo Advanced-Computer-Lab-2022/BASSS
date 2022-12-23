@@ -9,7 +9,7 @@ export default function InstructorNavBar(){
 
     LogoLink='/'  FirstLinkTo='/instructor/MyCourses' SecondLinkTo='/instructor/CreateCourse'
     ThirdLinkTo='/instructor/SelectCountry' FourthLinkTo='/instructor/myInfo' 
-    ButtonLinkTo='/'/>
+    ButtonLinkTo='/logout'/>
     </div>
 }
 

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 import  Cookies from 'universal-cookie';
 
 import './Login.css';
@@ -10,7 +11,8 @@ const AdminLogin = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [passwordShown, setPasswordShown] = useState(false);
-    const [error,setError] = useState(null)
+    const [error,setError] = useState('')
+    var type = ''
 
     const togglePassword = () => {
         setPasswordShown(!passwordShown);
@@ -21,44 +23,48 @@ const AdminLogin = () => {
     }
 
     const getPassword =  (event) => {
-        setPassword(event.targetvalue)
+        setPassword(event.target.value)
     }
 
-    const getAdmin = async () => {
+    const navigate = useNavigate();
+
+    const getAdmin = async (e) => {
+        e.preventDefault()
         const user = {
             username: username,
             pass: password
         }
-        alert("here")
-        await axios.post("http://localhost:9000/admin/login", user).then(
-            (res)=> {
-                cookies.set('token', res.data.token, {path: '/'})
-                localStorage.setItem('type', 'admin')
-                window.href('/Admin')
-            } 
-        ).catch(error => {
-            setError(error.message)
-        })
+        try{
+            await axios.post("http://localhost:9000/adminLogin", user, {withCredentials: false}).then(
+                (res)=> {
+                    cookies.set('token', res.data.token, {path: '/'})
+                    localStorage.setItem('type', res.data.type)
+                    navigate('/Admin')
+                } 
+            )
+        }
+        catch (error) {
+            setError(error.response.data)
+        }
     }
+
+    
 
     return(
             
         
         <div class="admin_login-box">
-            {/* <div className='admin_login-key'>
-                <i class="fa fa-key" aria-hidden="false"></i>
-            </div> */}
             <br></br>
             <label className='soha_login_h1'>Admin Panel</label>
             <br/>
             <form className='soha_login_form' onSubmit={getAdmin}>
                 <div class="user-box">
-                <input className="soha_login_input" type="text" onChange={getUsername} required="true"></input>
+                <input className="soha_login_input" type="text" onChange={getUsername} value={username} required="true"></input>
                 <label className='soha_login_label'>Username</label>
                 </div>
                 <br/><br/>
                 <div class="user-box">
-                <input className="soha_login_input" type="password" onChange={getPassword} required="true"></input>
+                <input className="soha_login_input" type={passwordShown ? "text" : "password"} onChange={getPassword} value={password} required="true"></input>
                 <i class={passwordShown ? "fa fa-eye-slash" : "fa fa-eye"} onClick={togglePassword}></i>
                 <label className='soha_login_label'>Password</label>
                 </div>

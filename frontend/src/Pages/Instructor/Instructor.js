@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import './Instructor.css'
 import Courses from '../../components/Courses/Courses';
 import editmyInfo from '../../components/EditmyInfo/EditmyInfo';
-//import app from '../../../../backend/App.js';
 import Forgetpass from '../../components/Forgetpass/Forgetpass';
 import Search from '../../components/Search/Search';
 import MyCourses from '../../components/MyCourses/MyCourses';
@@ -18,7 +17,7 @@ function Instructor(){
         <div className='Instructor-body'>
         <InstructorNavBar/>
         <Search Type='instructor'/>        
-
+        <br/><br/>
         {/* <Link to ="/instructor/myInfo">
         <button> edit my info</button>
         </Link> */}

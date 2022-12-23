@@ -15,8 +15,8 @@ const guestR = require("./Routes/guestRoutes");
 const nodemailer = require('nodemailer');
 const cors = require('cors');
 
-const { requireAuth, typeAuth } = require('./Authenticator/authenticator');
-const {login, signup, logout, search}= require('./Routes/commonRoutes')
+const { requireAuth } = require('./Authenticator/authenticator');
+const {login, adminLogin, signup, logout, search}= require('./Routes/commonRoutes')
 
 const app = express();
 
@@ -28,7 +28,6 @@ const port = process.env.PORT || "9000";
 mongoose.connect(process.env.mongoURl)
 .then(()=>{
   console.log("MongoDB is now connected!")
-// Starting server
  app.listen(port, () => {
     console.log(`Listening to requests on http://localhost:${port}`);
   })
@@ -42,15 +41,17 @@ app.engine('ejs', require('ejs').renderFile);
 //common routes
 app.post('/signup', signup);
 app.post('/login', login)
-app.get('/logout',typeAuth, logout);
+app.get('/logout',requireAuth, logout);
+app.post('/adminLogin', adminLogin)
 app.get('/search/:searchkey', search)
 
-app.use('/instructor',typeAuth,instructorR)
-app.use('/individualTrainee', individualTraineeR)
-app.use('/corporateTrainee', corporateTraineeR)
+//using authorization first
+app.use('/instructor',requireAuth,instructorR)
+app.use('/individualTrainee',requireAuth, individualTraineeR)
+app.use('/corporateTrainee',requireAuth, corporateTraineeR)
+app.use('/admin',requireAuth, adminR)
+
+//common??
 app.use('/course', courseR)
-app.use('/exercises', exerciseR)
-app.use('/admin', adminR)
 app.use('/report', reportR)
 app.use('/request', requestsR)
-// app.use('/guest', guestR)

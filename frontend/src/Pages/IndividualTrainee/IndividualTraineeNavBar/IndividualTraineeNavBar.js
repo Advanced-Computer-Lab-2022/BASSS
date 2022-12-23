@@ -3,9 +3,9 @@ import Navbar from '../../../components/Navbar/Navbar';
 
 export default function IndividualTraineeNavBar(){
     return <div>
-    <Navbar SecondLinkText='Courses' FirstLinkText=' ' ThirdLinkText='Reports' FourthLinkText='Add User'  
+    <Navbar  FirstLinkText=' ' SecondLinkText='Courses' ThirdLinkText='My courses' FourthLinkText='My Profile'  
     ButtonLinkText='Logout' 
-    LogoLink='/' SecondLinkTo='/CoursesAdmin' FirstLinkTo='/AdminProfile' ThirdLinkTo='/AdminReports' FourthLinkTo='/AdminAddUsers' 
+    LogoLink='/'  FirstLinkTo='/AdminProfile' SecondLinkTo='/CoursesAdmin' ThirdLinkTo='' FourthLinkTo='/individualProfile' 
     ButtonLinkTo='/logout'/>
     </div>
 }

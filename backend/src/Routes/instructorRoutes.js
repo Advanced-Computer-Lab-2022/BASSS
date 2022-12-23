@@ -10,9 +10,10 @@ instructorR.get("/getWallet", async function (req,res){
 })
 
 instructorR.get("/searchmycourses/:searchkey", async function(req,res){
+    //token name
+    const name = res.locals.user;
 
     const key = req.params.searchkey;
-    const name = res.locals.user;
     var array = [];
     var query = await courses.find({InstructorUserName:name});
     for(let i = 0 ; i<query.length ; i++)
@@ -28,52 +29,54 @@ instructorR.get("/searchmycourses/:searchkey", async function(req,res){
  
  })
 
- instructorR.get('/instructorViewtitles', function(req, res) { 
-    var query = courses.find({InstructorUserName:"salama"})
+ instructorR.get('/instructorViewtitles', function(req, res) {
+    //token name 
+    const name = res.locals.user;
+
+    var query = courses.find({InstructorUserName:name})
     query.exec(function(err,result){
         if (err) throw err;
         if(result.length==0){
-           // res.render("../views/instructor.ejs",{title:"view course"});
+
         }else{
-            courses.find({InstructorUserName:"salama"})      
-      
-        res.send(result);
-         // res.render("../views/instructorViewtitles.ejs",{title:"view courses"});
+            courses.find({InstructorUserName:name})            
+            res.send(result);
         }
       })
+})
 
-   
-    })
+  instructorR.get("/myInfo/first/:minibio",function(req,res){
+    //token name
+    const name = res.locals.user;
 
-    instructorR.get("/myInfo/first/:minibio",function(req,res){
-      //console.log(req.body)
-      var minibio = req.params.minibio;
-      var query = instructors.find({Username:"soha"})
-          query.exec(function(err,result){
-              if (err) throw err;
-              if(result.length==0){
-                //  res.render("../views/instructor.ejs",{title:"instructor country"});
-              }else{
-                  instructors.findOneAndUpdate({Username:"soha"},{MiniBio:minibio},{upsert:true},function(err,doc){
-                      if(err) throw err;
-                    });         
-                // res.render("../views/instructor.ejs",{title:"instructor country"});
-              }
-  })
-  
-  })
+    var minibio = req.params.minibio;
+    var query = instructors.find({Username:name})
+        query.exec(function(err,result){
+            if (err) throw err;
+            if(result.length==0){
+
+            }else{
+                instructors.findOneAndUpdate({Username:name},{MiniBio:minibio},{upsert:true},function(err,doc){
+                    if(err) throw err;
+                  });         
+            }
+})
+
+})
     
 
 instructorR.get("/myInfo/second/:mail",function(req,res){
-  //  console.log(req.body)
-    var mail = req.params.mail;
-    var query = instructors.find({Username:"soha"})
+  //token name
+  const name = res.locals.user;
+  //usermail??
+  var mail = req.params.mail;
+    var query = instructors.find({Username:name})
         query.exec(function(err,result){
             if (err) throw err;
             if(result.length==0){
               //  res.render("../views/instructor.ejs",{title:"instructor country"});
             }else{
-                instructors.findOneAndUpdate({Username:"soha"},{Email:mail},{upsert:true},function(err,doc){
+                instructors.findOneAndUpdate({Username:name},{Email:mail},{upsert:true},function(err,doc){
                     if(err) throw err;
                   });         
               // res.render("../views/instructor.ejs",{title:"instructor country"});
@@ -82,15 +85,17 @@ instructorR.get("/myInfo/second/:mail",function(req,res){
 
 })
 instructorR.get("/myInfo/third/:pass",function(req,res){
-    // console.log(req.body)
-    var pass = req.params.pass;
-    var query = instructors.find({Username:"soha"})
+  //token name
+  const name = res.locals.user;
+
+  var pass = req.params.pass;
+    var query = instructors.find({Username:name})
         query.exec(function(err,result){
             if (err) throw err;
             if(result.length==0){
               //  res.render("../views/instructor.ejs",{title:"instructor country"});
             }else{
-                instructors.findOneAndUpdate({Username:"soha"},{Password:pass},{upsert:true},function(err,doc){
+                instructors.findOneAndUpdate({Username:name},{Password:pass},{upsert:true},function(err,doc){
                     if(err) throw err;
                   });         
               // res.render("../views/instructor.ejs",{title:"instructor country"});
@@ -100,15 +105,17 @@ instructorR.get("/myInfo/third/:pass",function(req,res){
 })
   
 instructorR.get("/myInfo/pass/:pass",function(req,res){
-    // console.log(req.body)
-      var pass = req.params.pass;
-      var query = instructors.find({Username:"soha"})
+  //token name
+  const name = res.locals.user;
+
+  var pass = req.params.pass;
+      var query = instructors.find({Username:name})
           query.exec(function(err,result){
               if (err) throw err;
               if(result.length==0){
                 //  res.render("../views/instructor.ejs",{title:"instructor country"});
               }else{
-                instructors.findOneAndUpdate({Username:"soha"},{Password:pass},{upsert:true},function(err,doc){
+                instructors.findOneAndUpdate({Username:name},{Password:pass},{upsert:true},function(err,doc){
                       if(err) throw err;
                     });         
               // res.render("../views/instructor.ejs",{title:"instructor country"});
@@ -117,19 +124,26 @@ instructorR.get("/myInfo/pass/:pass",function(req,res){
 })
 
 instructorR.get("/viewRating/review",async(req, res) => {
-  const result =await instructors.find({Username:"salama"})
+  //token name
+  const name = res.locals.user;
+
+  const result =await instructors.find({Username:name})
   res.json(result)
 });
 
-instructorR.get("/getInstructor/:name",async(req, res) => {
-   var name = req.params.name;
-   const result =await instructors.findOne({Username:name})
+instructorR.get("/getInstructor",async(req, res) => {
+  //token name
+  const name = res.locals.user;
+
+  const result =await instructors.findOne({Username:name})
    res.json(result)
 });
 
 
 instructorR.get("/updateRate/:name/:newRate",async(req, res) => {
-    var name = req.params.name;
+    //token name
+    const name = res.locals.user;
+
     var newRate = req.params.newRate;
     var oldResult =await instructors.findOne({Username:name})
     var oldCount = oldResult.Rating.count;
@@ -139,92 +153,29 @@ instructorR.get("/updateRate/:name/:newRate",async(req, res) => {
     res.json(result)
 });
 
-      
-// instructorR.get("/forget2pass",function(req,res){
-//   var transporter = nodemailer.createTransport({
-//       service: 'gmail',
-//       auth: {
-//         user: 'acltest321@gmail.com',
-//         pass: 'yzdnccfnpqvmwpgr'
-//       }
-//     });
-    
-//     var mailOptions = {
-//       from: 'acltest321@gmail.com',
-//       to: 'basselbassel28@gmail.com',
-//       subject: 'Sending Email using Node.js',
-//       text: 'To reset your password please click here , http://localhost:3000/instructor/forgetpass'
-//     };
-    
-//     transporter.sendMail(mailOptions, function(error, info){
-//       // if (error) {
-//       //   console.log(error);
-//       // } else {
-//       //   console.log('Email sent: ' + info.response);
-//       // }
-//     });
-
-// })
-
 instructorR.get("/forgetpass", (req,res) => {
-  var transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: 'acltest321@gmail.com',
-      pass: 'yzdnccfnpqvmwpgr'
-    }
-  });
-  
-  var mailOptions = {
-    from: 'acltest321@gmail.com',
-    to: 'basselbassel28@gmail.com',
-    subject: 'Sending Email using Node.js',
-    text: 'To reset your password please click here , http://localhost:3000/instructor/forgetpass'
-  };
-  
-  transporter.sendMail(mailOptions, function(error, info){
-    if (error) {
-      console.log(error);
-    } else {
-      console.log('Email sent: ' + info.response);
-    }
-  });
-})
-
-instructorR.get("/:country",function(req,res){
-  const country = req.params.country;
-  // console.log(country);
-  var query = instructors.find({Username:"soha"})
-      query.exec(function(err,result){
-          if (err) throw err;
-          if(result.length==0){
-            //  res.render("../views/instructor.ejs",{title:"instructor country"});
-          }else{
-              instructors.findOneAndUpdate({Username:"soha"},{Country:country},{upsert:true},function(err,doc){
-                  if(err) throw err;
-                });         
-            // res.render("../views/instructor.ejs",{title:"instructor country"});
-          }
-})
-
-})
-
-instructorR.get("/:country",function(req,res){
-  const country = req.params.country;
-  console.log(country);
-  var query = instructors.find({Username:"soha"})
-      query.exec(function(err,result){
-          if (err) throw err;
-          if(result.length==0){
-            //  res.render("../views/instructor.ejs",{title:"instructor country"});
-          }else{
-              instructors.findOneAndUpdate({Username:"soha"},{Country:country},{upsert:true},function(err,doc){
-                  if(err) throw err;
-                });         
-            // res.render("../views/instructor.ejs",{title:"instructor country"});
-          }
-})
-
+    var transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'acltest321@gmail.com',
+        pass: 'yzdnccfnpqvmwpgr'
+      }
+    });
+    
+    var mailOptions = {
+      from: 'acltest321@gmail.com',
+      to: 'basselbassel28@gmail.com',
+      subject: 'Sending Email using Node.js',
+      text: 'To reset your password please click here , http://localhost:3000/instructor/forgetpass'
+    };
+    
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
+    });
 })
 
 module.exports = instructorR;

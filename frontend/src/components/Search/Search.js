@@ -4,7 +4,7 @@ import './Search.css'
 
 const Search = (props)=>{
     
-    const [error,seterror] = useState(false)
+    const [error,setError] = useState('')
     const [results,setResults] = useState([]);
     const [visibile, setvisible]=useState(false);
     const [message,setmessage] = useState('');
@@ -16,10 +16,6 @@ const Search = (props)=>{
 
     const changehandler = (event) =>{
         setmessage(event.target.value)
-    }
-
-    const errorHandle = () =>{
-        seterror(!error)
     }
 
     const clickhandler = () =>{
@@ -37,28 +33,30 @@ const Search = (props)=>{
             rowhandler();
         }
         if(props.Type === "searchMyCourses"){
-            await axios.get(`http://localhost:9000/instructor/searchmycourses/${message}`, {withCredentials: true}).then(
-                (res)=> {
-                    const mycourses = res.data;
-                    setResults(mycourses);
-                }
-            )
-
+            try {
+                await axios.get(`http://localhost:9000/instructor/searchmycourses/${message}`).then(
+                    (res)=> {
+                        const mycourses = res.data;
+                        setResults(mycourses);
+                    }
+                )
+            }
+            catch (error) {
+                setError(error.response.data)
+            }
         }
         else{
-            await axios.get(`http://localhost:9000/search/${message}`).then(
-                (res) => {
-                    if(res.status===200){
+            try{
+                await axios.get(`http://localhost:9000/search/${message}`, {withCredentials: false}).then(
+                    (res) => {
                         const s = res.data;
                         setResults(s);
                     }
-                    else{
-                        errorHandle();
-                    }
-    
-                }
-           )
-
+               )
+            }
+            catch (error) {
+                setError(error.response.data)
+            }
         }
         
     }
@@ -95,18 +93,9 @@ const Search = (props)=>{
         </table>
         </div>}
 
-        {error&& <div>
-            <h1>NOT FOUND</h1>
-            
-            </div>}
+        {error&& <label color='red'>{error}</label>}
         </div>
-
-
     )
-
-
-
-
 }
 
 
