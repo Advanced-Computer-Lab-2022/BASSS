@@ -13,7 +13,7 @@ const MultipleCoursesDiv = (props) => {
         var temp = (
                 <div>
                     <br></br>
-                    {<CourseDetilsDivAdmin CourseID = {AllCoursesArray[i]._id}/>}
+                    {<CourseDetilsDivAdmin CourseID = {AllCoursesArray[i]._id} SelectedCourseshandlerProp={props.SelectedCourseshandlerProp} SelectedCoursesProp={props.SelectedCoursesProp}/>}
                     <br></br>
                 </div>);
         usersDiv.push(temp);

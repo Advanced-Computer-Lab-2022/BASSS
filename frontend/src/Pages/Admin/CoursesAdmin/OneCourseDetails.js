@@ -21,17 +21,16 @@ const OneCourseDetails = (props) => {
 
   return (
     <div className='Admin_OneCourseDetails_Div'>
-        <h1>Sara Saad Henaa</h1>
-        <h1>Title: {Course.Title}</h1>
-        <h1>Views: {Course.Views}</h1>
-        <h1>Subject: {Course.Subject}</h1>
-        <h1>Instructor: {Course.InstructorUserName}</h1>
-        <h1>Price: {Course.Price}</h1>
-        <h1> Promotion State: {Course.PromotionState}</h1>
-        <h1>PromotedPrice: {Course.PromotedPrice}</h1>
-        <h1> Promotion Percentage: {Course.PromotionPercentage}</h1>
-        <h1>Promotion Start Date: {Course.PromotionStartDate}</h1>
-        <h1> Promotion End Date: {Course.PromotionEndDate}</h1>
+        <h1 className='CourseDetailsAdmin_h1'>Title: {Course.Title}</h1>
+        <h1 className='CourseDetailsAdmin_h1'>Views: {Course.Views}</h1>
+        <h1 className='CourseDetailsAdmin_h1'>Subject: {Course.Subject}</h1>
+        <h1 className='CourseDetailsAdmin_h1'>Instructor: {Course.InstructorUserName}</h1>
+        <h1 className='CourseDetailsAdmin_h1'>Price: {Course.Price}</h1>
+        <h1 className='CourseDetailsAdmin_h1'> Promotion State: {Course.PromotionState}</h1>
+        <h1 className='CourseDetailsAdmin_h1'>PromotedPrice: {Course.PromotedPrice}</h1>
+        <h1 className='CourseDetailsAdmin_h1'> Promotion Percentage: {Course.PromotionPercentage}</h1>
+        <h1 className='CourseDetailsAdmin_h1'>Promotion Start Date: {Course.PromotionStartDate}</h1>
+        <h1 className='CourseDetailsAdmin_h1'> Promotion End Date: {Course.PromotionEndDate}</h1>
 
         
     </div>

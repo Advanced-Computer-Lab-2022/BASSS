@@ -130,23 +130,35 @@ function CreateCourse() {
 
     
 {/*Title,InstructorName,SubtitleNumber,Question,Choice1,Choice2,Choice3,Choice4,MaxGrade,CorrectAnswer*/}
-const CreateExcerciseProp = (InstructorName,ThisSubtitleNumber,Question,Choice1,Choice2,Choice3,Choice4,MaxGrade,CorrectAnswer)=>{
+const CreateExcerciseProp = (InstructorName1,ThisSubtitleNumber1,Question1,Choice11,Choice21,Choice31,Choice41,MaxGrade1,CorrectAnswer1,SubtitleHours1,VideoLink1,ShortVideoDescription1)=>{
     
         //courseTitlehandler('ya salam') 
-        InstructorNamehandler(InstructorName)
-        ThisSubtitleNumberhandler(ThisSubtitleNumber)
-        questionhandler(Question)
-        choice1handler(Choice1)
-        Choice2handler(Choice2)
-        Choice3handler(Choice3)
-        Choice4handler(Choice4)
-        maxGradehandler(MaxGrade)
-        correctAnswerhandler(CorrectAnswer)
+        InstructorNamehandler(InstructorName1)
+        ThisSubtitleNumberhandler(ThisSubtitleNumber1)
+        questionhandler(Question1)
+        choice1handler(Choice11)
+        Choice2handler(Choice21)
+        Choice3handler(Choice31)
+        Choice4handler(Choice41)
+        maxGradehandler(MaxGrade1)
+        correctAnswerhandler(CorrectAnswer1)
 
-        CreateExcercise()
+        const CreateExcercise1 = async(req,res)=>{
+
+            await axios.get(`http://localhost:9000/course/createExcercise/${Title1}/${InstructorName1}/${ThisSubtitleNumber1}/${Question1}/${Choice11}/${Choice21}/${Choice31}/${Choice41}/${MaxGrade1}/${CorrectAnswer1}`).then(
+                (res) => {
+                    const Ex1 = res.data
+                    alert(Ex1.excercise._id)
+                    createSubtitle1(SubtitleHours1,VideoLink1,ShortVideoDescription1,ThisSubtitleNumber1,Ex1.excercise._id)
+                    ExerciseIDhandler(Ex1.excercise._id)
+                })
+        }
+        CreateExcercise1()
         //return true
 
     }
+
+
             //Title1,InstructorName1,SubtitleNumber1,Question1,Choice11,Choice21,Choice31,Choice41,MaxGrade1,CorrectAnswer1 
     const CreateExcercise = async(req,res)=>{
 
@@ -159,17 +171,41 @@ const CreateExcerciseProp = (InstructorName,ThisSubtitleNumber,Question,Choice1,
     }
 
 
-     const createSubtitleProp = (SubtitleHours,VideoLink,ShortVideoDescription,ThisSubtitleNumber)=>{
+     const createSubtitleProp = (SubtitleHours1,VideoLink1,ShortVideoDescription1,ThisSubtitleNumber1)=>{
         alert('SubProp aho')
         //CourseIDhandler(CourseID) 
-        subtitleHourshandler(SubtitleHours)
-        videolinkhandler(VideoLink)
-        videoDescriptionhandler(ShortVideoDescription)
+        subtitleHourshandler(SubtitleHours1)
+        videolinkhandler(VideoLink1)
+        videoDescriptionhandler(ShortVideoDescription1)
         //Exercisehandler(Exercise)
-        ThisSubtitleNumberhandler(ThisSubtitleNumber)
+        ThisSubtitleNumberhandler(ThisSubtitleNumber1)
         console.log('Sub Prop Done')
-        createSubtitle()
-    }
+        const S = () =>{
+            createSubtitle1()
+
+        }
+                //SubtitlesArrayhandler(SubtitlesArray.push(SubtitleID._id))
+         }
+
+    const createSubtitle1 = (SubtitleHours1,VideoLink1,ShortVideoDescription1,ThisSubtitleNumber1,ExerciseID1) =>{ 
+        const S = async(req,res)=>{
+        alert('sara')
+                    await axios.get(`http://localhost:9000/course/createSubtitle/${SubtitleHours1}/${VideoLink1}/${ShortVideoDescription1}/${ExerciseID1}/${ThisSubtitleNumber1}`).then(
+                        (res) => {
+                            const Sub = res.data
+                            SubtitleIDhandler(Sub.subzeft._id)
+                            SubtitlesArray.push(Sub.subzeft._id)
+                            console.log(SubtitlesArray)
+                            SubtitlesArrayhandler(SubtitlesArray)
+                            alert(SubtitlesArray)
+                            //SubtitleIDhandler(Sub.subzeft._id)
+            
+                        })
+                    }
+                    S()
+        }
+
+    
      const createSubtitle = async(req,res)=>{
 
         await axios.get(`http://localhost:9000/course/createSubtitle/${SubtitleHours}/${videolink}/${VideoDescription}/${ExerciseID}/${ThisSubtitleNumber}`).then(
@@ -299,7 +335,7 @@ const CreateExcerciseProp = (InstructorName,ThisSubtitleNumber,Question,Choice1,
                 <div><MultipleSubtitleDivs createSubtitle = {createSubtitle} CreateExcercise = {CreateExcercise} GetExcercise = {GetExcercise} createSubtitleProp = {createSubtitleProp} CreateExcerciseProp = {CreateExcerciseProp} SubtitlesNum = {SubtitleNum} CreateButton = {CreateButton} Title={Title} InstructorName={InstructorName}/></div>
             <br></br>
             </div>
-            <button className='CreateCourse_btn' onClick={AddId}>Create Course</button> {/*CreateCoursehandler*/}
+            <button className='CreateCourse_btn' onClick={AddCourse}>Create Course</button> {/*CreateCoursehandler*/}
              {<h1 className='createcourse_courseinputs_h1'>hena ahooo,{InstructorName},{ThisSubtitleNumber},{Question},{Choice1},{Choice2},{Choice3},{Choice4},{MaxGrade},{CorrectAnswer}</h1>}
         </div>
     </div>

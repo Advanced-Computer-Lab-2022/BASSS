@@ -7,8 +7,6 @@ import '../Admin.css';
 
 const CourseDetilsDivAdmin = (props) =>{
 
-    var CourseID = props.CourseID
-
     const [AllCoursesArray , setAllCoursesArray] = useState([])
     const AllCoursesArrayhandler = (sara)=>{setAllCoursesArray(sara)}
     useEffect(()=>{AllCoursesArrayhandler(AllCoursesArray)});
@@ -17,6 +15,19 @@ const CourseDetilsDivAdmin = (props) =>{
     const OneCourseDivhandler = ()=>{setOneCourseDiv(!OneCourseDiv)}
     //useEffect(()=>{OneCourseDivhandler(OneCourseDiv)});
     
+    const [Course , setCourse] = useState('')
+    const Coursehandler = (sara)=>{setCourse(sara)}
+    useEffect(()=>{Coursehandler(Course)});
+
+    // const [SelectedCourses , setSelectedCourses] = useState([])
+    // const SelectedCourseshandler = (sara)=>{setSelectedCourses(sara)}
+    // useEffect(()=>{ SelectedCourseshandler(SelectedCourses)},[SelectedCourses]);
+
+
+    const [Clicked , setClicked] = useState(false)
+    const Clickedhandler = (sara)=>{setClicked(sara)}
+    
+
     const [isHovering, setIsHovering] = useState(false);
 
     const handleMouseOver = () => {
@@ -27,31 +38,68 @@ const CourseDetilsDivAdmin = (props) =>{
         setIsHovering(false);
     };
 
-    useEffect(()=>{GetAllCourses()});
+    useEffect(()=>{GetCourse()});
 
-    const GetAllCourses = async(req,res)=>{
+    //SelectedCourseshandlerProp={props.SelectedCourseshandlerProp} SelectedCoursesProp={props.SelectedCoursesProp}
 
-        await axios.get(`http://localhost:9000/course/`).then(
-            (res) => {
-                const result = res.data
-                AllCoursesArrayhandler(result)
-             })
+    const ClickedDivs = () =>{
+        Clickedhandler(true)
+        console.log(Clicked)
+            var SelectedCourses1 = props.SelectedCoursesProp.concat(props.CourseID)
+            //alert(SelectedCourses1)
+            props.SelectedCourseshandlerProp(SelectedCourses1)
+            //alert('Array:')
+            alert(props.SelectedCoursesProp)
+    }
+
+
+    const UnClickedDivs = () =>{
+        Clickedhandler(false)
+        console.log(Clicked)
+        for(let i = 0 ; i < props.SelectedCoursesProp.length ; i++){
+            if(props.CourseID === props.SelectedCoursesProp[i]){
+                alert(props.SelectedCoursesProp)
+                props.SelectedCoursesProp.splice(i,1)
+                //alert(SelectedCourses2)
+                props.SelectedCourseshandlerProp(props.SelectedCoursesProp)
+                //alert('Array:')
+                alert(props.SelectedCoursesProp)
+                return 
+            }
+        }
+
     }
 
     const GetCourse = async(req,res)=>{
 
-        await axios.get(`http://localhost:9000/course/`).then(
+        await axios.get(`http://localhost:9000/course/courseDetails/${props.CourseID}`).then(
             (res) => {
                 const result = res.data
-                AllCoursesArrayhandler(result)
+                Coursehandler(result)
+                //alert(props.CourseID)
              })
     }
 
 
-    return <div className='Admin_OneCourse_Div' onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-        <h1>CourseDetilsDivAdmin</h1>
-        {isHovering && <OneCourseDetails CourseID = {props.CourseID}/>}
-        
+    return <div>
+        {!Clicked &&<div className='Admin_OneCourse_Div' onClick={ClickedDivs} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+            <div className='Admin_OneCourse_Image'></div>
+            <h1 className='CourseDetailsAdmin_h1'>Course Title : {Course.Title}</h1>
+            <h1 className='CourseDetailsAdmin_h1'>Course Title : {Course.Subject}</h1>
+            <h1 className='CourseDetailsAdmin_h1'>Promotion State : {Course.PromotionState}</h1>
+            <h1 className='CourseDetailsAdmin_h1'>Course Views : {Course.Views}</h1>
+            {isHovering && <OneCourseDetails CourseID = {props.CourseID}/>}
+            
+        </div>}
+        {Clicked &&<div className='Admin_OneCourse_Div_Clicked' onClick={UnClickedDivs} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+            <div className='Admin_OneCourse_Image'></div>
+            <h1 className='CourseDetailsAdmin_h1'>Course Title : {Course.Title}</h1>
+            <h1 className='CourseDetailsAdmin_h1'>Course Title : {Course.Subject}</h1>
+            <h1 className='CourseDetailsAdmin_h1'>Promotion State : {Course.PromotionState}</h1>
+            <h1 className='CourseDetailsAdmin_h1'>Course Views : {Course.Views}</h1>
+            {isHovering && <OneCourseDetails CourseID = {props.CourseID}/>}
+            
+        </div>}
     </div>
 }
 

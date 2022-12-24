@@ -66,7 +66,8 @@ const courseSchema = new Schema ({
     },
 
     PromotionState:{
-        type: String
+        type: String,
+        default: 'Undefined'
     },
 
     PromotionPercentage: {
