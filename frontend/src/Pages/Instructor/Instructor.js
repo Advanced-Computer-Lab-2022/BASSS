@@ -65,6 +65,9 @@ function Instructor(){
             <button>
                 My Reviews</button>
             </Link>
+            <Link to ="/instructor/myReports">
+            <button >View My Reports </button>
+            </Link>
 
         {/* <SelectCountry/> */}
 

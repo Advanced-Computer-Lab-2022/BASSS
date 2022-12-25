@@ -7,7 +7,6 @@ const corporateTrainee = require('../Models/corporateTraineeSchema');
 const corporateRequest = require('../Models/RequestsSchema');
 const reports = require('../Models/ReportSchema');
 const individualTrainees = require('../Models/individualTraineeSchema');
-const courses = require('../Models/courseSchema');
 
 const adminR = express.Router();
 const bcrypt = require('bcrypt')
@@ -328,23 +327,37 @@ adminR.get("/getRefundReq/:Username",async function(req,res){
 })
 
 ///////////////////////////////////////////////////////////////////////// Reports ///////////////////////////////////////////////
-//eh el tanzim el gamd da ya sara ^_^
+//eh el sho8l el gamd da ya sara ^_^
 
-adminR.get("/createReport/:Reporter/:CourseID/:Type",async function(req,res){   //:Status/
+adminR.get("/createReport/:Reporter/:CourseID/:Type/:Comment",async function(req,res){   //:Status/
   var Reporter = req.params.Reporter;
   var Type = req.params.Type;
-  var CourseID = req.params.CourseID;    
+  var CourseID = req.params.CourseID;  
+  var Comment = req.params.Comment  
   
   try{
     const Course1 = await courses.findOne({_id: CourseID })
     const CourseTitle = Course1.Title
     const user1 = await user.findOne({UserName: Reporter })
-    const Report = await reports.create({
+    var Report = [];
+    if(Comment == "Empty")
+    {
+      Report = await reports.create({
       Reporter:Reporter,
       Type:Type,
       CourseID:CourseID,
-      CourseTitle:CourseTitle
+      CourseTitle:CourseTitle,
     });
+    }
+    else{
+        Report = await reports.create({
+        Reporter:Reporter,
+        Type:Type,
+        CourseID:CourseID,
+        CourseTitle:CourseTitle,
+        Comment:Comment
+      });
+    }
 
     console.log(user1.Type)
 

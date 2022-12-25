@@ -115,6 +115,8 @@ function App() {
           
           {/* Salama Sprint 3 */}
           <Route path='/individualTrainee/myReports' element={<MyReports/> } />
+          <Route path='/corporateTrainee/myReports' element={<MyReports/> } />
+          <Route path='/instructor/myReports' element={<MyReports/> } />
 
 
 

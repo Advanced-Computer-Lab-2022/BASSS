@@ -38,6 +38,8 @@ getReports();
                 <h1 className='h1Report'>Report Type: {report[0].Type}</h1>
                 <br></br>
                 <h1 className='h1Report'>Report Status: {report[0].Status}</h1>
+                <br></br>
+                <h1 className='h1Report'>Created At: {report[0].createdAt}</h1>
                 </div>
 
                 <div>

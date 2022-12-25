@@ -32,6 +32,9 @@ function CorporateTrainee(){
         <Link to ="/mostViewd">
         <button> view our most viewd Courses </button>
         </Link>
+        <Link to ="/corporateTrainee/myReports">
+        <button >View My Reports </button>
+        </Link>
         {/* <CorporateCourses Link="/corporatetrainee/CourseDetails"/> */}
         <CorporateTraineeCourse Link="/corporatetrainee/myCourseDetails"/>
         </div>
