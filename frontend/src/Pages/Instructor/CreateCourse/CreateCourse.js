@@ -167,6 +167,7 @@ const CreateExcerciseProp = (InstructorName,ThisSubtitleNumber,Question,Choice1,
         videoDescriptionhandler(ShortVideoDescription)
         //Exercisehandler(Exercise)
         ThisSubtitleNumberhandler(ThisSubtitleNumber)
+
         console.log('Sub Prop Done')
         createSubtitle()
     }

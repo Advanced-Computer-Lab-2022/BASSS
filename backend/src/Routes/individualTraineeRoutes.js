@@ -47,6 +47,38 @@ individualTraineeR.get("/myInfo/pass/:pass",function(req,res){
  
  })
 
+ individualTraineeR.get("/unroll_from_course/:username/:couID",async(req,res)=>{
+   var couID = req.params.couID;
+   var username = req.params.username;
+   var list = [];
+   const trainee =  await individualTrainees.findOne({UserName:username})
+   const x = await courses.findOne({_id:couID});
+   const courseID = trainee.Courses
+   for (let i = 0; i < courseID.length; i++) {
+    if(courseID[i].Course==couID)
+    {
+      if (courseID[i].Progress < 50)
+      {
+        for (let j = 0; j < courseID.length; j++) {
+
+          if(courseID[j].Course!=couID  )
+           {
+            list = list.concat(courseID[j])
+           }    
+         }
+           await individualTrainees.findOneAndUpdate({UserName:username},{Courses:list},{upsert:true})        
+        }
+        else{
+          console.log('course progress is not less than 50');
+        }
+      }
+      else{
+        console.log('no such course');
+      }
+    }
+    res.json(list);
+})
+
 
  individualTraineeR.get("/updateprogressind/:username/:couID" , async(req,res)=>{
   const username = req.params.username;
@@ -56,12 +88,15 @@ individualTraineeR.get("/myInfo/pass/:pass",function(req,res){
   var list = []
   var ratio = 0;
   var count =0;
-  const sub = await subtitles.find({Course:couID})
+  // const sub = await subtitles.find({Course:couID})
+  const course = await courses.findOne({_id:couID})
+  const sub = course.Subtitles
 
-  for (let i = 0; i < sub.length; i++) {
+  for (let i = 0;  i < sub.length; i++) {
     count++
   }
   for (let i =+ 0; i < courseID.length; i++) {
+    // const subb = await subtitles.find({_id:sub[i]})
     
     if(courseID[i].Course == couID)
     {
@@ -69,14 +104,18 @@ individualTraineeR.get("/myInfo/pass/:pass",function(req,res){
       ratio = (1/count)*100
       
       const prog = (courseID[i].Progress)+ratio;
-      if(prog<=100)
+      if(prog<=101)
       {
         const obj = {'Course':couID , Progress:prog}
         var newarr = courseID 
+        console.log('SASAS')
         newarr[i]=obj
            individualTrainees.findOneAndUpdate({UserName:username},{Courses:newarr},{upsert:true},function(err,doc){
             if(err) throw err;
           });         
+      }
+      else{
+        console.log('100%')
       }
       
       }
