@@ -16,6 +16,9 @@ const SearchAdminAllCourses = (props)=>{
 
     const changehandler = (event) =>{
         setmessage(event.target.value)
+        props.Searchhandler(true)
+        getResults();
+
     }
 
     const errorHandle = () =>{
@@ -25,32 +28,16 @@ const SearchAdminAllCourses = (props)=>{
     const clickhandler = () =>{
         visibility();
         getResults();
-    }
 
-    const rowhandler = () =>{
-        setcorporate(!corporate);
     }
 
 
-    const getResults=  async () => { 
-        if(props.Type === 'corporate'){
-            rowhandler();
-        }
-        if(props.Type === "searchMyCourses"){
-            await axios.get(`http://localhost:9000/instructor/searchmycourses/salama/${message}`).then(
-                (res)=> {
-                    const mycourses = res.data;
-                    setResults(mycourses);
-                }
-            )
-
-        }
-        else{
+    const getResults=  async(req,res) => { 
             await axios.get(`http://localhost:9000/guest/search/${message}`).then(
                 (res) => {
                     if(res.status===200){
                         const s = res.data;
-                        setResults(s);
+                        props.AllCoursesArrayhandler(s);
                     }
                     else{
                         errorHandle();
@@ -58,9 +45,6 @@ const SearchAdminAllCourses = (props)=>{
     
                 }
            )
-
-        }
-        
     }
 
     return(

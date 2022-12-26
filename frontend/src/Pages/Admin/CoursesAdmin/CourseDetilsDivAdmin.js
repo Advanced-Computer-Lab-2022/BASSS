@@ -46,10 +46,7 @@ const CourseDetilsDivAdmin = (props) =>{
         Clickedhandler(true)
         console.log(Clicked)
             var SelectedCourses1 = props.SelectedCoursesProp.concat(props.CourseID)
-            //alert(SelectedCourses1)
             props.SelectedCourseshandlerProp(SelectedCourses1)
-            //alert('Array:')
-            alert(props.SelectedCoursesProp)
     }
 
 
@@ -58,12 +55,8 @@ const CourseDetilsDivAdmin = (props) =>{
         console.log(Clicked)
         for(let i = 0 ; i < props.SelectedCoursesProp.length ; i++){
             if(props.CourseID === props.SelectedCoursesProp[i]){
-                alert(props.SelectedCoursesProp)
                 props.SelectedCoursesProp.splice(i,1)
-                //alert(SelectedCourses2)
                 props.SelectedCourseshandlerProp(props.SelectedCoursesProp)
-                //alert('Array:')
-                alert(props.SelectedCoursesProp)
                 return 
             }
         }
@@ -88,7 +81,7 @@ const CourseDetilsDivAdmin = (props) =>{
             <h1 className='CourseDetailsAdmin_h1'>Course Title : {Course.Subject}</h1>
             <h1 className='CourseDetailsAdmin_h1'>Promotion State : {Course.PromotionState}</h1>
             <h1 className='CourseDetailsAdmin_h1'>Course Views : {Course.Views}</h1>
-            {isHovering && <OneCourseDetails CourseID = {props.CourseID}/>}
+            {isHovering && <OneCourseDetails CourseID = {props.CourseID} Course = {Course}/>}
             
         </div>}
         {Clicked &&<div className='Admin_OneCourse_Div_Clicked' onClick={UnClickedDivs} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
@@ -97,7 +90,7 @@ const CourseDetilsDivAdmin = (props) =>{
             <h1 className='CourseDetailsAdmin_h1'>Course Title : {Course.Subject}</h1>
             <h1 className='CourseDetailsAdmin_h1'>Promotion State : {Course.PromotionState}</h1>
             <h1 className='CourseDetailsAdmin_h1'>Course Views : {Course.Views}</h1>
-            {isHovering && <OneCourseDetails CourseID = {props.CourseID}/>}
+            {isHovering && <OneCourseDetails CourseID = {props.CourseID} Course = {Course}/>}
             
         </div>}
     </div>

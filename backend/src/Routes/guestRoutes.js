@@ -26,13 +26,14 @@ guestR.post("/selectcountry",function(req,res){
 })
 
 guestR.get("/search/:searchkey",async function(req,res){
+    console.log('Searching')
     const key = req.params.searchkey;
     var array = [];
     if(key!= null){
         var query = await courses.find({});
         for(let i = 0 ; i<query.length ; i++)
         {
-            course = query[i];
+            var course = query[i];
             if (course.Title.toLowerCase().includes(key.toLowerCase()) ||
                 course.Subject.toLowerCase().includes(key.toLowerCase()) ||
                 course.InstructorUserName.toLowerCase().includes(key.toLowerCase()))

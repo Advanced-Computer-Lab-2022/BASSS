@@ -5,13 +5,16 @@ import ReportDetails from './ReportDetails';
 
 export default function Reports(){
     return <div className='Admin_Body'>
-        <AdminNavBar/>
+        <div>
+            <AdminNavBar/>
+        </div>
         <br></br>
         <div>
-        <br></br><br></br><br></br><br></br><br></br>
             <h1 className='h1_Admin_Reports'> Reports </h1>
-            <div></div>
         </div>
-        <ReportDetails/>
+        <div className='Admin_ReportsPage_CoursesDiv'>
+
+            
+        </div>
     </div>
 }

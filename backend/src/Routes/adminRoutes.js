@@ -140,7 +140,6 @@ adminR.get("/addCoTrainee/:username/:password",async function(req,res){
 ////////// Don't Forget to check if the course is already in their accessible courses
 adminR.get("/createCoReq/:Reporter/:CourseID",async function(req,res){   //:Status/
   var Reporter = req.params.Reporter;
-  var Status = req.params.Status;
   var CourseID = req.params.CourseID;    
   
   
@@ -148,11 +147,15 @@ adminR.get("/createCoReq/:Reporter/:CourseID",async function(req,res){   //:Stat
         //courseRequests
         const Course1 = await courses.findOne({_id: CourseID })
         const CorporateTrainee = await corporateTrainee.findOne({Username : Reporter});
+        const CoRequest1 = await corporateRequest.findOne({Reporter : Reporter , CourseID : CourseID});
         const CourseTitle = Course1.Title
         for(let i = 0 ; i < CorporateTrainee.AccessibleCourses.length ; i++){
-          if(CourseID == AccessibleCourses[i]){
+          if(CourseID == CorporateTrainee.AccessibleCourses[i]){
             return res.status(400).json('Course Already Accesible');
           }
+        }
+        if(CoRequest1){
+          return res.status(400).json('Course Request Already Sent');
         }
   
         const coReq = await corporateRequest.create({
@@ -179,6 +182,12 @@ adminR.get("/getAllCoReq",async(req, res) => {
   res.send(result)
 });
 
+adminR.get("/getCoReqByID/:ID",async(req, res) => {
+  var ID = req.params.ID;
+  const result = await corporateRequest.findOne({_id: ID})
+  res.send(result)
+});
+
 
 adminR.get("/getCoReq/:Username",async function(req,res){
     
@@ -199,31 +208,40 @@ adminR.get("/getCoReq/:Username",async function(req,res){
 adminR.get("/AcceptCoRequest/:RequestID",async function(req,res){   //:Status/
   var RequestID = req.params.RequestID;
   var Status = "Accepted";
+  console.log('accept')
 
   try{
     const CorporateRequest = await corporateRequest.findOne({_id : RequestID});
     // console.log(CorporateRequest);
-    const Reporter = CorporateRequest.Reporter;
-    // console.log(Reporter);
-    const CourseID = CorporateRequest.CourseID;
-    // console.log(CourseID);
-    const Trainee = await corporateTrainee.findOne({Username:Reporter});
-    console.log(Trainee);
-  
-    for(let i = 0 ; i<Trainee.AccessibleCourses.length ; i++){
-      if(CourseID == Trainee.AccessibleCourses[i]){
-        return res.status(400).json('Course Already Accesible');
+
+    if(CorporateRequest.Status == 'Unseen'){
+      const Reporter = CorporateRequest.Reporter;
+      // console.log(Reporter);
+      const CourseID = CorporateRequest.CourseID;
+      // console.log(CourseID);
+      const Trainee = await corporateTrainee.findOne({Username:Reporter});
+      // console.log(Trainee);
+    
+      for(let i = 0 ; i<Trainee.AccessibleCourses.length ; i++){
+        if(CourseID == Trainee.AccessibleCourses[i]){
+          console.log('Course Already Accesible')
+          return res.status(400).json('Course Already Accesible');
+        }
       }
+
+      console.log('accept 2')
+
+      const arr = Trainee.AccessibleCourses.concat(CourseID);
+      const RefundReq = await corporateRequest.findOneAndUpdate({_id:RequestID} , {Status:Status});
+      const UpdatedTrainee = await corporateTrainee.findOneAndUpdate({Username:Trainee.Username} , {AccessibleCourses:arr});
+
+      console.log("Course Request Accepted");
+      return res.status(200).json({RefundReq , UpdatedTrainee });
     }
-
-
-    const arr = Trainee.AccessibleCourses.concat(CourseID);
-    const RefundReq = await corporateRequest.findOneAndUpdate({_id:RequestID} , {Status:Status});
-    const UpdatedTrainee = await corporateTrainee.findOneAndUpdate({Username:Trainee.Username} , {AccessibleCourses:arr});
-
-    console.log("Course Request Accepted");
-    return res.status(200).json({RefundReq , UpdatedTrainee });
-  }
+    else{
+      return res.status(400).json('Course Request Already Handled');
+    }
+}
   catch(error)
   {
     console.log("Couldn't Accept Course Request");
@@ -239,24 +257,31 @@ adminR.get("/RejectCoRequest/:RequestID",async function(req,res){   //:Status/
 
   try{
     const CorporateRequest = await corporateRequest.findOne({_id : RequestID});
-     console.log(CorporateRequest);
-    const Reporter = CorporateRequest.Reporter;
-     console.log(Reporter);
-    const CourseID = CorporateRequest.CourseID;
-     console.log(CourseID);
-    const Trainee = await corporateTrainee.findOne({Username:Reporter});
-    console.log(Trainee);
-  
-    for(let i = 0 ; i<Trainee.AccessibleCourses.length ; i++){
-      if(CourseID == Trainee.AccessibleCourses[i]){
-        return res.status(400).json('Course Already Accesible');
+
+    if(CorporateRequest.Status == 'Unseen'){
+        
+      //  console.log(CorporateRequest);
+      const Reporter = CorporateRequest.Reporter;
+      //  console.log(Reporter);
+      const CourseID = CorporateRequest.CourseID;
+      //  console.log(CourseID);
+      const Trainee = await corporateTrainee.findOne({Username:Reporter});
+      // console.log(Trainee);
+    
+      for(let i = 0 ; i<Trainee.AccessibleCourses.length ; i++){
+        if(CourseID == Trainee.AccessibleCourses[i]){
+          return res.status(400).json('Course Already Accesible');
+        }
       }
+
+      const RefundReq = await corporateRequest.findOneAndUpdate({_id:RequestID} , {Status:Status});
+
+      console.log("Course Request Rejected");
+      return res.status(200).json({RefundReq});
     }
-
-    const RefundReq = await corporateRequest.findOneAndUpdate({_id:RequestID} , {Status:Status});
-
-    console.log("Course Request Rejected");
-    return res.status(200).json({RefundReq});
+    else{
+      return res.status(400).json('Course Request Already Handled');
+    }
   }
   catch(error)
   {
@@ -516,6 +541,8 @@ adminR.get("/SetPromotion/:CourseID/:PromotionPercentage/:PromotionStartTime/:Pr
     return res.status(400).json({msg: error});
   }        
 })
+
+
 
 
 adminR.get("/GetPromotionState/:CourseID",async function(req,res){   //:Status/

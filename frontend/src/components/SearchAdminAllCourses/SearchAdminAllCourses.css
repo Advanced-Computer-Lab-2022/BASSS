@@ -27,7 +27,7 @@
     font-weight: 100;
   }
   .SearchAdminAllCourses_input_search:focus{
-    width: 200px;
+    width: 155px;
     border-radius: 5px;
     background-color: transparent;
     border-bottom:1px solid rgba(255,255,255,.5);
