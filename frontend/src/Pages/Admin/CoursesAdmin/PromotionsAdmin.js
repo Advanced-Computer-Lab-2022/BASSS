@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import '../Admin.css';
 
 const PromotionsAdmin = (props) => {
+
+    const [DummyVariable , setDummyVariable] = useState('')
+    const DummyVariablehandler = ()=>{setDummyVariable(DummyVariable)}
 
     const [PromotionPercentage , setPromotionPercentage] = useState()
     const PromotionPercentagehandler = (event)=>{setPromotionPercentage(event.target.value)}
@@ -37,6 +40,7 @@ const PromotionsAdmin = (props) => {
             await axios.get(`http://localhost:9000/admin/SetPromotion/${CourseID}/${PromotionPercentage}/${PromotionStartTime}/${PromotionEndTime}/${PromotionStartDate}/${PromotionEndDate}`).then(
                 (res) => {
                     const result = res.data
+                    DummyVariablehandler(result)
                 })
         }
     }

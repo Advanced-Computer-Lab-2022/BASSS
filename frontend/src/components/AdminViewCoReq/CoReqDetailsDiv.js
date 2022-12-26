@@ -35,7 +35,7 @@ const CoReqDetailsDiv = (props) =>{
     //SelectedCourseshandlerProp={props.SelectedCourseshandlerProp} SelectedCoursesProp={props.SelectedCoursesProp}
 
     const ClickedDivs = () =>{
-        Clickedhandler(true)
+        Clickedhandler(false)
         console.log(Clicked)
             var SelectedCourses1 = props.SelectedCoursesProp.concat(props.CourseID)
             props.SelectedCourseshandlerProp(SelectedCourses1)
@@ -67,17 +67,17 @@ const CoReqDetailsDiv = (props) =>{
 
 
     return <div>
-        {!Clicked &&<div className='Admin_OneCoReq_Div'  onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-            <h1 className='CourseDetailsAdmin_h1'>Status: {CoReq.Status}</h1>
-            <h1 className='CourseDetailsAdmin_h1'>CourseID: {CoReq.CourseID}</h1>
-            <h1 className='CourseDetailsAdmin_h1'>Course Title: {CoReq.CourseTitle}</h1>
+        {props.Status !== "Unseen" &&<div className='Admin_OneCoReq_Div' onClick={ClickedDivs}  onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+            <h1 className='CoReqDetailsAdmin_h1'>Status: {CoReq.Status}</h1>
+            <h1 className='CoReqDetailsAdmin_h1'>CourseID: {CoReq.CourseID}</h1>
+            <h1 className='CoReqDetailsAdmin_h1'>Course Title: {CoReq.CourseTitle}</h1>
             {isHovering && <OneCoReqDetails CoReqID = {props.CoReqID} CoReq = {CoReq}/>}
             
         </div>}
-        {Clicked &&<div className='Admin_OneCoReq_Div_Clicked'  onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-            <h1 className='CourseDetailsAdmin_h1'>Status: {CoReq.Status}</h1>
-            <h1 className='CourseDetailsAdmin_h1'>CourseID: {CoReq.CourseID}</h1>
-            <h1 className='CourseDetailsAdmin_h1'>Course Title: {CoReq.CourseTitle}</h1>
+        {props.Status === "Unseen" &&<div className='Admin_OneCoReq_Div_Unseen' onClick={UnClickedDivs}  onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+            <h1 className='CoReqDetailsAdmin_h1'>Status: {CoReq.Status}</h1>
+            <h1 className='CoReqDetailsAdmin_h1'>CourseID: {CoReq.CourseID}</h1>
+            <h1 className='CoReqDetailsAdmin_h1'>Course Title: {CoReq.CourseTitle}</h1>
             {isHovering && <OneCoReqDetails CoReqID = {props.CoReqID} CoReq = {CoReq}/>}
             
         </div>}

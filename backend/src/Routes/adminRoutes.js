@@ -422,6 +422,19 @@ adminR.get("/getReport/:Username",async function(req,res){
   }
 })
 
+adminR.get("/getReportID/:ID",async function(req,res){
+  var ID = req.params.ID;
+  
+  const report = await reports.findOne({_id: ID })
+
+  if(report) {
+     return res.json(report);
+  }
+  else{
+     return res.json("ok"); 
+  }
+})
+
 
 //Change Status
 adminR.get("/PendingReport/:ReportID",async function(req,res){   //:Status/

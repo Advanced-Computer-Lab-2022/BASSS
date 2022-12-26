@@ -5,10 +5,8 @@ import './SearchAdminAllCourses.css'
 const SearchAdminAllCourses = (props)=>{
     
     const [error,seterror] = useState(false)
-    const [results,setResults] = useState([]);
     const [visibile, setvisible]=useState(false);
     const [message,setmessage] = useState('');
-    const [corporate,setcorporate] = useState(false);
 
     const visibility = ()=>{
         setvisible(!visibile);

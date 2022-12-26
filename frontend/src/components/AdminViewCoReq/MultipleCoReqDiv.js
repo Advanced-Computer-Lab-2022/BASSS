@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
 import '../../Pages/Admin/Admin.css'
 import CoReqDetailsDiv from './CoReqDetailsDiv';
 
@@ -13,22 +12,22 @@ const MultipleCoReqDiv = (props) => {
         var temp = (
                   <div>
                       <br></br>
-                      {<CoReqDetailsDiv CoReqID = {AllCoReqs[i]._id} SelectedCourseshandlerProp={props.SelectedCourseshandlerProp} SelectedCoursesProp={props.SelectedCoursesProp}/>}
+                      {<CoReqDetailsDiv CoReqID = {AllCoReqs[i]._id} Status = {AllCoReqs[i].Status} SelectedCourseshandlerProp={props.SelectedCourseshandlerProp} SelectedCoursesProp={props.SelectedCoursesProp}/>}
                       <br></br>
                   </div>);
           usersDiv.push(temp);
       }
     }  
 
-    for (var i = 0; i < AllCoReqs.length; i++) {
-      if(AllCoReqs[i].Status !== 'Unseen'){
-        var temp = (
+    for (var j = 0; j < AllCoReqs.length; j++) {
+      if(AllCoReqs[j].Status !== 'Unseen'){
+        var temp1 = (
                   <div>
                       <br></br>
-                      {<CoReqDetailsDiv CoReqID = {AllCoReqs[i]._id} SelectedCourseshandlerProp={props.SelectedCourseshandlerProp} SelectedCoursesProp={props.SelectedCoursesProp}/>}
+                      {<CoReqDetailsDiv CoReqID = {AllCoReqs[j]._id} SelectedCourseshandlerProp={props.SelectedCourseshandlerProp} SelectedCoursesProp={props.SelectedCoursesProp}/>}
                       <br></br>
                   </div>);
-          usersDiv.push(temp);
+          usersDiv.push(temp1);
       }
     }  
 

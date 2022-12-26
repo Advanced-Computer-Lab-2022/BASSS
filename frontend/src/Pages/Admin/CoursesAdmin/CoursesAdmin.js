@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import CourseDetilsDivAdmin from '../CoursesAdmin/CourseDetilsDivAdmin'
 import AdminNavBar from '../AdminNavBar/AdminNavBar';
 import '../Admin.css';
 import MultipleCoursesDiv from '../CoursesAdmin/MultipleCoursesDiv'
-import Search from '../../../components/Search/Search';
 import SearchAdminAllCourses from '../../../components/SearchAdminAllCourses/SearchAdminAllCourses';
 import PromotionsAdmin from './PromotionsAdmin';
 import MultipleCoReqDiv from '../../../components/AdminViewCoReq/MultipleCoReqDiv';
 
 export default function CoursesAdmin(){
 
+    const [DummyVariable , setDummyVariable] = useState('')
+    const DummyVariablehandler = ()=>{setDummyVariable(DummyVariable)}
 
     const [AllCoursesArray , setAllCoursesArray] = useState([])
     const AllCoursesArrayhandler = (sara)=>{setAllCoursesArray(sara)}
@@ -42,12 +42,13 @@ export default function CoursesAdmin(){
 
     const AcceptAllHandler = async(req,res)=>{
         for(let i = 0 ; i < AllCoReqs.length ; i++){
-            if(AllCoReqs[i].Status == 'Unseen'){
+            if(AllCoReqs[i].Status === 'Unseen'){
                 var ReqID = AllCoReqs[i]._id
                 alert(ReqID)
                 await axios.get(`http://localhost:9000/admin/AcceptCoRequest/${ReqID}`).then(
                     (res) => {
                         const result = res.data
+                        DummyVariablehandler(result)
                 })
             }
         }
@@ -55,12 +56,13 @@ export default function CoursesAdmin(){
 
     const RejectAllHandler = async(req,res)=>{
         for(let i = 0 ; i < AllCoReqs.length ; i++){
-            if(AllCoReqs[i].Status == 'Unseen'){
+            if(AllCoReqs[i].Status === 'Unseen'){
                 var ReqID = AllCoReqs[i]._id
                 alert(ReqID)
                 await axios.get(`http://localhost:9000/admin/RejectCoRequest/${ReqID}`).then(
                     (res) => {
                         const result = res.data
+                        DummyVariablehandler(result)
                 })
             }
         }

@@ -10,10 +10,6 @@ const CourseDetilsDivAdmin = (props) =>{
     const [AllCoursesArray , setAllCoursesArray] = useState([])
     const AllCoursesArrayhandler = (sara)=>{setAllCoursesArray(sara)}
     useEffect(()=>{AllCoursesArrayhandler(AllCoursesArray)});
-
-    const [OneCourseDiv , setOneCourseDiv] = useState(false)
-    const OneCourseDivhandler = ()=>{setOneCourseDiv(!OneCourseDiv)}
-    //useEffect(()=>{OneCourseDivhandler(OneCourseDiv)});
     
     const [Course , setCourse] = useState('')
     const Coursehandler = (sara)=>{setCourse(sara)}
