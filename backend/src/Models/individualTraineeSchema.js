@@ -39,7 +39,7 @@ const individualTraineeschema = new Schema({
     },
 
     CreditCardsInfo: {
-       type: [{CardHolderName: String, CardNumber:Number , ExpDay: Number, ExpYear:Number, CVV:Number}]
+       type: [{CardNumber:Number , ExpMonth: Number, ExpYear:Number, CVC:Number}]
     },
 
     Wallet: {
@@ -49,7 +49,7 @@ const individualTraineeschema = new Schema({
     },
 
     Courses: {
-        type: [{Course:mongoose.Schema.Types.ObjectId, Progress:Number }]
+        type: [{Course:mongoose.Schema.Types.ObjectId, Progress:Number , PayedAmount: Number, DateEnrolled: String}]
         // type: [[String]], //[[Course1.ID,Progress%],[Course2.ID,Progress%],[Course3.ID,Progress%],...... ]
     },
     
@@ -79,7 +79,4 @@ const individualTraineeschema = new Schema({
 
 
 const individualTrainees = mongoose.model('individualTrainees', individualTraineeschema);
-// individualTrainees.create({UserName:'kkkkk',FirstName:'yasso',LastName:'yasso',Email:'kkkkk@gmail.com',
-// Country:'germany',Password:'123',Gender:'male',Courses:[['637e73821194304d45a2fe5a','50%'],['6383a008cf44823c1f52d63a','20%']],
-// Wallet:20})
 module.exports = individualTrainees;

@@ -7,6 +7,10 @@ const courses = require("../Models/courseSchema");
 const exercises = require('../Models/exerciseSchema')
 const subtitles = require('../Models/subtitleSchema')
 var nodemailer = require('nodemailer');
+const instructors = require("../Models/instructorSchema");
+require('dotenv').config();
+
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 individualTraineeR.get("/",(req, res) => {
     res.render("../views/individualTrainee.ejs",{title:"individualTrainee"})
@@ -121,20 +125,72 @@ individualTraineeR.get("/individualCourses/:username",async(req, res) => {
 });
 
 individualTraineeR.get("/viewWallet", async(req,res) => {
-  //username from token
-  const trainee = await individualTrainees.findOne({UserName: username})
+  const name = res.locals.user;
+
+  const trainee = await individualTrainees.findOne({UserName: name})
   if(trainee){
     res.status(200).json(trainee.Wallet)
+  }
+  else{
+    res.status(400).json('User not Found')
   }
 })
-// 
-individualTraineeR.post("/creditCardDetails", async(req,res) => {
-  //username from token
-  // const{}
-  const trainee = await individualTrainees.findOne({UserName: username})
-  if(trainee){
-    res.status(200).json(trainee.Wallet)
+
+
+individualTraineeR.post("/payInst", async(req,res) => {
+  const course = req.body.course
+  const amount = req.body.amount
+
+  const courseInst  = await courses.findOne({_id:course})
+  const userName = courseInst.InstructorUserName
+
+  const inst = await instructors.findOne({UserName: userName})
+  
+  const addedAmount = amount*0.9 + inst.Wallet //10% goes to website
+  await instructors.findOneAndUpdate({UserName:userName},{Wallet:addedAmount})
+  return res.status(200)
+})
+
+individualTraineeR.post("/enroll", async(req,res) => {
+  const name = res.locals.user
+  const course = req.body.course
+  const amount = req.body.amount
+  let date = new Date().toLocaleDateString();
+  console.log(date)
+  const trainee = await individualTrainees.findOne({UserName: name})
+  const addedCourse = trainee.Courses.concat({
+    Course: course,
+    Progress: 0,
+    PayedAmount: amount,
+    DateEnrolled: date
+  }) 
+  
+  await individualTrainees.findOneAndUpdate({UserName: name}, {Courses: addedCourse})
+  return res.status(200)
+})
+
+individualTraineeR.get("/getKey", (req,res)=>{
+  res.status(200).json({publishableKey: process.env.STRIPE_PUBLIC_KEY})
+})
+
+individualTraineeR.post("/paymentIntent", async(req,res) => {
+  const {currency, amount} = req.body 
+  try{
+    const paymentIntent = await stripe.paymentIntents.create({
+      currency: currency,
+      amount: amount,
+      // automatic_payment_methods:{
+      //   enabled: true,
+      // },
+      payment_method_types: ['card'],
+    })
+
+    return res.status(200).json({clientSecret: paymentIntent.client_secret})
+  }catch(error){
+    return res.status(400).json("Server Error occured please try again later")
   }
+
+
 })
 
 module.exports = individualTraineeR;

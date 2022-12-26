@@ -1,39 +1,49 @@
 import {BrowserRouter,Routes,Route, Navigate, useLocation} from 'react-router-dom'
+import  Cookies from 'universal-cookie';
+import './App.css';
+
+/*COMMON IMPORTS */
+import Home from './Pages/Guest/Home'
+import LoginPage from './Pages/Login/LoginPage';
+import AdminLoginPage from './Pages/Login/AdminLoginPage';
+import Logout from './components/Logout/Logout';
+//t2ryban common?
+import Courses from './components/Courses/Courses.js';
+import AllCourses from './components/Courses/Courses';
+import SelectCountry from './components/SelectCountry/SelectCountry';
+import CourseDetails from './components/CourseDetails/CourseDetails';
+import EditPass from './components/EditPass/EditPass';
+import EditmyInfo from './components/EditmyInfo/EditmyInfo';
+
+
+/*ADMIN IMPORTS*/
 import AddUsers from './Pages/Admin/AddUsers/AddUsers';
 import AdminHome from './Pages/Admin/AdminHome/AdminHome';
 import AdminProfile from './Pages/Admin/AdminProfile/AdminProfile';
 import CoursesAdmin from './Pages/Admin/CoursesAdmin/CoursesAdmin';
 import Reports from './Pages/Admin/Reports/Reports';
-import Courses from './components/Courses/Courses.js';
-import MyCourses from './components/MyCourses/MyCourses';
-import AllCourses from './components/Courses/Courses';
-import  Cookies from 'universal-cookie';
-import './App.css';
-import Instructor from './Pages/Instructor/Instructor'
-import SelectCountry from './components/SelectCountry/SelectCountry';
-
-import EditPass from './components/EditPass/EditPass';
-import EditmyInfo from './components/EditmyInfo/EditmyInfo';
-import Contract from './components/Contract/Contract';
-
-import Home from './Pages/Guest/Home'
 import AddAdmin from './Pages/Admin/AddUsers/AddAdmin';
 import AddInstructor from './Pages/Admin/AddUsers/AddInstructor';
 import AddCoTrainee from './Pages/Admin/AddUsers/AddCoTrainee';
-import CourseDetails from './components/CourseDetails/CourseDetails';
-import ExerciseP from './Pages/Exercise/ExerciseP';
-import CreateCourse from './Pages/Instructor/CreateCourse/CreateCourse';
-// import CreateCourse from './components/CreateCourse/CreateCourse';
 
-import CourseDetailsInstructor from './components/CourseDetailsInstructor/CourseDetailsInstructor';
+/*INSTRUCTOR IMPORTS */
+import Instructor from './Pages/Instructor/Instructor'
 import MyReviews from './components/ViewReviews/ViewReviews';
-import Payment from './Pages/Payment/Payment';
-import IndividualTrainee from './Pages/IndividualTrainee/IndividualTrainee';
-import CorporateTrainee from './Pages/CorporateTrainee/CorporateTrainee';
+import MyCourses from './components/MyCourses/MyCourses';
+import CreateCourse from './Pages/Instructor/CreateCourse/CreateCourse';
+import CourseDetailsInstructor from './components/CourseDetailsInstructor/CourseDetailsInstructor';
 import Promotion from './components/Promotion/Promotion';
-import LoginPage from './Pages/Login/LoginPage';
-import AdminLoginPage from './Pages/Login/AdminLoginPage';
-import Logout from './components/Logout/Logout';
+import Contract from './components/Contract/Contract';
+import InstructorCourses from './Pages/Instructor/InstructorCourses';
+
+/*CORPORATE IMPORTS */
+import CorporateTrainee from './Pages/CorporateTrainee/CorporateTrainee';
+
+/*INDIVIDUAL IMPORTS */
+import IndividualTrainee from './Pages/IndividualTrainee/IndividualTrainee';
+import ExerciseP from './Pages/Exercise/ExerciseP';
+import Payment from './Pages/Payment/Payment';
+
 
 const cookies = new Cookies();
 const user = cookies.get('token')
@@ -68,7 +78,8 @@ function App() {
               (user)? ((type=='instructor')? <Contract/> : (type=='corporate trainee')? <CorporateTrainee/> : 
               (type=="individual trainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/> :<LoginPage/>) : <Home/>
           }/>
-          <Route path='/instructor/MyCourses' element={
+          <Route path='/instructor/MyCourses' element={ 
+          // <InstructorCourses/>
               (user)? ((type=='instructor')? <MyCourses/> : (type=='corporate trainee')? <CorporateTrainee/> : 
               (type=="individual trainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/> :<LoginPage/>) : <Home/>
           }/>
@@ -76,7 +87,7 @@ function App() {
               (user)? ((type=='instructor')? <EditmyInfo/>: (type=='corporate trainee')? <CorporateTrainee/> : 
               (type=="individual trainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/> :<LoginPage/>) : <Home/>
           }/>
-          <Route path='/instructor/MyCourses/CourseDetails' element={  
+          <Route path='/instructor/MyCourses/CourseDetails' element={ 
               (user)? ((type=='instructor')? <CourseDetailsInstructor/>: (type=='corporate trainee')? <CorporateTrainee/> : 
               (type=="individual trainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/> :<LoginPage/>) : <Home/>
           }/>
@@ -194,7 +205,8 @@ function App() {
             (user)? <Courses/> : <Home/>
         }/>
         <Route path='/pay' element={
-            (user)? <Payment/> : <Home/>
+            <Payment CourseId='135' Title='ACL' Price= '100' Currency='usd' />
+            // (user)? <Payment/> : <Home/>
         } />
 
         </Routes>

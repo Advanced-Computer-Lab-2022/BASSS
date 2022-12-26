@@ -32,6 +32,7 @@
     "mongoose": "^6.7.0",
     "nodemailer": "^6.8.0",
     "nodemon": "^2.0.20",
-    "react-cookie": "^4.1.1"
+    "react-cookie": "^4.1.1",
+    "stripe": "^11.5.0"
   }
 }

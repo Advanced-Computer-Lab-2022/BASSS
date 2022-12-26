@@ -192,19 +192,19 @@ const clickhandler3 = ()=>{
 
 <div> 
 
-    <button onClick={clickhandler1}>submit</button>
+    {/* <button onClick={clickhandler1}>submit</button>
     <input placeholder='subject' onChange={changehandler} value={choice}/>
 
     </div>
 
     <div> 
     <button onClick={clickhandler3}>submit</button>
-    <input placeholder='price' onChange={changehandler3} value={choice3}/>
+    <input placeholder='price' onChange={changehandler3} value={choice3}/> */}
     </div>
 
 
 <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+      <Table sx={{ minWidth: 650, position: 'relative' }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
             <StyledTableCell align="center">Title</StyledTableCell>

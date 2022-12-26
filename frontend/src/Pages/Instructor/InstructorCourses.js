@@ -10,38 +10,19 @@ import MyCourses from '../../components/MyCourses/MyCourses';
 import InstructorNavBar from './InstructorNavBar/InstructorNavBar';
 import ViewRating from '../../components/ViewRating/ViewRating';
 
-function Instructor(){
-    
+function InstructorCourses (){
     return(
-        <>
         <div className='Instructor-body'>
-        <InstructorNavBar/>
-        <Search Type='instructor'/>        
-        <br/><br/>
-        {/* <Link to ="/instructor/myInfo">
-        <button> edit my info</button>
-        </Link> */}
-
-        <Courses Link="/instructor/courseDetails"/>
-        
-
-        {/* <Courses/> */}
-
-        {/* <Link to ="/instructor/promotion">
-        <button className='promotion'> define a promotion</button>
-        </Link> */}
-        <ViewRating/>
-
-
-            <Link to ="/instructor/MyReviews">
-            <button>
-                My Reviews</button>
+            <InstructorNavBar/>
+            <MyCourses/>
+            <Link to ="/instructor/promotion">
+                <button className='promotion'> define a promotion</button>
             </Link>
 
-        {/* <SelectCountry/> */}
-
+            <button class='instructor_CreateCoursebtn' onClick={()=> window.location.href='/instructor/CreateCourse' } > CreateCourse</button>
         </div>
-        </>
+
     )
 }
-export default Instructor;
+
+export default InstructorCourses

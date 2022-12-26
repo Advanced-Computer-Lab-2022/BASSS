@@ -15,7 +15,7 @@ instructorR.get("/searchmycourses/:searchkey", async function(req,res){
 
     const key = req.params.searchkey;
     var array = [];
-    var query = await courses.find({InstructorUserName:name});
+    var query = await courses.find({InstructorUserName:"salama"});
     for(let i = 0 ; i<query.length ; i++)
     {
         course = query[i];
@@ -33,7 +33,7 @@ instructorR.get("/searchmycourses/:searchkey", async function(req,res){
     //token name 
     const name = res.locals.user;
 
-    var query = courses.find({InstructorUserName:name})
+    var query = courses.find({InstructorUserName:"salama"})
     query.exec(function(err,result){
         if (err) throw err;
         if(result.length==0){
@@ -127,15 +127,15 @@ instructorR.get("/viewRating/review",async(req, res) => {
   //token name
   const name = res.locals.user;
 
-  const result =await instructors.find({Username:name})
+  const result =await instructors.find({Username:"salama"})
   res.json(result)
 });
 
 instructorR.get("/getInstructor",async(req, res) => {
   //token name
-  const name = res.locals.user;
+  // const name = res.locals.user;
 
-  const result =await instructors.findOne({Username:name})
+  const result =await instructors.findOne({Username:"salama"})
    res.json(result)
 });
 
