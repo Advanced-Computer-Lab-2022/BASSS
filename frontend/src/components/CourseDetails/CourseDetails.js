@@ -118,9 +118,17 @@ const CourseDetails = () => {
     )
     const videoclickhandler = async()=>{
         alert('congratulation , you have finished the Video')
-        await axios.get(`http://localhost:9000/${mySubString}/updateprogress/kkkkk/${location.state[0]}`)
-        var progress1 = progressincrease+10  ;
-        progressincreaseHandler(50)
+     //------------------------put instead of "nour" the username that soha will do ---------------------------------------------------
+     if(mySubString==='corporatetrainee')
+     {
+
+         await axios.get(`http://localhost:9000/${mySubString}/updateprogresscorp/nour/${location.state[0]}`)
+     }   
+     else if (mySubString === 'individualtrainee')
+     {
+        await axios.get(`http://localhost:9000/${mySubString}/updateprogressind/kkkkk/${location.state[0]}`)
+     }
+
              
     }
 
@@ -170,7 +178,7 @@ const CourseDetails = () => {
                 }  
 
                 const getSubtitle =  async () => {
-                    await axios.get(`http://localhost:9000/course/getsubtitle/${location.state[0]}`).then(
+                    await axios.get(`http://localhost:9000/course/adham/getsubtitle/${location.state[0]}`).then(
                         (res) => { 
                             const sub = res.data
                             setsubtitle(sub)

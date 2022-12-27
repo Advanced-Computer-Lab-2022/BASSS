@@ -106,7 +106,7 @@ function App() {
           <Route path='/IndividualTrainee/SelectCountry' element = { <SelectCountry/> } />
           <Route path='/CorporateTrainee' element = { <CorporateTrainee/> } /> 
           <Route path='/CorporateTrainee/SelectCountry' element = { <SelectCountry/> } /> 
-          <Route path='/CorporateTrainee/Allcourser' element = { <CorporateCourses/> } /> 
+          <Route path='/CorporateTrainee/Allcourses' element = { <CorporateCourses/> } /> 
           <Route path='/AdminAddAdmin'  element={<AddAdmin/>}/>
           <Route path='/AdminAddInstructor'element={ <AddInstructor/>}/>
           <Route path='/AdminAddCoTrainee' element={ <AddCoTrainee/>} /> 

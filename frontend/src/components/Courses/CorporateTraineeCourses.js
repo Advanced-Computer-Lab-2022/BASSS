@@ -13,6 +13,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { confirmAlert } from 'react-confirm-alert'; 
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 const { useState, useEffect } = require("react");
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -29,14 +31,37 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
  
  function CorporateTraineeCourses(props) {
     const [mycourses,setmycourses] = useState([]);
-    const CorporateTusernam = 'nour'
+    const CorporateTusername = 'Santa'
     const getmycourses = async()=>{
-        await axios.get(`http://localhost:9000/corporateTrainee/CorporateCourses/${CorporateTusernam}`).then(
+        await axios.get(`http://localhost:9000/corporateTrainee/CorporateCourses/${CorporateTusername}`).then(
             (res) => { 
                 const result = res.data
                 setmycourses(result)
             }
              );
+    }
+
+    const deleteCourse = async (e)=>{
+      const id = e.target.getAttribute("id")
+      alert('PS: to unroll , your course Progress must be less than 50 % ! ')
+      confirmAlert({
+        title: 'Confirm to unroll',
+        message: 'Are you sure ?',
+        buttons: [
+          {
+            label: 'Yes',
+            onClick: async () => {      
+            await axios.get(`http://localhost:9000/corporateTrainee/unroll_from_course/${CorporateTusername}/${id}`)
+            }
+          },
+          {
+            label: 'No',
+            //onClick: () => alert('Click No')
+          }
+        ]
+      });
+
+
     }
     getmycourses()
     const navigate = useNavigate()
@@ -58,7 +83,8 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
                 <h2 className='h1-adham'>in this Course you will learn : {mycourse[0].ShortSummary}</h2>
                 <br></br><br></br>
                   <button className='opencourse-adham' onClick={()=> navigate(props.Link, {state:[mycourse[0]._id,mycourse[0].InstructorUserName]} )}>Open Course</button>
-                
+                  <br></br><br></br>
+                  <button className='opencourse-adham' onClick={deleteCourse} id={mycourse[0]._id}> UNROLL !</button>                
             </div>
       ))}
 
