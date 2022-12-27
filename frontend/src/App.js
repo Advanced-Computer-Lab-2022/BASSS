@@ -7,6 +7,7 @@ import Home from './Pages/Guest/Home'
 import LoginPage from './Pages/Login/LoginPage';
 import AdminLoginPage from './Pages/Login/AdminLoginPage';
 import Logout from './components/Logout/Logout';
+import Editnewpass from './components/Editnewpass/Editnewpass';
 //t2ryban common?
 import Courses from './components/Courses/Courses.js';
 import AllCourses from './components/Courses/Courses';

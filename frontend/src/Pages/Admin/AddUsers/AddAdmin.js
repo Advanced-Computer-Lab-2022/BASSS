@@ -105,3 +105,8 @@ export default function AddAdmin(){
     </Body>
 
 }
+
+
+{/* <Link to='/AdminAddInstructor' >
+
+</Link> */}

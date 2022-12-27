@@ -7,6 +7,15 @@ const ReportSchema = new Schema({
         required: true
     },
 
+    CourseID:{
+        type:String,
+        required:true,
+    },
+
+    CourseTitle:{
+        type:String,
+    },
+
     Status:{
         type:String,
         required:true,
@@ -16,6 +25,22 @@ const ReportSchema = new Schema({
     Type:{
         type:String,
         required:true
+    },
+
+    ResolvedMessage:{
+        type:String,
+    },
+
+    PendingMessage:{
+        type:String,
+    },
+
+    FollowUps:{
+        type: [{
+            Message:String,
+            Date:String,
+            Time:String
+        }], //[{Course1.ID,Status},{Course2.ID,Status},{Course3.ID,Status},...... ]
     }
     
 }, { timestamps: true });

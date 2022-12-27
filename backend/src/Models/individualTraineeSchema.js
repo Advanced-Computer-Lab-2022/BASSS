@@ -49,7 +49,8 @@ const individualTraineeschema = new Schema({
     },
 
     Courses: {
-        type: [{Course:mongoose.Schema.Types.ObjectId, Progress:Number , PayedAmount: Number, DateEnrolled: String}]
+         //DateEnrolled String for now la7ad manshoof hayeb2a enrolled date ezay fel a3'lab hateb2a Date type//
+        type: [{Course:mongoose.Schema.Types.ObjectId, Progress:Number, PayedAmount:Number, DateEnrolled:String}] 
         // type: [[String]], //[[Course1.ID,Progress%],[Course2.ID,Progress%],[Course3.ID,Progress%],...... ]
     },
     
@@ -63,15 +64,21 @@ const individualTraineeschema = new Schema({
     },
     
     Notes: {
-        type: [String], //[Note1,Note2,Note3,......]
+        type: [{
+            Note:String,
+            SubtitleID:String
+        }], //[Note1,Note2,Note3,......]
     },
 
     Reports: {
-        type: [[String]], //[[Report1.ID,Type,Status,FollowUp],[Report2.ID,Type,Status,FollowUp],[Report3.ID,Type,Status,FollowUp],......]
+        type: [String], // ReportID
     },
 
     RefundRequests: {
-        type: [[String]], //[[Course1.ID,Status],[Course2.ID,Status],[Course3.ID,Status],...... ]
+        type: [{
+            CourseID:String,
+            Status:String
+        }], //[{Course1.ID,Status},{Course2.ID,Status},{Course3.ID,Status},...... ]
     }
 
 

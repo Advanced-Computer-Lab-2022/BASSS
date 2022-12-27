@@ -47,10 +47,9 @@ const AddSubtitleDiv = (props) => {
 
     const Add = () =>{
         //return false                      InstructorName1,ThisSubtitleNumber,Question1,Choice11,Choice21,Choice31,Choice41,MaxGrade1,CorrectAnswer1
-        alert('o2mor!')
-        props.CreateExcerciseProp('sara saad keda kedaa',props.DivID,Question,Choice1,Choice2,Choice3,Choice4,MaxGrade,CorrectAnswer)
+        props.CreateExcerciseProp('sara saad keda kedaa',props.DivID,Question,Choice1,Choice2,Choice3,Choice4,MaxGrade,CorrectAnswer,SubtitleHours,videolink,VideoDescription)
         // props.CreateExcercise()
-        props.createSubtitleProp('ID = 1',SubtitleHours,videolink,VideoDescription,props.DivID)
+        //props.createSubtitleProp(SubtitleHours,videolink,VideoDescription,props.DivID)
         // props.createSubtitle()
         //Exercisehandler(Ex._id)
         //const Sub = props.createSubtitleProp(111,20,'VideoLink','ShortVideoDescription',{Exercise},props.DivID)
