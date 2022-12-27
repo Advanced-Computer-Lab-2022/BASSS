@@ -410,13 +410,29 @@ adminR.get("/getReport/:Username",async function(req,res){
     }
 
   if(list) {
-    console.log('report Found')
+    //console.log('report Found')
      return res.json(list);
   }
   else{
     console.log('report Not Found')
      return res.json("ok"); 
   }
+})
+
+adminR.get("/FollowUp/:ReportID/:Message", async function(req,res){
+
+  var Message = req.params.Message;
+  var ReportID = req.params.ReportID;
+
+  var FollowUp = {Message:Message, Date:"10", Time:"10"}
+  var Report = await reports.findOne({_id:ReportID});
+
+  var arr = Report.FollowUps.concat(FollowUp);
+
+  const Result = await reports.findByIdAndUpdate({_id:ReportID}, {FollowUps:arr})
+
+  res.json(Result);
+
 })
 
 
@@ -457,6 +473,8 @@ adminR.get("/ResolveReport/:ReportID",async function(req,res){   //:Status/
     return res.status(400).json({msg: error});
   }        
 })
+
+
 
 ///////////////////////////////////////////////////////////////////////// Set Promotions ///////////////////////////////////////////////
 
