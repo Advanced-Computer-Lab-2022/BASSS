@@ -108,40 +108,40 @@ courseR.get("/updateRate/:id/:newRate",async(req, res) => {
   res.json(result)
 });
 
-// courseR.get("/:subject/:rate/:price",async(req, res) => {
-//     // res.render("../views/course.ejs",{title:"courses"})
-//     var subject = req.params.subject;
-//     var frate = req.params.rate;
-//     var price = req.params.price;
-//     var result = []
-//     if(subject == "empty" && frate == "empty" && price=="empty"){
+courseR.get("/filter_adsa/:subject/:rate/:price",async(req, res) => {
+    // res.render("../views/course.ejs",{title:"courses"})
+    var subject = req.params.subject;
+    var frate = req.params.rate;
+    var price = req.params.price;
+    var result = []
+    if(subject == "empty" && frate == "empty" && price=="empty"){
      
-//       result = await courses.find({})
-//    }
-//    else
-//       if(subject == "empty" && price=="empty"){
-//         result =await courses.find({"Rating.rate": frate})
+      result = await courses.find({})
+   }
+   else
+      if(subject == "empty" && price=="empty"){
+        result =await courses.find({"Rating.rate": frate})
         
-//       }
-//      else if(frate == "empty" && price=="empty"){
-//         result =await courses.find({Subject:subject})
+      }
+     else if(frate == "empty" && price=="empty"){
+        result =await courses.find({Subject:subject})
         
-//       }else if(frate == "empty" && subject=="empty"){
-//            result =await courses.find({Price:price})
-//       }else if (subject == "empty"){
-//         result =await courses.find({"Rating.rate": frate ,Price:price})
-//       }else if (frate == "empty"){
-//         result =await courses.find({Subject :subject ,Price:price})
-//       }else if (price == "empty"){
-//         result =await courses.find({"Rating.rate": frate  ,Subject :subject})
-//       }
-//       else{
-//         result =await courses.find({Subject:subject, "Rating.rate": frate  , Price:price})
+      }else if(frate == "empty" && subject=="empty"){
+           result =await courses.find({Price:price})
+      }else if (subject == "empty"){
+        result =await courses.find({"Rating.rate": frate ,Price:price})
+      }else if (frate == "empty"){
+        result =await courses.find({Subject :subject ,Price:price})
+      }else if (price == "empty"){
+        result =await courses.find({"Rating.rate": frate  ,Subject :subject})
+      }
+      else{
+        result =await courses.find({Subject:subject, "Rating.rate": frate  , Price:price})
       
-//       }
+      }
   
-//     res.status(200).json(result);
-//   });
+    res.status(200).json(result);
+  });
 
   courseR.get("/:my/:name/:subject/:price",async(req, res) => {
     // res.render("../views/course.ejs",{title:"courses"})

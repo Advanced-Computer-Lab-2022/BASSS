@@ -3,27 +3,7 @@ import './Courses.css';
 
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import YoutubeEmbed from '../YoutubeEmbed/YoutubeEmbed';
-import Button from '@mui/material/Button';
-import Table from '@mui/material/Table';
-import Box from '@mui/material/Box';
-import { styled } from '@mui/material/styles';  
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-    [`&.${tableCellClasses.head}`]: {
-      backgroundColor: theme.palette.common.black,
-      color: theme.palette.common.white,
-    },
-    [`&.${tableCellClasses.body}`]: {
-      fontSize: 14,
-      
-    },
-  }));
 
   const { useState, useEffect } = require("react");
   
@@ -41,7 +21,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
       const getfiltered =  async () => {
         // alert(choice2)
         if(choice.length==0 && choice2.length==0 && choice3.length==0){
-        await axios.get(`http://localhost:9000/course/empty/empty/empty`).then(
+        await axios.get(`http://localhost:9000/course/filter_adsa/empty/empty/empty`).then(
             (res) => { 
                 const filtered = res.data
                 console.log(filtered)
@@ -49,7 +29,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
             }
              );
         }else if(choice.length==0 && choice3.length==0 && choice2!=0){
-            await axios.get(`http://localhost:9000/course/empty/${choice2}/empty`).then(
+            await axios.get(`http://localhost:9000/course/filter_adsa/empty/${choice2}/empty`).then(
                 (res) => { 
                     const filteredbyRate = res.data
                     console.log(filteredbyRate)
@@ -59,7 +39,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
                 );
         }
         else if(choice2.length==0 && choice3.length==0){
-            await axios.get(`http://localhost:9000/course/${choice}/empty/empty`).then(
+            await axios.get(`http://localhost:9000/course/filter_adsa/${choice}/empty/empty`).then(
                 (res) => { 
                     const filteredbyRate = res.data
                     console.log(filteredbyRate)
@@ -69,7 +49,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
                 );
         }
         else if(choice.length==0 && choice2.length==0){
-            await axios.get(`http://localhost:9000/course/empty/empty/${choice3}`).then(
+            await axios.get(`http://localhost:9000/course/filter_adsa/empty/empty/${choice3}`).then(
                 (res) => { 
                     const filteredbyRate = res.data
                     console.log(filteredbyRate)
@@ -78,7 +58,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
                 }
                 );
         }else if(choice.length==0){
-            await axios.get(`http://localhost:9000/course/empty/${choice2}/${choice3}`).then(
+            await axios.get(`http://localhost:9000/course/filter_adsa/empty/${choice2}/${choice3}`).then(
                 (res) => { 
                     const filteredbyRate = res.data
                     console.log(filteredbyRate)
@@ -87,7 +67,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
                 }
                 );
         }else if(choice2.length==0){
-            await axios.get(`http://localhost:9000/course/${choice}/empty/${choice3}`).then(
+            await axios.get(`http://localhost:9000/course/filter_adsa/${choice}/empty/${choice3}`).then(
                 (res) => { 
                     const filteredbyRate = res.data
                     console.log(filteredbyRate)
@@ -96,7 +76,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
                 }
                 );
         }else if(choice3.length==0){
-            await axios.get(`http://localhost:9000/course/${choice}/${choice2}/empty`).then(
+            await axios.get(`http://localhost:9000/course/filter_adsa/${choice}/${choice2}/empty`).then(
                 (res) => { 
                     const filteredbyRate = res.data
                     console.log(filteredbyRate)
@@ -106,7 +86,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
                 );
         }
         else {
-            await axios.get(`http://localhost:9000/course/${choice}/${choice2}/${choice3}`).then(
+            await axios.get(`http://localhost:9000/course/filter_adsa/${choice}/${choice2}/${choice3}`).then(
                     (res) => { 
                         const filteredbyRate = res.data
                         console.log(filteredbyRate)
