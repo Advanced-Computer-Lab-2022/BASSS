@@ -17,6 +17,10 @@ const RequestSchema = new Schema({
     CourseID:{
         type:String,
         required:true,
+    },
+
+    CourseTitle:{
+        type:String,
     }
     
 }, { timestamps: true });

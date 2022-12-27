@@ -4,11 +4,6 @@ import AddSubtitleDiv from './AddSubtitleDiv'
 import './MultipleZeft.css'
 
 const MultipleSubtitleDivs = (props) => {
-    const Subtitles = new Array(props.SubtitleNum)
-
-    const getSubtitles = (i) =>{
-        return 
-    }
 
     const SubtitlesNum = props.SubtitlesNum
     var usersDiv = [];

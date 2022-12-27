@@ -1,30 +1,594 @@
 
 .Admin_Body {
-background: rgb(0,108,177);
-background: radial-gradient(circle, rgba(0,108,177,1) 0%, rgba(15,39,92,1) 100%);
+  background: rgb(6,38,87);
+  background: linear-gradient(90deg, rgba(6,38,87,1) 0%, rgba(57,84,144,1) 37%, rgba(52,165,238,1) 100%);
 background-size:cover;
 background-position: center;
-height: 100%;
+height: 100vh;
 }
 
 
 
 .h1_Admin_Courses {
-color: black;
+color: rgba(255, 255, 255, 0.885);
 }
 
+/*/////////////////////////////////// Reports ///////////////////////////////////*/
+.h1_Admin_Reports {
+  position: absolute;
+    color: white;
+    font-size:60px;
+    margin-top: 4.5%;
+    margin-left: 42%;
+    }
+
+
+.Admin_ReportsPage_CoursesDiv{
+  position: relative;
+  margin-top: 11%;
+  left:5%;
+  bottom: 30px;
+  width: 90%;
+  height: 75%;
+  background-color: rgba(255, 255, 255, 0.052);
+  border-radius: 15px;
+}
+
+.Admin_AllReports_Div_Header{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  margin-left: 38%;
+  top: 3%;
+}
+
+.Admin_FinancialReports_btn{
+  background-color: transparent;
+  background-image: linear-gradient(rgba(0, 130, 190, 0.5),  rgba(0, 80, 130, 0.5)), url('../../images/Financial.jpeg') ;
+  color: #fff;
+  margin-left: 5%;
+  padding: 10px 10px;
+  border: 2px solid white;
+  text-align: center;
+  font-size: 15px;
+  border-radius: 10px;
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.Admin_FinancialReports_btn:hover{
+  background-image: linear-gradient(rgba(164, 196, 210, 0.689),  rgba(168, 213, 240, 0.667)), url('../../images/Financial.jpeg') ;
+  color: black;
+  font-weight: 600;
+}
+.Admin_FinancialReports_btnClicked{
+  background-color: transparent;
+  background-image: linear-gradient(rgba(164, 196, 210, 0.689),  rgba(168, 213, 240, 0.667)), url('../../images/Financial.jpeg') ;
+  color: #fff;
+  margin-left: 5%;
+  padding: 10px 10px;
+  border: 2px solid white;
+  text-align: center;
+  font-size: 15px;
+  border-radius: 10px;
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.Admin_TechnicalReports_btn{
+  background-color: transparent;
+  background-image: linear-gradient(rgba(0, 130, 190, 0.5),  rgba(0, 80, 130, 0.5)), url('../../images/settings.jpeg') ;
+  color: #fff;
+  margin-left: 5%;
+  padding: 10px 10px;
+  border: 2px solid white;
+  text-align: center;
+  font-size: 15px;
+  border-radius: 10px;
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.Admin_TechnicalReports_btn:hover{
+  background-image: linear-gradient(rgba(164, 196, 210, 0.689),  rgba(168, 213, 240, 0.667)), url('../../images/settings.jpeg') ;
+  color: black;
+  font-weight: 600;
+}
+.Admin_TechnicalReports_btnClicked{
+  background-color: transparent;
+  background-image: linear-gradient(rgba(164, 196, 210, 0.689),  rgba(168, 213, 240, 0.667)), url('../../images/settings.jpeg') ;
+  color: #fff;
+  margin-left: 5%;
+  padding: 10px 10px;
+  border: 2px solid white;
+  text-align: center;
+  font-size: 15px;
+  border-radius: 10px;
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+
+.Admin_OtherReports_btn{
+  background-color: transparent;
+  background-image: linear-gradient(rgba(0, 130, 190, 0.5),  rgba(0, 80, 130, 0.5)), url('../../images/other.jpg') ;
+  color: #fff;
+  margin-left: 5%;
+  padding: 10px 10px;
+  border: 2px solid white;
+  text-align: center;
+  font-size: 15px;
+  border-radius: 10px;
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.Admin_OtherReports_btn:hover{
+  background-image: linear-gradient(rgba(164, 196, 210, 0.689),  rgba(168, 213, 240, 0.667)), url('../../images/other.jpg') ;
+  color: black;
+  font-weight: 600;
+}
+.Admin_OtherReports_btnClicked{
+  background-color: transparent;
+  background-image: linear-gradient(rgba(164, 196, 210, 0.689),  rgba(168, 213, 240, 0.667)), url('../../images/other.jpg') ;
+  color: #fff;
+  margin-left: 5%;
+  padding: 10px 10px;
+  border: 2px solid white;
+  text-align: center;
+  font-size: 15px;
+  border-radius: 10px;
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.Admin_AllReports_Div{
+  background-color: rgba(255, 255, 255, 0.052);
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  margin-top: 4.5%;
+  left: 2%;
+  bottom: 29px;
+  width: 96%;
+  height: 460px;
+  border-radius: 15px;
+}
+
+.Admin_AllReports_InnerDiv{
+  position: relative;
+  width: 100%;
+  height: 460px;
+  border-radius: 15px;
+  overflow-y: auto;
+  max-height: 460px;
+}
+.Admin_AllReports_InnerDiv::-webkit-scrollbar {
+  width: 1.5em;
+  border-radius: 15px;
+}
+ 
+.Admin_AllReports_InnerDiv::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(2, 47, 82, 0.466);
+  border-radius: 15px;
+}
+ 
+.Admin_AllReports_InnerDiv::-webkit-scrollbar-thumb {
+  background-color: rgba(2, 98, 142, 0.871);
+  outline: 1px solid rgb(0, 81, 163);
+  border-radius: 15px;
+}
+
+   /*/////////////////////////////////// One Report Div ///////////////////////////////////*/
+
+
+   .Admin_OneReport_Div{
+    position: relative;
+    left: 1%;
+    width: 98%;
+    height: 20%;
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 25px;
+}
+
+.Admin_OneReport_Div_Clicked{
+  position: relative;
+  left: 1%;
+  width: 98%;
+  height: 20%;
+  background-color: rgba(0,0,0,0.4);
+  border-radius: 25px;
+}
+
+.Admin_OneCoReq_Div_Unseen{
+  position: relative;
+  left: 1%;
+  width: 98%;
+  height: 20%;
+  background-color: rgba(0, 116, 193, 0.804);
+  border-radius: 25px;
+}
+
+.Admin_OneCoReq_Div_Unseen_Clicked{
+  position: relative;
+  left: 1%;
+  width: 98%;
+  height: 20%;
+  background-color: rgba(0, 60, 100, 0.804);
+  border-radius: 25px;
+}
+
+.Admin_OneReport_Div_Image{
+  position: absolute;
+  left: 3%;
+  margin-top: 2%;
+  height: 15vh;
+  width: 15vh;
+  background-image: linear-gradient(rgba(0, 130, 190, 0.5),  rgba(0, 80, 130, 0.5)), url('../../images/CourseDiv.png') ;
+  /* background-image: linear-gradient(-100deg,rgba(76, 79, 81, 0.7),rgba(3, 35, 46, 0.7)),url('../../public/images/instructor.jpg'); */
+  background-size:cover;
+  /* background-repeat: no-repeat; */
+  background-position: center;
+  border-radius: 5px;
+}
+
+/*/////////////////////////////////// Financial Reports Div ///////////////////////////////////*/
+
+.Admin_FinancialReports_MainDiv{
+  background-color: rgba(255, 255, 255, 0.052);
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 460px;
+  border-radius: 15px;
+}
+
+.Admin_FinancialReports_Div{
+  position: relative;
+  margin-top: 2%;
+  bottom: 29px;
+  width: 60%;
+  left:  5%;
+  background-color: rgba(55, 55, 55, 0.321);
+  border-radius: 15px;
+  height: 400px;
+ 
+}
+
+.Admin_FinancialReports_Div_Header{
+  display: flex;
+  flex-direction: row;
+}
+
+.h1_Admin_FinancialReports_Header {
+color: rgba(255, 255, 255, 0.885);
+font-size: 40px;
+margin-left: 8%;
+}
+
+/* .Admin_AddPromtion_btn{
+background-color: transparent;
+color: #fff;
+margin-left: 2%;
+margin-top: 1%;
+padding: 15px 15px;
+border: 2px solid white;
+text-align: center;
+font-size: 20px;
+border-radius: 10px;
+width: 180px;
+cursor: pointer;
+font-weight: 600;
+}
+.Admin_AddPromtion_btn:hover{
+background-color: rgba(255, 255, 255, 0.712);
+color: black;
+font-weight: 600;
+}
+
+.Admin_AllCoursesSearch_Div{
+position: relative;
+height: fit-content;
+width: fit-content;
+left:  5%;
+}
+
+.Admin_AllCoursesFilter_Div{
+position: relative;
+height: fit-content;
+width: fit-content;
+margin-top: 5%;
+left:  10%;
+} */
+
+
+.Admin_FinancialReports_InnerDiv{
+position: relative;
+margin-top: 2%;
+bottom: 29px;
+width: 100%;
+border-radius: 15px;
+overflow-y: auto;
+max-height: 395px;
+}
+.Admin_FinancialReports_InnerDiv::-webkit-scrollbar {
+width: 1.5em;
+border-radius: 15px;
+}
+
+.Admin_FinancialReports_InnerDiv::-webkit-scrollbar-track {
+box-shadow: inset 0 0 6px rgba(2, 47, 82, 0.466);
+border-radius: 15px;
+}
+
+.Admin_FinancialReports_InnerDiv::-webkit-scrollbar-thumb {
+background-color: rgba(2, 98, 142, 0.871);
+outline: 1px solid rgb(0, 81, 163);
+border-radius: 15px;
+}
+
+/*/////////////////////////////////// Refund  Requests ///////////////////////////////////*/
+
+.Admin_RefundReq_Div{
+  position: relative;
+  width: 35%;
+  background-color: rgba(0, 0, 0, 0.184);
+  border-radius: 15px;
+  height: 460px;
+}
+
+.Admin_ReportsPage_RefundReqHeader_btnDiv{
+  display: flex;
+  flex-direction: row;
+  margin-left: 10%;
+}
+
+.Admin_RefundReqSelect_btn{
+background-color: transparent;
+color: #fff;
+margin-left: 5%;
+padding: 10px 10px;
+border: 2px solid white;
+text-align: center;
+font-size: 15px;
+border-radius: 10px;
+height: 40px;
+width: 150px;
+cursor: pointer;
+font-weight: 600;
+}
+.Admin_RefundReqSelect_btn:hover{
+background-color: rgba(255, 255, 255, 0.712);
+color: black;
+font-weight: 600;
+}
+
+.Admin_RefundReq_InnerDiv{
+  position: relative;
+  margin-top: 0%;
+  width: 100%;
+  top: 20px;
+  border-radius: 15px;
+  overflow-y: auto;
+  max-height: 420px;
+}
+.Admin_RefundReq_InnerDiv::-webkit-scrollbar {
+  width: 1.5em;
+  border-radius: 15px;
+}
+ 
+.Admin_RefundReq_InnerDiv::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(2, 47, 82, 0.466);
+  border-radius: 15px;
+}
+ 
+.Admin_RefundReq_InnerDiv::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 70, 102, 0.871);
+  outline: 1px solid rgb(0, 64, 129);
+  border-radius: 15px;
+}
+
+ /*/////////////////////////////////// One RefundReq Div ///////////////////////////////////*/
+
+
+ .Admin_OneRefundReq_Div{
+  position: relative;
+  left: 1%;
+  width: 98%;
+  height: 20%;
+  background-color: rgba(201, 15, 15, 0.2);
+  border-radius: 25px;
+}
+
+.Admin_OneRefundReq_Div_Unseen{
+position: relative;
+left: 1%;
+width: 98%;
+height: 20%;
+background-color: rgba(0, 116, 193, 0.804);
+border-radius: 25px;
+}
+
+/*/////////////////////////////////// One RefundReq Details Div ///////////////////////////////////*/
+
+.Admin_OneRefundReqDetails_h1 {
+  color: rgba(221, 221, 221, 0.797);
+  font-size: 30px;
+  position: relative;
+}
+
+.Admin_OneRefundReqDetails_Div{
+position: absolute;
+z-index: 100;
+left: 1px;
+width: 100%;
+height: 300px;
+background: rgb(12, 43, 89);
+/* background: linear-gradient(90deg, rgba(6,38,87,1) 0%, rgba(57,84,144,1) 37%, rgba(52,165,238,1) 100%); */
+border-radius: 25px;
+overflow-y: auto;
+max-height: 300px;
+}
+
+.Admin_OneRefundReqDetails_Div::-webkit-scrollbar {
+width: 1.5em;
+border-radius: 25px;
+}
+
+.Admin_OneRefundReqDetails_Div::-webkit-scrollbar-track {
+box-shadow: inset 0 0 6px rgba(2, 47, 82, 0.222);
+border-radius: 25px;
+}
+
+.Admin_OneRefundReqDetails_Div::-webkit-scrollbar-thumb {
+background-color: rgba(18, 57, 114, 0.637);
+outline: 1px solid rgb(8, 44, 99);
+border-radius: 25px;
+}
+
+.Admin_OneRefundReqDetails_btn_Div{
+position: relative;
+margin-left: 11.5%;
+margin-top: 5%;
+}
+
+.Admin_OneRefundReqDetails_btn{
+background-color: transparent;
+color: #fff;
+margin-left: 4%;
+margin-top: 1%;
+padding: 15px 15px;
+border: 2px solid white;
+text-align: center;
+font-size: 20px;
+border-radius: 10px;
+width: 150px;
+cursor: pointer;
+font-weight: 600;
+}
+.Admin_OneRefundReqDetails_btn:hover{
+background-color: rgba(255, 255, 255, 0.712);
+color: black;
+font-weight: 600;
+}
+
+
+
+/*/////////////////////////////////// One Course Div ///////////////////////////////////*/
+
+
+.Admin_OneFinancialReports_Div{
+  position: relative;
+  left: 1%;
+  width: 98%;
+  height: 20%;
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 25px;
+}
+
+.Admin_OneFinancialReports_Div_Clicked{
+position: relative;
+left: 1%;
+width: 98%;
+height: 20%;
+background-color: rgba(0,0,0,0.4);
+border-radius: 25px;
+}
+
+.Admin_OneFinancialReports_Image{
+position: absolute;
+left: 3%;
+margin-top: 2%;
+height: 15vh;
+width: 15vh;
+background-image: linear-gradient(rgba(0, 130, 190, 0.5),  rgba(0, 80, 130, 0.5)), url('../../images/CourseDiv.png') ;
+/* background-image: linear-gradient(-100deg,rgba(76, 79, 81, 0.7),rgba(3, 35, 46, 0.7)),url('../../public/images/instructor.jpg'); */
+background-size:cover;
+/* background-repeat: no-repeat; */
+background-position: center;
+border-radius: 5px;
+}
+
+/*/////////////////////////////////// One Financial Report Details Div ///////////////////////////////////*/
+
+
+.Admin_OneFinancialReportsDetails_Div{
+position: absolute;
+z-index: 100;
+left: 1px;
+width: 750px;
+height: 300px;
+background: rgb(12, 43, 89);
+/* background: linear-gradient(90deg, rgba(6,38,87,1) 0%, rgba(57,84,144,1) 37%, rgba(52,165,238,1) 100%); */
+border-radius: 25px;
+overflow-y: auto;
+max-height: 300px;
+}
+
+.Admin_OneFinancialReportsDetails_Div::-webkit-scrollbar {
+width: 1.5em;
+border-radius: 25px;
+}
+
+.Admin_OneFinancialReportsDetails_Div::-webkit-scrollbar-track {
+box-shadow: inset 0 0 6px rgba(2, 47, 82, 0.222);
+border-radius: 25px;
+}
+
+.Admin_OneFinancialReportsDetails_Div::-webkit-scrollbar-thumb {
+background-color: rgba(18, 57, 114, 0.637);
+outline: 1px solid rgb(8, 44, 99);
+border-radius: 25px;
+}
+
+
+/*/////////////////////////////////// Courses ///////////////////////////////////*/
+
+
+.CourseDetailsAdmin_h1 {
+  color: rgba(208, 208, 208, 0.773);
+  font-size: 29px;
+  position: relative;
+}
+
+.CoReqDetailsAdmin_h1 {
+  color: rgba(208, 208, 208, 0.773);
+  font-size: 26px;
+  text-align: left;
+  left: 5%;
+  max-width: 95%;
+  position: relative;
+}
+
+
+
 .Admin_CoursesPage_CoursesDiv{
+    display: flex;
+    flex-direction: row;
     position: relative;
     margin-top: 8%;
     left:5%;
     bottom: 30px;
     width: 90%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.2);
+    height: 80%;
+    background-color: rgba(255, 255, 255, 0.052);
     border-radius: 15px;
-
-
 }
+
+
+
+
+/*/////////////////////////////////// Corporate Course requests ///////////////////////////////////*/
 
 .Admin_CorporateCourses_Div{
     position: relative;
@@ -32,16 +596,406 @@ color: black;
     margin-top: 0%;
     width: 35%;
     top: 20px;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.184);
     border-radius: 15px;
+    height: 560px;
+    /* overflow-y: auto;
+    max-height: 540px; */
 }
+  .Admin_CoursesPage_CoReqHeader_btnDiv{
+    display: flex;
+    flex-direction: row;
+    margin-left: 10%;
+}
+
+.Admin_CoReqSelect_btn{
+  background-color: transparent;
+  color: #fff;
+  margin-left: 5%;
+  padding: 10px 10px;
+  border: 2px solid white;
+  text-align: center;
+  font-size: 15px;
+  border-radius: 10px;
+  height: 40px;
+  width: 150px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.Admin_CoReqSelect_btn:hover{
+  background-color: rgba(255, 255, 255, 0.712);
+  color: black;
+  font-weight: 600;
+}
+
+  .Admin_CorporateCourses_InnerDiv{
+    position: relative;
+    margin-top: 0%;
+    width: 100%;
+    top: 20px;
+    border-radius: 15px;
+    overflow-y: auto;
+    max-height: 420px;
+}
+.Admin_CorporateCourses_InnerDiv::-webkit-scrollbar {
+    width: 1.5em;
+    border-radius: 15px;
+  }
+   
+.Admin_CorporateCourses_InnerDiv::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(2, 47, 82, 0.466);
+    border-radius: 15px;
+  }
+   
+.Admin_CorporateCourses_InnerDiv::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 70, 102, 0.871);
+    outline: 1px solid rgb(0, 64, 129);
+    border-radius: 15px;
+  }
+
+   /*/////////////////////////////////// One CoReq Div ///////////////////////////////////*/
+
+
+   .Admin_OneCoReq_Div{
+    position: relative;
+    left: 1%;
+    width: 98%;
+    height: 20%;
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 25px;
+}
+
+.Admin_OneCoReq_Div_Unseen{
+  position: relative;
+  left: 1%;
+  width: 98%;
+  height: 20%;
+  background-color: rgba(0, 116, 193, 0.804);
+  border-radius: 25px;
+}
+
+.Admin_OneCoReq_Div_Image{
+  position: absolute;
+  left: 3%;
+  margin-top: 2%;
+  height: 15vh;
+  width: 15vh;
+  background-image: linear-gradient(rgba(0, 130, 190, 0.5),  rgba(0, 80, 130, 0.5)), url('../../images/CourseDiv.png') ;
+  /* background-image: linear-gradient(-100deg,rgba(76, 79, 81, 0.7),rgba(3, 35, 46, 0.7)),url('../../public/images/instructor.jpg'); */
+  background-size:cover;
+  /* background-repeat: no-repeat; */
+  background-position: center;
+  border-radius: 5px;
+}
+
+  /*/////////////////////////////////// One CoReq Details Div ///////////////////////////////////*/
+  
+.Admin_OneCoReqDetails_h1 {
+    color: rgba(221, 221, 221, 0.797);
+    font-size: 30px;
+    position: relative;
+}
+
+.Admin_OneCoReqDetails_Div{
+  position: absolute;
+  z-index: 100;
+  left: 1px;
+  width: 100%;
+  height: 300px;
+  background: rgb(12, 43, 89);
+  /* background: linear-gradient(90deg, rgba(6,38,87,1) 0%, rgba(57,84,144,1) 37%, rgba(52,165,238,1) 100%); */
+  border-radius: 25px;
+  overflow-y: auto;
+  max-height: 300px;
+}
+
+.Admin_OneCoReqDetails_Div::-webkit-scrollbar {
+  width: 1.5em;
+  border-radius: 25px;
+}
+ 
+.Admin_OneCoReqDetails_Div::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(2, 47, 82, 0.222);
+  border-radius: 25px;
+}
+ 
+.Admin_OneCoReqDetails_Div::-webkit-scrollbar-thumb {
+  background-color: rgba(18, 57, 114, 0.637);
+  outline: 1px solid rgb(8, 44, 99);
+  border-radius: 25px;
+}
+
+.Admin_OneCoReqDetails_btn_Div{
+  position: relative;
+  margin-left: 11.5%;
+  margin-top: 5%;
+}
+
+.Admin_OneCoReqDetails_btn{
+  background-color: transparent;
+  color: #fff;
+  margin-left: 4%;
+  margin-top: 1%;
+  padding: 15px 15px;
+  border: 2px solid white;
+  text-align: center;
+  font-size: 20px;
+  border-radius: 10px;
+  width: 150px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.Admin_OneCoReqDetails_btn:hover{
+  background-color: rgba(255, 255, 255, 0.712);
+  color: black;
+  font-weight: 600;
+}
+
+
+
+/*/////////////////////////////////// All Courses ///////////////////////////////////*/
 
 .Admin_AllCourses_Div{
     position: relative;
-    margin-top: -84%;
-    bottom: 30px;
+    margin-top: 3.5%;
+    bottom: 29px;
     width: 57%;
-    left:  40%;
-    background-color: rgba(52, 0, 0, 0.5);
+    left:  5%;
+    background-color: rgba(0,0,0,0.2);
     border-radius: 15px;
+    height: 560px;
+    /* overflow-y: auto;
+    max-height: 540px; */
+}
+/* .Admin_AllCourses_Div::-webkit-scrollbar {
+    width: 1.5em;
+    border-radius: 15px;
+  }
+   
+.Admin_AllCourses_Div::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(2, 47, 82, 0.466);
+    border-radius: 15px;
+  }
+   
+.Admin_AllCourses_Div::-webkit-scrollbar-thumb {
+    background-color: rgba(2, 98, 142, 0.871);
+    outline: 1px solid rgb(0, 81, 163);
+    border-radius: 15px;
+  } */
+
+  .Admin_AllCourses_Div_Header{
+    display: flex;
+    flex-direction: row;
+}
+
+.h1_Admin_AllCourses_Header {
+  color: rgba(255, 255, 255, 0.885);
+  font-size: 40px;
+  margin-left: 8%;
+  margin-top: 2%;
+  }
+
+.Admin_AddPromtion_btn{
+  background-color: transparent;
+  color: #fff;
+  margin-left: 2%;
+  margin-top: 1%;
+  padding: 15px 15px;
+  border: 2px solid white;
+  text-align: center;
+  font-size: 20px;
+  border-radius: 10px;
+  width: 180px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.Admin_AddPromtion_btn:hover{
+  background-color: rgba(255, 255, 255, 0.712);
+  color: black;
+  font-weight: 600;
+}
+
+.Admin_AllCoursesSearch_Div{
+  position: relative;
+  height: fit-content;
+  width: fit-content;
+  left:  5%;
+}
+
+.Admin_AllCoursesFilter_Div{
+  position: relative;
+  height: fit-content;
+  width: fit-content;
+  margin-top: 5%;
+  left:  10%;
+}
+
+
+.Admin_AllCourses_InnerDiv{
+  position: relative;
+  margin-top: 2%;
+  bottom: 29px;
+  width: 100%;
+  border-radius: 15px;
+  overflow-y: auto;
+  max-height: 460px;
+}
+.Admin_AllCourses_InnerDiv::-webkit-scrollbar {
+  width: 1.5em;
+  border-radius: 15px;
+}
+ 
+.Admin_AllCourses_InnerDiv::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(2, 47, 82, 0.466);
+  border-radius: 15px;
+}
+ 
+.Admin_AllCourses_InnerDiv::-webkit-scrollbar-thumb {
+  background-color: rgba(2, 98, 142, 0.871);
+  outline: 1px solid rgb(0, 81, 163);
+  border-radius: 15px;
+}
+
+
+  /*/////////////////////////////////// One Course Div ///////////////////////////////////*/
+
+
+  .Admin_OneCourse_Div{
+    position: relative;
+    left: 1%;
+    width: 98%;
+    height: 20%;
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 25px;
+}
+
+.Admin_OneCourse_Div_Clicked{
+  position: relative;
+  left: 1%;
+  width: 98%;
+  height: 20%;
+  background-color: rgba(0,0,0,0.4);
+  border-radius: 25px;
+}
+
+.Admin_OneCourse_Image{
+  position: absolute;
+  left: 3%;
+  margin-top: 2%;
+  height: 15vh;
+  width: 15vh;
+  background-image: linear-gradient(rgba(0, 130, 190, 0.5),  rgba(0, 80, 130, 0.5)), url('../../images/CourseDiv.png') ;
+  /* background-image: linear-gradient(-100deg,rgba(76, 79, 81, 0.7),rgba(3, 35, 46, 0.7)),url('../../public/images/instructor.jpg'); */
+  background-size:cover;
+  /* background-repeat: no-repeat; */
+  background-position: center;
+  border-radius: 5px;
+}
+
+  /*/////////////////////////////////// One Course Details Div ///////////////////////////////////*/
+
+
+.Admin_OneCourseDetails_Div{
+  position: absolute;
+  z-index: 100;
+  left: 1px;
+  width: 750px;
+  height: 300px;
+  background: rgb(12, 43, 89);
+  /* background: linear-gradient(90deg, rgba(6,38,87,1) 0%, rgba(57,84,144,1) 37%, rgba(52,165,238,1) 100%); */
+  border-radius: 25px;
+  overflow-y: auto;
+  max-height: 300px;
+}
+
+.Admin_OneCourseDetails_Div::-webkit-scrollbar {
+  width: 1.5em;
+  border-radius: 25px;
+}
+ 
+.Admin_OneCourseDetails_Div::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(2, 47, 82, 0.222);
+  border-radius: 25px;
+}
+ 
+.Admin_OneCourseDetails_Div::-webkit-scrollbar-thumb {
+  background-color: rgba(18, 57, 114, 0.637);
+  outline: 1px solid rgb(8, 44, 99);
+  border-radius: 25px;
+}
+
+
+
+
+  /*/////////////////////////////////// Promotions ///////////////////////////////////*/
+  
+.Admin_Promotion_Div{
+  position: absolute;
+  z-index: 200;
+  top: 4%;
+  left: 40.5%;
+  width: 755px;
+  height: 540px;
+  background: rgb(63, 113, 188);
+  background-image: linear-gradient(rgba(1, 117, 170, 0.608),  rgba(0, 80, 130, 0.597)), url('../../images/Discount.png') ;
+
+  /* background: linear-gradient(90deg, rgba(6,38,87,1) 0%, rgba(57,84,144,1) 37%, rgba(52,165,238,1) 100%); */
+  border-radius: 25px;
+}
+
+
+.Admin_Promotion_inputs{
+  width: 280px;
+  height: 30px;
+  padding: 10px 10px;
+  margin: 60px 0;
+  margin-left:50px ;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 2px solid white;
+  background-color: transparent;
+  font-size: 30px;
+  color: #fff;
+}
+.Admin_Promotion_inputs:focus,input:focus{
+  outline: none;
+}
+.Admin_Promotion_inputs::placeholder{
+  font-size: 1.5rem;
+  color: white;
+}
+
+
+.Admin_SubmitPromtion_btn{
+  background-color: transparent;
+  color: #fff;
+  margin-left: 4%;
+  margin-top: 1%;
+  padding: 15px 15px;
+  border: 2px solid white;
+  text-align: center;
+  font-size: 20px;
+  border-radius: 10px;
+  width: 150px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.Admin_SubmitPromtion_btn:hover{
+  background-color: rgba(255, 255, 255, 0.712);
+  color: black;
+  font-weight: 600;
+}
+
+.Admin_Promotion_Image{
+  position: absolute;
+  left: 3%;
+  margin-top: 2%;
+  height: 15vh;
+  width: 15vh;
+  background-image: linear-gradient(rgba(0, 130, 190, 0.5),  rgba(0, 80, 130, 0.5)), url('../../images/Discount.png') ;
+  /* background-image: linear-gradient(-100deg,rgba(76, 79, 81, 0.7),rgba(3, 35, 46, 0.7)),url('../../public/images/instructor.jpg'); */
+  background-size:cover;
+  /* background-repeat: no-repeat; */
+  background-position: center;
+  border-radius: 5px;
 }

@@ -24,7 +24,7 @@ courseR.get("/:name",async(req, res) => {
 
 courseR.get("/courseDetails/:courseId", async(req,res) => {
     var id = req.params.courseId;
-    var result = await courses.find({_id:id});
+    var result = await courses.findOne({_id:id});
     res.status(200).json(result);
 })
 courseR.get("/FindTitleAndUpdate/:title/:percentage/:enddate", async(req,res)=>{
@@ -94,40 +94,40 @@ courseR.get("/updateRate/:id/:newRate",async(req, res) => {
   res.json(result)
 });
 
-courseR.get("/:subject/:rate/:price",async(req, res) => {
-    // res.render("../views/course.ejs",{title:"courses"})
-    var subject = req.params.subject;
-    var frate = req.params.rate;
-    var price = req.params.price;
-    var result = []
-    if(subject == "empty" && frate == "empty" && price=="empty"){
+// courseR.get("/:subject/:rate/:price",async(req, res) => {
+//     // res.render("../views/course.ejs",{title:"courses"})
+//     var subject = req.params.subject;
+//     var frate = req.params.rate;
+//     var price = req.params.price;
+//     var result = []
+//     if(subject == "empty" && frate == "empty" && price=="empty"){
      
-      result = await courses.find({})
-   }
-   else
-      if(subject == "empty" && price=="empty"){
-        result =await courses.find({"Rating.rate": frate})
+//       result = await courses.find({})
+//    }
+//    else
+//       if(subject == "empty" && price=="empty"){
+//         result =await courses.find({"Rating.rate": frate})
         
-      }
-     else if(frate == "empty" && price=="empty"){
-        result =await courses.find({Subject:subject})
+//       }
+//      else if(frate == "empty" && price=="empty"){
+//         result =await courses.find({Subject:subject})
         
-      }else if(frate == "empty" && subject=="empty"){
-           result =await courses.find({Price:price})
-      }else if (subject == "empty"){
-        result =await courses.find({"Rating.rate": frate ,Price:price})
-      }else if (rate == "empty"){
-        result =await courses.find({Subject :subject ,Price:price})
-      }else if (price == "empty"){
-        result =await courses.find({"Rating.rate": frate  ,Subject :subject})
-      }
-      else{
-        result =await courses.find({Subject:subject, "Rating.rate": frate  , Price:price})
+//       }else if(frate == "empty" && subject=="empty"){
+//            result =await courses.find({Price:price})
+//       }else if (subject == "empty"){
+//         result =await courses.find({"Rating.rate": frate ,Price:price})
+//       }else if (frate == "empty"){
+//         result =await courses.find({Subject :subject ,Price:price})
+//       }else if (price == "empty"){
+//         result =await courses.find({"Rating.rate": frate  ,Subject :subject})
+//       }
+//       else{
+//         result =await courses.find({Subject:subject, "Rating.rate": frate  , Price:price})
       
-      }
+//       }
   
-    res.status(200).json(result);
-  });
+//     res.status(200).json(result);
+//   });
 
   courseR.get("/:my/:name/:subject/:price",async(req, res) => {
     // res.render("../views/course.ejs",{title:"courses"})
@@ -198,6 +198,25 @@ courseR.get("/getSubtitleAndUpdate/:SubID/:CourseID",async function(req,res){
   //   console.log("SubTitle Not Found")
   //    return res.status(400).json({msg: "SubTitle Not Found"}); 
   // }
+
+})
+
+courseR.get("/getSubtitleAndUpdate2/:CourseID",async function(req,res){
+  console.log('get subtitle modified')
+    var CourseID = req.params.CourseID;
+
+    var SubArray = [];
+    var Length = SubArray.length
+    const Course = await courses.find({_id : CourseID});
+    SubArray = Course.Subtitles;
+    for(let i = 0; i<Length ; i++){
+      var AofI = SubArray[i]
+      console.log(AofI);
+      await subtitleSchema.findOneAndUpdate({_id:AofI} , {Course:'637e73821194304d45a2fe5a'})
+
+    }
+
+  
 
 })
 
@@ -275,18 +294,19 @@ courseR.post("/createCourse",async (req,res)=>{
     }        
 })
 
-courseR.get("/createSubtitle/:CourseID/:SubtitleHours/:VideoLink/:ShortVideoDescription/:Exercise/:subtitleNumber",async function(req,res){
-    var SubtitleHours = req.params.SubtitleHours;
+courseR.get("/createSubtitle/:SubtitleHours/:VideoLink/:ShortVideoDescription/:Exercise/:subtitleNumber",async function(req,res){
+   console.log('Create Sub') 
+   var SubtitleHours = req.params.SubtitleHours;
     var VideoLink = req.params.VideoLink;
     var ShortVideoDescription = req.params.ShortVideoDescription;    
     var Exercise = req.params.Exercise;
     var subtitleNumber = req.params.subtitleNumber;
-    var CourseID = req.params.CourseID;
+    //var CourseID = req.params.CourseID;
     
     try{
 
         const subzeft = await subtitleSchema.create({
-        CourseID:CourseID,
+        //CourseID:CourseID,
         SubtitleHours:SubtitleHours,
         VideoLink:VideoLink,
         ShortVideoDescription:ShortVideoDescription,

@@ -49,7 +49,8 @@ const individualTraineeschema = new Schema({
     },
 
     Courses: {
-        type: [{Course:mongoose.Schema.Types.ObjectId, Progress:Number }]
+         //DateEnrolled String for now la7ad manshoof hayeb2a enrolled date ezay fel a3'lab hateb2a Date type//
+        type: [{Course:mongoose.Schema.Types.ObjectId, Progress:Number, PayedAmount:Number, DateEnrolled:String}] 
         // type: [[String]], //[[Course1.ID,Progress%],[Course2.ID,Progress%],[Course3.ID,Progress%],...... ]
     },
     

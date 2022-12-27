@@ -3,7 +3,7 @@ import AddUsers from './Pages/Admin/AddUsers/AddUsers';
 import AdminHome from './Pages/Admin/AdminHome/AdminHome';
 import AdminProfile from './Pages/Admin/AdminProfile/AdminProfile';
 import CoursesAdmin from './Pages/Admin/CoursesAdmin/CoursesAdmin';
-import Reports from './Pages/Admin/Reports/Reports';
+import ReportsAdmin from './Pages/Admin/Reports/ReportsAdmin';
 import Courses from './components/Courses/Courses.js';
 import MyCourses from './components/MyCourses/MyCourses';
 import AllCourses from './components/Courses/Courses';
@@ -64,7 +64,7 @@ function App() {
           <Route
           path='/AdminReports'
           element={
-            <Reports/>
+            <ReportsAdmin/>
           }
           />
           <Route
