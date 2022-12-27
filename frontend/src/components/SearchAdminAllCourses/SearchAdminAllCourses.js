@@ -31,7 +31,7 @@ const SearchAdminAllCourses = (props)=>{
 
 
     const getResults=  async(req,res) => { 
-            await axios.get(`http://localhost:9000/guest/search/${message}`).then(
+            await axios.get(`http://localhost:9000/search/${message}`).then(
                 (res) => {
                     if(res.status===200){
                         const s = res.data;

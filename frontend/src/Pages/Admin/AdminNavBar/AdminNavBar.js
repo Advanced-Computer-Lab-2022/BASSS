@@ -7,7 +7,7 @@ export default function AdminNavBar(){
     <Navbar SecondLinkText='Courses' FirstLinkText='' ThirdLinkText='Reports' FourthLinkText='Add User'  
     ButtonLinkText='Logout' 
     LogoLink='/Admin' SecondLinkTo='/CoursesAdmin'  ThirdLinkTo='/AdminReports' FourthLinkTo='/AdminAddUsers' 
-    ButtonLinkTo='/'/>
+    ButtonLinkTo='/logout'/>
     </div>
 }
 

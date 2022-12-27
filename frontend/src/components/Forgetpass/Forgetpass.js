@@ -25,12 +25,19 @@ const { useState, useEffect } = require("react");
 const type= props.Type
    
     const forget =  async () => {
-        await axios.get(`http://localhost:9000/${choice3}/forgetpass/${choice}/${choice2}`).then(
+        await axios.get(`http://localhost:9000/instructor/forgetpass/${choice}/${choice2}`).then(
             (res) => { 
                 alert('check your mail')
             }
             
              );
+
+        // await axios.get(`http://localhost:9000/${choice3}/forgetpass/${choice}/${choice2}`).then(
+        //     (res) => { 
+        //         alert('check your mail')
+        //     }
+            
+        //      );
     }
     var [choice,setchoice] = useState([]);
     var [choice2,setchoice2] = useState([]);
@@ -53,11 +60,11 @@ const type= props.Type
     return(
 
         <div className='forget-textbox1'>
-            <div onChange={changehandler3}>
-        <input type="radio" value="IndividualTrainee" name="IndividualTrainee" /> IndividualTrainee
+            {/* <div onChange={changehandler3}> */}
+        {/* <input type="radio" value="IndividualTrainee" name="IndividualTrainee" /> IndividualTrainee
         <input type="radio" value="CorporateTrainee" name="CorporateTrainee" /> CorporateTrainee
-        <input type="radio" value="Instructor" name="Instructor" /> Instructor
-      </div>
+        <input type="radio" value="Instructor" name="Instructor" /> Instructor */}
+      {/* </div> */}
             <input className='info-textbox1' placeholder='Username' onChange={changehandler} value={choice}/>
             <input className='info-textbox1' placeholder='email' onChange={changehandler2} value={choice2}/>
             <button  onClick={clickhandler4}> forget password</button>

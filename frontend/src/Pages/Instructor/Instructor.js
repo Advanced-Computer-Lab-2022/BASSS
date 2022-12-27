@@ -18,9 +18,9 @@ function Instructor(){
         <InstructorNavBar/>
         <Search Type='instructor'/>        
         <br/><br/>
-        {/* <Link to ="/instructor/myInfo">
+        <Link to ="/instructor/myInfo">
         <button> edit my info</button>
-        </Link> */}
+        </Link>
 
         <Courses Link="/instructor/courseDetails"/>
         

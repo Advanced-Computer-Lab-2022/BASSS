@@ -16,6 +16,7 @@
     "countries-list": "^2.6.1",
     "datatables.net": "^1.13.1",
     "datatables.net-dt": "^1.13.1",
+    "jspdf": "^2.5.1",
     "react": "^18.2.0",
     "react-cookie": "^4.1.1",
     "react-dom": "^18.2.0",

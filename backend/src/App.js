@@ -46,10 +46,10 @@ app.post('/adminLogin', adminLogin)
 app.get('/search/:searchkey', search)
 
 //using authorization first
-app.use('/instructor',requireAuth,instructorR)
+app.use('/instructor',instructorR)
 app.use('/individualTrainee',requireAuth, individualTraineeR)
 app.use('/corporateTrainee',requireAuth, corporateTraineeR)
-app.use('/admin',requireAuth, adminR)
+app.use('/admin', adminR)
 
 //common??
 app.use('/course', courseR)
