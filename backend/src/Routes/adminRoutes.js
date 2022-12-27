@@ -327,7 +327,6 @@ adminR.get("/getRefundReq/:Username",async function(req,res){
 })
 
 ///////////////////////////////////////////////////////////////////////// Reports ///////////////////////////////////////////////
-//eh el sho8l el gamd da ya sara ^_^
 
 adminR.get("/createReport/:Reporter/:CourseID/:Type/:Comment",async function(req,res){   //:Status/
   var Reporter = req.params.Reporter;
