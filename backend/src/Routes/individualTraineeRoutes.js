@@ -29,22 +29,30 @@ individualTraineeR.post("/selectcountry",function(req,res){
             }
 })
 })
-individualTraineeR.get("/myInfo/pass/:pass",function(req,res){
+
+individualTraineeR.get("/myInfo/pass/:pass",async function(req,res){
+  // console.log(req.body)
+var pass = req.params.pass;
+const result =await individualTrainees.findOneAndUpdate({UserName:"adham123"},{Password:pass})
+//res.json(result)
+res.json({message:"updated successfully"})
+
+})
+
+individualTraineeR.get("/myInfo/pass/:oldpass/:pass",async function(req,res){
     // console.log(req.body)
-     var pass = req.params.pass;
-     var query = individualTrainees.find({UserName:"adham123"})
-         query.exec(function(err,result){
-             if (err) throw err;
-             if(result.length==0){
-               //  res.render("../views/instructor.ejs",{title:"instructor country"});
-             }else{
-                individualTrainees.findOneAndUpdate({UserName:"adham123"},{Password:pass},{upsert:true},function(err,doc){
-                     if(err) throw err;
-                   });         
-              // res.render("../views/instructor.ejs",{title:"instructor country"});
-             }
- })
- 
+      var pass = req.params.pass;
+      var oldpass = req.params.oldpass;
+    
+  var oldpass2 =await individualTrainees.findOne({UserName:"adham123"})
+  
+  if(oldpass==oldpass2.Password){
+  const result =await individualTrainees.findOneAndUpdate({UserName:"adham123"},{Password:pass})
+  //res.json(result)
+  res.json({message:"updtaed successfully"})
+   } else
+   res.json({message:"incorrect password"})
+  
  })
 
 
@@ -78,8 +86,10 @@ individualTraineeR.get("/myInfo/pass/:pass",function(req,res){
 });
 
 
-individualTraineeR.get("/forgetpass",function(req,res){
-    var transporter = nodemailer.createTransport({
+individualTraineeR.get("/forgetpass/:username/:email",function(req,res){
+  const username = req.params.username;
+  const email = req.params.email;
+  var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
           user: 'acltest321@gmail.com',
@@ -89,7 +99,7 @@ individualTraineeR.get("/forgetpass",function(req,res){
       
       var mailOptions = {
         from: 'acltest321@gmail.com',
-        to: 'basselbassel28@gmail.com',
+        to: email,
         subject: 'Sending Email using Node.js',
         text: 'To reset your password please click here , http://localhost:3000/individualtrainee/forgetpass'
       };

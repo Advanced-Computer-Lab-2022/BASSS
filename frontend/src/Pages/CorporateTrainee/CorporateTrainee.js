@@ -23,7 +23,7 @@ function CorporateTrainee(){
         <Link to ="/CorporateTrainee/myInfo">
         <button> edit my info</button>
         </Link>
-        <Forgetpass Type="corporateTrainee"/>
+        {/* <Forgetpass Type="corporateTrainee"/> */}
         
 
         <CorporateCourses Link="/corporatetrainee/CourseDetails"/>

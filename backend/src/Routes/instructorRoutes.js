@@ -76,39 +76,30 @@ instructorR.get("/myInfo/second/:mail",function(req,res){
 })
 
 })
-instructorR.get("/myInfo/third/:pass",function(req,res){
+instructorR.get("/myInfo/third/:oldpass/:pass",async function(req,res){
     // console.log(req.body)
     var pass = req.params.pass;
-    var query = instructors.find({Username:"soha"})
-        query.exec(function(err,result){
-            if (err) throw err;
-            if(result.length==0){
-              //  res.render("../views/instructor.ejs",{title:"instructor country"});
-            }else{
-                instructors.findOneAndUpdate({Username:"soha"},{Password:pass},{upsert:true},function(err,doc){
-                    if(err) throw err;
-                  });         
-              // res.render("../views/instructor.ejs",{title:"instructor country"});
-            }
-})
+    var oldpass = req.params.oldpass;
+  
+var oldpass2 =await instructors.findOne({Username:"soha"})
+
+if(oldpass==oldpass2.Password){
+const result =await instructors.findOneAndUpdate({Username:"soha"},{Password:pass})
+//res.json(result)
+res.json({message:"updated successfully"})
+ } else
+ res.json({message:"incorrect password"})
 
 })
   
-instructorR.get("/myInfo/pass/:pass",function(req,res){
+instructorR.get("/myInfo/pass/:pass",async function(req,res){
     // console.log(req.body)
-      var pass = req.params.pass;
-      var query = instructors.find({Username:"soha"})
-          query.exec(function(err,result){
-              if (err) throw err;
-              if(result.length==0){
-                //  res.render("../views/instructor.ejs",{title:"instructor country"});
-              }else{
-                instructors.findOneAndUpdate({Username:"soha"},{Password:pass},{upsert:true},function(err,doc){
-                      if(err) throw err;
-                    });         
-              // res.render("../views/instructor.ejs",{title:"instructor country"});
-              }
-  })
+    var pass = req.params.pass;
+
+    const result =await instructors.findOneAndUpdate({Userame:"soha"},{Password:pass})
+    //res.json(result)
+    res.json({message:"updated successfully"})
+    
 })
 
 instructorR.get("/viewRating/review",async(req, res) => {
@@ -161,7 +152,9 @@ instructorR.get("/updateRate/:name/:newRate",async(req, res) => {
 
 // })
 
-instructorR.get("/forgetpass", (req,res) => {
+instructorR.get("/forgetpass/:username/:email", (req,res) => {
+  const username = req.params.username;
+  const email = req.params.email;
   var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -172,7 +165,7 @@ instructorR.get("/forgetpass", (req,res) => {
   
   var mailOptions = {
     from: 'acltest321@gmail.com',
-    to: 'basselbassel28@gmail.com',
+    to: email,
     subject: 'Sending Email using Node.js',
     text: 'To reset your password please click here , http://localhost:3000/instructor/forgetpass'
   };

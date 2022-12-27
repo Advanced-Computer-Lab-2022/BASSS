@@ -9,6 +9,8 @@ import IndividualCourses from '../../components/Courses/IndividualCourses';
 import { useState } from 'react';
 import axios from 'axios';
 import Forgetpass from '../../components/Forgetpass/Forgetpass';
+import Downloadcert from '../../components/Downloadcert/Downloadcert';
+import Writenotes from '../../components/Writenotes/Writenotes';
 
 function IndividualTrainee(){
 
@@ -24,8 +26,10 @@ function IndividualTrainee(){
         <Link to ="/IndividualTrainee/SelectCountry">
         <button className='selectcountrybtnindividual'> select your country</button>
         </Link>
-        <Forgetpass Type="individualTrainee"/>
-
+        <Writenotes/>
+        {/* <Forgetpass Type="individualTrainee"/> */}
+        <Downloadcert/>
+        
         <Courses Link = "/individualtrainee/CourseDetails" />
         <br></br><br></br><br></br><br></br><br></br><br></br>
         

@@ -26,7 +26,7 @@ function Instructor(){
         <Link to ="/instructor/SelectCountry">
         <button className='instructor_selectcountrybtn'> Select your Country</button>
         </Link>
-        <Forgetpass Type="instructor"/>
+        {/* <Forgetpass Type="instructor"/> */}
         <Link to ="/instructor/CreateCourse">
         <button className='instructor_CreateCoursebtn'> Create a new Course</button>
         </Link>

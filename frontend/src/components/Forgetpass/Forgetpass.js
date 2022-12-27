@@ -1,6 +1,6 @@
 import axios from 'axios';
-
-
+import React from 'react'
+import './Forgetpass.css'
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 import Button from '@mui/material/Button';
@@ -15,33 +15,51 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
 
-  const { useState, useEffect } = require("react");
+ 
+const { useState, useEffect } = require("react");
 
-  const forgetpass = (props) => {
+  const Forgetpass = (props) => {
 
   //  const totalpath = window.location.pathname;
    // var mysubstring = totalpath.substring(totalpath.indexOf("/")+1 , totalpath.lastIndexOf("/"))
 const type= props.Type
+   
     const forget =  async () => {
-        await axios.get(`http://localhost:9000/${type}/forgetpass`).then(
+        await axios.get(`http://localhost:9000/${choice3}/forgetpass/${choice}/${choice2}`).then(
             (res) => { 
                 alert('check your mail')
             }
             
              );
     }
+    var [choice,setchoice] = useState([]);
+    var [choice2,setchoice2] = useState([]);
+    var [choice3,setchoice3] = useState([]);
     const clickhandler4 = ()=>{
         forget()
-        alert('check you mail:) ')
+        alert('check your mail:) ')
        }
-
+       const changehandler =  async(e)=>{
+        setchoice(e.target.value);
+     }
+     const changehandler2 =  async(e)=>{
+      setchoice2(e.target.value);
+   }
+   const changehandler3 =  async(e)=>{
+    setchoice3(e.target.value);
+ }
   
 
     return(
 
-        <div >
-            
-
+        <div className='forget-textbox1'>
+            <div onChange={changehandler3}>
+        <input type="radio" value="IndividualTrainee" name="IndividualTrainee" /> IndividualTrainee
+        <input type="radio" value="CorporateTrainee" name="CorporateTrainee" /> CorporateTrainee
+        <input type="radio" value="Instructor" name="Instructor" /> Instructor
+      </div>
+            <input className='info-textbox1' placeholder='Username' onChange={changehandler} value={choice}/>
+            <input className='info-textbox1' placeholder='email' onChange={changehandler2} value={choice2}/>
             <button  onClick={clickhandler4}> forget password</button>
    
    
@@ -49,4 +67,4 @@ const type= props.Type
   
     )
     }
-export default forgetpass;
+export default Forgetpass;

@@ -13,8 +13,10 @@ import Instructor from './Pages/Instructor/Instructor'
 import SelectCountry from './components/SelectCountry/SelectCountry';
 
 import EditPass from './components/EditPass/EditPass';
+import Editnewpass from './components/Editnewpass/Editnewpass';
 import EditmyInfo from './components/EditmyInfo/EditmyInfo';
 import Contract from './components/Contract/Contract';
+import ForgetPass from './components/Forgetpass/Forgetpass'; 
 
 import Home from './Pages/Guest/Home'
 import AddAdmin from './Pages/Admin/AddUsers/AddAdmin';
@@ -80,11 +82,12 @@ function App() {
           <Route path='/corporatetrainee/myCourseDetails' element={  <CourseDetails/> }/>
           <Route path='/individualtrainee/myInfo' element={  <EditPass Type = "individualTrainee"/> }/>
           <Route path='/corporatetrainee/myInfo' element={  <EditPass Type = "corporateTrainee"/> }/>
-          <Route path='/instructor/forgetpass' element={  <EditPass Type = "instructor"/> }/>
-          <Route path='/individualtrainee/forgetpass' element={  <EditPass Type = "individualTrainee"/> }/>
-          <Route path='/corporatetrainee/forgetpass' element={  <EditPass Type = "corporateTrainee"/> }/>
+          <Route path='/instructor/forgetpass' element={  <Editnewpass Type = "instructor"/> }/>
+          <Route path='/individualtrainee/forgetpass' element={  <Editnewpass Type = "individualTrainee"/> }/>
+          <Route path='/corporatetrainee/forgetpass' element={  <Editnewpass Type = "corporateTrainee"/> }/>
           <Route path='/AllCourses/CourseDetails' element={  <CourseDetails/> }/>
           <Route path='/AllCourses' element={  <AllCourses Link = "/AllCourses/CourseDetails"/> }/>
+          <Route path='/forgetpass' element={  <ForgetPass Type = "individualTrainee"/> }/>
 
           
           
