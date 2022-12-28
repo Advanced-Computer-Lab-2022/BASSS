@@ -46,7 +46,7 @@ const FinancialReports = (props) =>{
 
 
     return <div className='Admin_FinancialReports_MainDiv'>
- <div className='Admin_RefundReq_Div'>
+                <div className='Admin_RefundReq_Div'>
                     <br></br>
                     <h1 className='h1_Admin_Courses'>Refund Requests</h1>
                     <br></br>    
@@ -54,24 +54,24 @@ const FinancialReports = (props) =>{
                         <button className='Admin_RefundReqSelect_btn' >Accept All</button>
                         <button className='Admin_RefundReqSelect_btn' >Reject All</button>
                     </div>
+                </div>
+
+                <div className='Admin_FinancialReports_Div'>
+                    <br></br>
+                    <div className='Admin_FinancialReports_Div_Header'>
+                        <br></br>
+                        <h1 className='h1_Admin_FinancialReports_Header'>All Courses</h1>
+                        <br></br>
                     </div>
-
-                    <div className='Admin_FinancialReports_Div'>
-                <br></br>
-                <div className='Admin_FinancialReports_Div_Header'>
-                    <br></br>
-                    <h1 className='h1_Admin_FinancialReports_Header'>All Courses</h1>
-                    <br></br>
+                        <br></br>
+                    <div className='Admin_FinancialReports_InnerDiv'>
+                        <MultipleReportsDiv Reports = {props.Reports}/>
+                    </div>
                 </div>
-                <br></br>
-                <div className='Admin_FinancialReports_InnerDiv'>
-                    <MultipleReportsDiv Reports = {props.Reports}/>
+
+                    <br></br> 
+
                 </div>
-            </div>
-
-                <br></br> 
-
-    </div>
 }
 
 export default FinancialReports
