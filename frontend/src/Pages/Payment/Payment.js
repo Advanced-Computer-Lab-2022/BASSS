@@ -3,9 +3,12 @@ import {useEffect,useState} from 'react'
 import { loadStripe } from '@stripe/stripe-js';
 import CheckoutForm from './CheckoutForm';
 import { Elements } from '@stripe/react-stripe-js';
+import { useLocation } from 'react-router-dom';
+
 
 function Payment(props){
     //props.CoursId props.Title props.Price props.Currency
+    const location = useLocation();
     const [stripePromise, setStripePromise] = useState(null)
     const [clientSecret, setClientSecret] = useState('')
     const [error, setError] = useState(null)
@@ -23,7 +26,7 @@ function Payment(props){
 
     useEffect(async () => {
         try{
-            await axios.post('http://localhost:9000/individualTrainee/paymentIntent', {currency: props.Currency, amount: price*100}).then(
+            await axios.post('http://localhost:9000/individualTrainee/paymentIntent', {currency: 'usd', amount: location.state[2]*100}).then(
                 (res) => {
                     setClientSecret(res.data.clientSecret)
                 }
@@ -53,7 +56,7 @@ function Payment(props){
 
         {stripePromise && clientSecret &&
             <Elements stripe={stripePromise} options={{clientSecret}}>
-                <CheckoutForm CourseId={props.CourseId} Title={props.Title} Price={price}/>
+                <CheckoutForm CourseId={location.state[0]} Title={location.state[1]} Price={location.state[2]}/>
             </Elements>
         }
         {error && <label className='payment_error'>{error} </label>}

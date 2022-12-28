@@ -102,12 +102,92 @@ corporateTraineeR.get("/CorporateCourses/:username",async(req, res) => {
     console.log('CourseID sara')
     //console.log(courseID[0].Exercises)
     var list = []
-    for (let i = 0; i < courseID.length-1; i++) {
+    for (let i = 0; i < courseID.length; i++) {
         const course = await courses.findOne({_id:courseID[i].Course})
-        list = list.concat([course])
+        // console.log(course)
+        const progress = courseID[i].Progress
+        list = list.concat([[course,progress]])
     }
   res.json(list)
 });
+
+
+corporateTraineeR.get("/unroll_from_course/:username/:couID",async(req,res)=>{
+  var couID = req.params.couID;
+  var username = req.params.username;
+  var list = [];
+  const trainee =  await corporateTrainees.findOne({Username:username})
+  const x = await courses.findOne({_id:couID});
+  const courseID = trainee.courses
+  for (let i = 0; i < courseID.length; i++) {
+   if(courseID[i].Course==couID)
+   {
+     if (courseID[i].Progress < 50)
+     {
+       for (let j = 0; j < courseID.length; j++) {
+
+         if(courseID[j].Course!=couID  )
+          {
+           list = list.concat(courseID[j])
+          }    
+        }
+          await corporateTrainees.findOneAndUpdate({Username:username},{courses:list},{upsert:true})        
+       }
+       else{
+         console.log('course progress is not less than 50');
+       }
+     }
+     else{
+       console.log('no such course');
+     }
+   }
+   res.json(list);
+})
+
+corporateTraineeR.get("/updateprogresscorp/:username/:couID" , async(req,res)=>{
+  const username = req.params.username;
+  const couID = req.params.couID;
+  const trainee = await corporateTrainees.find({Username:username})
+  const courseID = trainee[0].courses
+  // console.log(trainee)
+  // console.log(courseID)
+  var list = []
+  var ratio = 0;
+  var count =0;
+  // const sub = await subtitles.find({Course:couID})
+  const course = await courses.findOne({_id:couID})
+  const sub = course.Subtitles
+
+  for (let j = 0; j < sub.length; j++) {
+    count++
+  }
+  // console.log(count)
+  for (let i = 0; i < courseID.length; i++) {
+    
+    if(courseID[i].Course == couID)
+    {
+      ratio = (1/count)*100
+      
+      const prog = (courseID[i].Progress)+ratio;
+      if(prog<=100)
+      {
+        const obj = {'Course':couID , Progress:prog}
+        var newarr = courseID 
+        newarr[i]=obj
+        corporateTrainees.findOneAndUpdate({Username:username},{courses:newarr},{upsert:true},function(err,doc){
+            if(err) throw err;
+          });         
+      }
+      else{
+        console.log('100%')
+      }
+      
+      }
+
+  }
+//  console.log(newarr)
+res.json(newarr)
+})
 
 
 corporateTraineeR.get("/:country",function(req,res){

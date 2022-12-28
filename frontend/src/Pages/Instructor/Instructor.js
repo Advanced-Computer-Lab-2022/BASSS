@@ -21,9 +21,19 @@ function Instructor(){
         <Link to ="/instructor/myInfo">
         <button> edit my info</button>
         </Link>
-
-        <Courses Link="/instructor/courseDetails"/>
         
+        
+        <Search Type='instructor'/>
+       
+        {/* <Courses Link="/instructor/courseDetails"/> */}
+        
+        <Link to ="/AllCourses">
+        <button >View AllCourses </button>
+        </Link>
+        <br></br>
+        <Link to ="/mostViewd">
+        <button >View our most popular Courses </button>
+        </Link>
 
         {/* <Courses/> */}
 
@@ -32,10 +42,17 @@ function Instructor(){
         </Link> */}
         <ViewRating/>
 
-
+        <Link to ="/instructor/MyCourses">
+            <button>
+                View My Courses</button>
+            </Link>
+            <br></br>
             <Link to ="/instructor/MyReviews">
             <button>
                 My Reviews</button>
+            </Link>
+            <Link to ="/instructor/myReports">
+            <button >View My Reports </button>
             </Link>
 
         {/* <SelectCountry/> */}

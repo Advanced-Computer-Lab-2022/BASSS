@@ -30,7 +30,21 @@ function IndividualTrainee(){
         {/* <Forgetpass Type="individualTrainee"/> */}
         <Downloadcert/>
         
-        <Courses Link = "/individualtrainee/CourseDetails" />
+        {/* <Courses Link = "/individualtrainee/CourseDetails" /> */}
+        <Forgetpass Type="individualTrainee"/>
+
+        {/* <Courses Link = "/individualtrainee/CourseDetails" /> */}
+        <Link to ="/AllCourses">
+        <button >View AllCourses </button>
+        </Link>
+        <br></br>
+        <Link to ="/mostViewd">
+        <button >View our most popular Courses </button>
+        </Link>
+
+        <Link to ="/individualTrainee/myReports">
+        <button >View My Reports </button>
+        </Link>
         <br></br><br></br><br></br><br></br><br></br><br></br>
         
         <IndividualCourses Link = "/individualtrainee/myCourseDetails"/>

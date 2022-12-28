@@ -27,6 +27,11 @@ const ReportSchema = new Schema({
         required:true
     },
 
+    Comment:{
+        type:String,
+        default:''
+    },
+
     ResolvedMessage:{
         type:String,
     },

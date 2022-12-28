@@ -47,7 +47,7 @@ app.get('/search/:searchkey', search)
 
 //using authorization first
 app.use('/instructor',instructorR)
-app.use('/individualTrainee',requireAuth, individualTraineeR)
+app.use('/individualTrainee', individualTraineeR)
 app.use('/corporateTrainee',requireAuth, corporateTraineeR)
 app.use('/admin', adminR)
 

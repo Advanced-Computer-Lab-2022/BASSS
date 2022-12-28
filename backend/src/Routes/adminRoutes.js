@@ -7,6 +7,7 @@ const corporateTrainee = require('../Models/corporateTraineeSchema');
 const corporateRequest = require('../Models/RequestsSchema');
 const reports = require('../Models/ReportSchema');
 const individualTrainees = require('../Models/individualTraineeSchema');
+
 const adminR = express.Router();
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken');
@@ -349,21 +350,35 @@ adminR.get("/getRefundReq/:Username",async function(req,res){
 
 ///////////////////////////////////////////////////////////////////////// Reports ///////////////////////////////////////////////
 
-adminR.get("/createReport/:Reporter/:CourseID/:Type",async function(req,res){   //:Status/
+adminR.get("/createReport/:Reporter/:CourseID/:Type/:Comment",async function(req,res){   //:Status/
   var Reporter = req.params.Reporter;
   var Type = req.params.Type;
-  var CourseID = req.params.CourseID;    
+  var CourseID = req.params.CourseID;  
+  var Comment = req.params.Comment  
   
   try{
     const Course1 = await courses.findOne({_id: CourseID })
     const CourseTitle = Course1.Title
     const user1 = await user.findOne({UserName: Reporter })
-    const Report = await reports.create({
+    var Report = [];
+    if(Comment == "Empty")
+    {
+      Report = await reports.create({
       Reporter:Reporter,
       Type:Type,
       CourseID:CourseID,
-      CourseTitle:CourseTitle
+      CourseTitle:CourseTitle,
     });
+    }
+    else{
+        Report = await reports.create({
+        Reporter:Reporter,
+        Type:Type,
+        CourseID:CourseID,
+        CourseTitle:CourseTitle,
+        Comment:Comment
+      });
+    }
 
     console.log(user1.Type)
 
@@ -407,11 +422,17 @@ adminR.get("/getAllReports",async(req, res) => {
 adminR.get("/getReport/:Username",async function(req,res){
   var Username = req.params.Username;
   
-  const report = await reports.find({Reporter: Username })
+  const reportList = await reports.find({Reporter: Username })
 
-  if(report) {
-    console.log('report Found')
-     return res.json(report);
+  var list = []
+    for (let i = 0; i < reportList.length; i++) {
+        const course = await courses.findOne({_id:reportList[i].CourseID})
+        list = list.concat([[reportList[i],course]])
+    }
+
+  if(list) {
+    //console.log('report Found')
+     return res.json(list);
   }
   else{
     console.log('report Not Found')
@@ -430,6 +451,21 @@ adminR.get("/getReportID/:ID",async function(req,res){
   else{
      return res.json("ok"); 
   }
+})
+adminR.get("/FollowUp/:ReportID/:Message", async function(req,res){
+
+  var Message = req.params.Message;
+  var ReportID = req.params.ReportID;
+
+  var FollowUp = {Message:Message, Date:"10", Time:"10"}
+  var Report = await reports.findOne({_id:ReportID});
+
+  var arr = Report.FollowUps.concat(FollowUp);
+
+  const Result = await reports.findByIdAndUpdate({_id:ReportID}, {FollowUps:arr})
+
+  res.json(Result);
+
 })
 
 
@@ -470,6 +506,8 @@ adminR.get("/ResolveReport/:ReportID",async function(req,res){   //:Status/
     return res.status(400).json({msg: error});
   }        
 })
+
+
 
 ///////////////////////////////////////////////////////////////////////// Set Promotions ///////////////////////////////////////////////
 

@@ -6,14 +6,14 @@ const { useState, useEffect } = require("react");
 
 const Reviews = () => { 
 
-    const [instuctorReview,setReview] = useState([]);
+    const [instuctorReviews,setReview] = useState([]);
 
     const getReview =  async () => {
     await axios.get(`http://localhost:9000/instructor/viewRating/review`).then(
             (res) => { 
-                const review = res.data
-                console.log(review)
-                setReview(review)
+                const inst = res.data
+                console.log(inst)
+                setReview(inst.Reviews)
             }
              );
     }
@@ -22,14 +22,16 @@ const Reviews = () => {
 
     return(
         <div   className='Instructor-body'>
-
-                {instuctorReview.map((instructor) => (
-                <div className='instReview'>
-                <h1>My Reviews: </h1>
-                <h1>{instructor.Reviews}</h1>
+<h1>My Reviews: </h1>
+<br></br>
+                {instuctorReviews.map((Review) => (
+                <div>
+                
+                <h1>{Review}</h1>
                 </div>
 
             ))}
+
 
 
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios';
+import ProgressBar from '../ProgressBar/ProgressBar';
 import './Courses.css';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
@@ -12,6 +13,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { confirmAlert } from 'react-confirm-alert'; 
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 const { useState, useEffect } = require("react");
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -28,50 +31,62 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
  
  function CorporateTraineeCourses(props) {
     const [mycourses,setmycourses] = useState([]);
-    const CorporateTusernam = 'nour'
+    const CorporateTusername = 'Santa'
     const getmycourses = async()=>{
-        await axios.get(`http://localhost:9000/corporateTrainee/CorporateCourses/${CorporateTusernam}`).then(
+        await axios.get(`http://localhost:9000/corporateTrainee/CorporateCourses/${CorporateTusername}`).then(
             (res) => { 
                 const result = res.data
                 setmycourses(result)
             }
              );
     }
+
+    const deleteCourse = async (e)=>{
+      const id = e.target.getAttribute("id")
+      alert('PS: to unroll , your course Progress must be less than 50 % ! ')
+      confirmAlert({
+        title: 'Confirm to unroll',
+        message: 'Are you sure ?',
+        buttons: [
+          {
+            label: 'Yes',
+            onClick: async () => {      
+            await axios.get(`http://localhost:9000/corporateTrainee/unroll_from_course/${CorporateTusername}/${id}`)
+            }
+          },
+          {
+            label: 'No',
+            //onClick: () => alert('Click No')
+          }
+        ]
+      });
+
+
+    }
     getmycourses()
     const navigate = useNavigate()
    return (
      <div>
-      <h1>MY COURSES</h1>
-       <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-            <TableHead>
-            <TableRow>
-            <StyledTableCell align="center">Title</StyledTableCell>
-            <StyledTableCell align="center">Total Hours</StyledTableCell>
-            <StyledTableCell align="center">Rating</StyledTableCell>
-            <StyledTableCell align="center">Price</StyledTableCell>
-            </TableRow>
-            </TableHead>
-            <TableBody>
-             
-            
-          {mycourses.map((course) => (
-            <TableRow
-            hover
-            sx={{ "&:hover":{cursor: "pointer",backgroundColor: "#f5f5f5",width: "100%"}
-            }}
-
-            onClick={() => navigate(props.Link, {state:[course._id,course.InstructorUserName]} )}
-              >
-              <TableCell align="center">{course.Title}</TableCell>
-              <TableCell align="center">{course.TotalHours}</TableCell>
-              <TableCell align="center">{course.Rating.rate}</TableCell>
-              <TableCell align="center">{course.Price}</TableCell>
-            </TableRow>
-))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+            <h1 className='indtracou-adham'>MY COURSES</h1>
+            <br></br><br></br>
+            <br></br><br></br>
+      {mycourses.map((mycourse)=>(
+                <div className='MyCourses-adham'>
+                <h2 className='h1-adham'>Course Progress </h2>
+                <ProgressBar bgcolor="blue" progress={`${mycourse[1]}`}  height={20}/>
+                <br></br><br></br>
+                <h1 className='h1-adham'>Course Title : {mycourse[0].Title}</h1>
+                <h1  className='h1-adham'>Course Total Hours : {mycourse[0].TotalHours}</h1>
+                <h1  className='h1-adham'>Course Price : {mycourse[0].Price}</h1>
+                <h1  className='h1-adham'>Course Rating : {mycourse[0].Rating.rate}</h1>
+                <br></br><br></br>
+                <h2 className='h1-adham'>in this Course you will learn : {mycourse[0].ShortSummary}</h2>
+                <br></br><br></br>
+                  <button className='opencourse-adham' onClick={()=> navigate(props.Link, {state:[mycourse[0]._id,mycourse[0].InstructorUserName]} )}>Open Course</button>
+                  <br></br><br></br>
+                  <button className='opencourse-adham' onClick={deleteCourse} id={mycourse[0]._id}> UNROLL !</button>                
+            </div>
+      ))}
 
      </div>
    )

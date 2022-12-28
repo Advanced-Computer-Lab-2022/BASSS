@@ -1,4 +1,6 @@
 import axios from 'axios';
+import YoutubeEmbed from '../YoutubeEmbed/YoutubeEmbed';
+
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Table from '@mui/material/Table';
@@ -121,16 +123,16 @@ else {
 
 
       }
-// const getfilteredbyRate=  async () => {
-//     await axios.get(`http://localhost:9000/course/r/${choice2}`).then(
-//         (res) => { 
-//             const filteredbyRate = res.data
-//             console.log(filteredbyRate)
-//             setfiltered(filteredbyRate)
+const getfilteredbyRate=  async () => {
+    await axios.get(`http://localhost:9000/course/r/${choice2}`).then(
+        (res) => { 
+            const filteredbyRate = res.data
+            console.log(filteredbyRate)
+            setfiltered(filteredbyRate)
             
-//         }
-//          );
-// }
+        }
+         );
+}
 
       
              const changehandler =  (e)=>{
@@ -161,29 +163,48 @@ else {
             
     const navigate = useNavigate();
 
-     getfiltered();
+    //  getfiltered();
    // getCourses();
     //getfilteredbyRate();
     return(
 
-        <div >
+        <div className='CoursesBody-adham'>
             
-            <br></br><br></br><br></br><br></br><br></br><br></br>
+            <br></br><br></br>
 <div> 
 
-<button onClick={clickhandler1}>submit</button>
-<input placeholder='subject' onChange={changehandler} value={choice}/>
+<button onClick={clickhandler1} className='submitbtn'>submit</button>
+<input placeholder='subject' className='subject' onChange={changehandler} value={choice}/>
 
 </div>
 
 <div> 
-<button onClick={clickhandler2}>submit</button>
-<input placeholder='rating' onChange={changehandler2} value={choice2} />
+<button onClick={clickhandler2} className='submitbtn'>submit</button>
+<input placeholder='rating' className='subject' onChange={changehandler2} value={choice2} />
 </div>
-<br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+{/* <br></br><br></br> */}
+{filtered.map((course) => (
+        <div className='AllCourses-adham'>
+            <h1 className='h1-adham'>Course Title : {course.Title}</h1>
+            <h1  className='h1-adham'>Course Total Hours : {course.TotalHours}</h1>
+            <h1  className='h1-adham'>Course Price : {course.Price}</h1>
+            <h1  className='h1-adham'>Course Rating : {course.Rating.rate}</h1>
+            <br></br><br></br>
+            <h2 className='h1-adham'>in this Course you will learn : {course.ShortSummary}</h2>
+            <br></br><br></br>
+            <h3 className='h3-adham'>Course video Preview</h3>
+            <br></br><br></br>
+            <YoutubeEmbed embedId={course.VideoPreviewLink}/>
+            <br></br><br></br>
+            <button className='register-now-adham'>REGISTER NOW </button>
+            <br></br><br></br>
+        </div>
 
+      )
+      
+      )}
 
-<TableContainer component={Paper}>
+{/* <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
@@ -218,7 +239,7 @@ else {
 ))}
         </TableBody>
       </Table>
-    </TableContainer>
+    </TableContainer> */}
 
     </div> 
 

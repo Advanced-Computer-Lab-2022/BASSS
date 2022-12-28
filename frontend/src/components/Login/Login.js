@@ -77,7 +77,7 @@ const Login = () => {
                 <i class={passwordShown ? "fa fa-eye-slash" : "fa fa-eye"} onClick={togglePassword}></i>
                 <label className='soha_login_label'>Password</label>
                 </div>
-                <a className='soha_forgot_password' href='/editPass'>Forgot Your Password?</a>
+                <a className='soha_forgot_password' href='/forgotPass'>Forgot Your Password?</a>
                 <button className='soha_login_a'>Login</button>
                 {error && <label className='soha_required'>{error} </label>}
                 <br/>

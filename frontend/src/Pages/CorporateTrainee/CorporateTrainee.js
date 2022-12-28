@@ -25,8 +25,17 @@ function CorporateTrainee(){
         </Link>
         {/* <Forgetpass Type="corporateTrainee"/> */}
         
-
-        <CorporateCourses Link="/corporatetrainee/CourseDetails"/>
+        <Link to ="/CorporateTrainee/Allcourses">
+        <button> view All Courses </button>
+        </Link>
+        <br></br>
+        <Link to ="/mostViewd">
+        <button> view our most viewd Courses </button>
+        </Link>
+        <Link to ="/corporateTrainee/myReports">
+        <button >View My Reports </button>
+        </Link>
+        {/* <CorporateCourses Link="/corporatetrainee/CourseDetails"/> */}
         <CorporateTraineeCourse Link="/corporatetrainee/myCourseDetails"/>
         </div>
         </>

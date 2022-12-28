@@ -1,36 +1,17 @@
 import axios from 'axios';
 import './Courses.css';
-import CardItem from '../Cards/CardItem';
+import Cards from '../Cards/Cards';
 import '../Cards/Cards.css';
 
 import { Link, Navigate, useNavigate } from 'react-router-dom';
+import YoutubeEmbed from '../YoutubeEmbed/YoutubeEmbed';
+import Payment from '../../Pages/Payment/Payment';
 
-import Button from '@mui/material/Button';
-import Table from '@mui/material/Table';
-import Box from '@mui/material/Box';
-import { styled } from '@mui/material/styles';  
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-    [`&.${tableCellClasses.head}`]: {
-      backgroundColor: theme.palette.common.black,
-      color: theme.palette.common.white,
-    },
-    [`&.${tableCellClasses.body}`]: {
-      fontSize: 14,
-      
-    },
-  }));
 
   const { useState, useEffect } = require("react");
   
   const Courses = (props) => { 
-
+    //
 
       var [choice,setchoice] = useState([]);
       var [choice2,setchoice2] = useState('');
@@ -43,7 +24,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
       const getfiltered =  async () => {
         // alert(choice2)
         if(choice.length==0 && choice2.length==0 && choice3.length==0){
-        await axios.get(`http://localhost:9000/course/empty/empty/empty`).then(
+        await axios.get(`http://localhost:9000/course/filter_adsa/empty/empty/empty`).then(
             (res) => { 
                 const filtered = res.data
                 console.log(filtered)
@@ -51,7 +32,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
             }
              );
         }else if(choice.length==0 && choice3.length==0 && choice2!=0){
-            await axios.get(`http://localhost:9000/course/empty/${choice2}/empty`).then(
+            await axios.get(`http://localhost:9000/course/filter_adsa/empty/${choice2}/empty`).then(
                 (res) => { 
                     const filteredbyRate = res.data
                     console.log(filteredbyRate)
@@ -61,7 +42,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
                 );
         }
         else if(choice2.length==0 && choice3.length==0){
-            await axios.get(`http://localhost:9000/course/${choice}/empty/empty`).then(
+            await axios.get(`http://localhost:9000/course/filter_adsa/${choice}/empty/empty`).then(
                 (res) => { 
                     const filteredbyRate = res.data
                     console.log(filteredbyRate)
@@ -71,7 +52,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
                 );
         }
         else if(choice.length==0 && choice2.length==0){
-            await axios.get(`http://localhost:9000/course/empty/empty/${choice3}`).then(
+            await axios.get(`http://localhost:9000/course/filter_adsa/empty/empty/${choice3}`).then(
                 (res) => { 
                     const filteredbyRate = res.data
                     console.log(filteredbyRate)
@@ -80,7 +61,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
                 }
                 );
         }else if(choice.length==0){
-            await axios.get(`http://localhost:9000/course/empty/${choice2}/${choice3}`).then(
+            await axios.get(`http://localhost:9000/course/filter_adsa/empty/${choice2}/${choice3}`).then(
                 (res) => { 
                     const filteredbyRate = res.data
                     console.log(filteredbyRate)
@@ -89,7 +70,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
                 }
                 );
         }else if(choice2.length==0){
-            await axios.get(`http://localhost:9000/course/${choice}/empty/${choice3}`).then(
+            await axios.get(`http://localhost:9000/course/filter_adsa/${choice}/empty/${choice3}`).then(
                 (res) => { 
                     const filteredbyRate = res.data
                     console.log(filteredbyRate)
@@ -98,7 +79,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
                 }
                 );
         }else if(choice3.length==0){
-            await axios.get(`http://localhost:9000/course/${choice}/${choice2}/empty`).then(
+            await axios.get(`http://localhost:9000/course/filter_adsa/${choice}/${choice2}/empty`).then(
                 (res) => { 
                     const filteredbyRate = res.data
                     console.log(filteredbyRate)
@@ -108,7 +89,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
                 );
         }
         else {
-            await axios.get(`http://localhost:9000/course/${choice}/${choice2}/${choice3}`).then(
+            await axios.get(`http://localhost:9000/course/filter_adsa/${choice}/${choice2}/${choice3}`).then(
                     (res) => { 
                         const filteredbyRate = res.data
                         console.log(filteredbyRate)
@@ -165,110 +146,47 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 const navigate = useNavigate();
     return(
 
-        <div >
-            
-            {/* <Link to ="/instructor/MyCourses">
-            <button  className='soha_viewCoursebtn'
-            //3yza a5alyh yb3at el instructor name m3ah 3shn a3raf a search byh??
-            >
-                View My Courses</button>
-            </Link> */}
-            
-          {/* <h1>All Courses</h1>
-          <table class="fl-table">
-
-          <thead>
-              <th> Course Title</th>
-              <th> Total Hours </th>
-              <th> Rating </th>
-              <th> Price </th>
-          </thead>
-          <tbody>
-          {courses.map((course) => (
-              <tr 
-                onClick={() => window.location.href= `/instructor/courseDetails?courseId=${course._id}` }
-              >
-                  <td>{course.Title}</td>
-                  <td>{course.TotalHours}</td>
-                  <td>{course.Rating}</td>
-                  <td>{course.Price}</td>
-              </tr>
-          ))}  
-          </tbody>
-          </table> */}
-            
-
-           
-   
-   
+        <div className='CoursesBody-adham' >
     <div> 
     <button onClick={clickhandler1} className='submitbtn'> submit</button>
-    <input placeholder='subject' onChange={changehandler} value={choice} className='subject'/>
+    <input placeholder='Filter By Subject' onChange={changehandler} value={choice} className='subject'/>
     </div>
 
     <div> 
     <button onClick={clickhandler2} className='submitbtn'>submit</button>
-    <input placeholder='rating' onChange={changehandler2} value={choice2} className='subject' />
+    <input placeholder='Filter By Rating' onChange={changehandler2} value={choice2} className='subject' />
     </div>
 
 
     <div> 
     <button onClick={clickhandler3} className='submitbtn'>submit</button>
-    <input placeholder='price' onChange={changehandler3} value={choice3} className='subject'/>
+    <input placeholder='Filter By Price' onChange={changehandler3} value={choice3} className='subject'/>
     </div>
-    <h1>ALL COURSES</h1>
-          <ul>
 
-    {filtered.map((course) => (
+      {filtered.map((course) => (
+        <div className='AllCourses-adham'>
+            <h1 className='h1-adham'>Course Title : {course.Title}</h1>
+            <h1  className='h1-adham'>Course Total Hours : {course.TotalHours}</h1>
+            <h1  className='h1-adham'>Course Price : {course.Price}</h1>
+            <h1  className='h1-adham'>Course Rating : {course.Rating.rate}</h1>
+            <br></br><br></br>
+            <h2 className='h1-adham'>in this Course you will learn : {course.ShortSummary}</h2>
+            <br></br><br></br>
+            <h3 className='h3-adham'>Course video Preview</h3>
+            <br></br><br></br>
+            <YoutubeEmbed embedId={course.VideoPreviewLink}/>
+            <br></br><br></br>
+            <button className='register-now-adham' onClick={() =>navigate('/pay',{state:[course._id, course.Title, course.Price]})}>REGISTER NOW </button>
+            <br></br><br></br>
+        </div>
 
-            <CardItem 
-            src  = '/images/html.jpg'
-            text = {"Title: " + course.Title + "\n " + "Total Hours: " + course.TotalHours + "\n " + "Price =" + course.Price }
-            label= {"Rating = " +  course.Rating.rate } 
-            path = {props.Link}
-            />  
-
-        
-    ))}
-</ul>
-            {/* <div> 
-            <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-            <TableHead>
-            <TableRow>
-            <StyledTableCell align="center">Title</StyledTableCell>
-            <StyledTableCell align="center">Total Hours</StyledTableCell>
-            <StyledTableCell align="center">Rating</StyledTableCell>
-            <StyledTableCell align="center">Price</StyledTableCell>
-            </TableRow>
-            </TableHead>
-            <TableBody>
-             
-            
-          {filtered.map((course) => (
-            <TableRow id={course._id}
-            hover
-            sx={{ "&:hover":{cursor: "pointer",backgroundColor: "#f5f5f5",width: "100%"}
-            }}
-
-            onClick={() => navigate(props.Link, {state:[course._id,course.InstructorUserName]} )}
-            //key={course.InstructorUserName}
-              >
-              <TableCell align="center">{course.Title}</TableCell>
-              <TableCell align="center">{course.TotalHours}</TableCell>
-              <TableCell align="center">{course.Rating.rate}</TableCell>
-              <TableCell align="center">{course.Price}</TableCell>
-            </TableRow>
-))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-
-    </div>   */}
-
-
+      )
+      
+      )}
         </div>   
     )
 }
 
 export default Courses;
+// onClick={() => navigate(props.Link, {state:[course._id,course.InstructorUserName]} )}
+{/* <Payment CourseId={course._id} Title={course.Title} Price= {course.Price} Currency='usd'  */}

@@ -10,9 +10,9 @@ const Rating = () => {
     const getRate =  async () => {
     await axios.get(`http://localhost:9000/instructor/viewRating/review`).then(
             (res) => { 
-                const rate = res.data
-                console.log(rate)
-                setRate(rate)
+                const inst = res.data
+                console.log(inst)
+                setRate(inst.Rating.rate)
             }
              );
     }
@@ -22,13 +22,22 @@ const Rating = () => {
     return(
         <div>
 
-                {instuctorRate.map((instructor) => (
+                {/* {instuctorRate.map((instructor) => (
                 <div className='instRate'>
                 <h1>My Rate: </h1>
                 <h1>{instructor.Rating.rate}</h1>
                 </div>
 
-            ))}
+            ))} */}
+
+                {
+                    <div className='instRate'>
+                    <h1>My Rate: </h1>
+                    <h1>{instuctorRate}</h1>
+                    </div>
+
+                }
+            
 
 
 
