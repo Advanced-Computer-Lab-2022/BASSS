@@ -92,7 +92,10 @@ const Navbar = (props) => {
               </Link>
             </li>
           </ul>
-          {button && <Button ButtonLink={props.ButtonLinkTo} buttonStyle='btn--outline'>{props.ButtonLinkText}</Button>}
+          {button && <Button B1stLinkTo = {props.B1stLinkTo} B1stLinkText = {props.B1stLinkText}
+          B2ndLinkTo = {props.B1stLinkTo} B2ndLinkText = {props.B1stLinkText}
+          B3rdLinkTo = {props.B1stLinkTo} B3rdLinkText = {props.B1stLinkText}
+           buttonStyle='btn--outline'>{props.ButtonLinkText}</Button>}
         </div>
       </nav>
     </>

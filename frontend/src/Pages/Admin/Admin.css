@@ -1,6 +1,6 @@
 
 .Admin_Body {
-  background: rgb(192, 215, 249);
+  background-color: rgba(30, 91, 170, 0.052);
   /* background: linear-gradient(90deg, rgba(6,38,87,1) 0%, rgba(57,84,144,1) 37%, rgba(52,165,238,1) 100%); */
 background-size:cover;
 background-position: center;
@@ -9,8 +9,36 @@ height: 100vh;
 
 
 
-.h1_Admin_Courses {
+.h1_Admin_Courses { 
 color: rgba(255, 255, 255, 0.885);
+font-family: Arial, Helvetica, sans-serif;
+}
+
+.Admin_HeaderWithLabels_Div{
+  position: relative;
+  width:fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  left: 25%;
+}
+
+.Admin_HeaderWithLabels_Label{
+  color: rgba(240, 240, 240, 0.949);
+  width: fit-content;
+  height: fit-content;
+  font-weight: bold;
+  font-size: 35px;
+}
+
+.Admin_HeaderWithLabels_Value{
+  position: relative;
+  color: rgba(237, 237, 237, 0.838);
+  width: fit-content;
+  height: fit-content;
+  left: 10px;
+  top: 2px;
+  font-size: 32px;
 }
 
 /*/////////////////////////////////// Reports ///////////////////////////////////*/
@@ -447,7 +475,7 @@ font-weight: 600;
 
 
 
-/*/////////////////////////////////// One Course Div ///////////////////////////////////*/
+/*/////////////////////////////////// One Financial Report Div ///////////////////////////////////*/
 
 
 .Admin_OneFinancialReports_Div{
@@ -519,18 +547,19 @@ border-radius: 25px;
 
 
 .CourseDetailsAdmin_h1 {
-  color: rgba(208, 208, 208, 0.773);
+  color: rgba(237, 237, 237, 0.838);
   font-size: 29px;
   position: relative;
 }
 
 .CoReqDetailsAdmin_h1 {
-  color: rgba(208, 208, 208, 0.773);
+  color: rgba(237, 237, 237, 0.838);
   font-size: 26px;
   text-align: left;
   left: 5%;
   max-width: 95%;
   position: relative;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 
@@ -544,7 +573,7 @@ border-radius: 25px;
     bottom: 30px;
     width: 90%;
     height: 80%;
-    background-color: rgba(255, 255, 255, 0.052);
+    /* background-color: rgba(30, 91, 170, 0.052); */
     border-radius: 15px;
 }
 
@@ -559,7 +588,7 @@ border-radius: 25px;
     margin-top: 0%;
     width: 35%;
     top: 20px;
-    background-color: rgba(0, 0, 0, 0.184);
+    background-color: rgba(3, 75, 120, 0.884);
     border-radius: 15px;
     height: 560px;
     /* overflow-y: auto;
@@ -586,7 +615,7 @@ border-radius: 25px;
   font-weight: 600;
 }
 .Admin_CoReqSelect_btn:hover{
-  background-color: rgba(255, 255, 255, 0.712);
+  background-color: rgba(255, 255, 255, 0.814);
   color: black;
   font-weight: 600;
 }
@@ -606,15 +635,16 @@ border-radius: 25px;
   }
    
 .Admin_CorporateCourses_InnerDiv::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 6px rgba(2, 47, 82, 0.466);
+  box-shadow: inset 0 0 6px rgba(2, 47, 82, 0.466);
     border-radius: 15px;
   }
    
 .Admin_CorporateCourses_InnerDiv::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 70, 102, 0.871);
-    outline: 1px solid rgb(0, 64, 129);
+  background-color: rgba(255, 255, 255, 0.092);
+  outline: 1px solid rgba(0, 65, 129, 0.382);
     border-radius: 15px;
   }
+
 
    /*/////////////////////////////////// One CoReq Div ///////////////////////////////////*/
 
@@ -624,7 +654,7 @@ border-radius: 25px;
     left: 1%;
     width: 98%;
     height: 20%;
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgba(255, 255, 255, 0.092);
     border-radius: 25px;
 }
 
@@ -724,7 +754,7 @@ border-radius: 25px;
     bottom: 29px;
     width: 57%;
     left:  5%;
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgba(3, 75, 120, 0.884);
     border-radius: 15px;
     height: 560px;
     /* overflow-y: auto;
@@ -773,7 +803,7 @@ border-radius: 25px;
   font-weight: 600;
 }
 .Admin_AddPromtion_btn:hover{
-  background-color: rgba(255, 255, 255, 0.712);
+  background-color: rgba(255, 255, 255, 0.814);
   color: black;
   font-weight: 600;
 }
@@ -814,8 +844,8 @@ border-radius: 25px;
 }
  
 .Admin_AllCourses_InnerDiv::-webkit-scrollbar-thumb {
-  background-color: rgba(2, 98, 142, 0.871);
-  outline: 1px solid rgb(0, 81, 163);
+  background-color: rgba(255, 255, 255, 0.092);
+  outline: 1px solid rgba(0, 65, 129, 0.382);
   border-radius: 15px;
 }
 
@@ -828,7 +858,7 @@ border-radius: 25px;
     left: 1%;
     width: 98%;
     height: 20%;
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgba(255, 255, 255, 0.092);
     border-radius: 25px;
 }
 

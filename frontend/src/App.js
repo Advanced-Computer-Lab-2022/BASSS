@@ -54,6 +54,8 @@ import Payment from './Pages/Payment/Payment';
 import EditnewPass from './components/Editnewpass/Editnewpass';
 import Forgetpass from './components/Forgetpass/Forgetpass';
 
+import Sara from './sara'
+
 
 const cookies = new Cookies();
 const user = cookies.get('token')
@@ -66,6 +68,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           {/* common routes */}
+          <Route path='/sara' element = { <Sara/> } /> 
+
           <Route path='/' element = { <Home/> } /> 
           <Route path='/login' element={
             (!user)? <LoginPage/> : <Home/>
