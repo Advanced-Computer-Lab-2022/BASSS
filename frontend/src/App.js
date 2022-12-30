@@ -161,7 +161,7 @@ function App() {
           }/>
 
           {/* Corporate Routes */}
-          <Route exact path='/CorporateTrainee' element = {<CorporateTrainee/>
+          <Route  path='/CorporateTrainee' element = {<CorporateTrainee/>
               // (user)? ((type=='instructor')? <Instructor/> : (type=='corporate trainee')? <CorporateTrainee/> : 
               // (type=="individual trainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
           } />

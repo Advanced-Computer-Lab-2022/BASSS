@@ -16,27 +16,38 @@ function IndividualTrainee(){
 
     return(
         <>
-        <IndividualTraineeNavBar/>
+        {/* <IndividualTraineeNavBar/> */}
         <div className='IndividualTrainee-body'>
+            {/*
         <Search Type='indvidual'/>
+
+
         <Link to ="/IndividualTrainee/myInfo">
         <button> edit my info</button>
         </Link>
+
+
         <br></br><br></br><br></br><br></br><br></br><br></br>
+
         <Link to ="/IndividualTrainee/SelectCountry">
         <button className='selectcountrybtnindividual'> select your country</button>
         </Link>
+
+
         <Writenotes/>
-        {/* <Forgetpass Type="individualTrainee"/> */}
+
+
+        {/* <Forgetpass Type="individualTrainee"/> 
+
         <Downloadcert/>
         
-        {/* <Courses Link = "/individualtrainee/CourseDetails" /> */}
-        <Forgetpass Type="individualTrainee"/>
 
-        {/* <Courses Link = "/individualtrainee/CourseDetails" /> */}
+        --------------  all  courses done ----------------------
         <Link to ="/AllCourses">
         <button >View AllCourses </button>
         </Link>
+        --------------------------------------------------------
+
         <br></br>
         <Link to ="/mostViewd">
         <button >View our most popular Courses </button>
@@ -47,6 +58,7 @@ function IndividualTrainee(){
         </Link>
         <br></br><br></br><br></br><br></br><br></br><br></br>
         
+    */}
         <IndividualCourses Link = "/individualtrainee/myCourseDetails"/>
         <br></br><br></br><br></br><br></br><br></br><br></br>
 
