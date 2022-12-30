@@ -1,0 +1,148 @@
+.Signup_bodySara {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.789);
+    height: 100%;
+    width: 100%;
+    z-index: 50;
+  }
+  
+  .Signup_ButtonBlueSara{
+    background-color: transparent;
+    color: rgba(3, 75, 120, 0.884);
+    padding: 15px 15px;
+    border: 2px solid rgba(3, 75, 120, 0.884);
+    text-align: center;
+    font-size: 15px;
+    border-radius: 10px;
+    width: 150px;
+    height: 40px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .Signup_ButtonBlueSara:hover{
+    background-color: rgba(255, 255, 255, 0.814);
+    color: rgb(3, 48, 76);
+    font-weight: 600;
+  }
+  
+  
+  .Signup-box {
+      position: absolute;
+      top: 55%;
+      left: 50%;
+      width: 800px;
+      padding: 40px;
+      transform: translate(-50%, -50%);
+      background: rgb(2, 40, 64);
+      box-sizing: border-box;
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.644);
+      border-radius: 10px;
+    }
+    
+    .Signup-box .Sara_Signup_h2 {
+      margin: 0 0 30px;
+      padding: 0;
+      color: #fff;
+      text-align: center;
+      font-size: x-large;
+      display: block;
+    }
+  
+    .Signup-box .Sara_Signup_h1 {
+      margin: 0 0 30px;
+      padding: 0;
+      color: #0DB8DE;
+      text-align: center;
+      font-size: x-large;
+      display: block;
+      font-weight: bold;
+    }
+    
+    .Signup-box .user-box-sara {
+      position: relative;
+    }
+    
+    .Signup-box .user-box-sara .Sara_Signup_input{
+      width: 100%;
+      padding: 10px 0;
+      font-size: 16px;
+      color: #fff;
+      margin-bottom: 20px;
+      border: none;
+      border-bottom: 1px solid #fff;
+      outline: none;
+      background: transparent;
+    }
+    .Signup-box .user-box-sara .Sara_Signup_label {
+      position: absolute;
+      top:0;
+      left: 0;
+      padding: 10px 0;
+      font-size: 16px;
+      color: #fff;
+      pointer-events: none;
+      transition: .5s;
+    }
+    
+    .Signup-box .user-box-sara .Sara_Signup_input:focus ~ .Sara_Signup_label,
+    .Signup-box .user-box-sara .Sara_Signup_input:valid ~ .Sara_Signup_label {
+      top: -20px;
+      left: 0;
+      color: #0DB8DE;
+      font-size: 12px;
+    }
+    
+    .Signup-box .Sara_Signup_form .Sara_Signup_a {
+      position: relative;
+      display: inline-block;
+      padding: 10px 20px;
+      color: #fff;
+      font-size: 16px;
+      text-decoration: none;
+      text-transform: uppercase;
+      overflow: hidden;
+      transition: .5s;
+      margin-top: 40px;
+      margin-bottom: 40px;
+      letter-spacing: 4px;
+      background-color:  #0DB8DE;
+      border-radius: 5px;
+      width: -webkit-fill-available;
+      align-self: center;
+    }
+    
+    .Signup-box .Sara_Signup_a:hover {
+      background: transparent;
+      color: #0DB8DE;
+      border: 2px solid #0DB8DE;
+      cursor: pointer;
+      
+    }
+  
+    .Signup-box .Sara_forgot_password {
+      color: #0DB8DE;
+      align-self: center;
+      font-size: small;
+      margin-top: 5px;
+    }
+  
+    .Signup-box .Sara_forgot_password:hover {
+      color: #12d3ff;
+      transition: .5s;
+    }
+  
+    .Signup-box .Sara_signup{
+      color: #fff;
+      align-self: center;
+      font-size: small;
+      margin-top: 5px;
+    }
+  
+    .Signup-box .Sara_required{
+      color: rgb(213, 13, 13);
+      align-self: center;
+      font-size: small;
+      margin-bottom: 3px;
+    }
+  
+  

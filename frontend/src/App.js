@@ -78,6 +78,7 @@ function App() {
             (!user)? <AdminLoginPage/> : <Home/>
           }/>
           <Route path='/logout' element={ <Logout/> }/>
+          <Route path='/signup' element={ <Logout/> }/>
           <Route path='/forgotPass' element={ <Forgetpass/> }/>
 
           {/* Instructor routes */}

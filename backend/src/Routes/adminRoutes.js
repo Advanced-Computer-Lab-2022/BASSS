@@ -145,7 +145,7 @@ adminR.get("/createCoReq/:Reporter/:CourseID",async function(req,res){   //:Stat
         //courseRequests
         const Course1 = await courses.findOne({_id: CourseID })
         const CorporateTrainee = await corporateTrainee.findOne({Username : Reporter});
-        const CoRequest1 = await corporateRequest.findOne({Reporter : Reporter , CourseID : CourseID});
+        const CoRequest1 = await corporateRequest.findOne({Reporter : Reporter , CourseID : CourseID , Status : 'Unseen'});
         const CourseTitle = Course1.Title
         for(let i = 0 ; i < CorporateTrainee.AccessibleCourses.length ; i++){
           if(CourseID == CorporateTrainee.AccessibleCourses[i]){

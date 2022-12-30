@@ -586,6 +586,7 @@ border-radius: 25px;
     position: relative;
     left: 3%;
     margin-top: 0%;
+    padding: 0.5rem 0.5rem;
     width: 35%;
     top: 20px;
     background-color: rgba(3, 75, 120, 0.884);
@@ -624,13 +625,14 @@ border-radius: 25px;
     position: relative;
     margin-top: 0%;
     width: 100%;
+    padding: 0.2rem 0.2rem;
     top: 20px;
     border-radius: 15px;
     overflow-y: auto;
     max-height: 420px;
 }
 .Admin_CorporateCourses_InnerDiv::-webkit-scrollbar {
-    width: 1.5em;
+    width: 1em;
     border-radius: 15px;
   }
    
@@ -703,7 +705,7 @@ border-radius: 25px;
 }
 
 .Admin_OneCoReqDetails_Div::-webkit-scrollbar {
-  width: 1.5em;
+  width: 1em;
   border-radius: 25px;
 }
  

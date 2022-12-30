@@ -56,7 +56,7 @@ const Navbar = (props) => {
               <Link
                 to={props.ThirdLinkTo}
                 className='nav-links'
-                onClick={closeMobileMenu}
+                onClick={props.type=='Guest'?props.handleLogin:closeMobileMenu}
               >
                 {props.ThirdLinkText}
               </Link>
@@ -66,7 +66,7 @@ const Navbar = (props) => {
               <Link
                 to={props.FourthLinkTo}
                 className='nav-links'
-                onClick={closeMobileMenu}
+                onClick={props.type=='Guest'?props.handleSignup:closeMobileMenu}
               >
                 {props.FourthLinkText}
               </Link>
