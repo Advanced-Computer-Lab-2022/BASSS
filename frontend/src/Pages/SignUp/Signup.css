@@ -5,6 +5,76 @@
     width: 100%;
     z-index: 50;
   }
+
+  .Signup_Sara_OneinputDiv {
+    position: relative;
+    width: 40%;
+    margin-left: 10%;
+  }
+
+.Signup_Sara_twoinputsDiv{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    left: -5%;
+}
+
+.Signup_Sara_GenderDiv {
+    position: relative;
+    margin-top: 1%;
+    margin-left: 8%;
+}
+
+.Signup_Sara_GenderRBDiv {
+    position: relative;
+    margin-top: 5%;
+}
+
+.Signup_Sara_GenderLabel{
+    position: relative;
+    left: 12%;
+    color: #fff;
+    font-weight: 400;
+}
+
+.Signup_Sara_GenderLabelFemale{
+    position: relative;
+    left: 12%;
+    color: #fff;
+    font-weight: 100;
+}
+.Signup_Sara_GenderRBFemale{
+    position: relative;
+    left: 10%;
+}
+
+.Signup_Sara_GenderLabelMale{
+    position: relative;
+    left: 16%;
+    color: #fff;
+    font-weight: 100;
+}
+
+.Signup_Sara_GenderRBMale{
+    position: relative;
+    left: 14%;
+}
+
+.Signup_Sara_TermsLabel{
+    position: relative;
+    left: 14%;
+}
+
+.Signup_Sara_AcceptTermsLabel{
+    position: relative;
+    left: 0%;
+    color: #fff;
+}
+
+.Signup_Sara_TermsCB{
+    position: relative;
+    left: 12%;
+}
   
   .Signup_ButtonBlueSara{
     background-color: transparent;
@@ -30,7 +100,7 @@
       position: absolute;
       top: 55%;
       left: 50%;
-      width: 800px;
+      width: 600px;
       padding: 40px;
       transform: translate(-50%, -50%);
       background: rgb(2, 40, 64);
@@ -122,13 +192,15 @@
     .Signup-box .Sara_forgot_password {
       color: #0DB8DE;
       align-self: center;
-      font-size: small;
+      font-size: medium;
       margin-top: 5px;
+      margin-left: 1px;
     }
   
     .Signup-box .Sara_forgot_password:hover {
       color: #12d3ff;
       transition: .5s;
+      cursor: pointer;
     }
   
     .Signup-box .Sara_signup{

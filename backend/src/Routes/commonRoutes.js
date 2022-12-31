@@ -25,9 +25,7 @@ const signup =  async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, salt);
         const user = await users.create({ UserName: username, Password: hashedPassword, Type: "IndividualTrainee" });
         await individualTrainees.create({UserName: username, FirstName: firstname, LastName: lastname, Email: email,Password: hashedPassword, Gender: gender})
-        const token = createToken(user.UserName);
-        res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
-        res.status(200).json({token: token, type: 'individualtrainee'})
+        return res.status(200).json('Done')
     } catch (error) {
         res.status(400).json({ error: error.message })
     }

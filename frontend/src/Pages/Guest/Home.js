@@ -28,7 +28,7 @@ function Home (){
 
         <GuestNavBar handleLogin = {handleLogin} handleSignup = {handleSignup}/>
         {Login1 && <Login/>}
-        {Signup1 && <Signup/>}
+        {Signup1 && <Signup setSignup1 = {setSignup1}/>}
         <Landing/>
         <Cards/>
         <Footer/>

@@ -10,7 +10,7 @@
     cursor: pointer;
     width: 50px;
     height: 45px;
-    background-image: linear-gradient(rgba(3, 48, 76, 0.603),  rgba(3, 48, 76, 0.641)), url('../../images/otherNav.jpeg') ;
+    /* background-image: linear-gradient(rgba(3, 48, 76, 0.603),  rgba(3, 48, 76, 0.641)), url('../../images/otherNav.jpeg') ; */
   }
   
   .btn--primary {

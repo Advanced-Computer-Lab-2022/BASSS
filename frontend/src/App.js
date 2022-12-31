@@ -55,6 +55,7 @@ import EditnewPass from './components/Editnewpass/Editnewpass';
 import Forgetpass from './components/Forgetpass/Forgetpass';
 
 import Sara from './sara'
+import PrivacyPolicy from './Pages/SignUp/PrivaryPolicy';
 
 
 const cookies = new Cookies();
@@ -78,8 +79,8 @@ function App() {
             (!user)? <AdminLoginPage/> : <Home/>
           }/>
           <Route path='/logout' element={ <Logout/> }/>
-          <Route path='/signup' element={ <Logout/> }/>
           <Route path='/forgotPass' element={ <Forgetpass/> }/>
+          <Route path='/PrivacyPolicy' element={ <PrivacyPolicy/> }/>
 
           {/* Instructor routes */}
           <Route path='/instructor' element={<Instructor/>
