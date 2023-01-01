@@ -110,8 +110,15 @@ const CourseDetails = () => {
       totalpath.indexOf("/") + 1, 
       totalpath.lastIndexOf("/")
     )
-    const videoclickhandler = async()=>{
-        alert('congratulation , you have finished the Video')
+    const videoclickhandler = async(e)=>{
+      // alert('congratulation , you have finished the Video')
+     var id = e.target.getAttribute('id');
+    //  alert(id)
+     var x = document.getElementsByClassName('subtitles')[0];
+    //  alert(x)
+     var y = document.getElementById(id)
+    //  alert(y)
+     y.style.display='none';
      //------------------------put instead of "nour" the username that soha will do ---------------------------------------------------
      if(mySubString==='corporatetrainee')
      {
@@ -230,7 +237,7 @@ getSubtitle();
     return(
         <>
         <div className='CourseDetails-body'>
-        <IndividualTraineeNavBar/>
+        {/* <IndividualTraineeNavBar/> */}
 
         <div class="adhaminfo">
 
@@ -360,13 +367,14 @@ getSubtitle();
                                <h1 className='sub_info_adham'>subtitle Number : {sub.subtitleNumber}</h1>
                                <h1 className='sub_info_adham' >Subtitle total Hours : { sub.SubtitleHours} </h1>
                                <h1 className='sub_info_adham'>subtitle Short Video Description :{sub.ShortVideoDescription} </h1>
-                               <YoutubeEmbed embedId={sub.VideoLink}/>
 
+                               <YoutubeEmbed embedId={sub.VideoLink}/>
                                <div>
                                <Link to='/exercise'>
                                 <button className='exercisebtn_adham'>Solve Exercise</button>
                                 </Link>
                                 </div>
+                               <button className='clickherebtn_adham' id={sub._id} onClick={videoclickhandler}></button>
                             </div>
                                )
       }

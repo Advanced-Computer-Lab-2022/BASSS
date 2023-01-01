@@ -6,7 +6,8 @@ import ProgressBar from '../ProgressBar/ProgressBar';
 import { Link, useNavigate } from 'react-router-dom';
 import { confirmAlert } from 'react-confirm-alert'; 
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
-
+import Sendcertbymail from '../Sendcertbymail/Sendcertbymail'
+import Downloadcert from '../Downloadcert/Downloadcert'
 const { useState, useEffect } = require("react");
 
  function IndividualCourses(props) {
@@ -48,14 +49,14 @@ const { useState, useEffect } = require("react");
     getmycourses()
     const navigate = useNavigate()
    return (
-     <div>
-
+     <div className='sara'>
       <br></br><br></br>
       <br></br><br></br>
       <br></br><br></br>
       <br></br><br></br>
       <h1 className='indtracou-adham'>MY COURSES</h1>
       <br></br><br></br><br></br>
+      <div className='zoz'>
       {mycourses.map((mycourse)=>(
         <div class="plan-card">
         <h2>{mycourse[0].Title}<span>{mycourse[0].Subject}</span></h2>
@@ -86,11 +87,17 @@ const { useState, useEffect } = require("react");
                 </svg>
                 <span>Open Course</span>
             </button>
+            {mycourse[1]==100 &&<Sendcertbymail/>}
+            {mycourse[1]==100 &&<Downloadcert/>}
         </div>
     </div>
       ))}
+      </div>
       <h1 className='bestins-adham'>Our best Instructors</h1>
-      <div class="card">
+
+<div className='adhooom'>
+        
+<div class="card">
         <div class="card-info">
         <div class="card-avatar1"></div>
         <div class="card-title">Adham Saber</div>
@@ -112,7 +119,6 @@ const { useState, useEffect } = require("react");
     </li>
   </ul>
 </div>
-
 
 <div class="card">
         <div class="card-info">
@@ -182,6 +188,10 @@ const { useState, useEffect } = require("react");
     </li>
   </ul>
 </div>
+
+</div>
+
+
         <h1 className='recomm-adham'>My WorkSpace</h1>
         <div className='workspace-adham'>
           <h2>Code On Your Own </h2>
@@ -189,8 +199,8 @@ const { useState, useEffect } = require("react");
           <h4>Create your first workspace to experiment {<br></br>}with what you're learning or build your own projects from scratch.</h4>
           <button className='newws-adham'>+ New WorkSpace</button>
         </div>
+<div className='hazoum'>
 
-  <h1 className='ourcourses-adham'>Our Courses</h1>
         <div class="AllCourses-card-adham">
   <div class="AllCourses-card-adham-details">
     <p class="text-title">All Courses</p>
@@ -202,8 +212,8 @@ const { useState, useEffect } = require("react");
   </Link>
 </div>
 
+</div>
 
-<h1 className='mostpop-adham'>Our Most Popular Courses</h1>
         <div class="mostpop-card-adham">
   <div class="mostpop-card-adham-details">
     <p class="text-title">Most Popular Courses</p>

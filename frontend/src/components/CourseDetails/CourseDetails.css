@@ -774,3 +774,12 @@ color: rgb(208, 208, 15);
     .sub_rev_adham:hover{
       background-color: rgb(27, 16, 72);
     }
+.clickherebtn_adham{
+  border: none;
+  background-color: transparent;
+  width: 22rem;
+  height: 15rem;
+  left: -38rem;
+  top: 2rem;
+  position: relative;
+}

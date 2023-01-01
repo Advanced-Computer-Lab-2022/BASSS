@@ -129,6 +129,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     </div>
       ))}
       <h1 className='bestins-adham'>Our best Instructors</h1>
+      <div className='adhooom'>
       <div class="card">
         <div class="card-info">
         <div class="card-avatar1"></div>
@@ -221,6 +222,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     </li>
   </ul>
 </div>
+</div>
         <h1 className='recomm-adham'>My WorkSpace</h1>
         <div className='workspace-adham'>
           <h2>Code On Your Own </h2>
@@ -228,8 +230,6 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
           <h4>Create your first workspace to experiment {<br></br>}with what you're learning or build your own projects from scratch.</h4>
           <button className='newws-adham'>+ New WorkSpace</button>
         </div>
-
-  <h1 className='ourcourses-adham'>Our Courses</h1>
         <div class="AllCourses-card-adham">
   <div class="AllCourses-card-adham-details">
     <p class="text-title">All Courses</p>
@@ -242,7 +242,6 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 </div>
 
 
-<h1 className='mostpop-adham'>Our Most Popular Courses</h1>
         <div class="mostpop-card-adham">
   <div class="mostpop-card-adham-details">
     <p class="text-title">Most Popular Courses</p>

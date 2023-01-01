@@ -15,9 +15,9 @@
   }
   .recomm-adham{
     color: #fff;
-    position: absolute;
-    left: 6rem;
-    top: 85rem;
+    position: relative;
+    top: 12rem;
+    left: 5rem;
     font-family:'Courier New', Courier, monospace;
   }
   
@@ -139,6 +139,7 @@
     letter-spacing: .05rem;
     font-weight: 500;
     transition: all 0.3s ease;
+    margin-right: 1rem;
   }
     .opencourse-adham:hover{
       transform: translateY(-3%);
@@ -155,9 +156,9 @@
     background: #f5f5f5;
     padding: 2rem 1.5rem;
     transition: box-shadow .3s ease, transform .2s ease;
-    position: relative;
+    /* position: relative;
     left: 65rem;
-    top: -57rem;
+    top: -57rem; */
     border-radius: 20px;
     margin-bottom: 2rem;
    }
@@ -256,7 +257,7 @@
    .workspace-adham {
     width: 900px;
     height: 400px;
-    top: -53rem;
+    top: 15rem;
     left: 5rem;
     background: #07182E;
     position: relative;
@@ -342,7 +343,7 @@
       background: #f5f5f5;
       position: relative;
       left: 5rem;
-      top: -42rem;
+      top: 23rem;
       padding: 1.8rem;
       border: 2px solid #c3c6ce;
       transition: 0.5s ease-out;
@@ -396,16 +397,18 @@
      }
      .ourcourses-adham{
       color: #fff;
-      position: absolute;
-      left: 6rem;
-      top: 120rem;
+      position: relative;
+      left: -35rem;
+      /* 
+      top: 120rem; */
       font-family:'Courier New', Courier, monospace;
     }
     .mostpop-adham{
         color: #fff;
-        position: absolute;
-        left: 60rem;
-        top: 120rem;
+        position: relative;
+        left: 30rem;
+        /* 
+        top: 120rem; */
         font-family:'Courier New', Courier, monospace;
       }
 
@@ -418,7 +421,7 @@
         background: #f5f5f5;
         position: relative;
         left: 60rem;
-        top: -58rem;
+        top: 7rem;
         padding: 1.8rem;
         border: 2px solid #c3c6ce;
         transition: 0.5s ease-out;
@@ -469,4 +472,29 @@
        .mostpop-card-adham:hover .mostpop-card-adham-button {
         transform: translate(-50%, 50%);
         opacity: 1;
+       }
+       .adhooom{
+        position: absolute;
+        top: 20%;
+        display: flex;
+        flex-direction: column;
+        row-gap: 0.5vw;
+        justify-content: center;
+        left: 70%;
+        top: 13rem;
+       }
+       .zoz{
+        display: flex;
+        flex-direction: column;
+        row-gap: 0.5vw;
+        justify-content: center;
+       }
+       .hazoum
+       {
+        position: relative;
+        top: 100%;
+       }
+       .sara{
+        width: 15vw;
+        height: 100%;
        }
