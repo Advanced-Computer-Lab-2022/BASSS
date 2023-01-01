@@ -10,6 +10,7 @@ function Home (){
     
     const [Login1, setLogin1] = useState(false);
     const [Signup1, setSignup1] = useState(false);
+    const [Country, setCountry] = useState('');
 
 
     const handleLogin = () => {
@@ -26,7 +27,7 @@ function Home (){
         <>
         <div className='home-body'>
 
-        <GuestNavBar handleLogin = {handleLogin} handleSignup = {handleSignup}/>
+        <GuestNavBar handleLogin = {handleLogin} handleSignup = {handleSignup} setCountry = {setCountry}/>
         {Login1 && <Login/>}
         {Signup1 && <Signup setSignup1 = {setSignup1}/>}
         <Landing/>
