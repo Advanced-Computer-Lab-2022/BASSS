@@ -11,6 +11,7 @@ const InstructorProfile =  () => {
     const [countRating, setCountRating] = useState(0)
     const [reviews,setReviews] = useState(0)
     const [edit, setEdit] = useState(false)
+    const [reports,setReports] = useState(0)
 
     useEffect(async () => {
         try{
@@ -20,6 +21,7 @@ const InstructorProfile =  () => {
                     setRate(res.data.Rating.rate)
                     setCountRating(res.data.Rating.count)
                     setReviews(res.data.Reviews.length)
+                    setReports(res.data.Reports.length)
                 }
             )
         }catch(error){
@@ -101,6 +103,7 @@ const InstructorProfile =  () => {
                 <div class='main-body'>
                     <div class="profile_card">
                         <div class="profile_card-body">
+
                             <div class="text_body">
                                 <div class="date">
                                     <span class="day">Instructor</span>
@@ -154,83 +157,66 @@ const InstructorProfile =  () => {
                                     }  
                                     <div class="rating-text">
                                         <span>{countRating} Ratings & {reviews} <a class='a' href="/instructor/MyReviews ">Reviews</a></span>
+                                    <div class="rating-text report">
+                                        <span>{reports} <a class='a' href='/instructor/myReports'> Reports</a></span>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="info_main">
-                            <div class="info_card">
-                                <div class="info_card-body">
-                                <i class="fa fa-pen fa-xs edit " onClick={() => setEdit(!edit)}/>
-
-                                    {!edit &&
+                        {!edit &&
                                         <table>
                                             <tbody>
                                                 <tr>
-                                                    <td>User Name</td>
-                                                    <td> </td>
-                                                    <td>:</td>
-                                                    <td> </td>
+                                                    <td className="boldFont">User Name :</td>
                                                     <td>{inst.UserName}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Email</td>
-                                                    <td> </td>
-                                                    <td>:</td>
-                                                    <td> </td>
+                                                    <td className="boldFont">Email :</td>
                                                     <td>{inst.Email}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Wallet</td>
-                                                    <td> </td>
-                                                    <td>:</td>
-                                                    <td> </td>
+                                                    <td className="boldFont">Wallet :</td>
                                                     <td>{inst.Wallet}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     }
-                                    {edit&&
+                        {edit&&
                                         <table>
                                         <tbody>
                                             <tr>
-                                                <td>Edit Mini Bio?</td>
-                                                <td>:</td>
-                                                <td>
+                                                <td className="boldFont">
+                                                    Edit Mini Bio?
                                                     <input type='text' placeholder="new bio" class='profile_editInput' onChange={changehandler} value={choice}/>
-                                                </td>
-                                                <td>
-
                                                     <button class='profile_editBtn' onClick={clickhandler1}>Edit</button>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td>Edit Email?</td>
-                                                <td>:</td>
-                                                <td>
+                                                <td className="boldFont">
+                                                    Edit Email?
                                                     <input type='email' placeholder="new email" class='profile_editInput' onChange={changehandler2} value={choice2}/>
-                                                </td>
-                                                <td>
                                                     <button class='profile_editBtn' onClick={clickhandler2}>Edit</button>
-
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td>Edit Password?</td>
-                                                <td>:</td>
-                                                <td>
+                                                <td className="boldFont">
+                                                    Edit Password?
                                                     <input type='password' placeholder="old password" class='profile_editInput' onChange={changehandler4} value={choice4}/> 
                                                     <input type='password' placeholder="new password" class='profile_editInput' onChange={changehandler3} value={choice3}/> 
                                                 </td>
                                                 <td>
                                                     <button class='profile_editBtn' onClick={clickhandler3}>Edit</button>
                                                     <label>{message}</label>
-                                                
                                                 </td>    
                                             </tr>
                                         </tbody>
                                     </table>
                                 }
+                        <div class="info_main">
+                            <div class="info_card">
+                                <div class="info_card-body">
+                                    <i class="fa fa-pen fa-xs edit " onClick={() => setEdit(!edit)}/>
                                 </div>
                             </div>
                         </div>

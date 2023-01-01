@@ -145,7 +145,7 @@ instructorR.get("/viewRating/review",async(req, res) => {
   //token name
   const name = res.locals.user;
 
-  const result =await instructors.findOne({Username:"salama"})
+  const result =await instructors.findOne({UserName:"salama"})
   res.json(result)
 });
 
@@ -153,7 +153,7 @@ instructorR.get("/getInstructor",async(req, res) => {
   //token name
   // const name = res.locals.user;
 
-  const result =await instructors.findOne({Username:"salama"})
+  const result =await instructors.findOne({UserName:"salama"})
    res.json(result)
 });
 
@@ -163,10 +163,10 @@ instructorR.get("/updateRate/:name/:newRate",async(req, res) => {
     const name = res.locals.user;
 
     var newRate = req.params.newRate;
-    var oldResult =await instructors.findOne({Username:name})
+    var oldResult =await instructors.findOne({UserName:name})
     var oldCount = oldResult.Rating.count;
     var oldSum = oldResult.Rating.sum;
-    const result =await instructors.findOneAndUpdate({Username:name},{Rating:{rate:(Number(oldSum)+Number(newRate))/(oldCount+1), count:(oldCount+1), 
+    const result =await instructors.findOneAndUpdate({UserName:name},{Rating:{rate:(Number(oldSum)+Number(newRate))/(oldCount+1), count:(oldCount+1), 
     sum:(Number(oldSum)+Number(newRate))}})
     res.json(result)
 });
@@ -256,14 +256,27 @@ instructorR.post('/changePass', async (req,res) =>{
   }
 
   const user = await users.findOne({UserName: "Hazem Khaled Hegazy"})
-  const salt = await bcrypt.genSalt();
-  const hashedPassword = await bcrypt.hash(newPass, salt);
-  const updatedUsers = await users.findOneAndUpdate({UserName: "Hazem Khaled Hegazy"},{Password: hashedPassword})
 
-  const updatedInsts = await instructors.findOneAndUpdate({Username: 'sara saad'},{Password: hashedPassword})
-
-  return res.status(200).json('Password Changed')
-
+  try{
+    const hashedpass = user.Password;
+    bcrypt.compare(newPass,hashedpass,(err,data)=>{
+        if(err){
+            return res.status(400).json('Not Found')
+        }
+        if(data){
+            return res.status(400).json('New password cannot be old password')
+          }
+        })
+        const salt = await bcrypt.genSalt();
+        const hashedPassword = await bcrypt.hash(newPass, salt);
+        const updatedUsers = await users.findOneAndUpdate({UserName: "Hazem Khaled Hegazy"},{Password: hashedPassword})
+      
+        const updatedInsts = await instructors.findOneAndUpdate({Username: 'sara saad'},{Password: hashedPassword})
+        return res.status(200).json('Password Changed')
+        
+  } catch (error) {
+      res.json({error: error.message})
+  }
 })
 
 

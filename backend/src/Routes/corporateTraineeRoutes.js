@@ -240,16 +240,28 @@ corporateTraineeR.post('/changePass', async (req,res) =>{
   if(!newPass){
       return res.status(400).json('You must enter a new password')
   }
-
   const user = await users.findOne({UserName: "Hazem zeft Hegazy"})
-  const salt = await bcrypt.genSalt();
-  const hashedPassword = await bcrypt.hash(newPass, salt);
-  const updateUsers= await users.findOneAndUpdate({UserName: "Hazem zeft Hegazy"},{Password: hashedPassword},{upsert:true})
 
-  const updateTrainees = await corporateTrainees.findOneAndUpdate({UserName: "sarasaad2001"},{Password: hashedPassword},{upsert:true})
-
-  return res.status(200).json('Password Changed')
-
+  try{
+    const hashedpass = user.Password;
+    bcrypt.compare(newPass,hashedpass,(err,data)=>{
+        if(err){
+            return res.status(400).json('Not Found')
+        }
+        if(data){
+            return res.status(400).json('New password cannot be old password')
+          }
+        })
+        const salt = await bcrypt.genSalt();
+        const hashedPassword = await bcrypt.hash(newPass, salt);
+        const updateUsers= await users.findOneAndUpdate({UserName: "Hazem zeft Hegazy"},{Password: hashedPassword})
+      
+        const updateTrainees = await corporateTrainees.findOneAndUpdate({UserName: "sarasaad2001"},{Password: hashedPassword})      
+        return res.status(200).json('Password Changed')
+        
+  } catch (error) {
+      res.json({error: error.message})
+  }
 })
 
 

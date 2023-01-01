@@ -22,18 +22,19 @@ individualTraineeR.post("/selectcountry",function(req,res){
     console.log(req.body)
     var country = req.body.country;
     var query = individualTrainees.find({username:"adham"})
-        query.exec(function(err,result){
-            if (err) throw err;
-            if(result.length==0){
-                res.render("../views/individualTrainee.ejs",{title:"individualTrainee country"});
-            }else{
-                individualTrainees.findOneAndUpdate({username:"adham"},{country:country},{upsert:true},function(err,doc){
-                    if(err) throw err;
-                  });         
-              res.render("../views/individualTrainee.ejs",{title:"individualTrainee country"});
-            }
-})
-})
+    query.exec(function(err,result){
+        if (err) throw err;
+        if(result.length==0){
+            res.render("../views/individualTrainee.ejs",{title:"individualTrainee country"});
+        }else{
+            individualTrainees.findOneAndUpdate({username:"adham"},{country:country},{upsert:true},function(err,doc){
+                if(err) throw err;
+              });         
+          res.render("../views/individualTrainee.ejs",{title:"individualTrainee country"});
+        }
+    })
+  }
+)
 
 individualTraineeR.get("/myInfo/pass/:pass",async function(req,res){
   // console.log(req.body)

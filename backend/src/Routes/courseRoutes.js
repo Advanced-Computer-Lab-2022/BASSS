@@ -170,7 +170,7 @@ module.exports = courseR;
 courseR.get("/getInstructor/:username",async function(req,res){
     
     var name = req.params.username;
-    const user = await instructors.findOne({Username: name })
+    const user = await instructors.findOne({UserName: name })
     if(user) {
       console.log("Instructor Found")
        return res.status(200).json({user});

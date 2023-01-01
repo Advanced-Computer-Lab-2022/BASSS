@@ -27,39 +27,43 @@ function TermsPage(props) {
     }
 
     const navigate = useNavigate()
-    const handleSubmit = async ()=> {
-        if(location.state[0] === 'instructor'){
+    const handleSubmit = async (e)=> {
+        e.preventDefault();
+        if(props.Who === 'instructor'){
             try{
                 await axios.post("http://localhost:9000/instructor/changePass", {newPass: newPass}).then(
-                    (res) => {
-                       window.alert(res.data)
-                    }
+                 (res) => {
+                     window.alert(res.data)
+                     navigate('/instructor')
+                 }
                 )
             }catch(error){
-                setError(error)
+                setError(error.response.data)
             }
         }
         else{
-            if(location.state[0] === 'corporatetrainee'){
+            if(props.Who === 'corporatetrainee'){
                 try{
                     await axios.post("http://localhost:9000/corporateTrainee/changePass", {newPass: newPass}).then(
                         (res) => {
-                           return navigate('/corporateTrainee')
-                        }
+                            window.alert(res.data)
+                            navigate('/instructor')
+                                }
                     )
                 }catch(error){
-                    setError(error)
+                    setError(error.response.data)
                 }
             }
             else{
                 try{
                     await axios.post("http://localhost:9000/admin/changePass", {newPass: newPass}).then(
                         (res) => {
-                            return navigate('/admin')
+                            window.alert(res.data)
+                            navigate('/admin')
                         }
                     )
                 }catch(error){
-                    setError(error)
+                    setError(error.response.data)
                 }
             }
         }
@@ -71,7 +75,7 @@ function TermsPage(props) {
         <div className="login-box">
             <label className='soha_login_h2'>Change Your Password</label>
             <br/>
-            <form className='soha_login_form'>
+            <form className='soha_login_form' onSubmit={handleSubmit}>
 
             <div className="user-box">
                 <input className="soha_login_input" type={passwordShown ? "text" : "password"} onChange={getPassword} value={newPass} required={true}></input>
@@ -86,7 +90,7 @@ function TermsPage(props) {
                 <button className='soha_login_a' type='submit' disabled={!checked} onClick={handleSubmit}>Submit</button>
             </div>
             }
-            {props.Who !== 'instructor' && <button className='soha_login_a' onClick={handleSubmit} >Submit</button>}
+            {props.Who != 'instructor' && <button className='soha_login_a'>Submit</button>}
             {error && <label className='soha_required'>{error} </label>}
 
             </form>

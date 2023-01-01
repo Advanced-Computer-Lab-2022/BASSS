@@ -211,7 +211,7 @@
     /* margin-left: 3%; */
     font-size: 28px;
     /* padding: 0 10px; */
-    width: 100%;
+    /* width: 100%; */
 }
 
 .info_main .info_card {
@@ -229,6 +229,17 @@
     justify-content: center;
 }
 
+.profile_card table{
+    position: relative;
+    left: 25%;
+    border: none;
+    font-size: 16px;
+    height: 200px;
+    width: 100%;
+    margin-top: -10px;
+}
+
+
 .info_main .info_card table {
     border: none;
     font-size: 16px;
@@ -237,20 +248,33 @@
     margin-top: -10px;
 }
 
+.info_main .info_card table tr{
+    align-items: center;
+}
+
+.info_main .info_card table td{
+    font-weight: bold;
+}
+
+.info_main .info_card tBody{
+    font-weight: bold;
+}
+
 .profile_traineeInfo{
     margin-top: 20%;
 }
 
 .info_main .info_card .fa{
     color: lightgrey;
-    position: absolute;
-    top: -150%;
+    position: relative;
+    top: -33rem;
+    left: 14rem;
 }
 
-.info_main .info_card .fa:hover{
-    color: grey;
-    cursor: pointer;
-}
+    .info_main .info_card .fa:hover{
+        color: grey;
+        cursor: pointer;
+    }
 
 
   .ratings{
@@ -293,6 +317,15 @@ box-shadow: 0px 10px 10px #E0E0E0;
         
     }
 
+    .rating-text .report .a{
+        color:red;
+        text-decoration: solid;
+    }
+    .rating-text .report .a:hover{
+        cursor: pointer;
+        color:rgb(119, 5, 5);
+    }
+
 .profile_editInput{
     border: none;
     margin-left: 22px;
@@ -314,5 +347,17 @@ box-shadow: 0px 10px 10px #E0E0E0;
         
     }
 
+.float_left{
+    float: left;
+    font-weight: bold;
+}
+
+.float_right{
+    float: right;
+}
+
+.boldFont{
+    font-weight: bold;
+}
 
 

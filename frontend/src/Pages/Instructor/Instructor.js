@@ -40,20 +40,12 @@ function Instructor(){
         {/* <Link to ="/instructor/promotion">
         <button className='promotion'> define a promotion</button>
         </Link> */}
-        <ViewRating/>
 
         <Link to ="/instructor/MyCourses">
             <button>
                 View My Courses</button>
             </Link>
             <br></br>
-            <Link to ="/instructor/MyReviews">
-            <button>
-                My Reviews</button>
-            </Link>
-            <Link to ="/instructor/myReports">
-            <button >View My Reports </button>
-            </Link>
 
         {/* <SelectCountry/> */}
 

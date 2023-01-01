@@ -3,6 +3,7 @@ import { useState, useEffect ,} from "react";
 import { useNavigate } from "react-router-dom";
 import IndividualTraineeNavBar from "../../Pages/IndividualTrainee/IndividualTraineeNavBar/IndividualTraineeNavBar";
 import CorporateTraineeNavBar from "../../Pages/CorporateTrainee/CorporateTraineeNavBar/CorporateTraineeNavBar";
+import profileimg from "../../images/graduate-avatar.png"
 import './Profile.css'
 
 const TraineeProfile = (props) => {    //individual or corporate
@@ -36,7 +37,43 @@ const TraineeProfile = (props) => {    //individual or corporate
                 setError(error.response.data)
             }
         }
-    }, [])  
+    }, [])
+    
+    //bassel's
+    const [pass,setpass] = useState('');
+    var [choice,setchoice] = useState([]);
+    var [choice2,setchoice2] = useState([]);
+    var [message,setmessage] = useState([]);
+
+    const changehandler =  async(e)=>{
+        setchoice(e.target.value);
+    }
+    const changehandler2 =  async(e)=>{
+      setchoice2(e.target.value);
+    }
+    const clickhandler1 = ()=>{
+       getpassword()
+    }
+
+    const getpassword =  async () => {
+        if(isCorporate){
+            await axios.get(`http://localhost:9000/corporateTrainee/myInfo/pass/${choice2}/${choice}`).then(
+                (res) => { 
+                    const password = res.data.message
+                    setpass(password)
+                }
+            );
+        }
+        else{
+            await axios.get(`http://localhost:9000/individualTrainee/myInfo/pass/${choice2}/${choice}`).then(
+                (res) => { 
+                    const password = res.data.message
+                    setpass(password)
+                }
+            );
+        }
+    }
+
 
     
     return(
@@ -47,6 +84,7 @@ const TraineeProfile = (props) => {    //individual or corporate
                 <div class='main-body'>
                     <div class="profile_card">
                         <div class="profile_card-body">
+                            <img width={"30%"} src={profileimg}/>
                             <div class="text_body">
                                 <div class="date">
                                     {isCorporate && <span class="day">Corporate</span>}
@@ -64,49 +102,69 @@ const TraineeProfile = (props) => {    //individual or corporate
 
                             </div>
                         </div>
+
+                        {!edit &&
+                            <table>
+                                <tbody>
+                                    {!isCorporate &&
+                                        <tr>
+                                            <td className="boldFont">First Name :</td>
+                                            <td>{trainee.FirstName}</td>
+                                        </tr>
+                                    }
+                                    {!isCorporate &&
+                                        <tr>
+                                            <td className="boldFont">Last Name :</td>
+                                            <td>{trainee.LastName}</td>
+                                        </tr>
+                                    }
+                                    {isCorporate &&
+                                        <tr>
+                                            <td className="boldFont">User Name :</td>
+                                            <td>{trainee.UserName}</td>
+                                        </tr>
+                                    }
+                                    <tr>
+                                        <td className="boldFont">Email :</td>
+                                        <td>{trainee.Email}</td>
+                                    </tr>
+                                    {!isCorporate &&
+                                        <tr>
+                                            <td className="boldFont">Wallet:</td>
+                                            <td>{trainee.Wallet}</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                        {edit &&
+                            <table>
+                                <tr>
+                                    <td className="boldFont"> Edit Password?</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type='password' placeholder="old password" class='profile_editInput' onChange={changehandler2} value={choice2}/> 
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type='password' placeholder="new password" class='profile_editInput' onChange={changehandler} value={choice}/> 
+                                        <button class='profile_editBtn' onClick={clickhandler1}>Edit</button>
+                                        <label>{message}</label>
+                                    </td>
+                                </tr>
+                                {/* <tr>
+                                    <td>
+                                    </td>    
+                                </tr> */}
+
+                            </table>
+                        }
                         <div class="info_main">
                             <div class="info_card profile_traineeInfo">
                                 <div class="info_card-body">
                                     <i class="fa fa-pen fa-xs edit " onClick={() => setEdit(!edit)}/>
-                                    {!edit &&
-                                        <table>
-                                            <tbody>
-                                                {!isCorporate &&
-                                                    <tr>
-                                                        <td>First Name</td>
-                                                        <td>:</td>
-                                                        <td>{trainee.FirstName}</td>
-                                                    </tr>
-                                                }
-                                                {!isCorporate &&
-                                                    <tr>
-                                                        <td>Last Name</td>
-                                                        <td>:</td>
-                                                        <td>{trainee.LastName}</td>
-                                                    </tr>
-                                                }
-                                                {isCorporate &&
-                                                    <tr>
-                                                        <td>User Name</td>
-                                                        <td>:</td>
-                                                        <td>{trainee.UserName}</td>
-                                                    </tr>
-                                                }
-                                                <tr>
-                                                    <td>Email</td>
-                                                    <td>:</td>
-                                                    <td>{trainee.Email}</td>
-                                                </tr>
-                                                {!isCorporate &&
-                                                    <tr>
-                                                        <td>Wallet</td>
-                                                        <td>:</td>
-                                                        <td>{trainee.Wallet}</td>
-                                                    </tr>
-                                                }
-                                            </tbody>
-                                        </table>
-                                    }
                                 </div>
                             </div>
                         </div>

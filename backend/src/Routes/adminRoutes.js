@@ -694,9 +694,8 @@ adminR.get("/changeFirstLogin", async (req,res) => {
 })
 
 adminR.post('/changePass', async (req,res) =>{
+  
   const name = res.locals.user;
-  console.log(name)
-  // const name = 'sarasaad2001'
   const newPass = req.body.newPass;
 
   if(!name){
@@ -707,14 +706,28 @@ adminR.post('/changePass', async (req,res) =>{
   }
 
   const u = await user.findOne({UserName: name})
-  const salt = await bcrypt.genSalt();
-  const hashedPassword = await bcrypt.hash(newPass, salt);
-  await user.findOneAndUpdate({UserName: name},{Password: hashedPassword})
 
-  await admin.findOneAndUpdate({UserName: name},{Password: hashedPassword})
-
-  res.status(200).json('Password Changed')
-
+  try{
+    const hashedpass = u.Password;
+    bcrypt.compare(newPass,hashedpass,(err,data)=>{
+        if(err){
+            return res.status(400).json('Not Found')
+        }
+        if(data){
+            return res.status(400).json('New password cannot be old password')
+          }
+        })
+        const salt = await bcrypt.genSalt();
+        const hashedPassword = await bcrypt.hash(newPass, salt);
+        await user.findOneAndUpdate({UserName: name},{Password: hashedPassword})
+      
+        await admin.findOneAndUpdate({UserName: name},{Password: hashedPassword})
+            
+        return res.status(200).json('Password Changed')
+        
+  } catch (error) {
+      res.json({error: error.message})
+  }
 })
 
 
