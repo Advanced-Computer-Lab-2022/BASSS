@@ -56,8 +56,12 @@ const corporateTraineeschema = new Schema({
 
     courseRequests: {
         type: [String], //[Request1 ID,Request2 ID,Request3 ID,...... ]
-    }
+    },
 
+    FirstLogin: {
+        type: Boolean,
+        default: true
+    }
 
 }, { timestamps: true });
 

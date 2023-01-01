@@ -51,7 +51,13 @@ const instructorschema = new Schema({
   MiniBio: {
     type: String,
     // required: true,
+  },
+
+  FirstLogin: {
+    type: Boolean,
+    default: true
   }
+
 
 }, { timestamps: true });
 

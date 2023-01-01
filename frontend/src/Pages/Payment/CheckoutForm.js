@@ -11,6 +11,8 @@ export default function CheckoutForm(props){
     const [processing, setProcessing] = useState(false)
     const [status, setStatus] = useState('Pay')
     const [error, setError] = useState(null)
+    const [payByWallet, setPayByWallet] = useState(false)
+
 
 
     const handleSubmit = async (e) => {
@@ -50,11 +52,29 @@ export default function CheckoutForm(props){
         //test course ="637e73821194304d45a2fe5a"
       }
     
-      const enroll = async () => {
+    const enroll = async () => {
         //call enroll in backend
         await axios.post("http://localhost:9000/individualTrainee/enroll",{amount: props.Price, course: props.CourseId})
-    
-      }
+    }
+
+    const checkPay = async () => {
+        if(payByWallet){
+            payWallet()
+        }
+    }
+
+    const payWallet= async () => {
+        try{
+           await axios.post("http://localhost:9000/individualTrainee/payByWallet",{amount: parseFloat(props.Price)})
+           payInst()
+           enroll()
+           window.alert('Successfully Enrolled')
+       }catch(error){
+           window.alert(error.response.data)
+       }
+
+   }
+
 
 
 
@@ -62,13 +82,26 @@ export default function CheckoutForm(props){
         <div class='checkout_div'>
         <label class='payment_title'>Paying for Course {props.Title} with amount {props.Price}</label>
 
-        <br/>
-        <form style={{'padding-top': '10px', 'margin-top': '30px'}} onSubmit={handleSubmit}>
-            <PaymentElement/>
-            {/* <PaymentMethodMessagingElement/> */}
-            <button class="payment_buybtn" type='submit' disabled={processing}> {status} </button> {/*currency*/}
+        {props.Wallet && 
+            <div>
+                <input type="radio" value='wallet' checked={payByWallet} onChange={()=> setPayByWallet(true)}></input>
+                <label>Pay by wallet</label>
+                <input type="radio" value='credit' checked={!payByWallet} onChange={()=> setPayByWallet(false)}></input>
+                <label>Pay by credit</label>
 
-        </form>
+                {payByWallet && <button class="payment_buybtn" onClick={checkPay}> Pay </button> }
+            </div>
+        }
+
+
+        { !payByWallet &&
+            <form style={{'padding-top': '10px', 'margin-top': '30px'}} onSubmit={handleSubmit}>
+                <PaymentElement/>
+                {/* <PaymentMethodMessagingElement/> */}
+
+                <button class="payment_buybtn" type='submit' disabled={processing}> {status} </button> {/*currency*/}
+            </form>
+        }
         </div>
     )
 

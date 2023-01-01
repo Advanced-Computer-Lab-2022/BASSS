@@ -176,7 +176,7 @@ const navigate = useNavigate();
             <br></br><br></br>
             <YoutubeEmbed embedId={course.VideoPreviewLink}/>
             <br></br><br></br>
-            <button className='register-now-adham' onClick={() =>navigate('/pay',{state:[course._id, course.Title, course.Price]})}>REGISTER NOW </button>
+            <button className='register-now-adham' onClick={()=> navigate('/pay', {state:[course.Price, course.Title, course._id]})} >REGISTER NOW </button>
             <br></br><br></br>
         </div>
 

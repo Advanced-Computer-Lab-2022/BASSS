@@ -667,5 +667,57 @@ adminR.get("/GetPromotionState/:CourseID",async function(req,res){   //:Status/
   }        
 })
 
+adminR.get("/firstLogin", async (req,res) => {
+  //token name
+  const name = res.locals.user
+
+  const ad = await admin.findOne({UserName: name})
+  if(!ad){
+    return res.status(400).json("User not found")
+  }
+  else{
+    return res.status(200).json(ad.FirstLogin)
+  }
+})
+
+adminR.get("/changeFirstLogin", async (req,res) => {
+  //token name
+  const name = res.locals.user
+
+  const ad = await admin.findOneAndUpdate({UserName: name},{FirstLogin: false})
+  if(!ad){
+    return res.status(400).json("User not found")
+  }
+  else{
+    return res.status(200).json(ad.FirstLogin)
+  }
+})
+
+adminR.post('/changePass', async (req,res) =>{
+  const name = res.locals.user;
+  console.log(name)
+  // const name = 'sarasaad2001'
+  const newPass = req.body.newPass;
+
+  if(!name){
+      return res.status(400).json('You must be logged in')
+  }
+  if(!newPass){
+      return res.status(400).json('You must enter a new password')
+  }
+
+  const u = await user.findOne({UserName: name})
+  const salt = await bcrypt.genSalt();
+  const hashedPassword = await bcrypt.hash(newPass, salt);
+  await user.findOneAndUpdate({UserName: name},{Password: hashedPassword})
+
+  await admin.findOneAndUpdate({UserName: name},{Password: hashedPassword})
+
+  res.status(200).json('Password Changed')
+
+})
+
+
+
 
 module.exports = adminR;

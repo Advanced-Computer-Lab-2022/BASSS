@@ -4,10 +4,17 @@ const mongoose = require('mongoose');
 const instructors = require("../Models/instructorSchema");
 const courses = require("../Models/courseSchema");
 const users = require('../Models/userSchema');
+const bcrypt = require('bcrypt')
+
 var nodemailer = require('nodemailer');
 
 instructorR.get("/getWallet", async function (req,res){
   console.log(res.locals.user)
+})
+
+instructorR.get("/getInstructor", async(req,res)=>{
+  const inst = await instructors.findOne({UserName: "salama"})
+  res.status(200).json(inst)
 })
 
 instructorR.get("/searchmycourses/:searchkey", async function(req,res){
@@ -106,18 +113,21 @@ instructorR.get("/myInfo/second/:mail",function(req,res){
 // })
   
 instructorR.get("/myInfo/third/:oldpass/:pass",async function(req,res){
-    // console.log(req.body)
-    var pass = req.params.pass;
-    var oldpass = req.params.oldpass;
-  
-var oldpass2 =await instructors.findOne({UserName:"salama"})
+  // console.log(req.body)
+  var pass = req.params.pass;
+  const salt = await bcrypt.genSalt();
+  const hashedPassword = await bcrypt.hash(pass, salt);
 
-if(oldpass==oldpass2.Password){
-const result =await instructors.findOneAndUpdate({UserName:"salama"},{Password:pass})
-//res.json(result)
-res.json({message:"updated successfully"})
- } else
- res.json({message:"incorrect password"})
+  var oldpass = req.params.oldpass;
+  
+  var oldpass2 =await instructors.findOne({UserName:"salama"})
+
+  if(oldpass==oldpass2.Password){
+  const result =await instructors.findOneAndUpdate({UserName:"salama"},{Password:hashedPassword})
+  //res.json(result)
+  res.json({message:"updated successfully"})
+  } else
+  res.json({message:"incorrect password"})
 
 })
   
@@ -192,6 +202,70 @@ instructorR.get("/forgetpass/:username/:email", async (req,res) => {
     }
   });
 })
+
+instructorR.get("/vieMylWallet", async (req,res) => {
+  //token name
+  // const name = res.locals.user;
+
+  const inst = await instructors.findOne({UserName: "salama"})
+  if(inst)
+    return res.status(200).json(inst.Wallet)
+  else
+    return res.status(404).json("Not Found")
+})
+
+instructorR.get("/firstLogin", async (req,res) => {
+  //token name
+  //const name = res.locals.user
+  const name = 'sara saad'
+
+  const trainee = await instructors.findOne({Username: name})
+  if(!trainee){
+    return res.status(400).json("User not found")
+  }
+  else{
+    return res.status(200).json(trainee.FirstLogin)
+  }
+})
+
+instructorR.get("/changeFirstLogin", async (req,res) => {
+  //token name
+  //const name = res.locals.user
+  const name = 'sara saad'
+
+  const inst = await instructors.findOneAndUpdate({Username: name},{FirstLogin: false})
+  if(!inst){
+    return res.status(400).json("User not found")
+  }
+  else{
+    return res.status(200).json(inst.FirstLogin)
+  }
+})
+
+instructorR.post('/changePass', async (req,res) =>{
+  // const name = res.locals.user;
+  // console.log(name)
+  // const name = 'sarasaad2001'
+  const newPass = req.body.newPass;
+
+  // if(!name){
+  //     return res.status(400).json('You must be logged in')
+  // }
+  if(!newPass){
+      return res.status(400).json('You must enter a new password')
+  }
+
+  const user = await users.findOne({UserName: "Hazem Khaled Hegazy"})
+  const salt = await bcrypt.genSalt();
+  const hashedPassword = await bcrypt.hash(newPass, salt);
+  const updatedUsers = await users.findOneAndUpdate({UserName: "Hazem Khaled Hegazy"},{Password: hashedPassword})
+
+  const updatedInsts = await instructors.findOneAndUpdate({Username: 'sara saad'},{Password: hashedPassword})
+
+  return res.status(200).json('Password Changed')
+
+})
+
 
 // instructorR.get("/:country",function(req,res){
 //   const country = req.params.country;

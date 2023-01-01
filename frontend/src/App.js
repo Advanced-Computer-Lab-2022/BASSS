@@ -8,6 +8,7 @@ import LoginPage from './Pages/Login/LoginPage';
 import AdminLoginPage from './Pages/Login/AdminLoginPage';
 import Logout from './components/Logout/Logout';
 import Editnewpass from './components/Editnewpass/Editnewpass';
+import TermsPage from './Pages/AfterLogin/TermsPage';
 //t2ryban common?
 import Courses from './components/Courses/Courses.js';
 import AllCourses from './components/Courses/Courses';
@@ -36,6 +37,7 @@ import CourseDetailsInstructor from './components/CourseDetailsInstructor/Course
 import Promotion from './components/Promotion/Promotion';
 import Contract from './components/Contract/Contract';
 import InstructorCourses from './Pages/Instructor/InstructorCourses';
+import InstructorProfile from './components/Profiles/InstructorProfile';
 
 import MostViewd from './components/Courses/MostViewd';
 
@@ -53,6 +55,7 @@ import ExerciseP from './Pages/Exercise/ExerciseP';
 import Payment from './Pages/Payment/Payment';
 import EditnewPass from './components/Editnewpass/Editnewpass';
 import Forgetpass from './components/Forgetpass/Forgetpass';
+import TraineeProfile from './components/Profiles/TraineeProfile';
 
 
 const cookies = new Cookies();
@@ -67,15 +70,14 @@ function App() {
         <Routes>
           {/* common routes */}
           <Route path='/' element = { <Home/> } /> 
-          <Route path='/login' element={
-            (!user)? <LoginPage/> : <Home/>
-          }/>
-          <Route path='/adminlogin' element={
-            (!user)? <AdminLoginPage/> : <Home/>
+          <Route path='/login' element={ <LoginPage/>
+            // (!user)? <LoginPage/> : <Home/>
           }/>
           <Route path='/logout' element={ <Logout/> }/>
           <Route path='/forgotPass' element={ <Forgetpass/> }/>
-
+          <Route path='/acceptTerms' element={ <TermsPage Who={type}/> }/>
+          <Route path='/instProfile' element={ <InstructorProfile/> }/>
+          <Route path='/traineeProfile' element={ <TraineeProfile Who='individualtrainee'/> }/>
           {/* Instructor routes */}
           <Route path='/instructor' element={<Instructor/>
             //   (user)? ((type=='instructor')? <Instructor/> : (type=='corporate trainee')? <CorporateTrainee/> : 

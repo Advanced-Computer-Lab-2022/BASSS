@@ -12,7 +12,8 @@ function Payment(props){
     const [stripePromise, setStripePromise] = useState(null)
     const [clientSecret, setClientSecret] = useState('')
     const [error, setError] = useState(null)
-    const price = parseFloat(props.Price)
+    const [wallet,setWallet] =useState(false)
+    const price = parseFloat(location.state[0])
 
 
     useEffect(async () => {
@@ -26,7 +27,7 @@ function Payment(props){
 
     useEffect(async () => {
         try{
-            await axios.post('http://localhost:9000/individualTrainee/paymentIntent', {currency: 'usd', amount: location.state[2]*100}).then(
+            await axios.post('http://localhost:9000/individualTrainee/paymentIntent', {currency: 'usd', amount: price*100}).then(
                 (res) => {
                     setClientSecret(res.data.clientSecret)
                 }
@@ -34,7 +35,21 @@ function Payment(props){
         }catch(error){
             setError(error.response.data)
         }
-    }, [])        
+    }, [])   
+    
+    useEffect(async () => {
+        try{
+            await axios.get("http://localhost:9000/individualTrainee/viewWallet").then(
+                (res) => {
+                    if(res.data >= price){
+                        setWallet(true)
+                    }
+                }
+            )
+        }catch(error){
+            setError(error.response.data)
+        }
+    }, [])   
 
 
     return(
@@ -53,10 +68,10 @@ function Payment(props){
         <label class="payment_toright payment_input">123</label>
 
         </div>
-
+        
         {stripePromise && clientSecret &&
             <Elements stripe={stripePromise} options={{clientSecret}}>
-                <CheckoutForm CourseId={location.state[0]} Title={location.state[1]} Price={location.state[2]}/>
+                <CheckoutForm Wallet ={wallet} CourseId={location.state[2]} Title={location.state[1]} Price={price}/>
             </Elements>
         }
         {error && <label className='payment_error'>{error} </label>}

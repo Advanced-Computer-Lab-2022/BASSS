@@ -4,7 +4,10 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken');
 
 const users = require('../Models/userSchema')
-const courses = require('../Models/courseSchema')
+const courses = require('../Models/courseSchema');
+const instructors = require('../Models/instructorSchema');
+const corporatetrainees = require('../Models/corporateTraineeSchema');
+const admins = require('../Models/adminSchema');
 
 const maxAge = 1 * 24 * 60 * 60; //1 day
 
@@ -56,44 +59,13 @@ const login =  async (req, res) => {
                 return res.status(400).json('Incorrect Password')
             }
             const token = createToken(user.UserName, user.Type);
+
             res.cookie('token', token, { httpOnly: true, maxAge: maxAge * 1000 });
             res.status(200).json({token: token, type: user.Type.toLowerCase()})
         });
     } catch (error) {
         res.json({error: error.message})
     }
-}
-
-const adminLogin = async (req, res) => {
-    const {username,pass} = req.body;
-    if(!username) {
-        return res.status(400).json('Username Required')
-    }
-    if(!pass){
-        return res.status(400).json('Password Required')
-    }
-    const user = await users.findOne({UserName:username});
-    if(user){     
-        if(user.Type.toLowerCase() != 'admin'){
-            return res.status(400).json('Not an Admin')
-        }  
-        const hashedpass = user.Password;
-        bcrypt.compare(pass,hashedpass,(err,data)=>{
-            if(err){
-                return res.json({error: "Not Found"})
-            }
-            if(!data){
-                return res.status(400).json('Incorrect Password')
-            }
-            const token = createToken(user.UserName, user.Type);
-            res.cookie('token', token, { httpOnly: true, maxAge: maxAge * 1000 });
-            res.status(200).json({token: token, type: user.Type.toLowerCase()})
-        })
-    }
-    else{
-        return res.status(400).json('Username Not Found')
-    }
-
 }
   
 
@@ -128,4 +100,46 @@ const search = async (req,res) => {
     }
 }
 
-module.exports = { signup, logout, login, adminLogin, search };
+const changePass = async (req,res) => {
+    //token name
+    const name = res.locals.user;
+    console.log(name)
+    // const name = 'sarasaad2001'
+    const newPass = req.body.newPass;
+
+    if(!name){
+        return res.status(400).json('You must be logged in')
+    }
+    if(!newPass){
+        return res.status(400).json('You must enter a new password')
+    }
+
+    const user = await users.findOne({UserName: name})
+    const type = user.Type
+    if(user){
+        const salt = await bcrypt.genSalt();
+        const hashedPassword = await bcrypt.hash(newPass, salt);
+        await users.findOneAndUpdate({UserName: name},{Password: hashedPassword})
+
+        if(type == 'instructor'){
+            await instructors.findOneAndUpdate({UserName: name},{Password: hashedPassword})
+        }
+        else{
+            if(type == 'corporateTrainee'){
+                await corporatetrainees.findOneAndUpdate({UserName: 'sarasaad2001'},{Password: hashedPassword})
+            }
+            else{
+                await admins.findOneAndUpdate({UserName: name},{Password: hashedPassword})
+            }
+        }
+
+        return res.status(200).json('Password Changed')
+    }
+    else{
+        return res.status(400).json('User Not Found')
+    }
+
+
+}
+
+module.exports = { signup, logout, login, search, changePass };

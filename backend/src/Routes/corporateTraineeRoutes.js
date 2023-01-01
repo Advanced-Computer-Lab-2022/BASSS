@@ -5,6 +5,9 @@ const corporateTrainees = require("../Models/corporateTraineeSchema");
 const courses = require("../Models/courseSchema");
 const subtitles = require("../Models/subtitleSchema");
 const exercises = require("../Models/exerciseSchema");
+const users = require('../Models/userSchema');
+const bcrypt = require('bcrypt')
+
 var nodemailer = require('nodemailer');
 
 corporateTraineeR.get("/",(req, res) => {
@@ -99,7 +102,6 @@ corporateTraineeR.get("/CorporateCourses/:username",async(req, res) => {
     const username = req.params.username;
     const trainee = await corporateTrainees.find({Username:username})
     const courseID = trainee[0].courses
-    console.log('CourseID sara')
     //console.log(courseID[0].Exercises)
     var list = []
     for (let i = 0; i < courseID.length; i++) {
@@ -188,6 +190,68 @@ corporateTraineeR.get("/updateprogresscorp/:username/:couID" , async(req,res)=>{
 //  console.log(newarr)
 res.json(newarr)
 })
+
+corporateTraineeR.get("/firstLogin", async (req,res) => {
+  //token name
+  //const name = req.locals.user
+  const name = 'sarasaad2001'
+
+  const trainee = await corporateTrainees.findOne({UserName: name})
+  if(!trainee){
+    return res.status(400).json("User not found")
+  }
+  else{
+    return res.status(200).json(trainee.FirstLogin)
+  }
+})
+
+corporateTraineeR.get("/changeFirstLogin", async (req,res) => {
+  //token name
+  //const name = req.locals.user
+  const name = 'sarasaad2001'
+
+  const trainee = await corporateTrainees.findOneAndUpdate({UserName: name},{FirstLogin: false})
+  if(!trainee){
+    return res.status(400).json("User not found")
+  }
+  else{
+    return res.status(200).json(trainee.FirstLogin)
+  }
+})
+
+corporateTraineeR.get("/getCorporate",async(req, res) => {
+  //token name
+  // const name = res.locals.user;
+
+  const result =await corporateTrainees.findOne({UserName:"sarasaad2001"})
+   res.json(result)
+});
+
+corporateTraineeR.post('/changePass', async (req,res) =>{
+  //token name
+  // const name = res.locals.user;
+  // console.log(name)
+  // const name = 'sarasaad2001'
+  const newPass = req.body.newPass;
+
+  // if(!name){
+  //     return res.status(400).json('You must be logged in')
+  // }
+  if(!newPass){
+      return res.status(400).json('You must enter a new password')
+  }
+
+  const user = await users.findOne({UserName: "Hazem zeft Hegazy"})
+  const salt = await bcrypt.genSalt();
+  const hashedPassword = await bcrypt.hash(newPass, salt);
+  const updateUsers= await users.findOneAndUpdate({UserName: "Hazem zeft Hegazy"},{Password: hashedPassword},{upsert:true})
+
+  const updateTrainees = await corporateTrainees.findOneAndUpdate({UserName: "sarasaad2001"},{Password: hashedPassword},{upsert:true})
+
+  return res.status(200).json('Password Changed')
+
+})
+
 
 
 corporateTraineeR.get("/:country",function(req,res){

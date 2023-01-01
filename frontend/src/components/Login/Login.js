@@ -9,6 +9,7 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [passwordShown, setPasswordShown] = useState(false);
     const [error,setError] = useState(null)
+    const [firstLogin, setFirstLogin] = useState(false)
     var type = ''
 
     const togglePassword = () => {
@@ -43,17 +44,80 @@ const Login = () => {
             setError(error.response.data)
         }
     }
+
+    const changeFirstLoginCorporate = async() => {
+        await axios.get("http://localhost:9000/corporateTrainee/changeFirstLogin")
+    }
+
+    const changeFirstLoginInst= async() => {
+        await axios.get("http://localhost:9000/instructor/changeFirstLogin")
+    }
+
+    const changeFirstLoginAdmin= async() => {
+        await axios.get("http://localhost:9000/admin/changeFirstLogin")
+    }
+
+
     const navigate = useNavigate();
-    const location = () => {
-        switch(type){
+    const location = async () => {
+        switch(type.toLowerCase()){
             case "individualtrainee":
                 navigate("/IndividualTrainee")
                 break;
-            case "corporatetrainee": 
-                navigate("/CorporateTrainee")
+            case "corporatetrainee":
+                try {
+                    await axios.get("http://localhost:9000/corporateTrainee/firstLogin").then(
+                        (res) => {
+                            if(res.data){
+                                changeFirstLoginCorporate()
+                                navigate('/acceptTerms')
+                            }
+                            else{
+                                navigate('/corporateTrainee')
+                            }
+                        }
+                    )
+                    
+                } catch (error) {
+                   setError(error.response.data) 
+                }
                 break;
             case "instructor":
-                navigate("/instructor")
+                try {
+                    await axios.get("http://localhost:9000/instructor/firstLogin").then(
+                        (res) => {
+                            if(res.data){
+                                changeFirstLoginInst()
+                                navigate('/acceptTerms')
+                            }
+                            else{
+                                navigate('/instructor')
+                            }
+                        }
+                    )
+                    
+                } catch (error) {
+                   setError(error.response.data) 
+                }
+                break;
+            case "admin":
+                try {
+                    await axios.get("http://localhost:9000/admin/firstLogin").then(
+                        (res) => {
+                            if(res.data){
+                                changeFirstLoginAdmin()
+                                navigate('/acceptTerms')
+                            }
+                            else{
+                                navigate('/admin')
+                            }
+                        }
+                    )
+                    
+                } catch (error) {
+                   setError(error.response.data) 
+                }
+
                 break;
         }
     }
@@ -84,9 +148,6 @@ const Login = () => {
                 <label className='soha_signup'>Don't Have an account? </label>
                 <a className='soha_forgot_password' href='/signup'>Sign Up Instead</a>
                 <br/><br/>
-                <label className='soha_signup'>Are you an Admin? </label>
-                <a className='soha_forgot_password' href='/adminlogin'>Sign in as an Admin</a>
-
 
             </form>
         </div>

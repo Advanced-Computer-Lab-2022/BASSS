@@ -16,7 +16,7 @@ const nodemailer = require('nodemailer');
 const cors = require('cors');
 
 const { requireAuth } = require('./Authenticator/authenticator');
-const {login, adminLogin, signup, logout, search}= require('./Routes/commonRoutes')
+const {login, signup, logout, search, changePass}= require('./Routes/commonRoutes')
 
 const app = express();
 
@@ -42,13 +42,13 @@ app.engine('ejs', require('ejs').renderFile);
 app.post('/signup', signup);
 app.post('/login', login)
 app.get('/logout',requireAuth, logout);
-app.post('/adminLogin', adminLogin)
 app.get('/search/:searchkey', search)
+// app.post('/changePass',requireAuth, changePass) //requireAuth
 
 //using authorization first
 app.use('/instructor',instructorR)
 app.use('/individualTrainee', individualTraineeR)
-app.use('/corporateTrainee',requireAuth, corporateTraineeR)
+app.use('/corporateTrainee', corporateTraineeR)
 app.use('/admin', adminR)
 
 //common??

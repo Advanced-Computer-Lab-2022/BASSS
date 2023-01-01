@@ -216,14 +216,31 @@ individualTraineeR.get("/individualCourses/:username",async(req, res) => {
 });
 
 individualTraineeR.get("/viewWallet", async(req,res) => {
-  const name = res.locals.user;
+  //token name
+  // const name = res.locals.user;
 
-  const trainee = await individualTrainees.findOne({UserName: name})
+  const trainee = await individualTrainees.findOne({UserName: 'adham123'})
   if(trainee){
     res.status(200).json(trainee.Wallet)
   }
   else{
     res.status(400).json('User not Found')
+  }
+})
+
+
+individualTraineeR.post("/payByWallet", async(req,res) => {
+  //token name
+  // const name = res.locals.user;
+  const amount = req.body.amount
+  const trainee = await individualTrainees.findOne({UserName:'adham123'})
+  if(trainee){
+    var newWallet = trainee.Wallet - amount
+    await individualTrainees.findOneAndUpdate({UserName:'adham123'}, {Wallet: newWallet})
+    return res.status(200)
+  }
+  else{
+    return res.status(404).json('Not Found')
   }
 })
 
@@ -237,7 +254,7 @@ individualTraineeR.post("/payInst", async(req,res) => {
 
   const inst = await instructors.findOne({UserName: userName})
   
-  const addedAmount = amount*0.9 + inst.Wallet //10% goes to website
+  const addedAmount = amount*0.8 + inst.Wallet //20% goes to website
   await instructors.findOneAndUpdate({UserName:userName},{Wallet:addedAmount})
   return res.status(200)
 })
@@ -283,5 +300,14 @@ individualTraineeR.post("/paymentIntent", async(req,res) => {
 
 
 })
+
+individualTraineeR.get("/getIndividual",async(req, res) => {
+  //token name
+  // const name = res.locals.user;
+
+  const result =await individualTrainees.findOne({UserName:"adham123"})
+   res.json(result)
+});
+
 
 module.exports = individualTraineeR;

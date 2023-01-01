@@ -24,7 +24,10 @@ const adminSchema = new Schema({
     RefundRequests: {
         type: [String],
     },
-
+    FirstLogin:{
+        type: Boolean,
+        default: true
+    }
 
 
 }, { timestamps: true });
