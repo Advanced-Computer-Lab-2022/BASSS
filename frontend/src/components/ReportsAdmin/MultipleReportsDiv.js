@@ -9,28 +9,33 @@ const MultipleReportsDiv = (props) => {
     var usersDiv = [];
 
     for (let i = 0; i < Reports.length; i++) {
-      if(Reports[i].Status === 'Unseen'){
-        var temp = (
-                  <div>
-                      <br></br>
-                      {<ReportDetailsDiv ReportID = {Reports[i]._id}/>}
-                      <br></br>
-                  </div>);
-          usersDiv.push(temp);
+      if(Reports[i].Type === props.Type){
+        if(Reports[i].Status === 'Unseen'){
+          var temp = (
+                    <div>
+                        <br></br>
+                        {<ReportDetailsDiv ReportID = {Reports[i]._id}/>}
+                        <br></br>
+                    </div>);
+            usersDiv.push(temp);
+        }
       }
     }  
 
     for (let i = 0; i < Reports.length; i++) {
-        if(Reports[i].Status !== 'Unseen'){
-            var temp = (
-                  <div>
-                      <br></br>
-                      {<ReportDetailsDiv ReportID = {Reports[i]._id}/>}
-                      <br></br>
-                  </div>);
-          usersDiv.push(temp);
+      if(Reports[i].Type === props.Type){
+          if(Reports[i].Status !== 'Unseen'){
+              var temp = (
+                    <div>
+                        <br></br>
+                        {<ReportDetailsDiv ReportID = {Reports[i]._id}/>}
+                        <br></br>
+                    </div>);
+            usersDiv.push(temp);
+        }
       }
     }  
+    
 
     return (
         <div>

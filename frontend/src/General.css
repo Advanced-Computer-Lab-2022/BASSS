@@ -69,6 +69,49 @@ font-weight: 600;
     font-weight: 600;
 }
 
+/*////   Accept & Reject   ////*/
+
+.General_OneReportDetailsAccept_btn{
+    background-color: transparent;
+    color: #fff;
+    margin-left: 6%;
+    margin-top: 1%;
+    padding: 15px 15px;
+    border: 2px solid white;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 10px;
+    width: 150px;
+    cursor: pointer;
+    font-weight: 600;
+    }
+    .General_OneReportDetailsAccept_btn:hover{
+    background-color: rgba(5, 165, 69, 0.655);
+    color: white;
+    font-weight: 600;
+    }
+    
+    .General_OneReportDetailsReject_btn{
+      background-color: transparent;
+      color: #fff;
+      margin-left: 6%;
+      margin-top: 1%;
+      padding: 15px 15px;
+      border: 2px solid white;
+      text-align: center;
+      font-size: 20px;
+      border-radius: 10px;
+      width: 150px;
+      cursor: pointer;
+      font-weight: 600;
+      }
+      .General_OneReportDetailsReject_btn:hover{
+      background-color: rgba(208, 36, 36, 0.712);
+      color: white;
+      font-weight: 600;
+      }
+
+
 /*/////////////////////////Header with Label and Value (Label: value)/////////////////////////*/
 
 .General_HeaderWithLabels_Div{

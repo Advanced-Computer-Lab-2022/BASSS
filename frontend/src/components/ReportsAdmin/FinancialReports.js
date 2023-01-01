@@ -60,12 +60,12 @@ const FinancialReports = (props) =>{
                     <br></br>
                     <div className='Admin_FinancialReports_Div_Header'>
                         <br></br>
-                        <h1 className='h1_Admin_FinancialReports_Header'>All Courses</h1>
+                        <h1 className='h1_Admin_FinancialReports_Header'>Financial Reports</h1>
                         <br></br>
                     </div>
                         <br></br>
                     <div className='Admin_FinancialReports_InnerDiv'>
-                        <MultipleReportsDiv Reports = {props.Reports}/>
+                        <MultipleReportsDiv Reports = {props.Reports} Type = 'Financial'/>
                     </div>
                 </div>
 

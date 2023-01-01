@@ -46,7 +46,7 @@ const OtherReports = (props) =>{
 
 
     return  <div className='Admin_AllReports_InnerDiv'>
-    <MultipleReportsDiv  Reports = {props.Reports}/>
+    <MultipleReportsDiv  Reports = {props.Reports} Type = 'Other'/>
 </div>
 
 }

@@ -22,7 +22,7 @@ const ReportSchema = new Schema({
         default:'Unseen'
     },
 
-    Type:{
+    Type:{               // Technical , Financial , Other
         type:String,
         required:true
     },

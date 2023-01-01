@@ -135,4 +135,3 @@ export default function CoursesAdmin(){
         </div>
     </div>
 }
-//AllCoursesArrayProp={AllCoursesArray}
