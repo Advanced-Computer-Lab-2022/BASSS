@@ -167,7 +167,7 @@ instructorR.get("/forgetpass/:username/:email", async (req,res) => {
   
   
   const user = await users.findOne({UserName: username})
-  const type = user.Type
+  //const type = user.Type
   
   var transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -181,7 +181,7 @@ instructorR.get("/forgetpass/:username/:email", async (req,res) => {
     from: 'acltest321@gmail.com',
     to: email,
     subject: 'Sending Email using Node.js',
-    text: 'To reset your password please click here , http://localhost:3000/' +type+ '/forgetpass'
+    text: 'To reset your password please click here , http://localhost:3000/instructor/forgetpass'
   };
   
   transporter.sendMail(mailOptions, function(error, info){

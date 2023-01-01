@@ -25,7 +25,7 @@ const { useState, useEffect } = require("react");
 const type= props.Type
    
     const forget =  async () => {
-        await axios.get(`http://localhost:9000/instructor/forgetpass/${choice}/${choice2}`).then(
+        await axios.get(`http://localhost:9000/individualtrainee/forgetpass/${choice}/${choice2}`).then(
             (res) => { 
                 alert('check your mail')
             }

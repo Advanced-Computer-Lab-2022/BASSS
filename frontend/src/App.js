@@ -53,6 +53,7 @@ import ExerciseP from './Pages/Exercise/ExerciseP';
 import Payment from './Pages/Payment/Payment';
 import EditnewPass from './components/Editnewpass/Editnewpass';
 import Forgetpass from './components/Forgetpass/Forgetpass';
+import Downloadcert from './components/Downloadcert/Downloadcert';
 
 
 const cookies = new Cookies();
@@ -75,6 +76,7 @@ function App() {
           }/>
           <Route path='/logout' element={ <Logout/> }/>
           <Route path='/forgotPass' element={ <Forgetpass/> }/>
+          <Route path='/dowloadcertificate' element={ <Downloadcert/> }/>
 
           {/* Instructor routes */}
           <Route path='/instructor' element={<Instructor/>
