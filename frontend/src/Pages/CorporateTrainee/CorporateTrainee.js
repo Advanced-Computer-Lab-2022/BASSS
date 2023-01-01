@@ -12,29 +12,29 @@ function CorporateTrainee(){
         <>
         {/* <CorporateTraineeNavBar/> */}
         <div className='CorporateTrainee-body'>
-        {/* <NavBar  FirstLinkText='Home' SecondLinkText='My Courses' ThirdLinkText='View Courses' FourthLinkText=''  
-        ButtonLinkText='Logout' 
-        LogoLinkTo='/Instructor' FirstLinkTo='/CorporateTrainee' SecondLinkTo='/CorporateTrainee/MyCourses' ThirdLinkTo='/Courses' FourthLinkTo='' 
-        ButtonLinkTo='/'/> */}
-        <Search Type='corporate'/>
-        <Link to ="/CorporateTrainee/SelectCountry">
+
+        {/* <Search Type='corporate'/> */}
+
+        {/* <Link to ="/CorporateTrainee/SelectCountry">
         <button className='instructor_selectcountrybtn'> select your country</button>
-        </Link>
-        <Link to ="/CorporateTrainee/myInfo">
+        </Link> */}
+
+        {/* <Link to ="/CorporateTrainee/myInfo">
         <button> edit my info</button>
-        </Link>
+        </Link> */}
+
         {/* <Forgetpass Type="corporateTrainee"/> */}
         
-        <Link to ="/CorporateTrainee/Allcourses">
+        {/* <Link to ="/CorporateTrainee/Allcourses">
         <button> view All Courses </button>
-        </Link>
+        </Link> */}
         <br></br>
-        <Link to ="/mostViewd">
+        {/* <Link to ="/mostViewd">
         <button> view our most viewd Courses </button>
-        </Link>
-        <Link to ="/corporateTrainee/myReports">
+        </Link> */}
+        {/* <Link to ="/corporateTrainee/myReports">
         <button >View My Reports </button>
-        </Link>
+        </Link> */}
         {/* <CorporateCourses Link="/corporatetrainee/CourseDetails"/> */}
         <CorporateTraineeCourse Link="/corporatetrainee/myCourseDetails"/>
         </div>
