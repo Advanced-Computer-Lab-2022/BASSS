@@ -77,11 +77,10 @@ const TraineeProfile = (props) => {    //individual or corporate
 
     
     return(
-        <div class='profile_body'>
-            {isCorporate && <CorporateTraineeNavBar/>}
-            {!isCorporate && <IndividualTraineeNavBar/>}
-            <div class='container'>
-                <div class='main-body'>
+
+        <div class='Login_bodySara'>
+            {/* <div class='container'> */}
+                {/* <div class='main-body'> */}
                     <div class="profile_card">
                         <div class="profile_card-body">
                             <img width={"30%"} src={profileimg}/>
@@ -168,8 +167,8 @@ const TraineeProfile = (props) => {    //individual or corporate
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    {/* </div> */}
+                {/* </div> */}
             </div>
 
         </div>

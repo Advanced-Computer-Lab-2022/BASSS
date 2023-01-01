@@ -20,12 +20,12 @@ const individualTraineeschema = new Schema({
     Email: {
       type: String,
       required: true,
-      unique: true,
     },
 
     Country: {
         type: String,
         required: true,
+        default: 'United States'
     },
 
     Password: {
@@ -79,7 +79,16 @@ const individualTraineeschema = new Schema({
             CourseID:String,
             Status:String
         }], //[{Course1.ID,Status},{Course2.ID,Status},{Course3.ID,Status},...... ]
+    },
+    Reviews: {
+        type: [{
+            InstructorID:String,
+            Review:String
+        }],
+        required: true,
+        default: []
     }
+
 
 
 }, { timestamps: true });

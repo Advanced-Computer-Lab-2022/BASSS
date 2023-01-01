@@ -14,6 +14,38 @@ const jwt = require('jsonwebtoken');
 
 require('dotenv').config();
 
+adminR.get("/signup/:username/:password/:email/:firstname/:lastname/:gender",async function(req,res){
+    
+  var username = req.params.username;
+  var password = req.params.password;
+  var email = req.params.email;
+  var firstname = req.params.firstname;
+  var lastname = req.params.lastname;
+  var gender = req.params.gender;
+  
+
+  try {
+    const exists = await user.findOne({UserName: username})
+    if(exists){
+        return res.status(400).json({msg:'Username Already Taken'})
+    }
+      const salt = await bcrypt.genSalt();
+      const hashedPassword = await bcrypt.hash(password, salt);
+      const user1 = await user.create({ UserName: username, Password: hashedPassword, Type: "IndividualTrainee" });
+      console.log('user:')
+      console.log(user1)
+      const trainee = await individualTrainees.create({UserName: username, FirstName: firstname, LastName: lastname, Email: email,Password: hashedPassword, Gender: gender})
+      console.log('trainee:')
+      console.log(trainee)
+      return res.status(200).json('Done')
+  } catch (error) {
+    console.log(error)
+      return res.status(400).json({msg: 'User Could not be created, try again later'})
+  }          
+})
+
+
+
 adminR.get("/" , function(req,res){
     res.render("../views/admin.ejs",{message:"",title:"login"});
   });
@@ -59,8 +91,8 @@ adminR.get("/addAdmin/:username/:password",async function(req,res){
     try{
       const salt = await bcrypt.genSalt();
       const hashedPassword = await bcrypt.hash(password, salt);
-      await admin.create({UserName: userName, Password: hashedPassword});
       const users = await user.create({UserName: userName, Password: hashedPassword, Type:'Admin'});
+      await admin.create({UserName: userName, Password: hashedPassword});
       console.log("Done ya bashaaa")
     //  alert('User Added To System')
     return res.status(200).json({msg: "User Added"});
@@ -90,8 +122,8 @@ adminR.get("/addInstructor/:username/:password",async function(req,res){
   try{
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(password, salt);
-    await instructors.create({Username: userName, Password: hashedPassword , Email: userName});
     await user.create({UserName: userName, Password: hashedPassword, Type:'Instructor'});
+    await instructors.create({Username: userName, Password: hashedPassword , Email: userName});
     console.log("Done ya bashaaa")
   return res.status(200).json({msg: "User Added"});
   }
@@ -111,8 +143,8 @@ adminR.get("/addCoTrainee/:username/:password",async function(req,res){
   try{
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(password, salt);
-    await corporateTrainee.create({Username: userName, Password: hashedPassword , Email: userName});
     await user.create({UserName: userName, Password: hashedPassword, Type:'corporateTrainee'});
+    await corporateTrainee.create({Username: userName, Password: hashedPassword , Email: userName});
     console.log("Done ya bashaaa")
   return res.status(200).json({msg: "User Added"});
   }
@@ -145,7 +177,7 @@ adminR.get("/createCoReq/:Reporter/:CourseID",async function(req,res){   //:Stat
         //courseRequests
         const Course1 = await courses.findOne({_id: CourseID })
         const CorporateTrainee = await corporateTrainee.findOne({Username : Reporter});
-        const CoRequest1 = await corporateRequest.findOne({Reporter : Reporter , CourseID : CourseID});
+        const CoRequest1 = await corporateRequest.findOne({Reporter : Reporter , CourseID : CourseID , Status : 'Unseen'});
         const CourseTitle = Course1.Title
         for(let i = 0 ; i < CorporateTrainee.AccessibleCourses.length ; i++){
           if(CourseID == CorporateTrainee.AccessibleCourses[i]){

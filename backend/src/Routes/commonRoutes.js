@@ -2,7 +2,7 @@ const { default: mongoose } = require('mongoose');
 const express = require("express");
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken');
-
+const individualTrainees = require('../Models/individualTraineeSchema');
 const users = require('../Models/userSchema')
 const courses = require('../Models/courseSchema');
 const instructors = require('../Models/instructorSchema');
@@ -17,22 +17,29 @@ const createToken = (username) => {
     });
 };
 
+
+
+
 const signup =  async (req, res) => {
     const { username, password, email, firstname, lastname, gender}= req.body;
-    const exists = await users.findOne({UserName: username})
-    if(exists){
-        return res.status(400).json('Username Already Exists')
-    }
-    try {
+    try {   
+        const exists = await users.findOne({UserName: username})
+        console.log(exists)
+        if(exists){
+            console.log('Taken')
+            return res.json({msg:'Username Already Taken'})
+        }
         const salt = await bcrypt.genSalt();
         const hashedPassword = await bcrypt.hash(password, salt);
         const user = await users.create({ UserName: username, Password: hashedPassword, Type: "IndividualTrainee" });
-        await individualTrainees.create({UserName: username, FirstName: firstname, LastName: lastname, Email: email,Password: hashedPassword, Gender: gender})
-        const token = createToken(user.UserName);
-        res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
-        res.status(200).json({token: token, type: 'individualtrainee'})
+        const trainee = await individualTrainees.create({UserName: username, FirstName: firstname, LastName: lastname, Email: email,Password: hashedPassword, Gender: gender})
+        console.log(user)
+        console.log(trainee)
+        console.log('Done')
+        return res.json({msg:'Done'})
     } catch (error) {
-        res.status(400).json({ error: error.message })
+        console.log(error)
+        return res.json({msg: 'User Could not be created, try again later'})
     }
 }
 

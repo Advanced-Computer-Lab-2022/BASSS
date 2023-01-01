@@ -238,7 +238,7 @@ individualTraineeR.post("/payByWallet", async(req,res) => {
   if(trainee){
     var newWallet = trainee.Wallet - amount
     await individualTrainees.findOneAndUpdate({UserName:'adham123'}, {Wallet: newWallet})
-    return res.status(200)
+    return res.status(200).json('Payed')
   }
   else{
     return res.status(404).json('Not Found')
@@ -251,31 +251,33 @@ individualTraineeR.post("/payInst", async(req,res) => {
   const amount = req.body.amount
 
   const courseInst  = await courses.findOne({_id:course})
-  const userName = courseInst.InstructorUserName
-
-  const inst = await instructors.findOne({UserName: userName})
-  
+  const inst = await instructors.findOne({UserName: courseInst.InstructorUserName})
   const addedAmount = amount*0.8 + inst.Wallet //20% goes to website
-  await instructors.findOneAndUpdate({UserName:userName},{Wallet:addedAmount})
-  return res.status(200)
+  const newInst = await instructors.findOneAndUpdate({UserName:courseInst.InstructorUserName},{Wallet:addedAmount})
+  return res.status(200).json('done')
 })
 
 individualTraineeR.post("/enroll", async(req,res) => {
-  const name = res.locals.user
+  // const name = res.locals.user
   const course = req.body.course
   const amount = req.body.amount
   let date = new Date().toLocaleDateString();
-  console.log(date)
-  const trainee = await individualTrainees.findOne({UserName: name})
-  const addedCourse = trainee.Courses.concat({
-    Course: course,
-    Progress: 0,
-    PayedAmount: amount,
-    DateEnrolled: date
-  }) 
-  
-  await individualTrainees.findOneAndUpdate({UserName: name}, {Courses: addedCourse})
-  return res.status(200)
+  try{
+    
+    const trainee = await individualTrainees.findOne({UserName: "adham123"})
+    const addedCourse = trainee.Courses.concat({
+      Course: course,
+      Progress: 0,
+      PayedAmount: amount,
+      DateEnrolled: date
+    }) 
+    const newT = await individualTrainees.findOneAndUpdate({UserName: "adham123"}, {Courses: addedCourse})
+    return res.status(200).json('enrolled')
+
+  }catch(error){
+    return res.status(400).json(error.message)
+  }
+
 })
 
 individualTraineeR.get("/getKey", (req,res)=>{
@@ -306,8 +308,9 @@ individualTraineeR.get("/getIndividual",async(req, res) => {
   //token name
   // const name = res.locals.user;
 
+
   const result =await individualTrainees.findOne({UserName:"adham123"})
-   res.json(result)
+  return res.json(result)
 });
 
 

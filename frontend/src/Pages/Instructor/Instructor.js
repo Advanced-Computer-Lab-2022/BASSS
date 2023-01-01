@@ -9,45 +9,48 @@ import Search from '../../components/Search/Search';
 import MyCourses from '../../components/MyCourses/MyCourses';
 import InstructorNavBar from './InstructorNavBar/InstructorNavBar';
 import ViewRating from '../../components/ViewRating/ViewRating';
+import { useState } from 'react';
+import InstructorProfile from '../../components/Profiles/InstructorProfile';
+import Login from '../../components/Login/Login';
 
 function Instructor(){
+    const [profile,setProfile] =useState(false);
+
+    const profileHandler = () => {
+        setProfile(!profile)
+    }
     
     return(
         <>
         <div className='Instructor-body'>
-        <InstructorNavBar/>
-        <Search Type='instructor'/>        
-        <br/><br/>
-        <Link to ="/instructor/myInfo">
-        <button> edit my info</button>
-        </Link>
-        
-        
-        <Search Type='instructor'/>
-       
-        {/* <Courses Link="/instructor/courseDetails"/> */}
-        
-        <Link to ="/AllCourses">
-        <button >View AllCourses </button>
-        </Link>
-        <br></br>
-        <Link to ="/mostViewd">
-        <button >View our most popular Courses </button>
-        </Link>
+        <InstructorNavBar setProfile={profileHandler}/>
+        {profile && <InstructorProfile/>}
+        {/* {profile && <InstructorProfile setProfile={profileHandler} />} */}
+        {!profile &&
+            <div>
 
-        {/* <Courses/> */}
-
-        {/* <Link to ="/instructor/promotion">
-        <button className='promotion'> define a promotion</button>
-        </Link> */}
-
-        <Link to ="/instructor/MyCourses">
-            <button>
-                View My Courses</button>
+            <Search Type='instructor'/>        
+            <br/><br/>
+            {/* <Link to ="/instructor/myInfo">
+            <button> edit my info</button>
+            </Link> */}
+                    
+            
+            {/* <Link to ="/AllCourses">
+            <button >View AllCourses </button>
             </Link>
             <br></br>
-
-        {/* <SelectCountry/> */}
+            <Link to ="/mostViewd">
+            <button >View our most popular Courses </button>
+            </Link>
+            <Link to ="/instructor/MyCourses">
+            <button>
+                View My Courses</button>
+            </Link> */}
+            <br></br>
+            </div>
+        
+        }
 
         </div>
         </>

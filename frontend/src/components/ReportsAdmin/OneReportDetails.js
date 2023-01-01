@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../../Pages/Admin/Admin.css'
+import { HeadersDiv } from '../../GeneralCss';
 
 const OneReportDetails = (props) => {
 
@@ -24,18 +25,32 @@ const OneReportDetails = (props) => {
 }
 
 
-  return (
-    <div className='Admin_OneCoReqDetails_Div'>
-      <br></br>
-        <h1 className='Admin_OneCoReqDetails_h1'>Reporter: {props.Report1.Reporter}</h1>
-        <h1 className='Admin_OneCoReqDetails_h1'>Status: {props.Report1.Status}</h1>
-        <h1 className='Admin_OneCoReqDetails_h1'>CourseID: {props.Report1.CourseID}</h1>
-        <h1 className='Admin_OneCoReqDetails_h1'>Course Title: {props.Report1.CourseTitle}</h1>
-        {props.Report1.Status == 'Unseen' &&
-        <div className='Admin_OneCoReqDetails_btn_Div'>
-          <button className='Admin_OneCoReqDetails_btn' onClick={AcceptReqHandler}>Accept</button>
-          <button className='Admin_OneCoReqDetails_btn' onClick={RejecttReqHandler}>Reject</button>
-        </div>}
+  return (<div>
+      {props.Report1.Type === 'Financial' && <div className='Admin_OneReportDetails_Div'>
+        <br></br>
+        <HeadersDiv fontLabel='30' fontValue='28' label='Reporter:' value={props.Report1.Reporter} /> <br></br>
+        <HeadersDiv fontLabel='25' fontValue='22' label='CourseID: ' value={props.Report1.CourseID} /> <br></br>
+        <HeadersDiv fontLabel='25' fontValue='22' label='Course Title:' value={props.Report1.CourseTitle} /> <br></br>
+        <br></br><br></br>
+          {props.Report1.Status !== 'Resolved' &&
+          <div className='Admin_OneFinancialDetails_btn_Div'>
+            <button className='Admin_OneFinancialDetailsAccept_btn' onClick={AcceptReqHandler}>Resolved</button>
+            <br></br>
+            <button className='Admin_OneFinancialDetailsReject_btn' onClick={RejecttReqHandler}>Pending</button>
+          </div>}
+      </div>}
+      {props.Report1.Type !== 'Financial' && <div className='Admin_OneReportDetails_Div'>
+        <br></br>
+        <HeadersDiv fontLabel='35' fontValue='32' label='Reporter:' value={props.Report1.Reporter} /> <br></br>
+        <HeadersDiv fontLabel='25' fontValue='22' label='CourseID: ' value={props.Report1.CourseID} /> <br></br>
+        <HeadersDiv fontLabel='25' fontValue='22' label='Course Title:' value={props.Report1.CourseTitle} /> <br></br>
+          {props.Report1.Status !== 'Resolved' &&
+          <div className='Admin_OneReportDetails_btn_Div'>
+            <button className='Admin_OneReportDetailsAccept_btn' onClick={AcceptReqHandler}>Resolved</button>
+            <br></br>
+            <button className='Admin_OneReportDetailsReject_btn' onClick={RejecttReqHandler}>Pending</button>
+          </div>}
+      </div>}
     </div>
   )
 }

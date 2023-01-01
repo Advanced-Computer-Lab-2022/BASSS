@@ -5,10 +5,9 @@ import './App.css';
 /*COMMON IMPORTS */
 import Home from './Pages/Guest/Home'
 import LoginPage from './Pages/Login/LoginPage';
-import AdminLoginPage from './Pages/Login/AdminLoginPage';
 import Logout from './components/Logout/Logout';
 import Editnewpass from './components/Editnewpass/Editnewpass';
-import TermsPage from './Pages/AfterLogin/TermsPage';
+import FirstLogin from './components/Login/FirstLogin';
 //t2ryban common?
 import Courses from './components/Courses/Courses.js';
 import AllCourses from './components/Courses/Courses';
@@ -57,6 +56,9 @@ import EditnewPass from './components/Editnewpass/Editnewpass';
 import Forgetpass from './components/Forgetpass/Forgetpass';
 import TraineeProfile from './components/Profiles/TraineeProfile';
 
+import Sara from './sara'
+import PrivacyPolicy from './Pages/SignUp/PrivaryPolicy';
+
 
 const cookies = new Cookies();
 const user = cookies.get('token')
@@ -69,15 +71,19 @@ function App() {
       <BrowserRouter>
         <Routes>
           {/* common routes */}
+          <Route path='/sara' element = { <Sara/> } /> 
+
           <Route path='/' element = { <Home/> } /> 
           <Route path='/login' element={ <LoginPage/>
             // (!user)? <LoginPage/> : <Home/>
           }/>
           <Route path='/logout' element={ <Logout/> }/>
           <Route path='/forgotPass' element={ <Forgetpass/> }/>
-          <Route path='/acceptTerms' element={ <TermsPage Who={type}/> }/>
+          <Route path='/firstLogin' element={ <FirstLogin Who={type}/> }/>
           <Route path='/instProfile' element={ <InstructorProfile/> }/>
           <Route path='/traineeProfile' element={ <TraineeProfile Who='individualtrainee'/> }/>
+          <Route path='/PrivacyPolicy' element={ <PrivacyPolicy/> }/>
+
           {/* Instructor routes */}
           <Route path='/instructor' element={<Instructor/>
             //   (user)? ((type=='instructor')? <Instructor/> : (type=='corporate trainee')? <CorporateTrainee/> : 

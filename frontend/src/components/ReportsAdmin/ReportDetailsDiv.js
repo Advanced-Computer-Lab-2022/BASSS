@@ -55,19 +55,22 @@ const ReportDetailsDiv = (props) =>{
 
 
     return <div>
-        {!Clicked &&<div className='Admin_OneReport_Div' onClick={ClickedDivs} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+        {!Clicked && Report.Status === 'Unseen' && <div className='Admin_OneReport_Div_Unseen'  onClick={ClickedDivs} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
             <h1 className='CourseDetailsAdmin_h1'>Status: {Report.Status}</h1>
-            <h1 className='CourseDetailsAdmin_h1'>CourseID: {Report.CourseID}</h1>
+            <h1 className='CourseDetailsAdmin_h1'>Course Title: {Report.CourseTitle}</h1>
+            {isHovering && <OneReportDetails ReportID = {props.ReportID} Report1 = {Report}/>}
+        </div>}
+
+        {!Clicked && Report.Status !== 'Unseen' &&<div className='Admin_OneReport_Div' onClick={ClickedDivs} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+            <h1 className='CourseDetailsAdmin_h1'>Status: {Report.Status}</h1>
             <h1 className='CourseDetailsAdmin_h1'>Course Title: {Report.CourseTitle}</h1>
             {isHovering && <OneReportDetails ReportID = {props.ReportID} Report1 = {Report}/>}
         </div>}
 
         {Clicked &&<div className='Admin_OneReport_Div_Clicked' onClick={UnClickedDivs}  onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
             <h1 className='CourseDetailsAdmin_h1'>Status: {Report.Status}</h1>
-            <h1 className='CourseDetailsAdmin_h1'>CourseID: {Report.CourseID}</h1>
             <h1 className='CourseDetailsAdmin_h1'>Course Title: {Report.CourseTitle}</h1>
             {isHovering && <OneReportDetails ReportID = {props.ReportID} Report1 = {Report}/>}
-            
         </div>}
     </div>
 }

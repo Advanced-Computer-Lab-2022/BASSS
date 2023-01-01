@@ -11,13 +11,22 @@ import axios from 'axios';
 import Forgetpass from '../../components/Forgetpass/Forgetpass';
 import Downloadcert from '../../components/Downloadcert/Downloadcert';
 import Writenotes from '../../components/Writenotes/Writenotes';
+import TraineeProfile from '../../components/Profiles/TraineeProfile';
 
 function IndividualTrainee(){
+    const [profile,setProfile] = useState(false);
+
+    const profileHandler = () => {
+        setProfile(!profile)
+    }
 
     return(
         <>
-        <IndividualTraineeNavBar/>
         <div className='IndividualTrainee-body'>
+        <IndividualTraineeNavBar setProfile={profileHandler}/>
+        {profile && <TraineeProfile Who='individualtrainee'/>}
+        {!profile && 
+        <div>
         <Search Type='indvidual'/>
         <Link to ="/IndividualTrainee/myInfo">
         <button> edit my info</button>
@@ -49,7 +58,8 @@ function IndividualTrainee(){
         
         <IndividualCourses Link = "/individualtrainee/myCourseDetails"/>
         <br></br><br></br><br></br><br></br><br></br><br></br>
-
+        </div>
+}
         </div>
         </>
     )

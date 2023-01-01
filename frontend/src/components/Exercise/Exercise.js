@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState, useEffect} from 'react';
 import './Exercise.css';
+import '../Login/Login.css'
 
 const Exercise = (props) =>{
 
@@ -108,8 +109,8 @@ const Exercise = (props) =>{
     // {getExercise()};
     
     return(
-        <div>
-            {/* {!show && <button class='exercise_showSubmit_btn' onClick={showHandler}>Show Exercise</button>} */}
+            <div class='Login_bodySara'>
+
             <div class='exercise_div'>
                 <label class='exercise_question'>{exercise.Question}?</label>
                 {choices.map((choice) => (
@@ -132,7 +133,7 @@ const Exercise = (props) =>{
                 }
                 {success && showGrade && !showAns && <label class='exercise_success'>Your Grade: {grade}</label>}
             </div>
-        </div>
+            </div>
 
     )
 

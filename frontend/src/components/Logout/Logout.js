@@ -7,27 +7,29 @@ const cookies = new Cookies();
 
 const Logout = () => {
 
-    const [message, setMessage] = useState('');
-    
-    logout()
-
-    const navigate = useNavigate()
     const logout = async () =>{
         await axios.get('http://localhost:9000/logout',{withCredentials: true}).then(
             (res) => {
-                setMessage(res.data.message)
                 cookies.remove('token')
                 cookies.remove(cookies.getAll())
                 localStorage.removeItem('type')
                 localStorage.clear()
-                window.alert('Logged out')
-                navigate('/')
-
             }
         ).catch(error=> {
-            setMessage(error.message)
+            window.alert(error.response.data)
         })
     }
+
+    logout()
+    const navigate = useNavigate()
+    return(
+        <div>
+            {window.alert('Logged out')}
+            {navigate('/')}
+
+        </div>
+
+    )
 }
 
 export default Logout

@@ -69,11 +69,17 @@ const CourseDetilsDivAdmin = (props) =>{
              })
     }
 
+/*Admin_HeaderWithLabels_Div
+.Admin_HeaderWithLabels_Label{
+.Admin_HeaderWithLabels_Value */
 
     return <div>
         {!Clicked &&<div className='Admin_OneCourse_Div' onClick={ClickedDivs} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
             <div className='Admin_OneCourse_Image'></div>
-            <h1 className='CourseDetailsAdmin_h1'>Course Title : {Course.Title}</h1>
+            <div className='Admin_HeaderWithLabels_Div'>
+                <h1 className='Admin_HeaderWithLabels_Label'>Course Title: </h1>
+                <h1 className='Admin_HeaderWithLabels_Value'> {Course.Title}</h1>
+            </div>
             <h1 className='CourseDetailsAdmin_h1'>Course Title : {Course.Subject}</h1>
             <h1 className='CourseDetailsAdmin_h1'>Promotion State : {Course.PromotionState}</h1>
             <h1 className='CourseDetailsAdmin_h1'>Course Views : {Course.Views}</h1>

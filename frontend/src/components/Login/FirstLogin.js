@@ -3,9 +3,9 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import Contract from '../../components/Contract/Contract';
-import '../../components/Login/Login.css';
+import './Login.css';
 
-function TermsPage(props) {
+const FirstLogin = (props) => {
     //props.Type
     const location = useLocation();
     const [newPass,setNewPass] = useState('');
@@ -48,7 +48,7 @@ function TermsPage(props) {
                         (res) => {
                             window.alert(res.data)
                             navigate('/instructor')
-                                }
+                        }
                     )
                 }catch(error){
                     setError(error.response.data)
@@ -70,35 +70,29 @@ function TermsPage(props) {
     }
 
     return(
-        <div>
-
-        <div className="login-box">
+        <div class="login-box">
             <label className='soha_login_h2'>Change Your Password</label>
             <br/>
             <form className='soha_login_form' onSubmit={handleSubmit}>
-
-            <div className="user-box">
-                <input className="soha_login_input" type={passwordShown ? "text" : "password"} onChange={getPassword} value={newPass} required={true}></input>
-                <i class={passwordShown ? "fa fa-eye-slash" : "fa fa-eye"} onClick={togglePassword}></i>
-                <label className='soha_login_label'>New Password</label>
-            </div>
-
-            {props.Who === 'instructor' &&
-            <div>
-                <input type='checkbox' onChange={handleCheck} />
-                <a className='soha_forgot_password' href='instructor/contract'>I hereby accept the website contract</a>
-                <button className='soha_login_a' type='submit' disabled={!checked} onClick={handleSubmit}>Submit</button>
-            </div>
-            }
-            {props.Who != 'instructor' && <button className='soha_login_a'>Submit</button>}
-            {error && <label className='soha_required'>{error} </label>}
-
+                <div className="user-box">
+                    <input className="soha_login_input" type={passwordShown ? "text" : "password"} onChange={getPassword} value={newPass} required={true}></input>
+                    <i class={passwordShown ? "fa fa-eye-slash" : "fa fa-eye"} onClick={togglePassword}></i>
+                    <label className='soha_login_label'>New Password</label>
+                </div>
+                {props.Who === 'instructor' &&
+                    <div>
+                        <input type='checkbox' onChange={handleCheck} />
+                        <a className='soha_forgot_password' href='instructor/contract'>I hereby accept the website contract</a>
+                        <button className='soha_login_a' type='submit' disabled={!checked} onClick={handleSubmit}>Submit</button>
+                    </div>
+                }
+                {props.Who != 'instructor' && <button className='soha_login_a'>Submit</button>}
+                {error && <label className='soha_required'>{error} </label>}
             </form>
-        </div>
-        </div>
+    </div>
 
     )
 
 }
 
-export default TermsPage
+export default FirstLogin

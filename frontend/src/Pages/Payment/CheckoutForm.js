@@ -3,6 +3,7 @@ import axios from 'axios';
 import './Payment.css'
 import { useStripe,useElements } from '@stripe/react-stripe-js';
 import { PaymentElement, CardElement, PaymentMethodMessagingElement} from '@stripe/react-stripe-js';
+import { FaWindows } from 'react-icons/fa';
 
 export default function CheckoutForm(props){
     //props.CourseId , props.Price
@@ -12,7 +13,6 @@ export default function CheckoutForm(props){
     const [status, setStatus] = useState('Pay')
     const [error, setError] = useState(null)
     const [payByWallet, setPayByWallet] = useState(false)
-
 
 
     const handleSubmit = async (e) => {
@@ -38,7 +38,7 @@ export default function CheckoutForm(props){
             setError(error.message)
         }
         setStatus('Payment Completed')
-        setProcessing(true)
+        setProcessing(false)
         enroll()
         payInst()
 
@@ -48,27 +48,48 @@ export default function CheckoutForm(props){
 
     const payInst = async () =>{
         //call payInst in backend
-        await axios.post("http://localhost:9000/individualTrainee/payInst",{amount: props.Price, course: props.CourseId})
+        await axios.post("http://localhost:9000/individualTrainee/payInst",{amount: parseFloat(props.Price), course: props.CourseId})
         //test course ="637e73821194304d45a2fe5a"
       }
     
     const enroll = async () => {
         //call enroll in backend
-        await axios.post("http://localhost:9000/individualTrainee/enroll",{amount: props.Price, course: props.CourseId})
+        window.alert('henaaa')
+        try{
+            await axios.post("http://localhost:9000/individualTrainee/enroll",{amount: parseFloat(props.Price), course: props.CourseId}).then(
+                (res) => {
+                    setStatus('Payment Complete')
+                    window.alert('Successfully Enrolled')    
+                }
+            )
+        }
+        catch(error){
+            window.alert(error.message)
+        }
     }
 
-    const checkPay = async () => {
+    const checkPay = async (e) => {
+        e.preventDefault()
         if(payByWallet){
-            payWallet()
+            setStatus('Processing...')
+            try{
+               await axios.post("http://localhost:9000/individualTrainee/payByWallet",{amount: parseFloat(props.Price)})
+                payInst()
+                enroll()
+           }catch(error){
+               window.alert(error.response.data)
+           }    
         }
     }
 
     const payWallet= async () => {
+        setStatus('Processing...')
         try{
            await axios.post("http://localhost:9000/individualTrainee/payByWallet",{amount: parseFloat(props.Price)})
-           payInst()
-           enroll()
-           window.alert('Successfully Enrolled')
+            payInst()
+            enroll()
+            setStatus('Payment Complete')
+            window.alert('Successfully Enrolled')
        }catch(error){
            window.alert(error.response.data)
        }
@@ -88,8 +109,8 @@ export default function CheckoutForm(props){
                 <label>Pay by wallet</label>
                 <input type="radio" value='credit' checked={!payByWallet} onChange={()=> setPayByWallet(false)}></input>
                 <label>Pay by credit</label>
+                {payByWallet && <button class="payment_buybtn" onClick={checkPay}> {status} </button> }
 
-                {payByWallet && <button class="payment_buybtn" onClick={checkPay}> Pay </button> }
             </div>
         }
 
@@ -97,9 +118,8 @@ export default function CheckoutForm(props){
         { !payByWallet &&
             <form style={{'padding-top': '10px', 'margin-top': '30px'}} onSubmit={handleSubmit}>
                 <PaymentElement/>
-                {/* <PaymentMethodMessagingElement/> */}
 
-                <button class="payment_buybtn" type='submit' disabled={processing}> {status} </button> {/*currency*/}
+                <button class="payment_buybtn" disabled={processing}> {status} </button> {/*currency*/}
             </form>
         }
         </div>
