@@ -159,7 +159,23 @@ instructorR.get("/updateRate/:name/:newRate",async(req, res) => {
     const result =await instructors.findOneAndUpdate({Username:name},{Rating:{rate:(Number(oldSum)+Number(newRate))/(oldCount+1), count:(oldCount+1), 
     sum:(Number(oldSum)+Number(newRate))}})
     res.json(result)
+    console.log('123')
 });
+
+instructorR.get("/reviewInst/:instName/:Review", async function(req,res){
+
+  var Review = req.params.Review;
+  var instName = req.params.instName;
+
+  var inst = await instructors.findOne({UserName:instName});
+
+  var arr = inst.Reviews.concat(Review);
+
+  const Result = await instructors.findOneAndUpdate({UserName:instName}, {Reviews:arr})
+
+  res.json(Result);
+
+})
 
 instructorR.get("/forgetpass/:username/:email", async (req,res) => {
   const username = req.params.username;
