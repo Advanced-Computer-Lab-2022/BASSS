@@ -1,7 +1,9 @@
 import axios from 'axios';
 import '../Courses/Courses.css';
-import { Link } from 'react-router-dom';
+import Search from '../../components/Search/Search';
 import '../../Pages/Instructor/Instructor.css'
+import InstructorNavBar from '../../Pages/Instructor/InstructorNavBar/InstructorNavBar';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 import Button from '@mui/material/Button';
 import Table from '@mui/material/Table';
@@ -26,7 +28,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 const { useState } = require("react");
 
-const MyCourses = () => { 
+const MyCourses = (props) => { 
     
     
   
@@ -34,7 +36,15 @@ const MyCourses = () => {
   var [choice2,setchoice2] = useState([]);
   const [choice3,setchoice3] = useState([]);
 
-
+    // const getMyCourses=  async () => {
+    //     await axios.get(`http://localhost:9000/course/bassel`).then(
+    //         (res) => { 
+    //             const myCourses = res.data
+    //             console.log(myCourses)
+    //             setMyCourses(myCourses) 
+    //         }
+    //          );
+            
   const [filtered,setfiltered] = useState([]);
   const [first,setfirst] = useState(0);
   //const [filteredbyRate,setfilteredbyRate] = useState([]);
@@ -110,14 +120,48 @@ const clickhandler3 = ()=>{
    setfirst(1)
  }
 
+ const navigate = useNavigate();
+
+    // getMyCourses();
+
     return(
-        /* 
-        1. create a button to load the blogs
-        2. map over the blogs and display them
-        */
-
-
         <div className='Instructor-body'>
+            {/* <InstructorNavBar/> */}
+            <Search Type="searchMyCourses"/>
+          {/* <h1>My Courses</h1>
+          <table class="fl-table">
+          <thead>
+              <th> Course Title</th>
+              <th> Total Hours </th>
+              <th> Rating </th>
+              <th> Price </th>
+          </thead>
+          <tbody>
+          {myCourses.map((course) => (
+              <tr 
+                onClick={() => window.location.href= `/instructor/courseDetails?courseId=${course._id}` }
+              >
+                  <td>{course.Title}</td>
+                  <td>{course.TotalHours}</td>
+                  <td>{course.Rating}</td>
+                  <td>{course.Price}</td>
+              </tr>
+          ))}  
+          </tbody>
+          </table>
+ */}
+
+<div> 
+
+    <button onClick={clickhandler1}>submit</button>
+    <input placeholder='subject' onChange={changehandler} value={choice}/>
+
+    </div>
+
+    <div> 
+    <button onClick={clickhandler3}>submit</button>
+    <input placeholder='price' onChange={changehandler3} value={choice3}/>
+    </div>
 
 
 
@@ -148,19 +192,19 @@ const clickhandler3 = ()=>{
 
 <div> 
 
-    <button onClick={clickhandler1}>submit</button>
+    {/* <button onClick={clickhandler1}>submit</button>
     <input placeholder='subject' onChange={changehandler} value={choice}/>
 
     </div>
 
     <div> 
     <button onClick={clickhandler3}>submit</button>
-    <input placeholder='price' onChange={changehandler3} value={choice3}/>
+    <input placeholder='price' onChange={changehandler3} value={choice3}/> */}
     </div>
 
 
 <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+      <Table sx={{ minWidth: 650, position: 'relative' }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
             <StyledTableCell align="center">Title</StyledTableCell>
@@ -184,13 +228,14 @@ const clickhandler3 = ()=>{
                 width: "100%"
                 }
             }}
-            onClick={() => window.location.href="/instructor/MyCourses/CourseDetails"}
+            //onClick={() => window.location.href="/instructor/MyCourses/CourseDetails"}
+            onClick={()=> navigate("/instructor/MyCourses/CourseDetails", {state:[course._id,course.InstructorUserName]})} 
             //   key={author._id}
 
               >
               <TableCell align="center">{course.Title}</TableCell>
               <TableCell align="center">{course.Price}</TableCell>
-              <TableCell align="center">{course.Rating}</TableCell>
+              <TableCell align="center">{course.Rating.rate}</TableCell>
               <TableCell align="center">{course.Reviews}</TableCell>
             </TableRow>
 

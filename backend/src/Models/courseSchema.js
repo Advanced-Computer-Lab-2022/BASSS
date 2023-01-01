@@ -1,8 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-// require('mongoose-currency').loadType(mongoose);
-// var Currency = mongoose.Types.Currency;
+const subtitleSchema = require('./subtitleSchema');
+const subtitlesSchema = require('./subtitleSchema');
 
 const courseSchema = new Schema ({
 
@@ -22,10 +22,18 @@ const courseSchema = new Schema ({
         type: Number,
         required: true,
     },
+
+    PromotedPrice:{
+        type: Number
+    },
+
+    // Ratings:{
+    //     type:[Number]
+    // },
+
     Rating:{
-        type: Number,
-        min: 1,
-        max: 5,
+        type: {rate:Number, count:Number , sum:Number},
+        default: {rate:0, count:0, sum:0} 
     },
     
     InstructorUserName:{
@@ -34,9 +42,8 @@ const courseSchema = new Schema ({
     },
 
     Subtitles:{
-        type: [[String]], //[[Subtitles.Hours , VideoLink, ShortVideoDescription, ExerciseID, %ofCourse ]]
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////
-        required:true
+        type: [mongoose.Schema.Types.ObjectId],
+        ref : 'Subtitle'
     },
 
     Views: {
@@ -52,35 +59,41 @@ const courseSchema = new Schema ({
     Reviews: {
         type: [String]
     },
-
-    
+  
     ShortSummary: {
         type: String,
         required: true
     },
 
-    PromotionPercentage: {
-        type: Number,
-        default: 0
+    PromotionState:{
+        type: String,
+        default: 'Undefined'
     },
 
-    PromotionEndTime: {type: Number, min: 0, max:24},
+    PromotionPercentage: {
+        type: Number, min: 0, max:100,
+        default: 0
+    },
+    PromotionStartTime: {type: Number, min: 0, max:23},
+
+    PromotionEndTime: {type: Number, min: 0, max:23},
     
-    PromotionEndDate: {type: Date},
+    PromotionStartDate: {type: Date},  // Format: YEAR-MONTH-DAY
     
+    PromotionEndDate: {type: Date},  // Format: YEAR-MONTH-DAY
+        
     CertificateTemplate:{
         type: String,
         required: true
     }
 
+
 }, { timestamps: true });
 
 
-
 const course = mongoose.model('course', courseSchema);
+
+ //course.create({Title:"React for react", Subject:"React", TotalHours:10, Price:911, InstructorUserName:"salama", Subtitles:[[]], 
+ //VideoPreviewLink:"video link", ShortSummary:"el basha galkoo", CertificateTemplate:"edeko foo2"})
+
 module.exports = course;
-/*course.create({Title:"managment101" , Subject:"Managment",TotalHours:4, Price:100 ,Rating:4, InstructorUserName:"salama" , Subtitles:["cs101_sub1"],Views:3,
-                VideoPreviewLink: "f" , Reviews:["nice","verygood"],ShortSummary:"ok ok ok",PromotionPercentage:10 , 
-            CertificateTemplate:"cong" , PromotionEndTime: 12 , PromotionEndDate:'12/2/2000'},{upsert:true},function(err,doc){
-    if(err) throw err;
-  });*/

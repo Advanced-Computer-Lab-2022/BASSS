@@ -39,7 +39,7 @@ const individualTraineeschema = new Schema({
     },
 
     CreditCardsInfo: {
-       type: [[String]]
+       type: [{CardNumber:Number , ExpMonth: Number, ExpYear:Number, CVC:Number}]
     },
 
     Wallet: {
@@ -48,12 +48,15 @@ const individualTraineeschema = new Schema({
         required:true
     },
 
-    courses: {
-        type: [[String]], //[[Course1.ID,Progress%],[Course2.ID,Progress%],[Course3.ID,Progress%],...... ]
+    Courses: {
+         //DateEnrolled String for now la7ad manshoof hayeb2a enrolled date ezay fel a3'lab hateb2a Date type//
+        type: [{Course:mongoose.Schema.Types.ObjectId, Progress:Number, PayedAmount:Number, DateEnrolled:String}] 
+        // type: [[String]], //[[Course1.ID,Progress%],[Course2.ID,Progress%],[Course3.ID,Progress%],...... ]
     },
     
     Exercises: {
-        type: [[String]], //[[Ex1.ID,MyAnswer,MyGrade],[Ex2.ID,MyAnswer,MyGrade],[Ex3.ID,MyAnswer,MyGrade],......]
+        type: [{Subtitle: mongoose.Schema.Types.ObjectId, MyAnswer: String, MyGrade:String}]
+        // type: [[String]], //[[Ex1.ID,MyAnswer,MyGrade],[Ex2.ID,MyAnswer,MyGrade],[Ex3.ID,MyAnswer,MyGrade],......]
     },
 
     Certificates: {
@@ -61,19 +64,26 @@ const individualTraineeschema = new Schema({
     },
     
     Notes: {
-        type: [String], //[Note1,Note2,Note3,......]
+        type: [{
+            Note:String,
+            SubtitleID:String
+        }], //[Note1,Note2,Note3,......]
     },
 
     Reports: {
-        type: [[String]], //[[Report1.ID,Type,Status,FollowUp],[Report2.ID,Type,Status,FollowUp],[Report3.ID,Type,Status,FollowUp],......]
+        type: [String], // ReportID
     },
 
     RefundRequests: {
-        type: [[String]], //[[Course1.ID,Status],[Course2.ID,Status],[Course3.ID,Status],...... ]
+        type: [{
+            CourseID:String,
+            Status:String
+        }], //[{Course1.ID,Status},{Course2.ID,Status},{Course3.ID,Status},...... ]
     }
 
 
 }, { timestamps: true });
+
 
 const individualTrainees = mongoose.model('individualTrainees', individualTraineeschema);
 module.exports = individualTrainees;

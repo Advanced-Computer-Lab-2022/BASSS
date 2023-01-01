@@ -1,99 +1,104 @@
-//const { guestSchema,guests } = require("../Models/guestSchema");
 const express = require("express");
 const guestR = express.Router();
 const mongoose = require('mongoose');
 const courses = require("../Models/courseSchema")
-const instructors = require("../Models/instructorSchema")
+const users = require('../Models/userSchema');
+const individualTrainees = require('../Models/individualTraineeSchema')
+// import { requireAuth } from "../Authenticator/authenticator";
+
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
+
+// create json web token
+const maxAge = 3 * 24 * 60 * 60; //3 days
+
+const createToken = (username) => {
+    return jwt.sign({ username },process.env.secret , {
+        expiresIn: maxAge
+    });
+};
+
+guestR.post("/signUp", async (req, res) => {
+    const { username, password, email, firstname, lastname, gender}= req.body;
+    const exists = await users.findOne({UserName: username})
+    if(exists){
+        throw Error('Username already exists')
+    }
+    try {
+        const salt = await bcrypt.genSalt();
+        const hashedPassword = await bcrypt.hash(password, salt);
+        const user = await users.create({ UserName: username, Password: hashedPassword, Type: "Individual Trainee" });
+        await individualTrainees.create({UserName: username, FirstName: firstname, LastName: lastname, Email: email,Password: hashedPassword, Gender: gender})
+        const token = createToken(user.UserName);
+        res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
+        res.status(200).json(user)
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+})
 
 
-guestR.get("/",(req, res) => {
-    res.render("../views/guest.ejs",{title:"guest country"})});
-
-guestR.post("/selectcountry",function(req,res){
-    // console.log(req.body)
-    var country = req.body.country;
-   // var query = guests.find({Name:"sara"})
-        query.exec(function(err,result){
-            if (err) throw err;
-            if(result.length==0){
-                res.render("../views/guest.ejs",{title:"guest country"});
-            }else{
-            //     guests.findOneAndUpdate({Name:"sara"},{Country:country},{upsert:true},function(err,doc){
-            //         if(err) throw err;
-            //       });         
-            //   res.render("../views/guest.ejs",{title:"guest country"});
+guestR.post("/login" , async (req, res) => {
+    const {username, pass}= req.body;
+    
+    if(!username) {
+        throw 'Username Required'
+    }
+    if(!pass){
+        throw 'Password Required'
+    }
+    const user = await users.findOne({UserName:username});
+    if(!user){
+        throw 'Username not found'
+    }
+    try{
+        const hashedpass = user.Password;
+        bcrypt.compare(pass,hashedpass,(err,data)=>{
+            if(err){
+                return res.status(400).json({error: err.message})
             }
-})
-})
-guestR.post("/searchtitle",async function(req,res){
-    var search = req.body.searchtitle
-    var query = await courses.find({});
-    var array = [];
-    for(let i = 0 ; i<query.length ; i++)
-    {
-        if (query[i].Title.toLowerCase().includes(search.toLowerCase()))
-        {
-            array=array.concat([query[i]]);
-        }
+            if(!data){
+                throw 'Incorrect Password'
+            }
+            const token = createToken(user.UserName, user.Type);
+            res.cookie('token', token, { httpOnly: true, maxAge: maxAge * 1000 });
+            res.status(200).json({token: token, type: user.Type})
+            // console.log(res.getHeader('set-cookie').split(';')[0]);           
+        });
+    } catch (error) {
+        res.status(400).json({error: error.message})
     }
-    res.send(array);
 })
 
-guestR.post("/searchsubject",async function(req,res){
-    var search = req.body.searchsubject
-    var query = await courses.find({});
-    var array = [];
-    for(let i = 0 ; i<query.length ; i++)
-    {
-        if (query[i].Subject.toLowerCase().includes(search.toLowerCase()))
-        {
-            array=array.concat([query[i]]);
-        }
-    }
-    res.send(array);
-})
-guestR.post("/searchinstructor",async function(req,res){
-    var search = req.body.searchinstructor
-    var query = await courses.find({});
-    var array = [];
-    for(let i = 0 ; i<query.length ; i++)
-    {
-        if (query[i].Instructor.toLowerCase().includes(search.toLowerCase()))
-        {
-            array=array.concat([query[i]]);
-        }
-    }
-    res.send(array);
+guestR.post("/logout", (req,res) => {
+    return res
+    .clearCookie('token')
+    .status(200)
+    .json({ message: "Successfully logged out" })
 })
 
-// guestR.post("/searchinstructor",async function(req,res){
-//     var search = req.body.searchinstructor
-//     var ins = await instructors.find({});
-//     var array = [];
-//     for(let i = 0 ; i<ins.length ; i++)
-//     {
-//         if (ins[i].username.toLowerCase().includes(search.toLowerCase()))
-//         {
-//             array=array.concat([ins[i]]);
-//         }
-//     }
-//     var cour = await courses.find({});
-//     var array2 = [];
-//     for(let i =0 ; i<array.length ; i++)
-//     {
-//         for(let j =0; j<cour.length ; j++)
-//         {
-//             if(array[i]._id==cour[j].Instructor)
-//             {
-//                 array2 = array2.concat([cour[j]]);
-//             }
-//         }
-//     }
-//     res.send(array2);
-// })
+guestR.get("/search/:searchkey",async function(req,res){
+    console.log('Searching')
+    const key = req.params.searchkey;
+    var array = [];
+    if(key!= null){
+        var query = await courses.find({});
+        for(let i = 0 ; i<query.length ; i++)
+        {
+            var course = query[i];
+            if (course.Title.toLowerCase().includes(key.toLowerCase()) ||
+                course.Subject.toLowerCase().includes(key.toLowerCase()) ||
+                course.InstructorUserName.toLowerCase().includes(key.toLowerCase()))
+            {
+                array=array.concat(course);
+            }
+        }
+        res.status(200).json(array)
+    }
+    else{
+        res.status(404);
+    }
+})
     
-    
-    
-    
-
 module.exports = guestR;

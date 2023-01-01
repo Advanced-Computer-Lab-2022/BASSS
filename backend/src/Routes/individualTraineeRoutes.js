@@ -3,11 +3,20 @@ const individualTraineeR = express.Router();
 const mongoose = require('mongoose');
 const individualTrainees = require("../Models/individualTraineeSchema");
 const courses = require("../Models/courseSchema");
-//import { jsPDF } from "jspdf";
-const jsPDF = require("jspdf")
+// const { default: ErrorMessage } = require("../../../frontend/src/components/ErrorMessage/ErrorMessage");
+const exercises = require('../Models/exerciseSchema')
+const subtitles = require('../Models/subtitleSchema')
+const reports = require('../Models/ReportSchema')
+var nodemailer = require('nodemailer');
+const instructors = require("../Models/instructorSchema");
+require('dotenv').config();
+
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 individualTraineeR.get("/",(req, res) => {
-    res.render("../views/individualTrainee.ejs",{title:"individualTrainee"})});
+    res.render("../views/individualTrainee.ejs",{title:"individualTrainee"})
+});
+
 
 individualTraineeR.post("/selectcountry",function(req,res){
     console.log(req.body)
@@ -25,124 +34,254 @@ individualTraineeR.post("/selectcountry",function(req,res){
             }
 })
 })
-individualTraineeR.get("/myInfo/pass/:pass",function(req,res){
+
+individualTraineeR.get("/myInfo/pass/:pass",async function(req,res){
+  // console.log(req.body)
+var pass = req.params.pass;
+const result =await individualTrainees.findOneAndUpdate({UserName:"adham123"},{Password:pass})
+//res.json(result)
+res.json({message:"updated successfully"})
+
+})
+
+individualTraineeR.get("/myInfo/pass/:oldpass/:pass",async function(req,res){
     // console.log(req.body)
-     var pass = req.params.pass;
-     var query = individualTraineeR.find({Username:"soha"})
-         query.exec(function(err,result){
-             if (err) throw err;
-             if(result.length==0){
-               //  res.render("../views/instructor.ejs",{title:"instructor country"});
-             }else{
-                individualTrainees.findOneAndUpdate({Username:"soha"},{Password:pass},{upsert:true},function(err,doc){
-                     if(err) throw err;
-                   });         
-              // res.render("../views/instructor.ejs",{title:"instructor country"});
-             }
+      var pass = req.params.pass;
+      var oldpass = req.params.oldpass;
+    
+  var oldpass2 =await individualTrainees.findOne({UserName:"adham123"})
+  
+  if(oldpass==oldpass2.Password){
+  const result =await individualTrainees.findOneAndUpdate({UserName:"adham123"},{Password:pass})
+  //res.json(result)
+  res.json({message:"updtaed successfully"})
+   } else
+   res.json({message:"incorrect password"})
+  
  })
- 
- })
-individualTraineeR.post("/searchtitle",async function(req,res){
-    var search = req.body.searchtitle
-    var query = await courses.find({});
-    var array = [];
-    for(let i = 0 ; i<query.length ; i++)
+
+ individualTraineeR.get("/unroll_from_course/:username/:couID",async(req,res)=>{
+   var couID = req.params.couID;
+   var username = req.params.username;
+   var list = [];
+   const trainee =  await individualTrainees.findOne({UserName:username})
+   const x = await courses.findOne({_id:couID});
+   const courseID = trainee.Courses
+   for (let i = 0; i < courseID.length; i++) {
+    if(courseID[i].Course==couID)
     {
-        if (query[i].Title.toLowerCase().includes(search.toLowerCase()))
-        {
-            array=array.concat([query[i]]);
+      if (courseID[i].Progress < 50)
+      {
+        for (let j = 0; j < courseID.length; j++) {
+
+          if(courseID[j].Course!=couID  )
+           {
+            list = list.concat(courseID[j])
+           }    
+         }
+           await individualTrainees.findOneAndUpdate({UserName:username},{Courses:list},{upsert:true})        
         }
+        else{
+          console.log('course progress is not less than 50');
+        }
+      }
+      else{
+        console.log('no such course');
+      }
     }
-    res.send(array);
+    res.json(list);
 })
 
-individualTraineeR.post("/searchsubject",async function(req,res){
-    var search = req.body.searchsubject
-    var query = await courses.find({});
-    var array = [];
-    for(let i = 0 ; i<query.length ; i++)
+
+ individualTraineeR.get("/updateprogressind/:username/:couID" , async(req,res)=>{
+  const username = req.params.username;
+  const couID = req.params.couID;
+  const trainee = await individualTrainees.find({UserName:username})
+  const courseID = trainee[0].Courses
+  var list = []
+  var ratio = 0;
+  var count =0;
+  // const sub = await subtitles.find({Course:couID})
+  const course = await courses.findOne({_id:couID})
+  const sub = course.Subtitles
+
+  for (let i = 0;  i < sub.length; i++) {
+    count++
+  }
+  for (let i =+ 0; i < courseID.length; i++) {
+    // const subb = await subtitles.find({_id:sub[i]})
+    
+    if(courseID[i].Course == couID)
     {
-        if (query[i].Subject.toLowerCase().includes(search.toLowerCase()))
-        {
-            array=array.concat([query[i]]);
-        }
-    }
-    res.send(array);
-})
-
-
-individualTraineeR.post("/searchinstructor",async function(req,res){
-    var search = req.body.searchinstructor
-    var query = await courses.find({});
-    var array = [];
-    for(let i = 0 ; i<query.length ; i++)
-    {
-        if (query[i].Instructorname.toLowerCase().includes(search.toLowerCase()))
-        {
-            array=array.concat([query[i]]);
-        }
-    }
-    res.send(array);
-})
-// individualTraineeR.get("/sendcert",function(req,res){
-//     var doc = new jsPDF ('landscape','px','a4','false')
-//         doc.text(160,100,'certificate of completion ')
-//         doc.text(160,130,'is awarded to: ')
-//         doc.setFont('Helvertica','bold')
-//         doc.text(160,160,'Adham Bassel Salama ')
-//         doc.save('certificate.pdf')
-
-
-
-//     var transporter = nodemailer.createTransport({
-//         service: 'gmail',
-//         auth: {
-//           user: 'acltest321@gmail.com',
-//           pass: 'yzdnccfnpqvmwpgr'
-//         }
-//       });
+      console.log('adham')
+      ratio = (1/count)*100
       
-//       var mailOptions = {
-//         from: 'acltest321@gmail.com',
-//         to: 'basselbassel28@gmail.com',
-//         subject: 'Sending Email using Node.js',
-//         text: 'To reset your password please click here , http://localhost:3000/instructor/forgetpass'
-//       };
+      const prog = (courseID[i].Progress)+ratio;
+      if(prog<=101)
+      {
+        const obj = {'Course':couID , Progress:prog}
+        var newarr = courseID 
+        console.log('SASAS')
+        newarr[i]=obj
+           individualTrainees.findOneAndUpdate({UserName:username},{Courses:newarr},{upsert:true},function(err,doc){
+            if(err) throw err;
+          });         
+      }
+      else{
+        console.log('100%')
+      }
       
-//       transporter.sendMail(mailOptions, function(error, info){
-//         if (error) {
-//           console.log(error);
-//         } else {
-//           console.log('Email sent: ' + info.response);
-//         }
-//       });
+      }
 
-// })
+  }
+ console.log(newarr)
+res.json(newarr)
+})
 
-// individualTraineeR.post("/searchinstructor",async function(req,res){
-//     var search = req.body.searchinstructor
-//     var ins = await instructors.find({});
-//     var array = [];
-//     for(let i = 0 ; i<ins.length ; i++)
-//     {
-//         if (ins[i].username.toLowerCase().includes(search.toLowerCase()))
-//         {
-//             array=array.concat([ins[i]]);
-//         }
-//     }
-//     var cour = await courses.find({});
-//     var array2 = [];
-//     for(let i =0 ; i<array.length ; i++)
-//     {
-//         for(let j =0; j<cour.length ; j++)
-//         {
-//             if(array[i]._id==cour[j].Instructor)
-//             {
-//                 array2 = array2.concat([cour[j]]);
-//             }
-//         }
-//     }
-//     res.send(array2);
-// })
+
+
+
+ individualTraineeR.get("/submitAnswer/:traineeid/:subtitleid/:answer", async(req,res) => {
+    const traineeID = req.params.traineeid;
+    const subid = req.params.subtitleid;
+    const answers = req.params.answer;
+    var grade = 0;
+    const sub = await subtitles.findOne({_id: subid});
+    const e = await exercises.findOne({_id: sub.Exercise});
+
+    if(e.CorrectAnswer == answers){
+        grade = e.MaxGrade;
+    }
+    const ex = {
+        Subtitle: subid,
+        MyAnswer: answers,
+        MyGrade: grade
+    }
+
+    const trainee = await individualTrainees.findOne({_id: traineeID});
+    if(trainee){
+        const arr = trainee.Exercises.concat(ex)
+        const newT = await individualTrainees.findOneAndUpdate({_id: traineeID},{Exercises:arr}, {new:true});
+        res.status(200).json(grade);
+    }
+    else{
+        res.status(400).json({message: "couldn't submit"})
+    }
+    
+});
+
+
+individualTraineeR.get("/forgetpass/:username/:email",function(req,res){
+  const username = req.params.username;
+  const email = req.params.email;
+  var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'acltest321@gmail.com',
+          pass: 'yzdnccfnpqvmwpgr'
+        }
+      });
+      
+      var mailOptions = {
+        from: 'acltest321@gmail.com',
+        to: email,
+        subject: 'Sending Email using Node.js',
+        text: 'To reset your password please click here , http://localhost:3000/individualtrainee/forgetpass'
+      };
+      
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
+
+})
+
+individualTraineeR.get("/individualCourses/:username",async(req, res) => {
+    const username = req.params.username;
+    const trainee = await individualTrainees.find({UserName:username})
+     const courseID = trainee[0].Courses
+    var list = []
+    for (let i = 0; i < courseID.length; i++) {
+      if(courseID[i].Course != null)
+      {
+        const course = await courses.findOne({_id:courseID[i].Course})
+        const progress = courseID[i].Progress
+        list = list.concat([[course,progress]])
+      }
+    }
+  res.json(list)
+});
+
+individualTraineeR.get("/viewWallet", async(req,res) => {
+  const name = res.locals.user;
+
+  const trainee = await individualTrainees.findOne({UserName: name})
+  if(trainee){
+    res.status(200).json(trainee.Wallet)
+  }
+  else{
+    res.status(400).json('User not Found')
+  }
+})
+
+
+individualTraineeR.post("/payInst", async(req,res) => {
+  const course = req.body.course
+  const amount = req.body.amount
+
+  const courseInst  = await courses.findOne({_id:course})
+  const userName = courseInst.InstructorUserName
+
+  const inst = await instructors.findOne({UserName: userName})
+  
+  const addedAmount = amount*0.9 + inst.Wallet //10% goes to website
+  await instructors.findOneAndUpdate({UserName:userName},{Wallet:addedAmount})
+  return res.status(200)
+})
+
+individualTraineeR.post("/enroll", async(req,res) => {
+  const name = res.locals.user
+  const course = req.body.course
+  const amount = req.body.amount
+  let date = new Date().toLocaleDateString();
+  console.log(date)
+  const trainee = await individualTrainees.findOne({UserName: name})
+  const addedCourse = trainee.Courses.concat({
+    Course: course,
+    Progress: 0,
+    PayedAmount: amount,
+    DateEnrolled: date
+  }) 
+  
+  await individualTrainees.findOneAndUpdate({UserName: name}, {Courses: addedCourse})
+  return res.status(200)
+})
+
+individualTraineeR.get("/getKey", (req,res)=>{
+  res.status(200).json({publishableKey: process.env.STRIPE_PUBLIC_KEY})
+})
+
+individualTraineeR.post("/paymentIntent", async(req,res) => {
+  const {currency, amount} = req.body 
+  try{
+    const paymentIntent = await stripe.paymentIntents.create({
+      currency: currency,
+      amount: amount,
+      // automatic_payment_methods:{
+      //   enabled: true,
+      // },
+      payment_method_types: ['card'],
+    })
+
+    return res.status(200).json({clientSecret: paymentIntent.client_secret})
+  }catch(error){
+    return res.status(400).json("Server Error occured please try again later")
+  }
+
+
+})
 
 module.exports = individualTraineeR;

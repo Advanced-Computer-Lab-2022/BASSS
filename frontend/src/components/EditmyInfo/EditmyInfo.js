@@ -7,7 +7,7 @@ function EditmyInfo() {
     const [mini,setmini] = useState([]);
     const [mail,setmail] = useState([]);
     const [pass,setpass] = useState([]);
-
+    const [message,setmessage] = useState('');
 
     const getminibio =  async () => {
         
@@ -31,18 +31,18 @@ function EditmyInfo() {
             }
             const getpassword =  async () => {
         
-                await axios.get(`http://localhost:9000/instructor/myInfo/third/${choice3}`).then(
+                await axios.get(`http://localhost:9000/instructor/myInfo/third/${choice4}/${choice3}`).then(
                     (res) => { 
-                        const password = res.data
+                        const password = res.data.message
                         console.log(password)
-                        setpass(password)
+                        setmessage(password)
                     }
                      );
                 }
     var [choice,setchoice] = useState([]);
     var [choice2,setchoice2] = useState('');
     var [choice3,setchoice3] = useState([]);
-
+    var [choice4,setchoice4] = useState([]);
     const changehandler =  async(e)=>{
         setchoice(e.target.value);
      }
@@ -51,6 +51,9 @@ function EditmyInfo() {
      }
      const changehandler3 =  async(e)=>{
         setchoice3(e.target.value);  
+     }
+     const changehandler4 =  async(e)=>{
+        setchoice4(e.target.value);  
      }
      
      const clickhandler1 = ()=>{
@@ -62,7 +65,7 @@ function EditmyInfo() {
         getemail()
      }
     const clickhandler3 = ()=>{
-        alert('updated')
+       // alert('updated')
         getpassword()
      }
 
@@ -85,7 +88,9 @@ function EditmyInfo() {
 
 <div className='shift3'> 
 <button className='info-btn3' onClick={clickhandler3}>submit</button>
+<input type="password" className='info-textbox3' placeholder='old password' onChange={changehandler4} value={choice4}/>
 <input type="password" className='info-textbox3' placeholder='new password' onChange={changehandler3} value={choice3}/>
+<label>{message}</label>
 </div>
 
 <div className='shift4'> 

@@ -18,15 +18,24 @@
   },
   "homepage": "https://github.com/Advanced-Computer-Lab-2022/BASSS#readme",
   "dependencies": {
+    "axios": "^1.2.0",
+    "bcrypt": "^5.1.0",
     "body-parser": "^1.20.1",
     "cors": "^2.8.5",
     "countries-list": "^2.6.1",
+    "crypto": "^1.0.1",
+    "datatables.net": "^1.13.1",
+    "datatables.net-dt": "^1.13.1",
     "dotenv": "^16.0.3",
     "ejs": "^3.1.8",
     "engine": "^1.0.0",
     "express": "^4.18.2",
-    "jspdf": "^2.5.1",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.7.0",
-    "nodemailer": "^6.8.0"
+    "nodemailer": "^6.8.0",
+    "nodemon": "^2.0.20",
+    "react-cookie": "^4.1.1",
+    "stripe": "^11.5.0",
+    "reactjs-popup": "^2.0.5"
   }
 }

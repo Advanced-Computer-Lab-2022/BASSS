@@ -1,8 +1,7 @@
 import axios from 'axios';
-import './Courses.css';
+import YoutubeEmbed from '../YoutubeEmbed/YoutubeEmbed';
 
-import { Link } from 'react-router-dom';
-
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Table from '@mui/material/Table';
 import Box from '@mui/material/Box';
@@ -26,30 +25,14 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 const { useState } = require("react");
 
-
-
-
-
-
-
-const Courses = (props) => { 
+const CorporateCourses = (props) => { 
 
     const [courses,setCourses] = useState([]);
    // const subj =  document.getElementById(subs).value;
   //var selectElement = document.querySelector('#subs');
   //var output = selectElement.value;
 
-    const getCourses=  async () => {
-        await axios.get(`http://localhost:9000/course`).then(
-            (res) => { 
-                const courses = res.data
-                console.log(courses)
-                setCourses(courses)
-                
-            }
-             );
 
-        }
         
        const subj =  "CS";
       var [choice,setchoice] = useState([]);
@@ -58,9 +41,7 @@ const Courses = (props) => {
 
    
       const [filtered,setfiltered] = useState([]);
-      const [filtered2,setfiltered2] = useState([]);
-      //const [filteredbyRate,setfilteredbyRate] = useState([]);
-      //const [filteredbyPrice,setfilteredbyPrice] = useState([]);
+      const [first,setfirst] = useState(0);
 
       
       
@@ -142,16 +123,16 @@ else {
 
 
       }
-// const getfilteredbyRate=  async () => {
-//     await axios.get(`http://localhost:9000/course/r/${choice2}`).then(
-//         (res) => { 
-//             const filteredbyRate = res.data
-//             console.log(filteredbyRate)
-//             setfiltered(filteredbyRate)
+const getfilteredbyRate=  async () => {
+    await axios.get(`http://localhost:9000/course/r/${choice2}`).then(
+        (res) => { 
+            const filteredbyRate = res.data
+            console.log(filteredbyRate)
+            setfiltered(filteredbyRate)
             
-//         }
-//          );
-// }
+        }
+         );
+}
 
       
              const changehandler =  (e)=>{
@@ -167,74 +148,63 @@ else {
                 setchoice2(e.target.value);
                             
              }
-             const changehandler3 =  (e)=>{
-                //const c = e.target.value;
-                setchoice3(e.target.value);             
-             }
+             const clickhandler1 = ()=>{
+             getfiltered()
+            }
+           const clickhandler2 = ()=>{
+             getfiltered()
+            }
+   
+            if(first==0)
+            {
+              getfiltered();
+              setfirst(1)
+            }
             
+    const navigate = useNavigate();
 
-     getfiltered();
+    //  getfiltered();
    // getCourses();
     //getfilteredbyRate();
     return(
 
-        <div >
+        <div className='CoursesBody-adham'>
             
-            {/* <Link to ="/instructor/MyCourses">
-            <button>
-                View My Courses</button>
-            </Link> */}
-            
-            {/* {courses.map((course) => (
-                <div className='salama_instructor_allcourses' >
-                    <h1 className='salama_instructor_allCourses_title'>Title: {course.Title} </h1>
-                    <h2 className='salama_instructor_allCourses_others'>Total Hours: {course.TotalHours} , Rating: {course.Rating} , Price: {course.Price}</h2>
-                    <br></br>
-                </div>
-            ))} */} 
+            <br></br><br></br>
+<div> 
 
+<button onClick={clickhandler1} className='submitbtn'>submit</button>
+<input placeholder='subject' className='subject' onChange={changehandler} value={choice}/>
 
-   
-    <div> 
-    <label for="subs"> Subject:</label>
-    <select onChange={changehandler}     name="subs" id="subs">
-    <option value="fgfgf"></option>
-    <option value="CS">CS</option>
-  <option value="Managment">Managment</option>
-  <option value="Finance">Finance</option>
-  
-</select>
-
-
-
-
-   {/* <Link to ="/Courses">
-            <button onClick={() => window.location.href=/course?subject=${CS}}
-              key={author._id}>
-                filter</button>
-            </Link>  */}
-
-
-            </div>
-
-            <div> 
-    <label for="subs"> rating:</label>
-    <select onChange={changehandler2}     name="subs" id="subs">
-    <option value="fgfgf"></option>
-    <option value="1">1</option>
-  <option value="2">2</option>
-  <option value="3">3</option>
-  <option value="4">4</option>
-  <option value="5">5</option>
-</select>
 </div>
 
+<div> 
+<button onClick={clickhandler2} className='submitbtn'>submit</button>
+<input placeholder='rating' className='subject' onChange={changehandler2} value={choice2} />
+</div>
+{/* <br></br><br></br> */}
+{filtered.map((course) => (
+        <div className='AllCourses-adham'>
+            <h1 className='h1-adham'>Course Title : {course.Title}</h1>
+            <h1  className='h1-adham'>Course Total Hours : {course.TotalHours}</h1>
+            <h1  className='h1-adham'>Course Price : {course.Price}</h1>
+            <h1  className='h1-adham'>Course Rating : {course.Rating.rate}</h1>
+            <br></br><br></br>
+            <h2 className='h1-adham'>in this Course you will learn : {course.ShortSummary}</h2>
+            <br></br><br></br>
+            <h3 className='h3-adham'>Course video Preview</h3>
+            <br></br><br></br>
+            <YoutubeEmbed embedId={course.VideoPreviewLink}/>
+            <br></br><br></br>
+            <button className='register-now-adham'>REGISTER NOW </button>
+            <br></br><br></br>
+        </div>
 
+      )
+      
+      )}
 
-
-
-            <div> 
-            <TableContainer component={Paper}>
+{/* <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
@@ -257,29 +227,28 @@ else {
                 width: "100%"
                 }
             }}
-             onClick={() => window.location.href=props.Link}
+               onClick={() => navigate( {state:[course._id,course.InstructorUserName]} )}
             //   key={author._id}
 
               >
               <TableCell align="center">{course.Title}</TableCell>
               <TableCell align="center">{course.TotalHours}</TableCell>
-              <TableCell align="center">{course.Rating}</TableCell>
-              
+              <TableCell align="center">{course.Rating.rate}</TableCell>
             </TableRow>
 
 ))}
         </TableBody>
       </Table>
-    </TableContainer>
+    </TableContainer> */}
 
     </div> 
 
 
 
 
-        </div>   
+            
 
     )
 }
 
-export default Courses;
+export default CorporateCourses;

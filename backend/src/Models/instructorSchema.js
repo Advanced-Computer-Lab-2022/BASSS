@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const instructorschema = new Schema({
-  Username: {
+  UserName: {
     type: String,
     required: true,
     unique: true,
@@ -38,12 +38,12 @@ const instructorschema = new Schema({
     type: [[String]], //[[Report1.ID,Type,Status,FollowUp],[Report2.ID,Type,Status,FollowUp],[Report3.ID,Type,Status,FollowUp],......]
   },
 
-  Rating: {
-    type: Number ,min:1,max:5,
-    // required: true,
-  },
+  Rating:{
+    type: {rate:Number, count:Number , sum:Number},
+    default: {rate:0, count:0, sum:0} 
+},
 
-  reviews: {
+  Reviews: {
     type: [String],
     // required: true,
   },
@@ -56,5 +56,11 @@ const instructorschema = new Schema({
 }, { timestamps: true });
 
 
+
+
 const instructors = mongoose.model('instructors', instructorschema);
+
+// instructors.create({Username:"bassel", Password:12345, Wallet:5, courses:[], Reports:[[]], Reviews:[], Email:"beses@gmail.com", Country:"Egypt",
+// Rating:5, MiniBio:"nancy agram"})
+
 module.exports = instructors;
