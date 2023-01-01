@@ -40,7 +40,7 @@ const IndividualTraineeNavBar = (props) => {
       <>
       <nav className='navbar'>
           <div className='navbar-container'>
-            <Link to='/instructor' className='navbar-logo' onClick={closeMobileMenu}>
+            <Link to='/IndividualTrainee' className='navbar-logo' onClick={closeMobileMenu}>
               BASSS Academy
               <i class='fab fa-typo3' />
             </Link>
