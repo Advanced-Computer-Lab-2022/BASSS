@@ -26,11 +26,10 @@ function SelectCountry() {
   select();
 
   return (
-    <div className='SCbody'> 
-
       <div className='select'>
 
         <select onChange={changeHandler} className='select1'>
+          <option><strong>Select Country</strong></option>
           {countryNames.map((option) => (
             <option >
               {option}
@@ -40,7 +39,6 @@ function SelectCountry() {
 
       </div>
 
-    </div>
   )
 }
 

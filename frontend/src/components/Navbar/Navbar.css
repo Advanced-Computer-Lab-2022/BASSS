@@ -47,9 +47,34 @@
     justify-content: end;
     margin-right: 2rem;
   }
-  
+
   .nav-item {
+    position: relative;
     height: 80px;
+    right: 20px;
+  }
+
+  .nav-item1 {
+    position: relative;
+    height: 80px;
+    right: -0.5rem;
+    top: 0rem;
+  }
+
+  .nav_item_button {
+    position: relative;
+    right: 0rem;
+    top: 1.3rem;
+    height: 15px;
+    width: 100px;
+  }
+
+  .nav_item_country {
+    position: relative;
+    left: 0rem;
+    top: 0.1rem;
+    height: 15px;
+    width: 10px;
   }
   
   .nav-links {
@@ -65,6 +90,16 @@
   .nav-links:hover {
     border-bottom: 4px solid #fff;
     transition: all 0.2s ease-out;
+  }
+
+  .nav_links_Sara {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    height: 100%;
+    font-weight: bold;
   }
   
   .fa-bars {

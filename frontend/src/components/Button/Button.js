@@ -1,6 +1,6 @@
 import './Button.css';
 import { Link } from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
+import React, {useState } from 'react';
 import '../Navbar/Navbar.css'
 
 const STYLES = ['btn--primary', 'btn--outline', 'btn--test'];
@@ -19,7 +19,9 @@ export const Button = ({
   B2ndLinkTo,
   B2ndLinkText,
   B3rdLinkTo,
-  B3rdLinkText
+  B3rdLinkText,
+  Text,
+  DropDown
 }) => {
   const checkButtonStyle = STYLES.includes(buttonStyle)
     ? buttonStyle
@@ -47,18 +49,19 @@ const handleMouseOut = () => {
         onMouseOut={handleMouseOut}
         type={type}
       >
+        {Text}
       </button>
     </Link>
-    {isHovering && <div className='Hover_Div' onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+    {DropDown && isHovering && <div className='Hover_Div' onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
       <Link to={B1stLinkTo} className='nav_linksButton'>
           {B1stLinkText}
       </Link>
-      <Link to={B2ndLinkTo} className='nav_linksButton'>
+      {/* <Link to={B2ndLinkTo} className='nav_linksButton'>
           {B2ndLinkText}
       </Link>
       <Link to={B3rdLinkTo} className='nav_linksButton'>
           {B3rdLinkText}
-      </Link>
+      </Link> */}
       <Link to='/logout' className='nav_linksButton'>
           Logout
       </Link>

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '../Button/Button';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
+
+
 const Navbar = (props) => {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
@@ -56,7 +58,7 @@ const Navbar = (props) => {
               <Link
                 to={props.ThirdLinkTo}
                 className='nav-links'
-                onClick={props.type=='Guest'?props.handleLogin:closeMobileMenu}
+                onClick={props.type==='Guest'?props.handleLogin:closeMobileMenu}
               >
                 {props.ThirdLinkText}
               </Link>
@@ -66,7 +68,7 @@ const Navbar = (props) => {
               <Link
                 to={props.FourthLinkTo}
                 className='nav-links'
-                onClick={props.type=='Guest'?props.handleSignup:closeMobileMenu}
+                onClick={props.type==='Guest'?props.handleSignup:closeMobileMenu}
               >
                 {props.FourthLinkText}
               </Link>
@@ -92,7 +94,7 @@ const Navbar = (props) => {
               </Link>
             </li>
           </ul>
-          {button && <Button B1stLinkTo = {props.B1stLinkTo} B1stLinkText = {props.B1stLinkText}
+          {button && <Button DropDown = {true} Text = '. . .' B1stLinkTo = {props.B1stLinkTo} B1stLinkText = {props.B1stLinkText}
           B2ndLinkTo = {props.B1stLinkTo} B2ndLinkText = {props.B1stLinkText}
           B3rdLinkTo = {props.B1stLinkTo} B3rdLinkText = {props.B1stLinkText}
            buttonStyle='btn--outline'>{props.ButtonLinkText}</Button>}

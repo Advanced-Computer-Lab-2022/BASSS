@@ -9,7 +9,7 @@ import Signup from '../SignUp/Signup'
 function Home (){
     
     const [Login1, setLogin1] = useState(false);
-    const [Signup1, setSignup1] = useState(true);
+    const [Signup1, setSignup1] = useState(false);
 
 
     const handleLogin = () => {

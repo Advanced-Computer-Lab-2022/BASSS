@@ -7,6 +7,7 @@ import {
     HeaderLabel
 } from './GeneralCss'
 import './General.css'
+import SelectCountry from './components/SelectCountry/SelectCountry';
 
 export default function Sara(){
 
@@ -16,6 +17,7 @@ export default function Sara(){
 
     return <div className='General_Body'>
         <div className='General_MainBlue_Div'>
+            <SelectCountry/>
             <h1>sara</h1>
             <Button onClick={Click} font = '35'>Saraaa</Button>
             <ButtonBlue font = '35'>Saraaa</ButtonBlue>
