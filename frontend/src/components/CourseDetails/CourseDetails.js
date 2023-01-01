@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import './CourseDetails.css';
 import { Link } from 'react-router-dom'
-import IndividualTraineeNavBar from '../../Pages/IndividualTrainee/IndividualTraineeNavBar/IndividualTraineeNavBar'
+//import IndividualTraineeNavBar from '../../Pages/IndividualTrainee/IndividualTraineeNavBar/IndividualTraineeNavBar'
 import YoutubeEmbed from '../YoutubeEmbed/YoutubeEmbed';
 import Footer from '../Footer/Footer'
 const { useState, useEffect } = require("react");

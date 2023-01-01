@@ -8,11 +8,10 @@ function Downloadcert(){
 
     const clickhandler1 = ()=>{
         var doc = new jsPDF ('landscape','px','a4','false')
-        doc.text(30,30,'BASSS Academy ')
-        doc.text(160,300,'This is your certificate of completion for your course , GOODLUCK:)')
-       // doc.text(160,130,'is awarded to: ')
+        doc.text(160,100,'certificate of completion ')
+        doc.text(160,130,'is awarded to: ')
         doc.setFont('Helvertica','bold')
-        //doc.text(160,160,'Adham Bassel Salama ')
+        doc.text(160,160,'Adham Bassel Salama ')
         doc.save('certificate.pdf')
        }
     return(

@@ -2,13 +2,15 @@ const express = require("express");
 const individualTraineeR = express.Router();
 const mongoose = require('mongoose');
 const individualTrainees = require("../Models/individualTraineeSchema");
+const corporateTrainees = require("../Models/corporateTraineeSchema");
+const instructors = require("../Models/instructorSchema");
 const courses = require("../Models/courseSchema");
 // const { default: ErrorMessage } = require("../../../frontend/src/components/ErrorMessage/ErrorMessage");
 const exercises = require('../Models/exerciseSchema')
 const subtitles = require('../Models/subtitleSchema')
 const reports = require('../Models/ReportSchema')
 var nodemailer = require('nodemailer');
-const instructors = require("../Models/instructorSchema");
+//const instructors = require("../Models/instructorSchema");
 require('dotenv').config();
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
@@ -171,9 +173,13 @@ res.json(newarr)
 });
 
 
-individualTraineeR.get("/forgetpass/:username/:email",function(req,res){
+individualTraineeR.get("/forgetpass/:username/:email",async function(req,res){
   const username = req.params.username;
   const email = req.params.email;
+  const indivtrainee = await individualTrainees.findOne({UserName: username});
+  const corptrainee = await corporateTrainees.findOne({UserName: username});
+  const instructor = await instructors.findOne({UserName: username});
+  if (indivtrainee){
   var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -196,8 +202,83 @@ individualTraineeR.get("/forgetpass/:username/:email",function(req,res){
           console.log('Email sent: ' + info.response);
         }
       });
+    }
+    else if(corptrainee){
+      var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'acltest321@gmail.com',
+          pass: 'yzdnccfnpqvmwpgr'
+        }
+      });
+      
+      var mailOptions = {
+        from: 'acltest321@gmail.com',
+        to: email,
+        subject: 'Sending Email using Node.js',
+        text: 'To reset your password please click here , http://localhost:3000/corporatetrainee/forgetpass'
+      };
+      
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
+    }
+    else if (instructor){
+      var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'acltest321@gmail.com',
+          pass: 'yzdnccfnpqvmwpgr'
+        }
+      });
+      
+      var mailOptions = {
+        from: 'acltest321@gmail.com',
+        to: email,
+        subject: 'Sending Email using Node.js',
+        text: 'To reset your password please click here , http://localhost:3000/instructor/forgetpass'
+      };
+      
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
+    }
+})
+individualTraineeR.get("/sendcertificate",function(req,res){
+  
+  var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'acltest321@gmail.com',
+          pass: 'yzdnccfnpqvmwpgr'
+        }
+      });
+      
+      var mailOptions = {
+        from: 'acltest321@gmail.com',
+        to: 'basselbassel28@gmail.com',
+        subject: 'Congratulations ',
+        text: 'Dear     , this is your certificate of completion for your course , to download please click here http://localhost:3000/dowloadcertificate'
+      };
+      
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
 
 })
+
 
 individualTraineeR.get("/individualCourses/:username",async(req, res) => {
     const username = req.params.username;
