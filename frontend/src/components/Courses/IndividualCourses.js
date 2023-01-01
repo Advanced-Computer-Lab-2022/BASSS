@@ -203,6 +203,18 @@ const { useState, useEffect } = require("react");
 </div>
 
 
+<h1 className='mostpop-adham'>Our Most Popular Courses</h1>
+        <div class="mostpop-card-adham">
+  <div class="mostpop-card-adham-details">
+    <p class="text-title">Most Popular Courses</p>
+    <p class="text-body"> there are more than 50K trainee have completed these courses</p>
+  </div>
+  <Link to="/mostViewd">
+  <button class="mostpop-card-adham-button">View Courses</button>
+  </Link>
+</div>
+
+
      </div>
    )
  }

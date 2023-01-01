@@ -4,6 +4,7 @@ import './CourseDetails.css';
 import { Link } from 'react-router-dom'
 import IndividualTraineeNavBar from '../../Pages/IndividualTrainee/IndividualTraineeNavBar/IndividualTraineeNavBar'
 import YoutubeEmbed from '../YoutubeEmbed/YoutubeEmbed';
+import Footer from '../Footer/Footer'
 const { useState, useEffect } = require("react");
 
 const CourseDetails = () => { 
@@ -37,6 +38,9 @@ const CourseDetails = () => {
     const changehandler = (e)=>{
         setchoice(e.target.value);
 
+    }
+    const adham = (e)=>{
+        setchoice(e.target.value);
     }
 
     const changehandler2 = (e)=>{
@@ -213,31 +217,116 @@ getSubtitle();
         <div className='CourseDetails-body'>
         <IndividualTraineeNavBar/>
 
-        <div className='videodiv'>
-          <video className='video1' src="/videos/video-1.mp4" autoPlay loop muted/>
+        <div class="adhaminfo">
+
+    <div class="adhaminfo-top">
+        <p class="adhaminfo__title">{course.Title}</p>
+        <div class="rating">
+            <svg width="17" height="17" viewBox="0 0 17 17" fill="none">
+                <path d="M8.51948 1.625C9.1214 1.625 10.0427 4.16625 10.4636 5.43013C10.6014 5.8437 10.9837 6.13054 11.4192 6.14904C12.7373 6.20505 15.375 6.39722 15.375 7.0384C15.375 7.66696 13.5161 9.17543 12.5322 9.92976C12.1816 10.1986 12.0365 10.6604 12.1687 11.082C12.5631 12.34 13.2755 14.8755 12.7573 15.3009C12.2506 15.717 10.2147 14.2326 9.15246 13.4009C8.77021 13.1016 8.22949 13.1012 7.84719 13.4004C6.78473 14.2321 4.75246 15.717 4.28166 15.3009C3.79912 14.8745 4.47615 12.3275 4.84741 11.0727C4.97086 10.6555 4.82425 10.2029 4.47885 9.93826C3.49798 9.18681 1.625 7.66933 1.625 7.0384C1.625 6.3962 4.2711 6.20444 5.5871 6.14878C6.0197 6.13048 6.3998 5.84769 6.53973 5.43793C6.97041 4.17673 7.91633 1.625 8.51948 1.625Z" fill="#00B9AE" stroke="#00B9AE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
         </div>
+    </div>
 
-            <div className='RateCourse-div'>
-                <h1 className='white-adham'>Course: {course.Title}</h1>
-                <br></br>
-                <h1 className='white-adham'> Rate The Course :</h1>
-                <br></br>
-                <select  onChange={changehandler} name="rate" id="rate" className='selectnew'>
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                </select>
-                <br></br><br></br>
-                <button onClick={clickhandler} className='RateCoursebtn'>Submit</button>
-                <br></br><br></br><br></br><br></br>
-                <h1 className='white-adham'>Course Rating: {courseRate}</h1>
+    <div class="adhaminfo__info">
+        <p class="Course_rate_adham">{courseRate}</p>
+        <h2 class="Ratings_adham1">14,123 Rating</h2>
+        <div class="adham_image"></div>
+        <p class="adham">Instructor : Adham Saber</p>
+        <p class="total_hours_adham">Total Hours For the Course : {course.TotalHours}</p>
+        <p class="views_adham">{course.Views} People Have Viewed This Course !</p>
+    </div>
+
+<div class="loader loader1">
+  <div>
+    <div>
+      <div>
+        <div>
+          <div>
+            <div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="loader loader2">
+  <div>
+    <div>
+      <div>
+        <div>
+          <div>
+            <div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="loader loader3">
+  <div>
+    <div>
+      <div>
+        <div>
+          <div>
+            <div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="loader loader4">
+  <div>
+    <div>
+      <div>
+        <div>
+          <div>
+            <div>
+              <div>
+                <div>
+                  <div>
+                    <div></div>
+                  </div>
                 </div>
-                
-                <br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<h2 className='offer-adham'>Offered By</h2>
+<div className='uni_img'>
+</div>
+<div class="rate_adham">
+    <h2 >Would you like to rate the course ?</h2>
+    <div class="rate">
+    <input onChange={adham} type="radio" id="star5" name="rate" value="5" />
+    <label for="star5" title="text">5 stars</label>
+    <input onChange={adham} type="radio" id="star4" name="rate" value="4" />
+    <label  for="star4" title="text">4 stars</label>
+    <input onChange={adham} type="radio" id="star3" name="rate" value="3" />
+    <label for="star3" title="text">3 stars</label>
+    <input onChange={adham} type="radio" id="star2" name="rate" value="2" />
+    <label for="star2" title="text">2 stars</label>
+    <input onChange={adham} type="radio" id="star1" name="rate" value="1" />
+    <label for="star1" title="text">1 star</label>
+  </div>
+  <button onClick={clickhandler}>Submit</button>
+</div>
+    {/* <div class="adhaminfo__btns">
+        <button class="add-btn">+</button>
+        <button class="watch-btn">watch</button>
+    </div> */}
+</div>
+<div className='subtitles'>
+</div>
 
+{/* ************************************************************************************************************** */}
+        {/*
             <div className='RateInstructor-div'>
                 <h1 className='white-adham'>Instructor of this course: {course.InstructorUserName}</h1>
                 <br></br>
@@ -280,20 +369,7 @@ getSubtitle();
                     <button onClick={clickhandler5}  >Cancel </button>
                     </div>}
 
-                <div className='info'>
-
-                <h1 className='total'>TotalHours for the course : {course.TotalHours}</h1>
-                <h1 className='views'> Course Views : {course.Views}</h1>
-
-                
-
-                </div>
-                <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
-
                 {
-
-                
-
                    subtitle.length>0 && subtitle.map((sub)=>
                 <div className='subtitleincoursedetails1'>
                     <h1 className='white-adham'>subtitle Number : {sub.subtitleNumber}</h1>
@@ -316,12 +392,8 @@ getSubtitle();
                  </div>
                     )
 
-                }
-
-
-                
-
-                
+                } */}
+                {/* <Footer/> */}
         </div>
             </>
         )
