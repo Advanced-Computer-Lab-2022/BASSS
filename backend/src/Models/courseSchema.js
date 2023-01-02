@@ -85,8 +85,13 @@ const courseSchema = new Schema ({
     CertificateTemplate:{
         type: String,
         required: true
-    }
+    },
 
+    Enrolled:{
+        type: Number,
+        required: true,
+        default: 0
+    }
 
 }, { timestamps: true });
 

@@ -55,6 +55,12 @@ import EditnewPass from './components/Editnewpass/Editnewpass';
 import Forgetpass from './components/Forgetpass/Forgetpass';
 import Downloadcert from './components/Downloadcert/Downloadcert';
 
+import Sara from './sara'
+import PrivacyPolicy from './Pages/SignUp/PrivaryPolicy';
+import TraineeViewAllCourses from './Pages/IndividualTrainee/ViewAllCourses/TraineeViewAllCourses';
+import './Pages/Instructor/InstructorViewAllCourses/InstructorViewAllCourses.css';
+import InstructorViewAllCourses from './Pages/Instructor/InstructorViewAllCourses/InstructorViewAllCourses';
+
 
 const cookies = new Cookies();
 const user = cookies.get('token')
@@ -67,6 +73,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           {/* common routes */}
+          <Route path='/sara' element = { <Sara/> } /> 
+
           <Route path='/' element = { <Home/> } /> 
           <Route path='/login' element={
             (!user)? <LoginPage/> : <Home/>
@@ -77,6 +85,7 @@ function App() {
           <Route path='/logout' element={ <Logout/> }/>
           <Route path='/forgotPass' element={ <Forgetpass/> }/>
           <Route path='/dowloadcertificate' element={ <Downloadcert/> }/>
+          <Route path='/PrivacyPolicy' element={ <PrivacyPolicy/> }/>
 
           {/* Instructor routes */}
           <Route path='/instructor' element={<Instructor/>
@@ -125,6 +134,8 @@ function App() {
             //   (type=="individual trainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/> :<LoginPage/>) : <Home/>
           }/>
           <Route path='/instructor/myReports' element={<MyReports/> } />
+
+          <Route path='/instructor/allCourses' element={<InstructorViewAllCourses/>} />
 
 
 
@@ -210,6 +221,8 @@ function App() {
               // (type=="individual trainee")? <EditnewPass Type = "individualTrainee"/>  : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
           }/>
           <Route path='/individualTrainee/myReports' element={<MyReports/> } />
+
+          <Route path='/individualTrainee/allcourses' element={<TraineeViewAllCourses/> } />
 
 
           {/* IDK Routes */}

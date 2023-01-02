@@ -1,0 +1,11 @@
+.TraineeAllCourses{
+    width: 100%;
+    height:100vh;
+}
+.TraineeAllCourses_Details1{
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    transform: translate(0,80px);
+    padding: 1rem;
+}

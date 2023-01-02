@@ -56,6 +56,15 @@ const corporateTraineeschema = new Schema({
 
     courseRequests: {
         type: [String], //[Request1 ID,Request2 ID,Request3 ID,...... ]
+    },
+    
+    Reviews: {
+        type: [{
+            InstructorID:String,
+            Review:String
+        }],
+        required: true,
+        default: []
     }
 
 

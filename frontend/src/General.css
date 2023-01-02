@@ -1,0 +1,142 @@
+
+
+.General_Body {      /* Main Div Background */
+    background-color: rgba(30, 91, 170, 0.052);
+    /* background: linear-gradient(90deg, rgba(6,38,87,1) 0%, rgba(57,84,144,1) 37%, rgba(52,165,238,1) 100%); */
+    background-size:cover;
+    background-position: center;
+    height: 100vh;
+}
+
+
+.General_MainBlue_Div{  /* Any Blue Div Containing Anything*/
+    position: relative;
+    left: 3%;
+    margin-top: 0%;
+    width: 100%;
+    top: 20px;
+    background-color: rgba(3, 75, 120, 0.884);
+    border-radius: 15px;
+    height: 560px;
+}
+
+/*/////////////////////////Buttons/////////////////////////*/
+
+.General_Button{
+background-color: transparent;
+color: #fff;
+padding: 15px 15px;
+border: 2px solid white;
+text-align: center;
+font-size: 15px;
+border-radius: 10px;
+width: 150px;
+height: 40px;
+cursor: pointer;
+font-weight: 600;
+}
+
+.General_ButtonBlue{
+    background-color: transparent;
+    color: rgba(3, 75, 120, 0.884);
+    padding: 15px 15px;
+    border: 2px solid rgba(3, 75, 120, 0.884);
+    text-align: center;
+    font-size: 15px;
+    border-radius: 10px;
+    width: 150px;
+    height: 40px;
+    cursor: pointer;
+    font-weight: 600;
+}
+.General_ButtonBlue:hover{
+    background-color: rgba(255, 255, 255, 0.814);
+    color: rgb(3, 48, 76);
+    font-weight: 600;
+}
+
+.General_ButtonDarkBlue{
+    background-color: transparent;
+    color: rgb(3, 48, 76);
+    padding: 15px 15px;
+    border: 2px solid rgb(3, 48, 76);
+    text-align: center;
+    font-size: 15px;
+    border-radius: 10px;
+    width: 150px;
+    height: 40px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/*////   Accept & Reject   ////*/
+
+.General_OneReportDetailsAccept_btn{
+    background-color: transparent;
+    color: #fff;
+    margin-left: 6%;
+    margin-top: 1%;
+    padding: 15px 15px;
+    border: 2px solid white;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 10px;
+    width: 150px;
+    cursor: pointer;
+    font-weight: 600;
+    }
+    .General_OneReportDetailsAccept_btn:hover{
+    background-color: rgba(5, 165, 69, 0.655);
+    color: white;
+    font-weight: 600;
+    }
+    
+    .General_OneReportDetailsReject_btn{
+      background-color: transparent;
+      color: #fff;
+      margin-left: 6%;
+      margin-top: 1%;
+      padding: 15px 15px;
+      border: 2px solid white;
+      text-align: center;
+      font-size: 20px;
+      border-radius: 10px;
+      width: 150px;
+      cursor: pointer;
+      font-weight: 600;
+      }
+      .General_OneReportDetailsReject_btn:hover{
+      background-color: rgba(208, 36, 36, 0.712);
+      color: white;
+      font-weight: 600;
+      }
+
+
+/*/////////////////////////Header with Label and Value (Label: value)/////////////////////////*/
+
+.General_HeaderWithLabels_Div{
+    position: relative;
+    width:fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    left: 25%;
+}
+  
+.General_HeaderWithLabels_Label{
+    color: rgba(240, 240, 240, 0.949);
+    width: fit-content;
+    height: fit-content;
+    font-weight: bold;
+    font-size: 35px;
+}
+  
+.General_HeaderWithLabels_Value{
+    position: relative;
+    color: rgba(237, 237, 237, 0.838);
+    width: fit-content;
+    height: fit-content;
+    left: 10px;
+    top: 2px;
+    font-size: 32px;
+}

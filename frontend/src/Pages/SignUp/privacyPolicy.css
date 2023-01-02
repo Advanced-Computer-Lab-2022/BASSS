@@ -1,0 +1,114 @@
+image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: -1;
+  }
+.Main_Div1{
+    position: absolute;
+    left: 20%;
+    top: 13%;
+    box-shadow: 0 25px 25px rgba(0, 0, 0, 0.644);
+}
+
+.CloseBtnDiv{
+    margin-left: 45%;
+}
+
+.Main_Div{
+    background-color: rgb(247, 252, 255);
+    padding-bottom: 10%;
+    overflow-y: auto;
+    max-height: 600px;
+    max-width: 990px;
+    border-radius: 15px;
+    z-index: 1000;
+    padding: 2px;
+    padding-bottom: 15px;
+}
+
+  .Main_Div::-webkit-scrollbar {
+    width: 1.5em;
+    border-radius: 15px;
+  }
+   
+  .Main_Div::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(2, 47, 82, 0.466);
+    border-radius: 15px;
+  }
+   
+  .Main_Div::-webkit-scrollbar-thumb {
+    background-color: rgba(2, 98, 142, 0.871);
+    outline: 1px solid rgb(0, 81, 163);
+    border-radius: 15px;
+  }
+
+
+.first_Div{
+    position: relative;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background-image: linear-gradient(rgba(0, 130, 190, 0.156),  rgba(0, 80, 130, 0.129)), url('../../images/Untitled.png') ;
+    background-size:cover ;
+    height: 700px;
+    width: 950px;
+}
+
+.first_Div1{
+    position: relative;
+    background-image: linear-gradient(rgba(0, 130, 190, 0.156),  rgba(0, 80, 130, 0.129)), url('../../images/Untitled1.png') ;
+    background-size:cover ;
+    height: 700px;
+    width: 950px;
+}
+
+.first_Div2{
+    position: relative;
+    background-image: linear-gradient(rgba(0, 130, 190, 0.156),  rgba(0, 80, 130, 0.129)), url('../../images/Untitled2.png') ;
+    background-size:cover ;
+    height: 700px;
+    width: 950px;
+}
+
+.first_Div3{
+    position: relative;
+    background-image: linear-gradient(rgba(0, 130, 190, 0.156),  rgba(0, 80, 130, 0.129)), url('../../images/Untitled3.png') ;
+    background-size:cover ;
+    height: 800px;
+    width: 950px;
+}
+
+.first_Div4{
+    position: relative;
+    background-image: linear-gradient(rgba(0, 130, 190, 0.156),  rgba(0, 80, 130, 0.129)), url('../../images/Untitled4.png') ;
+    background-size:cover ;
+    height: 800px;
+    width: 950px;
+}
+
+.first_Div5{
+    position: relative;
+    background-image: linear-gradient(rgba(0, 130, 190, 0.156),  rgba(0, 80, 130, 0.129)), url('../../images/Untitled5.png') ;
+    background-size:cover ;
+    height: 800px;
+    width: 950px;
+}
+
+.first_Div6{
+    position: relative;
+    background-image: linear-gradient(rgba(0, 130, 190, 0.156),  rgba(0, 80, 130, 0.129)), url('../../images/Untitled6.png') ;
+    background-size:cover ;
+    height: 800px;
+    width: 950px;
+}
+
+.first_Div7{
+    position: relative;
+    background-image: linear-gradient(rgba(0, 130, 190, 0.156),  rgba(0, 80, 130, 0.129)), url('../../images/Untitled7.png') ;
+    background-size:cover ;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    height: 755px;
+    width: 950px;
+}

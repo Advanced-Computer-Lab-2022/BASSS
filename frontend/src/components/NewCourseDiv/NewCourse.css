@@ -1,0 +1,94 @@
+.NewCourse {
+    width:800px;
+    height : 150px ;
+    background-image: linear-gradient(-90deg,rgba(12, 94, 146, 0.7),rgba(0, 29, 48, 0.7)),url('../../../public/images/CourseBackGround.jpg');
+
+    /* background-color: black; */
+    border-radius: 10px;
+    margin:1rem;
+    display: flex;
+    flex-direction: column;
+    cursor:pointer ;
+}
+
+.NewCourse_Details {
+    width:800px;
+    height : 350px ;
+    background-image: linear-gradient(-90deg,rgba(12, 94, 146, 0.7),rgba(0, 29, 48, 0.7)),url('../../../public/images/CourseBackGround.jpg');
+    background-size: cover;
+    /* background-color: black; */
+    border-radius: 10px;
+    margin:1rem;
+    display: flex;
+    flex-direction: column;
+    cursor:pointer ;
+    position:relative;
+
+}
+
+
+.NewCourse_Data_Top{
+    padding: 1rem;
+    height:33.33%;
+    color:white;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+}
+
+.NewCourse_Title{
+    height:33.33%;
+
+}
+.NewCourse_Title h1  {
+    color:white;
+    
+}
+.NewCourse_Data_Bottom{
+    height:33.33%;
+
+}
+.NewCourse_PriceBefore{
+    font-weight: 150;
+    text-decoration: line-through;
+    color:rgb(177, 177, 177);
+}
+.NewCourse_Promotion{
+    color:rgb(230,0,0);
+
+}
+
+.NewCourse_Subtitles{
+    width: 50%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.2);
+
+    border-right: 2px;
+    border-top: 0px;
+    color:white;
+    cursor: pointer;
+}
+.NewCourseSubtitles_data{
+    width:500px;
+    height:380px;
+    position:absolute;
+    background-color: aliceblue;
+    border-radius: 10px;
+    top: -5%;
+    left:52.5%;
+    box-shadow:6px 6px 10px rgb(0,0,0,0.3);
+    border: 2px solid rgba(196, 196, 196, 0.352);
+}
+.NewCourseExercises_data{
+    width:500px;
+    height:380px;
+    position:absolute;
+    background-color: aliceblue;
+    border-radius: 10px;
+    top: -5%;
+    left:-15%;
+    box-shadow:6px 6px 10px rgb(0,0,0,0.3);
+    border: 2px solid rgba(171, 171, 171, 0.352);
+
+
+}

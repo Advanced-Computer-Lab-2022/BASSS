@@ -10,7 +10,7 @@ import CorporateTraineeCourse from '../../components/Courses/CorporateTraineeCou
 function CorporateTrainee(){
     return(
         <>
-        {/* <CorporateTraineeNavBar/> */}
+        <CorporateTraineeNavBar/>
         <div className='CorporateTrainee-body'>
 
         {/* <Search Type='corporate'/> */}
