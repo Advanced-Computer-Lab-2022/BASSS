@@ -20,6 +20,10 @@ export default function Reports(){
     const Reportshandler = (sara)=>{setReports(sara)}
     useEffect(()=>{Reportshandler(Reports)});
 
+    const [RefundRequests , setRefundRequests] = useState([])
+    const RefundRequestshandler = (sara)=>{setRefundRequests(sara)}
+    useEffect(()=>{RefundRequestshandler(RefundRequests)});
+
 
     const TechnicalBtnHandler = () =>{
         Technicalhandler(true)
@@ -42,6 +46,7 @@ export default function Reports(){
     }
 
     useEffect(()=>{GetReports()});
+    useEffect(()=>{GetRefundRequests()});
 
 
     const GetReports = async(req,res)=>{
@@ -50,6 +55,14 @@ export default function Reports(){
                 const result = res.data
                 Reportshandler(result)
             })
+}
+
+const GetRefundRequests = async(req,res)=>{
+    await axios.get(`http://localhost:9000/admin/getAllRefundReq/`).then(
+        (res) => {
+            const result = res.data
+            RefundRequestshandler(result)
+        })
 }
 
     return <div className='Admin_Body'>
@@ -71,7 +84,7 @@ export default function Reports(){
             </div>
             <div className='Admin_AllReports_Div'>                    
                 {Technical && <TechnicalReports Reports = {Reports}/>}
-                {Financial && <FinancialReports Reports = {Reports}/>}
+                {Financial && <FinancialReports Reports = {Reports} RefundRequests = {RefundRequests}/>}
                 {Other && <OtherReports Reports = {Reports}/>}
             </div>
         </div>

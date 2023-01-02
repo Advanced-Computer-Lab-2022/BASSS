@@ -54,6 +54,9 @@ const FinancialReports = (props) =>{
                         <button className='Admin_RefundReqSelect_btn' >Accept All</button>
                         <button className='Admin_RefundReqSelect_btn' >Reject All</button>
                     </div>
+                    <div>
+                        {/* <MultipleReportsDiv RefundRequests = {props.RefundRequests} Type = 'Refund'/> */}
+                    </div>
                 </div>
 
                 <div className='Admin_FinancialReports_Div'>

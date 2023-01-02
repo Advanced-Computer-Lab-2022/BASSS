@@ -11,14 +11,14 @@ const OneReportDetails = (props) => {
 
 
     const AcceptReqHandler = async(req,res)=>{
-      await axios.get(`http://localhost:9000/admin/AcceptCoRequest/${props.CoReqID}`).then(
+      await axios.get(`http://localhost:9000/admin/ResolveReport/${props.ReportID}`).then(
           (res) => {
               const result = res.data
            })
   }
 
   const RejecttReqHandler = async(req,res)=>{
-    await axios.get(`http://localhost:9000/admin/RejectCoRequest/${props.CoReqID}`).then(
+    await axios.get(`http://localhost:9000/admin/PendingReport/${props.ReportID}`).then(
         (res) => {
             const result = res.data
          })
@@ -26,7 +26,23 @@ const OneReportDetails = (props) => {
 
 
   return (<div>
-      {props.Report1.Type === 'Financial' && <div className='Admin_OneReportDetails_Div'>
+
+{props.Type === 'Refund' && <div className='Admin_OneReportDetails_Div'>
+        <br></br>
+        <HeadersDiv fontLabel='30' fontValue='28' label='Reporter:' value={props.Refund.Status} /> <br></br>
+        <HeadersDiv fontLabel='25' fontValue='22' label='CourseID: ' value={props.Refund.CourseID} /> <br></br>
+        <br></br><br></br>
+          {props.Refund.Status !== 'Accepted' &&
+          <div className='Admin_OneFinancialDetails_btn_Div'>
+            <button className='Admin_OneFinancialDetailsAccept_btn' onClick={AcceptReqHandler}>Resolved</button>
+            <br></br>
+            <button className='Admin_OneFinancialDetailsReject_btn' onClick={RejecttReqHandler}>Pending</button>
+          </div>}
+      </div>}
+
+
+
+      {props.Type !== 'Refund' && props.Report1.Type === 'Financial' && <div className='Admin_OneReportDetails_Div'>
         <br></br>
         <HeadersDiv fontLabel='30' fontValue='28' label='Reporter:' value={props.Report1.Reporter} /> <br></br>
         <HeadersDiv fontLabel='25' fontValue='22' label='CourseID: ' value={props.Report1.CourseID} /> <br></br>
