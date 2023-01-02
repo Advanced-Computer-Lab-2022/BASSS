@@ -84,15 +84,6 @@ const IndividualTraineeNavBar = (props) => {
         </nav>
       </>
     )
-<<<<<<< HEAD
-=======
-    // return <div>
-    // <Navbar  FirstLinkText=' ' SecondLinkText='Courses' ThirdLinkText='My courses' FourthLinkText='My Profile'  
-    // ButtonLinkText='Logout' 
-    // LogoLink='/'  FirstLinkTo='/AdminProfile' SecondLinkTo='/CoursesAdmin' ThirdLinkTo='' FourthLinkTo='/individualProfile' 
-    // ButtonLinkTo='/logout'/>
-    // </div>
->>>>>>> 8cc276dc5a0615f13eb2c9508c2875b5e6236b06
 }
 
 export default IndividualTraineeNavBar
