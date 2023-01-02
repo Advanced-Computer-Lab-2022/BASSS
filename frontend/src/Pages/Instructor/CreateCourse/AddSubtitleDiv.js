@@ -80,7 +80,7 @@ const AddSubtitleDiv = (props) => {
                     <input type='text' placeholder='Choice #4' className='createcourse_courseinputs' name="Choice4" onChange={Choice4handler}></input>
                 </div>
                 <div>
-                    <button onClick={Add}>button zeft 3ala dema3'y</button>
+                    <button onClick={Add}>Create</button>
              {/* {props.CreateButton && props.GetExcercise() && <h1>Aywaa ana hena ahoo</h1>} */}
              </div>
             </div>

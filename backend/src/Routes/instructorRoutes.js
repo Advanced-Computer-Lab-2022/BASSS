@@ -145,11 +145,11 @@ instructorR.get("/viewRating/review",async(req, res) => {
   res.json(result)
 });
 
-instructorR.get("/getInstructor",async(req, res) => {
+instructorR.get("/getInst/:username",async(req, res) => {
   //token name
-  // const name = res.locals.user;
+  const name = req.params.username;
 
-  const result =await instructors.findOne({UserName:"salama"})
+  const result =await instructors.findOne({UserName:name})
    res.json(result)
 });
 

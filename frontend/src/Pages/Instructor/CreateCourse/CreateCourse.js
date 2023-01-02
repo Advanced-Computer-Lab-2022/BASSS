@@ -148,7 +148,6 @@ const CreateExcerciseProp = (InstructorName1,ThisSubtitleNumber1,Question1,Choic
             await axios.get(`http://localhost:9000/course/createExcercise/${Title1}/${InstructorName1}/${ThisSubtitleNumber1}/${Question1}/${Choice11}/${Choice21}/${Choice31}/${Choice41}/${MaxGrade1}/${CorrectAnswer1}`).then(
                 (res) => {
                     const Ex1 = res.data
-                    alert(Ex1.excercise._id)
                     createSubtitle1(SubtitleHours1,VideoLink1,ShortVideoDescription1,ThisSubtitleNumber1,Ex1.excercise._id)
                     ExerciseIDhandler(Ex1.excercise._id)
                 })
@@ -197,7 +196,6 @@ const CreateExcerciseProp = (InstructorName1,ThisSubtitleNumber1,Question1,Choic
                             SubtitlesArray.push(Sub.subzeft._id)
                             console.log(SubtitlesArray)
                             SubtitlesArrayhandler(SubtitlesArray)
-                            alert(SubtitlesArray)
                             //SubtitleIDhandler(Sub.subzeft._id)
             
                         })
@@ -215,7 +213,6 @@ const CreateExcerciseProp = (InstructorName1,ThisSubtitleNumber1,Question1,Choic
                 SubtitlesArray.push(Sub.subzeft._id)
                 console.log(SubtitlesArray)
                 SubtitlesArrayhandler(SubtitlesArray)
-                alert(SubtitlesArray)
                 //SubtitleIDhandler(Sub.subzeft._id)
 
             })
@@ -336,7 +333,7 @@ const CreateExcerciseProp = (InstructorName1,ThisSubtitleNumber1,Question1,Choic
             <br></br>
             </div>
             <button className='CreateCourse_btn' onClick={AddCourse}>Create Course</button> {/*CreateCoursehandler*/}
-             {<h1 className='createcourse_courseinputs_h1'>hena ahooo,{InstructorName},{ThisSubtitleNumber},{Question},{Choice1},{Choice2},{Choice3},{Choice4},{MaxGrade},{CorrectAnswer}</h1>}
+             {/* {<h1 className='createcourse_courseinputs_h1'>hena ahooo,{InstructorName},{ThisSubtitleNumber},{Question},{Choice1},{Choice2},{Choice3},{Choice4},{MaxGrade},{CorrectAnswer}</h1>} */}
         </div>
     </div>
   )

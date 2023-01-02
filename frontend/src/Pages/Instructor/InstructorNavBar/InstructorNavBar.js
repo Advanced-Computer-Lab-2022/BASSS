@@ -69,6 +69,10 @@ const InstructorNavBar = (props) => {
                     <Link to='/instCourses' className='nav_linksButton'>
                         My Courses
                     </Link>
+                    <Link to='/instructor/CreateCourse' className='nav_linksButton'>
+                        Create Courses
+                    </Link>
+
                     </div>
                     }
               </li>

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 //import IndividualTraineeNavBar from '../../Pages/IndividualTrainee/IndividualTraineeNavBar/IndividualTraineeNavBar'
 import YoutubeEmbed from '../YoutubeEmbed/YoutubeEmbed';
 import Footer from '../Footer/Footer'
+import InstructorNavBar from '../../Pages/Instructor/InstructorNavBar/InstructorNavBar';
 const { useState, useEffect } = require("react");
 
 function CourseDetailsInst() {
@@ -178,7 +179,7 @@ function CourseDetailsInst() {
             }
 
             const getInstructor =  async () => {
-                await axios.get(`http://localhost:9000/instructor/getInstructor/${location.state[1]}`).then(
+                await axios.get(`http://localhost:9000/instructor/getInst/${location.state[1]}`).then(
                     (res) => { 
                         const instructor = res.data
                         console.log(instructor)
@@ -228,6 +229,7 @@ getSubtitle();
 // alert(subtitle[0])
   return (
     <div>
+      <InstructorNavBar/>
               <div class="adhaminfo">
 
 <div class="adhaminfo-top">
@@ -243,7 +245,7 @@ getSubtitle();
     <p class="Course_rate_adham">{courseRate}</p>
     <h2 class="Ratings_adham1">14,123 Rating</h2>
     <div class="adham_image"></div>
-    <p class="adham">Instructor : Adham Saber</p>
+    <p class="adham">Instructor : {instructor.UserName}</p>
     <p class="total_hours_adham">Total Hours For the Course : {course.TotalHours}</p>
     <p class="views_adham">{course.Views} People Have Viewed This Course !</p>
     <p class="views_adham2">Course Price : {course.Price} </p>

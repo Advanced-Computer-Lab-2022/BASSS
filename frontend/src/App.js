@@ -90,7 +90,7 @@ function App() {
           <Route path='/traineeProfile' element={ <TraineeProfile Who={type}/> }/>
           <Route path='/PrivacyPolicy' element={ <PrivacyPolicy/> }/>
           <Route path='/dowloadcertificate' element={ <Downloadcert/> }/>
-          <Route path='/instCourses' element={ <InstructorMyCourses Link="/"/> }/>
+          <Route path='/instCourses' element={ <InstructorMyCourses Link="/adham"/> }/>
           <Route path='/dowloadcertificate' element={ <Downloadcert/> }/>
           <Route path='/PrivacyPolicy' element={ <PrivacyPolicy/> }/>
 
