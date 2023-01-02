@@ -3,6 +3,8 @@ import './CreateCourse.css'
 import InstructorNavBar from '../InstructorNavBar/InstructorNavBar'
 import axios from 'axios';
 import MultipleSubtitleDivs from './MultipleSubtitlesDivs';
+import { Button } from '../../../GeneralCss';
+import { Link } from 'react-router-dom';
 
 /*
     createCourseOnClick => 
@@ -121,7 +123,7 @@ function CreateCourse() {
     function zeft() {//CreateExcerciseProp('sara saad keda kedaa','ya salam et2alet kam mara fe o3"neyet el fanan el 3azeem ehab tawfeeq?','1','2','3','ehab tawfeeq nafso maya3rfsh',100,'ahmed 3oraby')
         //SubtitlesArrayhandler(SubtitlesArray.push('sara'))
 
-        alert(SubtitlesArray)
+
         AddCourse()
 
     //CreateExcercise()
@@ -171,7 +173,6 @@ const CreateExcerciseProp = (InstructorName1,ThisSubtitleNumber1,Question1,Choic
 
 
      const createSubtitleProp = (SubtitleHours1,VideoLink1,ShortVideoDescription1,ThisSubtitleNumber1)=>{
-        alert('SubProp aho')
         //CourseIDhandler(CourseID) 
         subtitleHourshandler(SubtitleHours1)
         videolinkhandler(VideoLink1)
@@ -188,7 +189,6 @@ const CreateExcerciseProp = (InstructorName1,ThisSubtitleNumber1,Question1,Choic
 
     const createSubtitle1 = (SubtitleHours1,VideoLink1,ShortVideoDescription1,ThisSubtitleNumber1,ExerciseID1) =>{ 
         const S = async(req,res)=>{
-        alert('sara')
                     await axios.get(`http://localhost:9000/course/createSubtitle/${SubtitleHours1}/${VideoLink1}/${ShortVideoDescription1}/${ExerciseID1}/${ThisSubtitleNumber1}`).then(
                         (res) => {
                             const Sub = res.data
@@ -197,6 +197,7 @@ const CreateExcerciseProp = (InstructorName1,ThisSubtitleNumber1,Question1,Choic
                             console.log(SubtitlesArray)
                             SubtitlesArrayhandler(SubtitlesArray)
                             //SubtitleIDhandler(Sub.subzeft._id)
+                            alert('Subtitle Created')
             
                         })
                     }
@@ -231,7 +232,6 @@ const CreateExcerciseProp = (InstructorName1,ThisSubtitleNumber1,Question1,Choic
     }
 
     const AddId = async(req,res)=>{
-        alert(CourseID)
         var C = CourseID
         for(let i = 0 ; i<SubtitlesArray.length-1 ; i++){
             var AOfI = SubtitlesArray[i];
@@ -243,7 +243,7 @@ const CreateExcerciseProp = (InstructorName1,ThisSubtitleNumber1,Question1,Choic
     }
     
     const AddCourse = async(req,res)=>{             //${InstructorName}/${Title}/${Subject}/${TotalHours}/${Price}/${VideoPreviewLink}/${shortSummary}/${CertificateTemplate}/${Subtitles}
-        alert('fe add course aho')                  //createCourse/:InstructorName/:Title/:Subject/:TotalHours/:Price/:VideoPreviewLink/:shortSummary/:CertificateTemplate/:Subtitles  
+                  //createCourse/:InstructorName/:Title/:Subject/:TotalHours/:Price/:VideoPreviewLink/:shortSummary/:CertificateTemplate/:Subtitles  
         const Subtitles1 = ['sara']
         const Data={
             InstructorName: InstructorName,
@@ -269,6 +269,7 @@ const CreateExcerciseProp = (InstructorName1,ThisSubtitleNumber1,Question1,Choic
                 CourseIDhandler(C) 
                 console.log(CourseID)
                 AddId()
+                alert('Course Created')
 
                     // for(var i = 0 ; i < SubtitlesArray.length ; i++){
                     //     var SubOfI = SubtitlesArray[i]
@@ -326,13 +327,13 @@ const CreateExcerciseProp = (InstructorName1,ThisSubtitleNumber1,Question1,Choic
             <div className='createcourse_allSubtitles_div'>
                 <h1 className='createcourse_courseinputs_h1'>{SubtitleHours},{videolink},{VideoDescription},{Question},{MaxGrade},{Choice1},{Choice2},{Choice3},{Choice4},{CorrectAnswer}</h1>
                 <div>
-                    <h1 className='createcourse_courseinputs_h1'>Subtitles:</h1> <button onClick={SubtitleNumhandler}>+</button>
+                    <h1 className='createcourse_courseinputs_h1'>Subtitles:</h1> <div><Button onClick={SubtitleNumhandler}>+</Button></div> 
                 </div>
 
                 <div><MultipleSubtitleDivs createSubtitle = {createSubtitle} CreateExcercise = {CreateExcercise} GetExcercise = {GetExcercise} createSubtitleProp = {createSubtitleProp} CreateExcerciseProp = {CreateExcerciseProp} SubtitlesNum = {SubtitleNum} CreateButton = {CreateButton} Title={Title} InstructorName={InstructorName}/></div>
             <br></br>
             </div>
-            <button className='CreateCourse_btn' onClick={AddCourse}>Create Course</button> {/*CreateCoursehandler*/}
+            <Link to='/instructor'><Button className='CreateCourse_btn' onClick={AddCourse}>Create Course</Button> {/*CreateCoursehandler*/}</Link>
              {/* {<h1 className='createcourse_courseinputs_h1'>hena ahooo,{InstructorName},{ThisSubtitleNumber},{Question},{Choice1},{Choice2},{Choice3},{Choice4},{MaxGrade},{CorrectAnswer}</h1>} */}
         </div>
     </div>
