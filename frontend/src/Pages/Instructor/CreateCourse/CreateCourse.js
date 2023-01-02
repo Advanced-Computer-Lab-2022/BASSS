@@ -318,7 +318,7 @@ const CreateExcerciseProp = (InstructorName1,ThisSubtitleNumber1,Question1,Choic
                 <input type='text' placeholder='Course Subject' className='createcourse_courseinputs' name="CourseSubject" onChange={courseSubjecthandler}></input> 
                 <input type='number' placeholder='Total Hours' className='createcourse_courseinputs' name="TotalHours" onChange={totalHourshandler}></input> 
                 <input type='number' placeholder='Course Price' className='createcourse_courseinputs' name="CoursePrice" onChange={coursePricehandler}></input> 
-                <input type='url' placeholder='Video Preview Link' className='createcourse_courseinputs' name="VideoPreviewLink" onChange={videoPreviewLinkhandler}></input> 
+                <input type='url' placeholder=' /Path example : x51jk1h' className='createcourse_courseinputs' name="VideoPreviewLink" onChange={videoPreviewLinkhandler}></input> 
                 <input type='text' placeholder='short summary' className='createcourse_courseinputs' name="summary" onChange={summaryhandler}></input> 
                 <input type='text' placeholder='Certificate Template' className='createcourse_courseinputs' name="CertificateTemplate" onChange={certificateTemplatehandler}></input> 
             </div>      
