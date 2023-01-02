@@ -16,7 +16,11 @@
   width: 100%;
   height: 100%;
  } */
-
+.alo{
+  position: relative;
+  top: 18rem;
+  left: -38rem;
+}
 
  .adhaminfo {
   --width: 1500px;

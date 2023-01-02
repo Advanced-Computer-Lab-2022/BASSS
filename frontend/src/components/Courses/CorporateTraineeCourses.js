@@ -100,7 +100,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
       {mycourses.map((mycourse)=>(
         <div class="plan-card">
         <h2>{mycourse[0].Title}<span>{mycourse[0].Subject}</span></h2>
-          <ProgressBar bgcolor="  rgb(72, 31, 159)" progress={`${mycourse[1]}`}  height={24} />
+          <ProgressBar bgcolor=" rgb(20, 108, 163)  " progress={`${mycourse[1]}`}  height={24} />
         <div class="etiquet-price">
             <p>Total Hours :{mycourse[0].TotalHours} </p>
             <div></div>

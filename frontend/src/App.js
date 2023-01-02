@@ -147,7 +147,7 @@ function App() {
 
 
           {/* Admin Routes */}
-          <Route path='/Admin'element={ <AdminHome/>
+          <Route path='/Admin'element={ <CoursesAdmin/>
             //   (user)? ((type=='instructor')? <Instructor/> : (type=='corporate trainee')? <CorporateTrainee/> : 
             //   (type=="individual trainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/> :<LoginPage/>) : <Home/>
           }/>

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import YoutubeEmbed from '../YoutubeEmbed/YoutubeEmbed';
 import Footer from '../Footer/Footer'
 import Exercise from '../Exercise/Exercise';
+import Writenotes from '../Writenotes/Writenotes';
 import IndividualTraineeNavBar from '../../Pages/IndividualTrainee/IndividualTraineeNavBar/IndividualTraineeNavBar';
 import CorporateTraineeNavBar from '../../Pages/CorporateTrainee/CorporateTraineeNavBar/CorporateTraineeNavBar';
 const { useState, useEffect } = require("react");
@@ -393,6 +394,9 @@ getSubtitle();
                                 {showExercise && <Exercise Type={mySubString} CourseId={sub.Course} SubtitleID={sub._id}/>}
                                 </div>
                                <button className='clickherebtn_adham' id={sub._id} onClick={videoclickhandler}></button>
+                               <div className='alo'>
+                                       <Writenotes/>
+                                       </div>
                             </div>
                                )
       }

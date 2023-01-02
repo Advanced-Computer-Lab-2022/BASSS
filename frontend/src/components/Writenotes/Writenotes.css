@@ -1,7 +1,7 @@
 .writenotesbox{
     border-radius: 5px;
-    
-    
+background-color: transparent;
+/* border-bottom: 1px solid #fff; */
     width: 180px;
     height: 60px;
 }
