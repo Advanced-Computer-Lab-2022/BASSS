@@ -50,7 +50,7 @@ const CorporateTraineeNavBar = (props) => {
             <ul className={click ? 'nav-menu active' : 'nav-menu'}>
             
               <li className='nav-item1'>
-                <Link to={props.FirstLinkTo} className='nav-links' onClick={closeMobileMenu}>
+                <Link to='traineeProfile' className='nav-links' onClick={closeMobileMenu}>
                   My Profile
                 </Link>
               </li>
@@ -64,17 +64,17 @@ const CorporateTraineeNavBar = (props) => {
                   Courses
                 </Link>
                 {isHovering && <div className='Hover_Div1' onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-                    <Link to='' className='nav_linksButton'>
+                    <Link to='/Corp/allcourses' className='nav_linksButton'>
                         AllCourses
                     </Link>
-                    <Link to='' className='nav_linksButton'>
+                    <Link to='/CorporateTrainee' className='nav_linksButton'>
                         My Courses
                     </Link>
                     </div>
                     }
               </li>
               <li className='nav_item_button'>
-                <Button DropDown={true} buttonStyle = 'btn--outline' Text = '...' B1stLinkTo = '' B1stLinkText = 'View Reports'/>  
+                <Button DropDown={true} buttonStyle = 'btn--outline' Text = '...' B1stLinkTo = '/corporateTrainee/myReports' B1stLinkText = 'View Reports'/>  
               </li>
               <li className='nav_item_country'>
               <SelectCountry/>

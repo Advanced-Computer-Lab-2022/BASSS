@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 //import IndividualTraineeNavBar from '../../Pages/IndividualTrainee/IndividualTraineeNavBar/IndividualTraineeNavBar'
 import YoutubeEmbed from '../YoutubeEmbed/YoutubeEmbed';
 import Footer from '../Footer/Footer'
+import IndividualTraineeNavBar from '../../Pages/IndividualTrainee/IndividualTraineeNavBar/IndividualTraineeNavBar';
+import CorporateTraineeNavBar from '../../Pages/CorporateTrainee/CorporateTraineeNavBar/CorporateTraineeNavBar';
 const { useState, useEffect } = require("react");
 
 const CourseDetails = () => { 
@@ -35,6 +37,8 @@ const CourseDetails = () => {
     var [choice3,setchoice3] = useState([]);
     var [choice4,setchoice4] = useState([]);
     var [choice55,setchoice55] = useState([]);
+    var ind =false;
+    var corp = false;
 
 
     const changehandler = (e)=>{
@@ -110,6 +114,15 @@ const CourseDetails = () => {
       totalpath.indexOf("/") + 1, 
       totalpath.lastIndexOf("/")
     )
+    if(mySubString==='corporatetrainee')
+    {
+      corp = true;
+    }   
+    else if (mySubString === 'individualtrainee')
+    {
+      ind=true;
+    }
+
     const videoclickhandler = async(e)=>{
       // alert('congratulation , you have finished the Video')
      var id = e.target.getAttribute('id');
@@ -123,7 +136,7 @@ const CourseDetails = () => {
      if(mySubString==='corporatetrainee')
      {
 
-         await axios.get(`http://localhost:9000/${mySubString}/updateprogresscorp/nour/${location.state[0]}`)
+         await axios.get(`http://localhost:9000/${mySubString}/updateprogresscorp/sarasaad2001/${location.state[0]}`)
      }   
      else if (mySubString === 'individualtrainee')
      {
@@ -236,6 +249,8 @@ getSubtitle();
 // alert(subtitle[0])
     return(
         <>
+        {ind&&<IndividualTraineeNavBar/>}
+        {corp&&<CorporateTraineeNavBar/>}
         <div className='CourseDetails-body'>
         {/* <IndividualTraineeNavBar/> */}
 
@@ -463,7 +478,7 @@ getSubtitle();
 <h1 className='rev_adham'>Review Your Instructor !</h1>
 <div class="form__group field">
     <input required="" placeholder="Name" class="form__field" type="input" onChange={rev_ins}/>
-    <label class="form__label" for="name">Name</label>
+    <label class="form__label" for="name">Write Your Review </label>
 </div>
 
 <button className='sub_rev_adham' onClick={reviewInst}>Submit Review</button>

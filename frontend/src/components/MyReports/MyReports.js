@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios';
 import './MyReports.css'
+import IndividualTraineeNavBar from '../../Pages/IndividualTrainee/IndividualTraineeNavBar/IndividualTraineeNavBar';
 const { useState, useEffect } = require("react");
 
 function MyReports(){
@@ -51,6 +52,8 @@ const clickhandler = async (e)=>{
 getReports();
 
     return(
+        <>
+        <IndividualTraineeNavBar/>
         <div className='myReportsBody'>
 
 
@@ -88,6 +91,8 @@ getReports();
         </div>
 
         </div>
+        </>
+
     )
 
 }
