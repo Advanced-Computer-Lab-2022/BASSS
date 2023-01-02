@@ -249,6 +249,7 @@ font-family: Arial, Helvetica, sans-serif;
     height: 20%;
     background-color: rgba(255, 255, 255, 0.092);
     border-radius: 25px;
+    cursor: pointer;
 }
 
 .Admin_OneReport_Div_Clicked{
@@ -258,6 +259,7 @@ font-family: Arial, Helvetica, sans-serif;
   height: 20%;
   background-color: rgba(0,0,0,0.4);
   border-radius: 25px;
+  cursor: pointer;
 }
 
 .Admin_OneReport_Div_Unseen{
@@ -267,6 +269,7 @@ font-family: Arial, Helvetica, sans-serif;
   height: 20%;
   background-color: rgba(0, 116, 193, 0.903);
   border-radius: 25px;
+  cursor: pointer;
 }
 
 .Admin_OneCoReq_Div_Unseen_Clicked{
@@ -276,6 +279,7 @@ font-family: Arial, Helvetica, sans-serif;
   height: 20%;
   background-color: rgba(0, 60, 100, 0.804);
   border-radius: 25px;
+  cursor: pointer;
 }
 
 .Admin_OneReport_Div_Image{
@@ -671,6 +675,7 @@ font-weight: 600;
   height: 20%;
   background-color: rgba(0,0,0,0.2);
   border-radius: 25px;
+  cursor: pointer;
 }
 
 .Admin_OneFinancialReports_Div_Clicked{
@@ -680,6 +685,7 @@ width: 98%;
 height: 20%;
 background-color: rgba(0,0,0,0.4);
 border-radius: 25px;
+cursor: pointer;
 }
 
 .Admin_OneFinancialReports_Image{
