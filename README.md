@@ -6,3 +6,9 @@ This website was developed by MERN Stack
 
 # Motivation
 Due to the recent events, online learning platform became an essential part of every student
+
+# Dependencies
+nodemailer, JSPDF, Axios, React
+
+# Features
+Video content , In-course assessments , Certificates and High-quality content
