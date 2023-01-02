@@ -5,7 +5,7 @@ import { useState, useEffect } from '../../../../node_modules/react/cjs/react.de
 import axios from 'axios';
 import className from '../../../../node_modules/@sinonjs/commons/lib/class-name';
 import '../../IndividualTrainee/ViewAllCourses/TraineeViewAllCourses.css'
-import NewCourse from '../../../components/NewCourseDiv/NewCourse';
+import SalamaNewCourse from '../../../components/NewCourseDiv/SalamaNewCourse';
 import { useNavigate } from '../../../../node_modules/react-router-dom/dist';
 import '../../../components/Search/Search.css';
 import Search from '../../../components/Search/Search';
@@ -76,7 +76,7 @@ function CorpTrainee() {
       <div className="TraineeAllCourses_Details1">
             <h1 style={{color:'rgb(3, 48, 76)'}}>All Courses</h1>
 
-        {courses.map((course) => <NewCourse course={course} country={countryNumber} Trainee={true}/>)}
+        {courses.map((course) => <SalamaNewCourse course={course} country={countryNumber} Trainee={true}/>)}
         
       </div>
     </div>
