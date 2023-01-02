@@ -360,7 +360,6 @@ adminR.get("/getAllRefundReq",async(req, res) => {
     for(let j = 0 ; j < Trainee.RefundRequests.length ; j++){
       Result = Result.concat({UserName: Trainee.UserName, CourseID: Trainee.RefundRequests[j].CourseID, Status: Trainee.RefundRequests[j].Status});
     }
-    console.log(Result);    
   }
 
   res.send(Result)
@@ -369,7 +368,7 @@ adminR.get("/getAllRefundReq",async(req, res) => {
 adminR.get("/getRefundReq/:Username",async function(req,res){
     
   var Username = req.params.Username;
-  const user = await individualTrainees.findOne({Username: Username })
+  const user = await individualTrainees.findOne({UserName: Username })
   if(user) {
     console.log('Trainee Found')
      return res.json(user.RefundRequests);
@@ -378,6 +377,70 @@ adminR.get("/getRefundReq/:Username",async function(req,res){
     console.log('Trainee Not Found')
      return res.json("ok"); 
   }
+})
+
+adminR.get("/acceptRefundReq/:CourseID1/:UserName",async function(req,res){
+  var CourseID1 = req.params.CourseID1;
+  var Username = req.params.UserName;
+
+  // CourseID:String,
+  // Status:String
+
+  try{
+    const Trainee = await individualTrainees.findOne({UserName: Username })
+    if(Trainee) {
+      console.log('Trainee Found')
+      console.log(Trainee)
+      var RequestArray = Trainee.RefundRequests
+      for(let i = 0 ; RequestArray.length ; i++){
+        if(RequestArray[i].CourseID == CourseID1){
+          var newReq = {CourseID : CourseID1 , Status : 'Accepted'}
+          console.log(newReq)
+          RequestArray[i] = newReq
+          console.log(RequestArray)
+          const UpdatedTrainee = await individualTrainees.findOneAndUpdate({UserName : Username} , {RefundRequests:RequestArray});
+        }
+      }
+      return res.json(UpdatedTrainee);
+    }
+  }
+  catch(error)
+  {
+    return res.status(400).json({msg: error.message});
+  }  
+
+})
+
+adminR.get("/rejectRefundReq/:CourseID1/:UserName",async function(req,res){
+  var CourseID1 = req.params.CourseID1;
+  var Username = req.params.UserName;
+
+  // CourseID:String,
+  // Status:String
+
+  try{
+    const Trainee = await individualTrainees.findOne({UserName: Username })
+    if(Trainee) {
+      console.log('Trainee Found')
+      console.log(Trainee)
+      var RequestArray = Trainee.RefundRequests
+      for(let i = 0 ; RequestArray.length ; i++){
+        if(RequestArray[i].CourseID == CourseID1){
+          var newReq = {CourseID : CourseID1 , Status : 'Rejected'}
+          console.log(newReq)
+          RequestArray[i] = newReq
+          console.log(RequestArray)
+          const UpdatedTrainee = await individualTrainees.findOneAndUpdate({UserName : Username} , {RefundRequests:RequestArray});
+        }
+      }
+      return res.json(UpdatedTrainee);
+    }
+  }
+  catch(error)
+  {
+    return res.status(400).json({msg: error.message});
+  }  
+
 })
 
 ///////////////////////////////////////////////////////////////////////// Reports ///////////////////////////////////////////////
@@ -454,6 +517,7 @@ adminR.get("/getAllReports",async(req, res) => {
 adminR.get("/getReport/:Username",async function(req,res){
   var Username = req.params.Username;
   
+  try{
   const reportList = await reports.find({Reporter: Username })
 
   var list = []
@@ -470,6 +534,13 @@ adminR.get("/getReport/:Username",async function(req,res){
     console.log('report Not Found')
      return res.json("ok"); 
   }
+}
+catch(error)
+{
+  console.log("Couldn't Get Report")
+  console.log(error);
+  return res.status(400).json({msg: error});
+}        
 })
 
 adminR.get("/getReportID/:ID",async function(req,res){
