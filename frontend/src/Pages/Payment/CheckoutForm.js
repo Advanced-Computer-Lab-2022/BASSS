@@ -4,6 +4,8 @@ import './Payment.css'
 import { useStripe,useElements } from '@stripe/react-stripe-js';
 import { PaymentElement, CardElement, PaymentMethodMessagingElement} from '@stripe/react-stripe-js';
 import { FaWindows } from 'react-icons/fa';
+import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function CheckoutForm(props){
     //props.CourseId , props.Price
@@ -52,6 +54,7 @@ export default function CheckoutForm(props){
         //test course ="637e73821194304d45a2fe5a"
       }
     
+    const navigate = useNavigate();
     const enroll = async () => {
         //call enroll in backend
         window.alert('henaaa')
@@ -59,7 +62,8 @@ export default function CheckoutForm(props){
             await axios.post("http://localhost:9000/individualTrainee/enroll",{amount: parseFloat(props.Price), course: props.CourseId}).then(
                 (res) => {
                     setStatus('Payment Complete')
-                    window.alert('Successfully Enrolled')    
+                    window.alert('Successfully Enrolled') 
+                    navigate('/IndividualTrainee')   
                 }
             )
         }

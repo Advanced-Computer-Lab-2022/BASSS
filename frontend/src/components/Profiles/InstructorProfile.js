@@ -219,9 +219,11 @@ const InstructorProfile =  (props) => {
 
 
     return(
-        <div className='Instructor-body2'>
+        <div className='Instructor-body'>
         
         <InstructorNavBar/>
+        <div className='Login_bodySara'>
+
             <div class='container'>
                 <div class='main-body'>
                     <div class="profile_card">
@@ -345,6 +347,7 @@ const InstructorProfile =  (props) => {
                     </div>
                 </div>
             </div>
+         </div>
          </div>
 
     )

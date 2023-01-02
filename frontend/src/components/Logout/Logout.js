@@ -15,17 +15,17 @@ const Logout = () => {
                 localStorage.removeItem('type')
                 localStorage.clear()
             }
-        ).catch(error=> {
-            window.alert(error.response.data)
-        })
-    }
-
-    logout()
-    const navigate = useNavigate()
-    return(
-        <div>
-            {window.alert('Logged out')}
+            ).catch(error=> {
+                window.alert(error.response.data)
+            })
+        }
+        
+        logout()
+        const navigate = useNavigate()
+        return(
+            <div>
             {navigate('/')}
+            {window.alert('Logged out')}
 
         </div>
 

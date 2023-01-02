@@ -52,7 +52,7 @@ const InstructorMyCourses = (props) =>{
     // getMyCourses()
     const navigate = useNavigate()
     return(
-        <div className='Instructor-body2'>
+        <div className='Instructor-body'>
         <InstructorNavBar/>
 
         <div class="search-box">

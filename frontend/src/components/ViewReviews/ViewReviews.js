@@ -1,6 +1,8 @@
 import axios from 'axios';
 import '../../Pages/Instructor/Instructor.css'
 import './ViewReviews.css'
+import '../CourseDetails/CourseDetails.css'
+import InstructorNavBar from '../../Pages/Instructor/InstructorNavBar/InstructorNavBar';
 
 const { useState, useEffect } = require("react");
 
@@ -21,16 +23,22 @@ const Reviews = () => {
     getReview();  
 
     return(
-        <div   className='Instructor-body'>
-<h1>My Reviews: </h1>
-<br></br>
+        <div class='Instructor-body'>
+            <InstructorNavBar/>
+            <div className='Login_bodySara'>
+            <div class="instReviewDiv">
                 {instuctorReviews.map((Review) => (
-                <div>
-                
-                <h1>{Review}</h1>
-                </div>
-
+                    <div>
+                        <label >{Review} </label>
+                        <br/>
+                    </div>
             ))}
+
+            </div>
+            </div>
+
+        <br></br><br></br><br></br>
+            
 
 
 
