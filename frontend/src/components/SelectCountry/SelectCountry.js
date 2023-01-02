@@ -4,11 +4,13 @@ import './SelectCountry.css'
 import countries from 'countries-list'
 const countryCodes = Object.keys(countries.countries);
 const countryNames = countryCodes.map(code => countries.countries[code].name);
-function SelectCountry() {
+
+const SelectCountry = (props) => {
   const [country , setcountry] = useState('');
 
   const changeHandler = (e)=>{
      setcountry(e.target.value)
+     props.setCountry(e.target.value)
      alert('country selected')
   }
   

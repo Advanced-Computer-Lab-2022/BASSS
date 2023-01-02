@@ -63,7 +63,7 @@ const GuestNavBar = (props) =>{
               </li>
   
               <li className='nav-item'>
-              <SelectCountry/>
+              <SelectCountry setCountry = {props.setCountry}/>
               </li>
             </ul>
           </div>

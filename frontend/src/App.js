@@ -60,6 +60,9 @@ import Sara from './sara'
 import PrivacyPolicy from './Pages/SignUp/PrivaryPolicy';
 import Downloadcert from './components/Downloadcert/Downloadcert';
 import InstructorMyCourses from './components/MyCourses/InstructorMyCourses';
+import TraineeViewAllCourses from './Pages/IndividualTrainee/ViewAllCourses/TraineeViewAllCourses';
+import './Pages/Instructor/InstructorViewAllCourses/InstructorViewAllCourses.css';
+import InstructorViewAllCourses from './Pages/Instructor/InstructorViewAllCourses/InstructorViewAllCourses';
 
 
 const cookies = new Cookies();
@@ -135,6 +138,8 @@ function App() {
             //   (type=="individual trainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/> :<LoginPage/>) : <Home/>
           }/>
           <Route path='/instructor/myReports' element={<MyReports/> } />
+
+          <Route path='/instructor/allCourses' element={<InstructorViewAllCourses/>} />
 
 
 
@@ -220,6 +225,8 @@ function App() {
               // (type=="individual trainee")? <EditnewPass Type = "individualTrainee"/>  : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
           }/>
           <Route path='/individualTrainee/myReports' element={<MyReports/> } />
+
+          <Route path='/individualTrainee/allcourses' element={<TraineeViewAllCourses/> } />
 
 
           {/* IDK Routes */}

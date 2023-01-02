@@ -40,7 +40,7 @@ const IndividualTraineeNavBar = (props) => {
       <>
       <nav className='navbar'>
           <div className='navbar-container'>
-            <Link to='/instructor' className='navbar-logo' onClick={closeMobileMenu}>
+            <Link to='/IndividualTrainee' className='navbar-logo' onClick={closeMobileMenu}>
               BASSS Academy
               <i class='fab fa-typo3' />
             </Link>
@@ -64,7 +64,7 @@ const IndividualTraineeNavBar = (props) => {
                   Courses
                 </Link>
                 {isHovering && <div className='Hover_Div1' onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-                    <Link to='' className='nav_linksButton'>
+                    <Link to='/IndividualTrainee/allcourses' className='nav_linksButton'>
                         AllCourses
                     </Link>
                     <Link to='' className='nav_linksButton'>
@@ -77,7 +77,7 @@ const IndividualTraineeNavBar = (props) => {
                 <Button DropDown={true} buttonStyle = 'btn--outline' Text = '...' B1stLinkTo = '' B1stLinkText = 'View Reports'/>  
               </li>
               <li className='nav_item_country'>
-              <SelectCountry/>
+              <SelectCountry setCountry = {props.setCountry}/>
               </li>
             </ul>
           </div>

@@ -375,6 +375,29 @@ courseR.get("/createExcercise/:CourseTitle/:InstructorName/:SubtitleNumber/:Ques
     }        
 })
 
+courseR.get("/getExercisesByCourseID/:Course",async(req, res) => {
+  const Course = req.params.Course
 
+  try{
+    const course1 = await courses.findOne({_id : Course})
+    if(course1){
+      var SubArray = [1,2]
+      var Ex1 = []
+      SubArray = course1.Subtitles
+  
+      for(let i = 0 ; i < SubArray.length ; i++){
+        var Sub = await subtitleSchema.findOne({_id : SubArray[i]})
+        Ex1 = Ex1.concat(Sub.Exercise)
+      }
+      return res.status(200).json({SubArray , Ex1});
+    }
+  }
+  catch(error)
+  {
+    
+    return res.status(400).json({msg: error.message});
+  }       
+
+})
 
 module.exports = courseR;
