@@ -32,7 +32,7 @@ import Instructor from './Pages/Instructor/Instructor'
 import MyReviews from './components/ViewReviews/ViewReviews';
 import MyCourses from './components/MyCourses/MyCourses';
 import CreateCourse from './Pages/Instructor/CreateCourse/CreateCourse';
-import CourseDetailsInstructor from './components/CourseDetailsInstructor/CourseDetailsInstructor';
+import CourseDetailsInstructor from './components/CourseDetails/CourseDetailsInst';
 import Promotion from './components/Promotion/Promotion';
 import Contract from './components/Contract/Contract';
 import InstructorCourses from './Pages/Instructor/InstructorCourses';
@@ -231,6 +231,7 @@ function App() {
         } />
           <Route path='/mostViewd' element={<MostViewd/> } />
 
+          <Route path='/adham' element={<CourseDetailsInstructor/> } />
 
 
         </Routes>
