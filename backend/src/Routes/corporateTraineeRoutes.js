@@ -18,7 +18,7 @@ corporateTraineeR.get("/myInfo/pass/:pass",async function(req,res){
   // console.log(req.body)
     var pass = req.params.pass;
 
-const result =await corporateTrainees.findOneAndUpdate({Userame:"sarasaad2001"},{Password:pass})
+const result =await corporateTrainees.findOneAndUpdate({Userame:"Hazem zeft Hegazy"},{Password:pass})
 //res.json(result)
 res.json({message:"updated successfully"})
 
@@ -30,10 +30,10 @@ corporateTraineeR.get("/myInfo/pass/:oldpass/:pass",async function(req,res){
     var pass = req.params.pass;
     var oldpass = req.params.oldpass;
   
-var oldpass2 =await corporateTrainees.findOne({Username:"sarasaad2001"})
+var oldpass2 =await corporateTrainees.findOne({Username:"Hazem zeft Hegazy"})
 
 if(oldpass==oldpass2.Password){
-const result =await corporateTrainees.findOneAndUpdate({Userame:"sarasaad2001"},{Password:pass})
+const result =await corporateTrainees.findOneAndUpdate({Userame:"Hazem zeft Hegazy"},{Password:pass})
 //res.json(result)
 res.json({message:"updated successfully"})
  } else
@@ -100,9 +100,8 @@ corporateTraineeR.get("/forgetpass/:username/:email",function(req,res){
 
 corporateTraineeR.get("/CorporateCourses/:username",async(req, res) => {
     const username = req.params.username;
-    const trainee = await corporateTrainees.find({Username:username})
+    const trainee = await corporateTrainees.find({UserName:username})
     const courseID = trainee[0].courses
-    //console.log(courseID[0].Exercises)
     var list = []
     for (let i = 0; i < courseID.length; i++) {
         const course = await courses.findOne({_id:courseID[i].Course})

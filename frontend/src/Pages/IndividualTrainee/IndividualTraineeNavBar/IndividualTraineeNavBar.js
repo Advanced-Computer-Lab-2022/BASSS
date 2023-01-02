@@ -50,7 +50,7 @@ const IndividualTraineeNavBar = (props) => {
             <ul className={click ? 'nav-menu active' : 'nav-menu'}>
             
               <li className='nav-item1'>
-                <Link to={props.FirstLinkTo} className='nav-links' onClick={props.setProfile}>
+                <Link to={props.FirstLinkTo} className='nav-links' >
                   My Profile
                 </Link>
               </li>
@@ -84,12 +84,6 @@ const IndividualTraineeNavBar = (props) => {
         </nav>
       </>
     )
-    // return <div>
-    // <Navbar  FirstLinkText=' ' SecondLinkText='Courses' ThirdLinkText='My courses' FourthLinkText='My Profile'  
-    // ButtonLinkText='Logout' 
-    // LogoLink='/'  FirstLinkTo='/AdminProfile' SecondLinkTo='/CoursesAdmin' ThirdLinkTo='' FourthLinkTo='/individualProfile' 
-    // ButtonLinkTo='/logout'/>
-    // </div>
 }
 
 export default IndividualTraineeNavBar

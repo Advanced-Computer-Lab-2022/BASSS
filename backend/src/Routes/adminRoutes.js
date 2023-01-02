@@ -383,7 +383,7 @@ adminR.get("/getRefundReq/:Username",async function(req,res){
 ///////////////////////////////////////////////////////////////////////// Reports ///////////////////////////////////////////////
 
 adminR.get("/createReport/:Reporter/:CourseID/:Type/:Comment",async function(req,res){   //:Status/
-  var Reporter = req.params.Reporter;
+  var Reporter = res.locals.user;
   var Type = req.params.Type;
   var CourseID = req.params.CourseID;  
   var Comment = req.params.Comment  

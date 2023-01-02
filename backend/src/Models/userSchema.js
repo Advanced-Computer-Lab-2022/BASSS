@@ -12,6 +12,11 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
+    Email: {
+        type: String,
+        required: true,
+        unique: true,
+      },
 
     Type:{
         type: String,
@@ -22,4 +27,5 @@ const userSchema = new Schema({
 
 
 const user = mongoose.model('user', userSchema);
+//user.create(UserName="bassel31",Password="123",Email="bassel@gmail.com",Type="Instructor");
 module.exports = user;

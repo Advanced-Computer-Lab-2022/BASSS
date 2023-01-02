@@ -1,5 +1,7 @@
 import React from 'react'
 import axios from 'axios';
+import { Link } from 'react-router-dom'
+
 import './EditPass.css'
 const { useState, useEffect } = require("react");
 function EditPass(props) {
@@ -47,7 +49,9 @@ function EditPass(props) {
 <input className='info-textbox1' placeholder='old password' onChange={changehandler2} value={choice2}/>
 <input className='info-textbox1' placeholder='new password' onChange={changehandler} value={choice}/>
 <label>{pass}</label>
-
+<Link to ="/IndividualTrainee/SelectCountry">
+        <button className='selectcountrybtnindividual'> select your country</button>
+        </Link>
 </div>
 
 

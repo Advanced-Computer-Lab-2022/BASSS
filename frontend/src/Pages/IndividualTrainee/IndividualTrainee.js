@@ -11,7 +11,7 @@ import axios from 'axios';
 import Forgetpass from '../../components/Forgetpass/Forgetpass';
 import Downloadcert from '../../components/Downloadcert/Downloadcert';
 import Writenotes from '../../components/Writenotes/Writenotes';
-import TraineeProfile from '../../components/Profiles/TraineeProfile';
+import InstructorNavBar from '../Instructor/InstructorNavBar/InstructorNavBar';
 
 function IndividualTrainee(){
     const [profile,setProfile] = useState(false);
@@ -22,44 +22,11 @@ function IndividualTrainee(){
 
     return(
         <>
-        <div className='IndividualTrainee-body'>
-        <IndividualTraineeNavBar setProfile={profileHandler}/>
-        {profile && <TraineeProfile Who='individualtrainee'/>}
-        {!profile && 
-        <div>
-        <Search Type='indvidual'/>
-        <Link to ="/IndividualTrainee/myInfo">
-        <button> edit my info</button>
-        </Link>
-        <br></br><br></br><br></br><br></br><br></br><br></br>
-        <Link to ="/IndividualTrainee/SelectCountry">
-        <button className='selectcountrybtnindividual'> select your country</button>
-        </Link>
-        <Writenotes/>
-        {/* <Forgetpass Type="individualTrainee"/> */}
-        <Downloadcert/>
-        
-        {/* <Courses Link = "/individualtrainee/CourseDetails" /> */}
-        <Forgetpass Type="individualTrainee"/>
-
-        {/* <Courses Link = "/individualtrainee/CourseDetails" /> */}
-        <Link to ="/AllCourses">
-        <button >View AllCourses </button>
-        </Link>
-        <br></br>
-        <Link to ="/mostViewd">
-        <button >View our most popular Courses </button>
-        </Link>
-
-        <Link to ="/individualTrainee/myReports">
-        <button >View My Reports </button>
-        </Link>
-        <br></br><br></br><br></br><br></br><br></br><br></br>
-        
+        <div className='IndividualTrainee-body'>   
+        <IndividualTraineeNavBar FirstLinkTo='/traineeProfile'/>    
         <IndividualCourses Link = "/individualtrainee/myCourseDetails"/>
         <br></br><br></br><br></br><br></br><br></br><br></br>
-        </div>
-}
+
         </div>
         </>
     )

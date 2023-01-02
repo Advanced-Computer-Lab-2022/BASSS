@@ -8,10 +8,6 @@ const bcrypt = require('bcrypt')
 
 var nodemailer = require('nodemailer');
 
-instructorR.get("/getWallet", async function (req,res){
-  console.log(res.locals.user)
-})
-
 instructorR.get("/getInstructor", async(req,res)=>{
   const inst = await instructors.findOne({UserName: "salama"})
   res.status(200).json(inst)
@@ -39,7 +35,7 @@ instructorR.get("/searchmycourses/:searchkey", async function(req,res){
 
  instructorR.get('/instructorViewtitles', function(req, res) {
     //token name 
-    const name = res.locals.user;
+    // const name = res.locals.user;
 
     var query = courses.find({InstructorUserName:"salama"})
     query.exec(function(err,result){
@@ -47,7 +43,7 @@ instructorR.get("/searchmycourses/:searchkey", async function(req,res){
         if(result.length==0){
 
         }else{
-            courses.find({InstructorUserName:name})            
+            courses.find({InstructorUserName:"salama"})            
             res.send(result);
         }
       })
@@ -160,16 +156,32 @@ instructorR.get("/getInstructor",async(req, res) => {
 
 instructorR.get("/updateRate/:name/:newRate",async(req, res) => {
     //token name
-    const name = res.locals.user;
+    // const name = res.locals.user;
 
     var newRate = req.params.newRate;
-    var oldResult =await instructors.findOne({UserName:name})
+    var oldResult =await instructors.findOne({UserName:"salama"})
     var oldCount = oldResult.Rating.count;
     var oldSum = oldResult.Rating.sum;
-    const result =await instructors.findOneAndUpdate({UserName:name},{Rating:{rate:(Number(oldSum)+Number(newRate))/(oldCount+1), count:(oldCount+1), 
+    const result =await instructors.findOneAndUpdate({UserName:"salama"},{Rating:{rate:(Number(oldSum)+Number(newRate))/(oldCount+1), count:(oldCount+1), 
     sum:(Number(oldSum)+Number(newRate))}})
     res.json(result)
+    console.log('123')
 });
+
+instructorR.get("/reviewInst/:instName/:Review", async function(req,res){
+
+  var Review = req.params.Review;
+  var instName = req.params.instName;
+
+  var inst = await instructors.findOne({UserName:instName});
+
+  var arr = inst.Reviews.concat(Review);
+
+  const Result = await instructors.findOneAndUpdate({UserName:instName}, {Reviews:arr})
+
+  res.json(Result);
+
+})
 
 instructorR.get("/forgetpass/:username/:email", async (req,res) => {
   const username = req.params.username;
@@ -177,7 +189,7 @@ instructorR.get("/forgetpass/:username/:email", async (req,res) => {
   
   
   const user = await users.findOne({UserName: username})
-  const type = user.Type
+  //const type = user.Type
   
   var transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -191,7 +203,7 @@ instructorR.get("/forgetpass/:username/:email", async (req,res) => {
     from: 'acltest321@gmail.com',
     to: email,
     subject: 'Sending Email using Node.js',
-    text: 'To reset your password please click here , http://localhost:3000/' +type+ '/forgetpass'
+    text: 'To reset your password please click here , http://localhost:3000/instructor/forgetpass'
   };
   
   transporter.sendMail(mailOptions, function(error, info){

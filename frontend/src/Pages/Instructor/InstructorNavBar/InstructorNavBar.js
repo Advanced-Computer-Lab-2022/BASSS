@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '../../../components/Button/Button';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import '../../../components/Navbar/Navbar.css';
 import SelectCountry from '../../../components/SelectCountry/SelectCountry';
-
 const InstructorNavBar = (props) => {
     const [click, setClick] = useState(false);
     const [button, setButton] = useState(true);
@@ -40,7 +39,7 @@ const InstructorNavBar = (props) => {
       <>
       <nav className='navbar'>
           <div className='navbar-container'>
-            <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
+            <Link to='/instructor' className='navbar-logo' >
               BASSS Academy
               <i class='fab fa-typo3' />
             </Link>
@@ -50,7 +49,7 @@ const InstructorNavBar = (props) => {
             <ul className={click ? 'nav-menu active' : 'nav-menu'}>
             
               <li className='nav-item1'>
-                <Link  className='nav-links' onClick={props.setProfile}>
+                <Link to={props.FirstLinkTo} className='nav-links' onClick={props.setProfile}>
                   My Profile
                 </Link>
               </li>
@@ -64,14 +63,11 @@ const InstructorNavBar = (props) => {
                   Courses
                 </Link>
                 {isHovering && <div className='Hover_Div1' onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-                    <Link to='/sara' className='nav_linksButton'>
+                    <Link to='' className='nav_linksButton'>
                         AllCourses
                     </Link>
-                    <Link to='/' className='nav_linksButton'>
+                    <Link to='' className='nav_linksButton'>
                         My Courses
-                    </Link>
-                    <Link to='/createCourse' className='nav_linksButton'>
-                        Create Course
                     </Link>
                     </div>
                     }

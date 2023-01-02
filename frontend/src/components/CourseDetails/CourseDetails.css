@@ -1,70 +1,352 @@
-.CourseDetails-body{
-    /* background-image: linear-gradient(rgba(0, 0, 0, 0.7),  rgba(0, 0, 0, 0.7)), url('../../../public/images/courseDetails.jpg') ;
-    background-size:cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 753px; */
-    /* background-color: rgb(11, 6, 99);
-    height: 753px; */
-     
-}
-.video1{
-  top: 0%;
-  /* object-fit:fill; */
-  object-fit: fill;
-  /* width: 100%; */
-  /* height: 100%; */
-  position:relative;
-  z-index: -1;
-}
-.videodiv{
-  position: absolute;
-  height: 50%;
+/* .Course-info-adham {
+  width: 800px;
+  height: 254px;
+  border-radius: 20px;
+  padding: 5px;
+  position: relative;
+  top: 10rem;
+  left: 5rem;
+  box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+  background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+ }
+ 
+ .Course-info-adham__content {
+  background: rgb(5, 6, 45);
+  border-radius: 17px;
   width: 100%;
+  height: 100%;
+ } */
+
+
+ .adhaminfo {
+  --width: 1500px;
+  --height: 700px;
+  --primary: #00b9ae;
+  --text: #f9f9f9b2;
+  --secondary: #f9f9f933;
+  --radius: 20px;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  width: var(--width);
+  height: var(--height);
+  background: linear-gradient(
+      180deg,
+      rgba(22, 24, 30, 0) 0%,
+      rgba(22, 24, 30, 0.7) 65.28%
+    ),
+    linear-gradient(0deg, rgba(27, 50, 117), rgba(19, 43, 118));
+  background-size: cover;
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding: 1em;
+  padding-top: 1.4em;
+  position: relative;
+  top: 5.7rem;
+  left: 1rem;
+
+}
+.adhaminfo .adhaminfo__title {
+  margin: 0;
+  font-size: 3rem;
+  font-weight: bold;
+  margin-top: 0.2rem;
+}
+
+.rating {
+  margin-top: 0.5em;
+  width: 85px;
+  height: 16px;
+  background-image: url("data:image/svg+xml,%20%3Csvg%0A%20%20%20%20%20%20%20%20%20%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%0A%20%20%20%20%20%20%20%20%20%20width%3D%2217%22%0A%20%20%20%20%20%20%20%20%20%20height%3D%2217%22%0A%20%20%20%20%20%20%20%20%20%20viewBox%3D%220%200%2017%2017%22%0A%20%20%20%20%20%20%20%20%20%20fill%3D%22none%22%0A%20%20%20%20%20%20%20%20%3E%0A%20%20%20%20%20%20%20%20%20%20%3Cpath%0A%20%20%20%20%20%20%20%20%20%20%20%20d%3D%22M8.51948%201.625C9.1214%201.625%2010.0427%204.16625%2010.4636%205.43013C10.6014%205.8437%2010.9837%206.13054%2011.4192%206.14904C12.7373%206.20505%2015.375%206.39722%2015.375%207.0384C15.375%207.66696%2013.5161%209.17543%2012.5322%209.92976C12.1816%2010.1986%2012.0365%2010.6604%2012.1687%2011.082C12.5631%2012.34%2013.2755%2014.8755%2012.7573%2015.3009C12.2506%2015.717%2010.2147%2014.2326%209.15246%2013.4009C8.77021%2013.1016%208.22949%2013.1012%207.84719%2013.4004C6.78473%2014.2321%204.75246%2015.717%204.28166%2015.3009C3.79912%2014.8745%204.47615%2012.3275%204.84741%2011.0727C4.97086%2010.6555%204.82425%2010.2029%204.47885%209.93826C3.49798%209.18681%201.625%207.66933%201.625%207.0384C1.625%206.3962%204.2711%206.20444%205.5871%206.14878C6.0197%206.13048%206.3998%205.84769%206.53973%205.43793C6.97041%204.17673%207.91633%201.625%208.51948%201.625Z%22%0A%20%20%20%20%20%20%20%20%20%20%20%20fill%3D%22%2300B9AE%22%0A%20%20%20%20%20%20%20%20%20%20%20%20stroke%3D%22%2300B9AE%22%0A%20%20%20%20%20%20%20%20%20%20%20%20stroke-width%3D%222%22%0A%20%20%20%20%20%20%20%20%20%20%20%20stroke-linecap%3D%22round%22%0A%20%20%20%20%20%20%20%20%20%20%20%20stroke-linejoin%3D%22round%22%0A%20%20%20%20%20%20%20%20%20%20%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fsvg%3E");
+  background-repeat: space;
+  position: relative;
+  top: 1rem;
+  left: .5rem;
+}
+
+.adhaminfo .adhaminfo__info {
+  display: flex;
+  margin-top: auto;
+  font-size: 0.8rem;
+  color: var(--text);
+  font-weight: 400;
+  justify-content: space-between;
+}
+
+.adhaminfo .adhaminfo__btns {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.adhaminfo button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  background: var(--primary);
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.adhaminfo button:hover {
+  opacity: 0.8;
+  transform: scale(0.9);
+}
+
+.adhaminfo .add-btn {
+  color: #fff;
+  padding: 0.5em 0.8em;
+  background: rgba(249, 249, 249, 0.2);
+  border-radius: 14px;position: relative;
+}
+
+.adhaminfo .watch-btn {
+  flex: 1;
+}
+.Course_rate_adham{
+position: absolute;
+top: 6.5rem;
+left: 8rem;
+font-size: medium;
+color: rgb(208, 208, 15);
+}
+
+.adham{
+  position: absolute;
+  top: 10.5rem;
+  left: 6.5rem;
+  font-size: 25px;
+  color: white;
+  }
+  .total_hours_adham{
+    position: absolute;
+    top: 15.5rem;
+    left: 6.5rem;
+    font-size: 25px;
+    color: white;
+    }
+    .views_adham{
+      position: absolute;
+      top: 18.5rem;
+      left: 6.5rem;
+      font-size: 25px;
+      color: white;
+      }
+.Ratings_adham1{
+  position: absolute;
+  top: 6.5rem;
+  left: 19rem;
+  font-size: medium;
+  color: white;
+  }
+  .adham_image {
+    --size: 50px;
+    background-image: url('../../../public/images/adham.jpg');
+    background-size: cover;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    transition: transform .2s ease;
+    margin-bottom: 1rem;
+    position: absolute;
+    left: 1.5rem;
+    top: 10rem;
+   }
+   .loader {
+    position: absolute;
+    margin: 75px auto;
+    width: 200px;
+    height: 200px;
+    display: block;
+    overflow: hidden;
+    left: 70rem;
+    top: -2rem;
+  }
   
-}
-
-.RateCoursebtn
-{
-    background-color: transparent;
-    color: #fff;
-    padding: 10px 10px;
-    border: 2px solid white;
-    text-align: center;
-    font-size: 20px;
-    border-radius: 10px;
-    width: 80px;
-    cursor: pointer;
-    position: absolute;
-     /* top: 500px; */
-    left: 200px; 
-}
-  .RateCoursebtn:hover{
-    background-color: #fff;
-    color: black;
+  .loader div {
+    height: 100%;
   }
-  .RateInstructorbtn
-{
-    background-color: transparent;
-    color: #fff;
-    padding: 10px 10px;
-    border: 2px solid white;
-    text-align: center;
-    font-size: 20px;
-    border-radius: 10px;
-    width: 80px;
-    cursor: pointer;
-    position: absolute;
-    /* top: 500px; */
-    left: 500px;
-}
-  .RateInstructorbtn:hover{
-    background-color: #fff;
-    color: black;
+  
+  /* loader 1 */
+  .loader1, .loader1 div {
+    border-radius: 50%;
+    padding: 8px;
+    border: 2px solid transparent;
+    -webkit-animation: rotate1076 linear 3.5s infinite;
+    animation: rotate1076 linear 3.5s infinite;
+    border-top-color: rgba(255, 255, 255, 0.5);
+    border-bottom-color: rgba(0, 0, 255, 0.5);
   }
+  
+  .loader, .loader * {
+    will-change: transform;
+  }
+  
+  @keyframes rotate1076 {
+    0% {
+      transform: rotate(0deg);
+    }
+  
+    50% {
+      transform: rotate(180deg);
+    }
+  
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .uni_img{
+    background-image: url('../../../public/images/uni.jpg');
+    background-size: cover;
+    position: absolute;
+    height: 12rem;
+    width: 16rem;
+    left: 68rem;
+    top: 24rem;
+  }
+  .offer-adham{
+    position: absolute;
+    top: 21rem;
+    left: 74rem;
+    font-size: medium;
+    color: white;
+    }
+    .rate_adham {
+      width: 650px;
+      height: 254px;
+      background: lightgrey;
+      border: 3px inset white;
+      background: #e8e8e8;
+      box-shadow: inset 20px 20px 60px #c5c5c5, inset -20px -20px 60px #ffffff;
+      transition: all .5s ease-in-out;
+      border-radius: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bolder;
+      color: #8a8989;
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      position: absolute;
+      top: 24rem;
+    }
+    
+    .rate_adham:hover {
+      transform: translateY(-5px);
+      transition: all .5s ease-in-out;
+    }
+    .rate_adham h2{
+      position: absolute;
+      top: 3rem;
+      color: rgb(57, 56, 56);
+    }
 
-  .exercisebtn
-  {
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    .rate {
+      float: left;
+      height: 46px;
+      padding: 0 10px;
+    }
+    .rate:not(:checked) > input {
+      position:absolute;
+      top:-9999px;
+    }
+    .rate:not(:checked) > label {
+      float:right;
+      width:1em;
+      overflow:hidden;
+      white-space:nowrap;
+      cursor:pointer;
+      font-size:30px;
+      color:rgb(147, 144, 144);
+    }
+    .rate:not(:checked) > label:before {
+      content: '★ ';
+    }
+    .rate > input:checked ~ label {
+      color: #ffc700;    
+    }
+    .rate:not(:checked) > label:hover,
+    .rate:not(:checked) > label:hover ~ label {
+      color: #deb217;  
+    }
+    .rate > input:checked + label:hover,
+    .rate > input:checked + label:hover ~ label,
+    .rate > input:checked ~ label:hover,
+    .rate > input:checked ~ label:hover ~ label,
+    .rate > label:hover ~ input:checked ~ label {
+      color: #c59b08;
+    }
+
+
+
+
+
+
+    .submit_adham{
+      background-color: #c59b08;
+    }
+    .subtitles {
+      display: flex;
+      overflow: auto;
+      scroll-snap-type: x mandatory;
+      padding: 10px;
+      gap: 10px;
+      scroll-padding: 10px;
+      width: 1200px;
+      height: 800px;
+      background-color: transparent;
+      border-radius: 2rem;
+      position: absolute;
+      top: 60rem;
+      left: 10rem;
+    }
+    
+    .subtitles .subtitles_item {
+      scroll-snap-align: start;
+      flex: 0 0 100%;
+      background: linear-gradient(120deg, rgb(7, 2, 61) 30%, rgb(84, 40, 178) 88%, rgb(3, 2, 5) 
+      40%, rgb(55, 41, 132) 1%);
+      display: flex;
+      /* justify-content: center; */
+      align-items: center;
+      color: rgb(14, 13, 21);
+      /* text-align: center; */
+      font-size: 1.3rem;
+      line-height: 1.3em;
+      font-weight: 400;
+      font-family: sans-serif;
+      border-radius: 2rem;
+    }
+    .sub_h1_adham{
+      position: absolute;
+      top: 55rem;
+      left: 40rem;
+      color: rgb(15, 15, 79);
+      font-size: 3em;
+      font-family: 'Courier New', Courier, monospace;
+    }
+    .sub_info_adham{
+      color: white;
+      font-family: 'Courier New', Courier, monospace;
+      margin-bottom: .5em;
+      font-size: 1em;
+      margin-right: 6em;
+      position: relative;
+      top: -14rem;
+      left: 17rem;
+    }
+    .exercisebtn_adham{
+      position: relative;
+      top: 18rem;
+      left: -35rem;
       background-color: transparent;
       color: #fff;
       padding: 10px 10px;
@@ -72,149 +354,432 @@
       text-align: center;
       font-size: 20px;
       border-radius: 10px;
-      width: 120px;
+      width: 7rem;
       cursor: pointer;
-      position: absolute;
-      /* top: 500px; */
-      left: 540px;
-  }
-    .exercisebtn:hover{
+    }
+    .exercisebtn_adham:hover{
       background-color: #fff;
       color: black;
     }
 
+    .reviews_adham {
+      position: absolute;
+      top: 120rem;
+      left: 4rem;
+      width: 1400px;
+      height: 800px;
+      border-radius: 30px;
+      background: #212121;
+      box-shadow: 5px 5px 10px rgb(25, 25, 25),
+                  -5px -5px 10px rgb(60, 60, 60);
+     }
+     .reviews_adham h1{
+      color: white;
+      position: relative;
+      top: 5rem;
+      left: -35rem;
+      font-size: 40px;
+      font-family: 'Courier New', Courier, monospace;
+      margin-bottom: 5rem;
+     }
+     .reviews_adham h3{
+      color: rgb(110, 106, 106);
+      position: absolute;
+      top: 15rem;
+      left: 13rem;
+      /* font-size: px; */
+      /* font-family: 'Courier New', Courier, monospace; */
+      margin-bottom: 5rem;
+     }
+     .header_adham{
+      color: white;
+      font-size: larger;
+      position: absolute;
+      top: 14rem;
+      left: 35rem;
 
-    .watchvideo-adham
-    {
-        background-color: transparent;
-        color: #fff;
-        padding: 10px 10px;
-        border: 2px solid white;
-        text-align: center;
-        font-size: 20px;
-        border-radius: 10px;
-        width: 200px;
-        cursor: pointer;
+     }
+     .person_review{
+      color: black;
+      font-size: 15px;
+      position: relative;
+      top: 3rem;
+      left: 100px;
+      margin-bottom: 1rem;
+     }
+
+      .person_review_div{
+        width: 670px;
+        height: 500px;
+        border-radius: 50px;
+        background: #e0e0e0;
         position: absolute;
-        /* top: 500px; */
-        left: 500px;
+        left: 37rem;
+        top: 18rem;
+     }
+     .rating_reviews {
+      margin-top: 0.5em;
+      width: 85px;
+      height: 16px;
+      background-image: url("data:image/svg+xml,%20%3Csvg%0A%20%20%20%20%20%20%20%20%20%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%0A%20%20%20%20%20%20%20%20%20%20width%3D%2217%22%0A%20%20%20%20%20%20%20%20%20%20height%3D%2217%22%0A%20%20%20%20%20%20%20%20%20%20viewBox%3D%220%200%2017%2017%22%0A%20%20%20%20%20%20%20%20%20%20fill%3D%22none%22%0A%20%20%20%20%20%20%20%20%3E%0A%20%20%20%20%20%20%20%20%20%20%3Cpath%0A%20%20%20%20%20%20%20%20%20%20%20%20d%3D%22M8.51948%201.625C9.1214%201.625%2010.0427%204.16625%2010.4636%205.43013C10.6014%205.8437%2010.9837%206.13054%2011.4192%206.14904C12.7373%206.20505%2015.375%206.39722%2015.375%207.0384C15.375%207.66696%2013.5161%209.17543%2012.5322%209.92976C12.1816%2010.1986%2012.0365%2010.6604%2012.1687%2011.082C12.5631%2012.34%2013.2755%2014.8755%2012.7573%2015.3009C12.2506%2015.717%2010.2147%2014.2326%209.15246%2013.4009C8.77021%2013.1016%208.22949%2013.1012%207.84719%2013.4004C6.78473%2014.2321%204.75246%2015.717%204.28166%2015.3009C3.79912%2014.8745%204.47615%2012.3275%204.84741%2011.0727C4.97086%2010.6555%204.82425%2010.2029%204.47885%209.93826C3.49798%209.18681%201.625%207.66933%201.625%207.0384C1.625%206.3962%204.2711%206.20444%205.5871%206.14878C6.0197%206.13048%206.3998%205.84769%206.53973%205.43793C6.97041%204.17673%207.91633%201.625%208.51948%201.625Z%22%0A%20%20%20%20%20%20%20%20%20%20%20%20fill%3D%22%2300B9AE%22%0A%20%20%20%20%20%20%20%20%20%20%20%20stroke%3D%22%2300B9AE%22%0A%20%20%20%20%20%20%20%20%20%20%20%20stroke-width%3D%222%22%0A%20%20%20%20%20%20%20%20%20%20%20%20stroke-linecap%3D%22round%22%0A%20%20%20%20%20%20%20%20%20%20%20%20stroke-linejoin%3D%22round%22%0A%20%20%20%20%20%20%20%20%20%20%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fsvg%3E");
+      background-repeat: space;
+      position: relative;
+      top: -2rem;
+      left: 14rem;
     }
-      .watchvideo-adham:hover{
-        background-color: #fff;
-        color: black;
+    .rating_reviews_person {
+      margin-top: 0.5em;
+      width: 85px;
+      height: 16px;
+      background-image: url("data:image/svg+xml,%20%3Csvg%0A%20%20%20%20%20%20%20%20%20%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%0A%20%20%20%20%20%20%20%20%20%20width%3D%2217%22%0A%20%20%20%20%20%20%20%20%20%20height%3D%2217%22%0A%20%20%20%20%20%20%20%20%20%20viewBox%3D%220%200%2017%2017%22%0A%20%20%20%20%20%20%20%20%20%20fill%3D%22none%22%0A%20%20%20%20%20%20%20%20%3E%0A%20%20%20%20%20%20%20%20%20%20%3Cpath%0A%20%20%20%20%20%20%20%20%20%20%20%20d%3D%22M8.51948%201.625C9.1214%201.625%2010.0427%204.16625%2010.4636%205.43013C10.6014%205.8437%2010.9837%206.13054%2011.4192%206.14904C12.7373%206.20505%2015.375%206.39722%2015.375%207.0384C15.375%207.66696%2013.5161%209.17543%2012.5322%209.92976C12.1816%2010.1986%2012.0365%2010.6604%2012.1687%2011.082C12.5631%2012.34%2013.2755%2014.8755%2012.7573%2015.3009C12.2506%2015.717%2010.2147%2014.2326%209.15246%2013.4009C8.77021%2013.1016%208.22949%2013.1012%207.84719%2013.4004C6.78473%2014.2321%204.75246%2015.717%204.28166%2015.3009C3.79912%2014.8745%204.47615%2012.3275%204.84741%2011.0727C4.97086%2010.6555%204.82425%2010.2029%204.47885%209.93826C3.49798%209.18681%201.625%207.66933%201.625%207.0384C1.625%206.3962%204.2711%206.20444%205.5871%206.14878C6.0197%206.13048%206.3998%205.84769%206.53973%205.43793C6.97041%204.17673%207.91633%201.625%208.51948%201.625Z%22%0A%20%20%20%20%20%20%20%20%20%20%20%20fill%3D%22%2300B9AE%22%0A%20%20%20%20%20%20%20%20%20%20%20%20stroke%3D%22%2300B9AE%22%0A%20%20%20%20%20%20%20%20%20%20%20%20stroke-width%3D%222%22%0A%20%20%20%20%20%20%20%20%20%20%20%20stroke-linecap%3D%22round%22%0A%20%20%20%20%20%20%20%20%20%20%20%20stroke-linejoin%3D%22round%22%0A%20%20%20%20%20%20%20%20%20%20%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fsvg%3E");
+      background-repeat: space;
+      position: relative;
+      top: 2rem;
+      left: 7rem;
+    }
+    .loader55 {
+      top: 60%;
+      left: 20%;
+      transform: translate(-50%, -50%);
+      position: absolute;
+    }
+    
+    .bar {
+      width: 17px;
+      height: 80px;
+      background: hsl(0, 100%, 50%);
+      display: inline-block;
+      transform-origin: bottom center;
+      border-top-right-radius: 20px;
+      border-top-left-radius: 20px;
+      animation: loader8913 1.2s linear infinite;
+    }
+    
+    .bar1 {
+      animation-delay: 0.1s;
+    }
+    
+    .bar2 {
+      animation-delay: 0.2s;
+    }
+    
+    .bar3 {
+      animation-delay: 0.3s;
+    }
+    
+    .bar4 {
+      animation-delay: 0.4s;
+    }
+    
+    .bar5 {
+      animation-delay: 0.5s;
+    }
+    
+    .bar6 {
+      animation-delay: 0.6s;
+    }
+    
+    .bar7 {
+      animation-delay: 0.7s;
+    }
+    
+    .bar8 {
+      animation-delay: 0.8s;
+    }
+    
+    @keyframes loader8913 {
+      0% {
+        transform: scaleY(0.1);
       }
-
-  .RateCourse-div{
-    position: absolute;
-    top: 100px;
-    left: 100px;
-  }
-  .RateInstructor-div{
-    position: absolute;
-    top: 100px;
-    left: 700px;
-  }
-  .selectnew {
-    appearance: none;
-    outline: 0;
-    background: #1b1b1b;
-    background-image: none;
-    width: 100%;
-    height: 100%;
-    color: white;
-    padding: 0 .5em;
-    cursor: pointer;
-    border: none ;
-    border-radius: 3px;
-}
- .total{
-  color: #0c0069;
-  position: relative;
-  top: 50%;
-
- }
- .views{
-  color: #0c0069;
-  position: relative;
-  top: 55%;
-  
- }
- .info{
-  position: absolute;
-  top: 55%;
- }
-
- .subtitleincoursedetails1 {
-  position: relative;
-  top: 600px;
-  left: 800px;
-  transform: translate(-50%,-50%);
-  width: 1200px;
-  height: 100%;
-  padding: 80px 40px;
-  box-sizing: border-box;
-  border-radius: 15px;
-  background: rgba(0,0,0,0.9);
-  margin: 20px 20px;
-}
+    
+      50% {
+        transform: scaleY(1);
+        background: yellowgreen;
+      }
+    
+      100% {
+        transform: scaleY(0.1);
+        background: transparent;
+      }
+    }
+    
+    .adhaminfo1 {
+      --width: 500px;
+      --height: 500px;
+      --primary: #00b9ae;
+      --text: #f9f9f9b2;
+      --secondary: #f9f9f933;
+      --radius: 20px;
+      color: #fff;
+      font-family: Arial, Helvetica, sans-serif;
+      width: var(--width);
+      height: var(--height);
+      background: linear-gradient(
+          180deg,
+          rgba(22, 24, 30, 0) 0%,
+          rgba(22, 24, 30, 0.7) 65.28%
+        ),
+        linear-gradient(0deg, rgba(27, 50, 117), rgba(19, 43, 118));
+      background-size: cover;
+      border-radius: var(--radius);
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      padding: 1em;
+      padding-top: 1.4em;
+      position: relative;
+      top: 130rem;
+      left: 4rem;
+    }
 
 
-/* .subtitleincoursedetails2 {
-  position: absolute;
-  top: 800px;
-  left: 800px;
-  transform: translate(-50%,-50%);
-  width: 1200px;
-  height: 420px;
-  padding: 80px 40px;
-  box-sizing: border-box;
-  border-radius: 15px;
-  background: rgba(0,0,0,0.9);
-} */
+    .rate_adham_inst {
+      width: 650px;
+      height: 254px;
+      background: lightgrey;
+      border: 3px inset white;
+      background: #e8e8e8;
+      box-shadow: inset 20px 20px 60px #c5c5c5, inset -20px -20px 60px #ffffff;
+      transition: all .5s ease-in-out;
+      border-radius: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bolder;
+      color: #8a8989;
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      position: absolute;
+      top: 24rem;
+      left: 50rem;
+    }
+    
+    .rate_adham_inst:hover {
+      transform: translateY(-5px);
+      transition: all .5s ease-in-out;
+    }
+    .rate_adham_inst h2{
+      position: absolute;
+      top: 3rem;
+      color: rgb(57, 56, 56);
+    }
+    .submit_adham_inst{
+      position: relative;
+      /* top: 18rem; */
+      /* left: -35rem; */
+      background-color: rgb(51, 149, 215);
+      color: #fff;
+      padding: 1px 1px;
+      border: 2px solid white;
+      text-align: center;
+      font-size: 20px;
+      border-radius: 15px;
+      width: 6rem;
+      height: 2rem;
+      cursor: pointer;
+    }
 
-.white-adham{
-  color: #fff;
-}
 
-.reportProblemDiv{
-  position: absolute;
-  top: 60px;
-  left: 1350px;
-  width: 500px;
-  height: 405px;
-  padding: 40px 40px;
-  box-sizing: border-box;
-  border-radius: 15px;
-  background: rgb(38, 40, 45);
-  margin: 20px 20px;
 
-  
-}
 
-.reportCoursebtn{
+    
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    .rate2 {
+      float: left;
+      height: 46px;
+      padding: 0 10px;
+    }
+    .rate2:not(:checked) > input {
+      position:absolute;
+      top:-9999px;
+    }
+    .rate2:not(:checked) > label {
+      float:right;
+      width:1em;
+      overflow:hidden;
+      white-space:nowrap;
+      cursor:pointer;
+      font-size:30px;
+      color:rgb(147, 144, 144);
+    }
+    .rate2:not(:checked) > label:before {
+      content: '★ ';
+    }
+    .rate2 > input:checked ~ label {
+      color: #ffc700;    
+    }
+    .rate2:not(:checked) > label:hover,
+    .rate2:not(:checked) > label:hover ~ label {
+      color: #deb217;  
+    }
+    .rate2 > input:checked + label:hover,
+    .rate2 > input:checked + label:hover ~ label,
+    .rate2 > input:checked ~ label:hover,
+    .rate2 > input:checked ~ label:hover ~ label,
+    .rate2 > label:hover ~ input:checked ~ label {
+      color: #c59b08;
+    }
+
+    .report_adham1{
+      font-family: 'Courier New', Courier, monospace;
+    }
+    .repo_btn_adham{
+      position: relative;
+      /* top: 18rem; */
+      left: 8rem;
+      background-color:transparent;
+      color: #fff;
+      padding: 1px 1px;
+      border: 2px solid white;
+      text-align: center;
+      font-size: 20px;
+      border-radius: 15px;
+      width: 10rem;
+      height: 5rem;
+      cursor: pointer;
+    }
+    .repo_btn_adham:hover{
+      background-color:  rgb(27, 16, 72);
+    }
+
+    .reportTextbox_adham{
+      background-color: transparent;
+      color: white;
+      border: none;
+      border-bottom: 1px solid #515151;
+
+    }
+
+
+    .adhaminfo2 {
+      --width: 500px;
+      --height: 500px;
+      --primary: #00b9ae;
+      --text: #f9f9f9b2;
+      --secondary: #f9f9f933;
+      --radius: 20px;
+      color: #fff;
+      font-family: Arial, Helvetica, sans-serif;
+      width: var(--width);
+      height: var(--height);
+      background: linear-gradient(
+          180deg,
+          rgba(22, 24, 30, 0) 0%,
+          rgba(22, 24, 30, 0.7) 65.28%
+        ),
+        linear-gradient(0deg, rgba(27, 50, 117), rgba(19, 43, 118));
+      background-size: cover;
+      border-radius: var(--radius);
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      padding: 1em;
+      padding-top: 1.4em;
+      position: relative;
+      top: 98.5rem;
+      left: 55rem;
+    }
+    .rev_adham{
+      font-family: 'Courier New', Courier, monospace;
+      position: relative;
+      font-size: 50px;
+      top: 5rem;
+    }
+
+
+    .form__group {
+      position: relative;
+      padding: 20px 0 0;
+      margin-top: 10px;
+      width: 100%;
+      max-width: 180px;
+      left: 3rem;
+      top: 8rem;
+    }
+    
+    .form__field {
+      font-family: inherit;
+      width: 100%;
+      border: none;
+      border-bottom: 2px solid #9b9b9b;
+      outline: 0;
+      font-size: 17px;
+      color: #fff;
+      padding: 7px 0;
+      background: transparent;
+      transition: border-color 0.2s;
+    }
+    
+    .form__field::placeholder {
+      color: transparent;
+    }
+    
+    .form__field:placeholder-shown ~ .form__label {
+      font-size: 17px;
+      cursor: text;
+      top: 20px;
+    }
+    
+    .form__label {
+      position: absolute;
+      top: 0;
+      display: block;
+      transition: 0.2s;
+      font-size: 17px;
+      color: #9b9b9b;
+      pointer-events: none;
+    }
+    
+    .form__field:focus {
+      padding-bottom: 6px;
+      font-weight: 700;
+      border-width: 3px;
+      border-image: linear-gradient(to right, #116399, #38caef);
+      border-image-slice: 1;
+    }
+    
+    .form__field:focus ~ .form__label {
+      position: absolute;
+      top: 0;
+      display: block;
+      transition: 0.2s;
+      font-size: 17px;
+      color: #38caef;
+      font-weight: 700;
+    }
+    
+    /* reset input */
+    .form__field:required, .form__field:invalid {
+      box-shadow: none;
+    }
+
+
+    .sub_rev_adham{
+      position: relative;
+      top: 11rem;
+      left: 19rem;
+      background-color: transparent;
+      color: #fff;
+      padding: 1px 1px;
+      border: 2px solid white;
+      text-align: center;
+      font-size: 20px;
+      border-radius: 15px;
+      width: 10rem;
+      height: 5rem;
+      cursor: pointer;
+    }
+    .sub_rev_adham:hover{
+      background-color: rgb(27, 16, 72);
+    }
+.clickherebtn_adham{
+  border: none;
   background-color: transparent;
-    color: #fff;
-    padding: 10px 10px;
-    border: 2px solid white;
-    text-align: center;
-    font-size: 20px;
-    border-radius: 10px;
-    width: 100px;
-    cursor: pointer;
-    position: absolute;
-    top: 100px;
-    left: 830px; 
-}
-
-.reportCoursebtn:hover{
-  background-color: #fff;
-  color: black;
-}
-
-.typeEmpty{
-  color: darkred;
-}
-
-.specifyEmpty{
-  color: darkred;
+  width: 22rem;
+  height: 15rem;
+  left: -38rem;
+  top: 2rem;
+  position: relative;
 }

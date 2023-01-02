@@ -23,35 +23,7 @@ function Instructor(){
     return(
         <>
         <div className='Instructor-body'>
-        <InstructorNavBar setProfile={profileHandler}/>
-        {profile && <InstructorProfile/>}
-        {/* {profile && <InstructorProfile setProfile={profileHandler} />} */}
-        {!profile &&
-            <div>
-
-            <Search Type='instructor'/>        
-            <br/><br/>
-            {/* <Link to ="/instructor/myInfo">
-            <button> edit my info</button>
-            </Link> */}
-                    
-            
-            {/* <Link to ="/AllCourses">
-            <button >View AllCourses </button>
-            </Link>
-            <br></br>
-            <Link to ="/mostViewd">
-            <button >View our most popular Courses </button>
-            </Link>
-            <Link to ="/instructor/MyCourses">
-            <button>
-                View My Courses</button>
-            </Link> */}
-            <br></br>
-            </div>
-        
-        }
-
+        <InstructorNavBar FirstLinkTo='/instProfile'/>
         </div>
         </>
     )

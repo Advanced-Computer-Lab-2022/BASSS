@@ -50,7 +50,7 @@ const CorporateTraineeNavBar = (props) => {
             <ul className={click ? 'nav-menu active' : 'nav-menu'}>
             
               <li className='nav-item1'>
-                <Link to={props.FirstLinkTo} className='nav-links' onClick={closeMobileMenu}>
+                <Link to='/traineeProfile' className='nav-links' onClick={closeMobileMenu}>
                   My Profile
                 </Link>
               </li>

@@ -58,6 +58,8 @@ import TraineeProfile from './components/Profiles/TraineeProfile';
 
 import Sara from './sara'
 import PrivacyPolicy from './Pages/SignUp/PrivaryPolicy';
+import Downloadcert from './components/Downloadcert/Downloadcert';
+import InstructorMyCourses from './components/MyCourses/InstructorMyCourses';
 
 
 const cookies = new Cookies();
@@ -81,8 +83,10 @@ function App() {
           <Route path='/forgotPass' element={ <Forgetpass/> }/>
           <Route path='/firstLogin' element={ <FirstLogin Who={type}/> }/>
           <Route path='/instProfile' element={ <InstructorProfile/> }/>
-          <Route path='/traineeProfile' element={ <TraineeProfile Who='individualtrainee'/> }/>
+          <Route path='/traineeProfile' element={ <TraineeProfile Who={type}/> }/>
           <Route path='/PrivacyPolicy' element={ <PrivacyPolicy/> }/>
+          <Route path='/dowloadcertificate' element={ <Downloadcert/> }/>
+          <Route path='/instCourses' element={ <InstructorMyCourses Link="/"/> }/>
 
           {/* Instructor routes */}
           <Route path='/instructor' element={<Instructor/>
@@ -169,7 +173,7 @@ function App() {
           }/>
 
           {/* Corporate Routes */}
-          <Route exact path='/CorporateTrainee' element = {<CorporateTrainee/>
+          <Route  path='/CorporateTrainee' element = {<CorporateTrainee/>
               // (user)? ((type=='instructor')? <Instructor/> : (type=='corporate trainee')? <CorporateTrainee/> : 
               // (type=="individual trainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
           } />

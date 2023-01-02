@@ -5,8 +5,11 @@ import IndividualTraineeNavBar from "../../Pages/IndividualTrainee/IndividualTra
 import CorporateTraineeNavBar from "../../Pages/CorporateTrainee/CorporateTraineeNavBar/CorporateTraineeNavBar";
 import profileimg from "../../images/graduate-avatar.png"
 import './Profile.css'
+import '../../Pages/CorporateTrainee/CorporateTrainee.css'
 
 const TraineeProfile = (props) => {    //individual or corporate
+    const divName = (props.Who === 'corporatetrainee')? "CorporateTrainee-body" : "IndividualTrainee-body"
+
 
     const [trainee,setTrainee] = useState({})
     const [error,setError]= useState('')
@@ -77,7 +80,9 @@ const TraineeProfile = (props) => {    //individual or corporate
 
     
     return(
-
+        <div className={divName} >
+            {isCorporate&& <CorporateTraineeNavBar/>}
+            {!isCorporate && <IndividualTraineeNavBar/>}
         <div class='Login_bodySara'>
             {/* <div class='container'> */}
                 {/* <div class='main-body'> */}
@@ -172,6 +177,8 @@ const TraineeProfile = (props) => {    //individual or corporate
             </div>
 
         </div>
+        </div>
+
 
     )
 

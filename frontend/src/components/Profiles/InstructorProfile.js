@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import './Profile.css'
 import '../Login/Login.css'
 import  Cookies from 'universal-cookie';
+import InstructorNavBar from "../../Pages/Instructor/InstructorNavBar/InstructorNavBar";
 
 
 const InstructorProfile =  (props) => {
@@ -218,36 +219,12 @@ const InstructorProfile =  (props) => {
 
 
     return(
-        <div class='Login_bodySara'>
-                            <div class="login-box">
-                    <label className='soha_login_h1'>BASSS Academy</label>
-                    
-                    <label className='soha_login_h2'>Sign in to your account</label>
-                    <br/>
-                    <form className='soha_login_form' onSubmit={getType}>
-                        <div class="user-box">
-                            <input className="soha_login_input" type="text" onChange={getUsername} value={username} required="true"></input>
-                            <label className='soha_login_label'>Username</label>
-                        </div>
-                        <br/>
-                        <div class="user-box">
-                            <input className="soha_login_input" type={passwordShown ? "text" : "password"} onChange={getPassword} value={password} required="true"></input>
-                            <i class={passwordShown ? "fa fa-eye-slash" : "fa fa-eye"} onClick={togglePassword}></i>
-                            <label className='soha_login_label'>Password</label>
-                        </div>
-                        <a className='soha_forgot_password' href='/forgotPass'>Forgot Your Password?</a>
-                        <button className='soha_login_a'>Login</button>
-                        {error && <label className='soha_required'>{error} </label>}
-                        <br/>
-                        <label className='soha_signup'>Don't Have an account? </label>
-                        <a className='soha_forgot_password' href='/signup'>Sign Up Instead</a>
-
-                    </form>
-                </div>
-
-            {/* <div class='container'>
-                <div class='main-body'> */}
-                    {/* <div class="profile_card">
+        <div className='Instructor-body2'>
+        
+        <InstructorNavBar/>
+            <div class='container'>
+                <div class='main-body'>
+                    <div class="profile_card">
                         <div class="profile_card-body">
                             <div class="text_body">
                                 <div class="date">
@@ -366,8 +343,8 @@ const InstructorProfile =  (props) => {
                             </div>
                         </div>
                     </div>
-                </div> */}
-            {/* </div> */}
+                </div>
+            </div>
          </div>
 
     )
