@@ -207,7 +207,7 @@ const { useState, useEffect } = require("react");
     <p class="text-body"> Go deeper and learn job-ready skills.</p>
     <p class="text-body">Practice with real-world projects </p>
   </div>
-  <Link to="/AllCourses">
+  <Link to="/allcourses">
   <button class="AllCourses-card-adham-button">View Courses</button>
   </Link>
 </div>

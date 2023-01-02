@@ -22,8 +22,11 @@ function IndividualTrainee(){
 
     return(
         <>
-        <div className='IndividualTrainee-body'>   
-        <IndividualTraineeNavBar FirstLinkTo='/traineeProfile'/>    
+        <IndividualTraineeNavBar/>
+        <div className='IndividualTrainee-body'>
+
+        {/* <Writenotes/> */}
+
         <IndividualCourses Link = "/individualtrainee/myCourseDetails"/>
         <br></br><br></br><br></br><br></br><br></br><br></br>
 

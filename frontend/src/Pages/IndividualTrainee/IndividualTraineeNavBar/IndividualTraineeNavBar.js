@@ -43,14 +43,14 @@ const IndividualTraineeNavBar = (props) => {
             <Link to='/IndividualTrainee' className='navbar-logo' onClick={closeMobileMenu}>
               BASSS Academy
               <i class='fab fa-typo3' />
-            </Link>
+            </Link >
             <div className='menu-icon' onClick={handleClick}>
               <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
             </div>
             <ul className={click ? 'nav-menu active' : 'nav-menu'}>
             
-              <li className='nav-item1'>
-                <Link to={props.FirstLinkTo} className='nav-links' >
+              <li className='nav-item1' >
+                <Link to='traineeProfile' className='nav-links' onClick={closeMobileMenu}>
                   My Profile
                 </Link>
               </li>
@@ -67,14 +67,14 @@ const IndividualTraineeNavBar = (props) => {
                     <Link to='/IndividualTrainee/allcourses' className='nav_linksButton'>
                         AllCourses
                     </Link>
-                    <Link to='' className='nav_linksButton'>
+                    <Link to='/IndividualTrainee' className='nav_linksButton'>
                         My Courses
                     </Link>
                     </div>
                     }
               </li>
               <li className='nav_item_button'>
-                <Button DropDown={true} buttonStyle = 'btn--outline' Text = '...' B1stLinkTo = '' B1stLinkText = 'View Reports'/>  
+                <Button DropDown={true} buttonStyle = 'btn--outline' Text = '...' B1stLinkTo = '/individualTrainee/myReports' B1stLinkText = 'View Reports'/>  
               </li>
               <li className='nav_item_country'>
               <SelectCountry setCountry = {props.setCountry}/>
@@ -84,6 +84,15 @@ const IndividualTraineeNavBar = (props) => {
         </nav>
       </>
     )
+<<<<<<< HEAD
+=======
+    // return <div>
+    // <Navbar  FirstLinkText=' ' SecondLinkText='Courses' ThirdLinkText='My courses' FourthLinkText='My Profile'  
+    // ButtonLinkText='Logout' 
+    // LogoLink='/'  FirstLinkTo='/AdminProfile' SecondLinkTo='/CoursesAdmin' ThirdLinkTo='' FourthLinkTo='/individualProfile' 
+    // ButtonLinkTo='/logout'/>
+    // </div>
+>>>>>>> 8cc276dc5a0615f13eb2c9508c2875b5e6236b06
 }
 
 export default IndividualTraineeNavBar

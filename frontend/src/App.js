@@ -32,7 +32,7 @@ import Instructor from './Pages/Instructor/Instructor'
 import MyReviews from './components/ViewReviews/ViewReviews';
 import MyCourses from './components/MyCourses/MyCourses';
 import CreateCourse from './Pages/Instructor/CreateCourse/CreateCourse';
-import CourseDetailsInstructor from './components/CourseDetailsInstructor/CourseDetailsInstructor';
+import CourseDetailsInstructor from './components/CourseDetails/CourseDetailsInst';
 import Promotion from './components/Promotion/Promotion';
 import Contract from './components/Contract/Contract';
 import InstructorCourses from './Pages/Instructor/InstructorCourses';
@@ -61,6 +61,7 @@ import PrivacyPolicy from './Pages/SignUp/PrivaryPolicy';
 import Downloadcert from './components/Downloadcert/Downloadcert';
 import InstructorMyCourses from './components/MyCourses/InstructorMyCourses';
 import TraineeViewAllCourses from './Pages/IndividualTrainee/ViewAllCourses/TraineeViewAllCourses';
+import CorpTrainee from './Pages/CorporateTrainee/ViewAllCouresCorporate/CorpTrainee';
 import './Pages/Instructor/InstructorViewAllCourses/InstructorViewAllCourses.css';
 import InstructorViewAllCourses from './Pages/Instructor/InstructorViewAllCourses/InstructorViewAllCourses';
 
@@ -90,6 +91,8 @@ function App() {
           <Route path='/PrivacyPolicy' element={ <PrivacyPolicy/> }/>
           <Route path='/dowloadcertificate' element={ <Downloadcert/> }/>
           <Route path='/instCourses' element={ <InstructorMyCourses Link="/"/> }/>
+          <Route path='/dowloadcertificate' element={ <Downloadcert/> }/>
+          <Route path='/PrivacyPolicy' element={ <PrivacyPolicy/> }/>
 
           {/* Instructor routes */}
           <Route path='/instructor' element={<Instructor/>
@@ -227,6 +230,8 @@ function App() {
           <Route path='/individualTrainee/myReports' element={<MyReports/> } />
 
           <Route path='/individualTrainee/allcourses' element={<TraineeViewAllCourses/> } />
+          <Route path='/allcourses' element={<TraineeViewAllCourses/> } />
+          <Route path='Corp/allcourses' element={<CorpTrainee/> } />
 
 
           {/* IDK Routes */}
@@ -248,6 +253,7 @@ function App() {
         } />
           <Route path='/mostViewd' element={<MostViewd/> } />
 
+          <Route path='/adham' element={<CourseDetailsInstructor/> } />
 
 
         </Routes>

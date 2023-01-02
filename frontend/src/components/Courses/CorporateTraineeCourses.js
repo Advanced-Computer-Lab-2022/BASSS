@@ -14,6 +14,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { confirmAlert } from 'react-confirm-alert'; 
+import Sendcertbymail from '../Sendcertbymail/Sendcertbymail'
+import Downloadcert from '../Downloadcert/Downloadcert'
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 const { useState, useEffect } = require("react");
 
@@ -125,6 +127,8 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
                 </svg>
                 <span>Open Course</span>
             </button>
+            {mycourse[1]==100 &&<Sendcertbymail/>}
+            {mycourse[1]==100 &&<Downloadcert/>}
         </div>
     </div>
       ))}

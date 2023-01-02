@@ -148,7 +148,7 @@ corporateTraineeR.get("/unroll_from_course/:username/:couID",async(req,res)=>{
 corporateTraineeR.get("/updateprogresscorp/:username/:couID" , async(req,res)=>{
   const username = req.params.username;
   const couID = req.params.couID;
-  const trainee = await corporateTrainees.find({Username:username})
+  const trainee = await corporateTrainees.find({UserName:username})
   const courseID = trainee[0].courses
   // console.log(trainee)
   // console.log(courseID)
@@ -175,7 +175,7 @@ corporateTraineeR.get("/updateprogresscorp/:username/:couID" , async(req,res)=>{
         const obj = {'Course':couID , Progress:prog}
         var newarr = courseID 
         newarr[i]=obj
-        corporateTrainees.findOneAndUpdate({Username:username},{courses:newarr},{upsert:true},function(err,doc){
+        corporateTrainees.findOneAndUpdate({UserName:username},{courses:newarr},{upsert:true},function(err,doc){
             if(err) throw err;
           });         
       }
