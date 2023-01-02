@@ -23,9 +23,9 @@ function IndividualTrainee(){
         <button> edit my info</button>
         </Link>
         <br></br><br></br><br></br><br></br><br></br><br></br>
-        <Link to ="/IndividualTrainee/SelectCountry">
+        {/* <Link to ="/IndividualTrainee/SelectCountry">
         <button className='selectcountrybtnindividual'> select your country</button>
-        </Link>
+        </Link> */}
         <Writenotes/>
         {/* <Forgetpass Type="individualTrainee"/> */}
         <Downloadcert/>

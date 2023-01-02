@@ -64,7 +64,7 @@ const InstructorNavBar = (props) => {
                   Courses
                 </Link>
                 {isHovering && <div className='Hover_Div1' onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-                    <Link to='' className='nav_linksButton'>
+                    <Link to='/instructor/allCourses' className='nav_linksButton'>
                         AllCourses
                     </Link>
                     <Link to='' className='nav_linksButton'>
@@ -80,7 +80,7 @@ const InstructorNavBar = (props) => {
                 <Button DropDown={true} buttonStyle = 'btn--outline' Text = '...' B1stLinkTo = '' B1stLinkText = 'View Reports'/>  
               </li>
               <li className='nav_item_country'>
-              <SelectCountry/>
+              <SelectCountry setCountry = {props.setCountry}/>
               </li>
             </ul>
           </div>
