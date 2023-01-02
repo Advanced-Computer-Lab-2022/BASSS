@@ -7,10 +7,10 @@ import OtherReports from '../../../components/ReportsAdmin/OtherReports';
 
 export default function Reports(){
 
-    const [Technical , setTechnical] = useState(true)
+    const [Technical , setTechnical] = useState(false)
     const Technicalhandler = (sara)=>{setTechnical(sara)}
 
-    const [Financial , setFinancial] = useState(false)
+    const [Financial , setFinancial] = useState(true)
     const Financialhandler = (sara)=>{setFinancial(sara)}
 
     const [Other , setOther] = useState(false)
