@@ -8,3 +8,5 @@ Our Motivation was Due to the recent events, online learning platform became an 
 Here are some Dependancies nodemailer, JSPDF, Axios, React.
 
 Features: Video content , In-course assessments , Certificates and High-quality content.
+
+To run the code, you have to open two cmd terminals (one for the backend and one for the front-end), for the backend terminal you will write "npm i" to install all the required libraries, then write "cd backend" then "cd src" then "node App.js" to Run the backend. For the frontend terminal you will write "npm i" as well then "cd frontend" then "npm start" to start you frontend. then you run the local host.
