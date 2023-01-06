@@ -66,7 +66,8 @@ In this project there are 4 main roles with their features as follows:
 
 ## Installation
   To run and install this project you need to:
-  1. Clone repository using:
+  
+  Clone repository
 ```
   > git clone https://github.com/Advanced-Computer-Lab-2022/BASSS.git
   > cd Backend && npm i 
@@ -378,7 +379,9 @@ GET /individualTrainee/individualCourses
 
 
 
-###Stripe payment intent
+### Stripe payment 
+
+**Create and get payment intent**
 
 ```
 POST /individualTrainee/paymentInent
@@ -388,6 +391,15 @@ POST /individualTrainee/paymentInent
 | :-------- | :------- | :------------------------- |
 | `currency` | `String` | **Required**. Currency |
 | `amount` | `Number` | **Required**. Amount to be payed |
+
+
+
+**Get stripe key**
+
+```
+GET /individualTrainee/getKey
+```
+
 
 
 ## Authors
