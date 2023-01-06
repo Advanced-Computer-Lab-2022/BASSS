@@ -1,12 +1,291 @@
 # BASSS Academy
-This is an acedemic website which brings flexible, affordable, job-relevant online learning to individuals and organizations worldwide. We offer a range of learning opportunities from hands-on projects and courses to job-ready certificates and degree programs.
+An online learning website platform built using the `MERN` stack.
 
-We help organizations of all types and sizes prepare for the path ahead — wherever it leads. Our curated collection of business and technical courses help companies, governments, and nonprofits go further by placing learning at the center of their strategies. This Website was developed using MERN Stack
+## Motivation
+This website was impemented as a project for the Advanced Computer Lab course.
+  
+## Tech/Frameworks used
+- React.js
+- MongoDB
+- Node.js _^19.3.0_
+- Express _^4.18.2_
+- Mongoose _^6.7.0_
+- Axios _^1.2.0_
+- Stripe _^11.5.0_
+- NodeMailer _^6.8.0_
 
-Our Motivation was Due to the recent events, online learning platform became an essential part of every student.
+### Dependencies
+- cors _^2.8.5_
+- crypto _^1.0.1_
+- jsonwebtoken _^8.5.1_
+- react-cookie _^4.1.1_
+- body-parser _^1.20.1_
+- countries-list _^2.6.1_
 
-Here are some Dependancies nodemailer, JSPDF, Axios, React.
 
-Features: Video content , In-course assessments , Certificates and High-quality content.
+## Features
+In this project there are 4 main roles with their features as follows:
+1. An **Instructor** can :
+   - Search, filter, and view details of all courses in the system.
+   - Search, filter, and view details of courses given by him/her.
+   - Create a course.
+   - Add a promotion to a specific course.
+   - View number of enrollments in his/her course.
+   - View his/her reviews.
+   - Report a problem and follow up on it.
 
-To run the code, you have to open two cmd terminals (one for the backend and one for the front-end), for the backend terminal you will write "npm i" to install all the required libraries, then write "cd backend" then "cd src" then "node App.js" to Run the backend. For the frontend terminal you will write "npm i" as well then "cd frontend" then "npm start" to start you frontend. then you run the local host.
+2. A **Corporte Trainee** can :
+   - Request to enroll in a course of his choice.
+   - Search, filter, and view details of all courses on the system.
+   - Watch a video and solve an exercise from his/her courses.
+   - View course progress.
+   - Receive a certificate when completing a course.
+   - Report a problem and follow up by sending a message.
+   
+3. An **Individual Trainee** can
+   - Search, filter, and view details of all courses on the system. 
+   - View prices of each course in the currency of the country chosen.
+   - Unenroll in a course and request a refund if his/her progress was less than 50%.
+   - Enroll in a course using refunds added to his/her wallet.
+   - Watch a video and solve an exercise from his/her courses.
+   - View course progress.
+   - Receive a certificate when completing a course.
+   - Report a problem and follow up by sending a message.
+   
+4. An **Admin** can :
+   - Add instructors, admins, and corporate trainees to the system.
+   - View and resolve probelms and reports sent.
+   - Approve/Decline a course enrollment request from a corporate trainee.
+   - View and approve refund requests from individual trainees.
+   - Add a promotion to a course.
+
+5. A **Guest** can :
+   - Search, filter, and view details of all courses on the system.
+   - Signup as an Individual Trainee.
+
+
+## Installation
+  To run and install this project you need to:
+  1. Clone repository using:
+```
+  > git clone https://github.com/Advanced-Computer-Lab-2022/BASSS.git
+  > cd Backend && npm i 
+  > cd Frontend && npm i
+```
+### How to use 
+To run the Backend
+```
+> cd Backend && npm node app.js
+```
+
+To run the Frontend
+```
+> cd Frontend && npm start
+```
+
+### Environment Variables 
+The following variables should be added to your .env file in the Backend folder:
+
+`mongoURL` Database url
+
+`secret` String of random 8 bytes for the jwt hash
+
+`STRIPE_SECRET_KEY`
+
+`STRIPE_PUBLIC_KEY`
+
+## API References
+#### Authentication
+
+***Login User***
+
+```
+POST /login
+```
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `username` | `string` | **Required**. user's username |
+| `pass` | `string` | **Required**. user's password |
+
+
+***Signup as individual trainee***
+
+```
+POST /signup
+```
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `username` | `string` | **Required**. user's username |
+| `password` | `string` | **Required**. user's password |
+| `email` | `email` | **Required**. user's email |
+| `firstname` | `string` | **Required**. user's first name |
+| `lastname` | `string` | **Required**. user's last name |
+| `gender` | `string` | **Required**. user's gender |
+
+
+***logout from account***
+
+```
+GET /logout
+````
+| Header | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `token` | `cookie` | **Required**. Users's token |
+
+
+#### Course
+
+***Get a specific course***
+
+```
+GET /course/getCourse/:id
+```
+
+
+***Get course details***
+
+```
+GET /course/courseDetails/:courseId
+```
+
+
+**Get most viewed courses**
+
+```
+GET /course/allcourses/mostviewd
+```
+
+
+**Get course exercise**
+
+```
+GET /course/exercise/:courseID/:subtitleID
+```
+
+### Admin
+
+**Add another admin**
+
+```
+GET /admin/addAdmin/:username/:password
+```
+
+
+**Add an instructor**
+
+```
+GET /admin/addInstructor/:username/:password
+```
+
+
+**Add corporate trainee**
+
+```
+GET /admin/addCoTrainee/:username/:password
+```
+
+
+**View corporate requests**
+
+```
+GET /admin/getAllCoReq
+```
+
+
+**Accept corporate request**
+
+```
+GET /admin/AcceptCoRequest/:RequestID
+```
+
+
+**View Refund requests from individual trainees**
+
+```
+GET /admin/getAllRefundReq
+```
+
+
+**Accept refund request**
+
+```
+GET /admin/acceptRefundReq/:CourseID1/:UserName
+```
+
+
+**View all users reports**
+
+```
+GET /admin/getAllReports
+```
+
+
+**Resolve a report**
+
+```
+GET /admin/ResolveReport/:ReportID
+```
+
+
+### Instructor
+
+**View ammount in wallet**
+
+```
+GET /instructor/vieMylWallet
+```
+
+| Header | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `token` | `cookie` | **Required**. Users's token |
+
+
+**Change password**
+
+```
+POST /instructor/changePass
+```
+
+| Header | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `token` | `cookie` | **Required**. Users's token |
+
+| Parameters | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `newPass` | `String` | **Required**. Users's new password |
+
+
+**View courses given by him/her**
+
+```
+GET /instructor/instructorViewtitles
+```
+
+| Header | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `token` | `cookie` | **Required**. Users's token |
+
+
+**Search in courses given by him/her**
+
+```
+GET /instructor/searchmycourses/:searchkey
+```
+
+| Header | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `token` | `cookie` | **Required**. Users's token |
+
+
+
+## Authors
+
+[@SohaSamirIbrahim](https://github.com/SohaSamirIbrahim)
+
+[@SaraMohSaad](https://github.com/SaraMohSaad)
+
+[@Adham Saber](https://github.com/adhammsaber)
+
+[@Bassel](http://github.com/bassel331)
+
+[@Mohamed Salama](https://github.com/5a1ama)
