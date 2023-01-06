@@ -95,6 +95,7 @@ The following variables should be added to your .env file in the Backend folder:
 `STRIPE_PUBLIC_KEY`
 
 ## API References
+
 #### Authentication
 
 ***Login User***
@@ -133,6 +134,7 @@ GET /logout
 | `token` | `cookie` | **Required**. Users's token |
 
 
+
 #### Course
 
 ***Get a specific course***
@@ -140,6 +142,31 @@ GET /logout
 ```
 GET /course/getCourse/:id
 ```
+
+
+**Search for a course**
+
+```
+GET /search/:searchkey
+```
+
+
+**Create Course**
+
+```
+POST /course/createCourse
+```
+
+| Parameters | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `Title` | `String` | **Required**. Course title |
+| `Total Hours` | `Number` | **Required**. Course total hours |
+| `Price` | `Number` | **Required**. Course price |
+| `VideoPreviewLink` | `String` | **Required**. Course preview video |
+| `shortSummary` | `String` | **Required**. Course brief description |
+| `Subtitles` | `Array` | **Required**. Course subtitles |
+| `Title` | `String` | **Required**. Course title |
+| `CertificateTemplate` | `String` | **Required**. Course certificate |
 
 
 ***Get course details***
@@ -161,6 +188,8 @@ GET /course/allcourses/mostviewd
 ```
 GET /course/exercise/:courseID/:subtitleID
 ```
+
+
 
 ### Admin
 
@@ -227,6 +256,7 @@ GET /admin/ResolveReport/:ReportID
 ```
 
 
+
 ### Instructor
 
 **View ammount in wallet**
@@ -278,14 +308,96 @@ GET /instructor/searchmycourses/:searchkey
 
 
 
+### Corporate Trainee
+
+**View his/her profile**
+
+```
+GET /corporateTrainee/getCorporate
+```
+
+| Header | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `token` | `cookie` | **Required**. Users's token |
+
+
+**View his/her courses**
+
+```
+GET /corporateTrainee/CorporateCourses
+```
+
+| Header | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `token` | `cookie` | **Required**. Users's token |
+
+
+
+### Individual Trainee
+
+**Pay for a course using wallet**
+
+```
+POST /individualTrainee/payByWallet
+```
+
+| Header | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `token` | `cookie` | **Required**. Users's token |
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `amount` | `Number` | **Required**. Course Price to be payed |
+
+
+**Enroll for a course**
+
+```
+POST /individualTrainee/enroll
+```
+
+| Header | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `token` | `cookie` | **Required**. Users's token |
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `amount` | `Number` | **Required**. Course Price payed |
+| `course` | `String` | **Required**. ID of course to enroll in |
+
+
+**View his/her courses**
+
+```
+GET /individualTrainee/individualCourses
+```
+
+| Header | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `token` | `cookie` | **Required**. Users's token |
+
+
+
+###Stripe payment intent
+
+```
+POST /individualTrainee/paymentInent
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `currency` | `String` | **Required**. Currency |
+| `amount` | `Number` | **Required**. Amount to be payed |
+
+
 ## Authors
 
-[@SohaSamirIbrahim](https://github.com/SohaSamirIbrahim)
+- [@SohaSamirIbrahim](https://github.com/SohaSamirIbrahim)
 
-[@SaraMohSaad](https://github.com/SaraMohSaad)
+- [@SaraMohSaad](https://github.com/SaraMohSaad)
 
-[@Adham Saber](https://github.com/adhammsaber)
+- [@Adham Saber](https://github.com/adhammsaber)
 
-[@Bassel](http://github.com/bassel331)
+- [@Bassel](http://github.com/bassel331)
 
-[@Mohamed Salama](https://github.com/5a1ama)
+- [@Mohamed Salama](https://github.com/5a1ama)
