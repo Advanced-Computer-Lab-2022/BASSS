@@ -95,7 +95,6 @@ const CourseDetailsInstructor = () => {
             await axios.get(`http://localhost:9000/course/getCourse/${location.state[0]}`).then(
                 (res) => { 
                     const course = res.data
-                    console.log(course)
                     setCourse(course)
                     setCourseRate(course.Rating.rate)
                 }
@@ -106,7 +105,6 @@ const CourseDetailsInstructor = () => {
                 await axios.get(`http://localhost:9000/instructor/getInstructor/${location.state[1]}`).then(
                     (res) => { 
                         const instructor = res.data
-                        console.log(instructor)
                         setInstructor(instructor)
                         setInstructorRate(instructor.Rating.rate)
                     }
@@ -129,7 +127,6 @@ const CourseDetailsInstructor = () => {
                         await axios.get(`http://localhost:9000/admin/createReport/hazem123/${location.state[0]}/${choice4}/Empty`).then(
                             (res) => { 
                                 const report = res.data
-                                console.log(report)
                                 setReports(report)
                             });
                         }
@@ -137,7 +134,6 @@ const CourseDetailsInstructor = () => {
                             await axios.get(`http://localhost:9000/admin/createReport/hazem123/${location.state[0]}/${choice4}/${choice3}`).then(
                             (res) => { 
                                 const report = res.data
-                                console.log(report)
                                 setReports(report)
                             });
                         }

@@ -50,7 +50,6 @@ const CorporateCourses = (props) => {
         await axios.get(`http://localhost:9000/course/empty/empty/empty`).then(
             (res) => { 
                 const filtered = res.data
-                console.log(filtered)
                 setfiltered(filtered)
             }
              );
@@ -59,7 +58,6 @@ const CorporateCourses = (props) => {
     await axios.get(`http://localhost:9000/course/empty/${choice2}/empty`).then(
         (res) => { 
             const filteredbyRate = res.data
-            console.log(filteredbyRate)
             setfiltered(filteredbyRate)
             
         }
@@ -68,7 +66,6 @@ const CorporateCourses = (props) => {
     await axios.get(`http://localhost:9000/course/${choice}/empty/empty`).then(
         (res) => { 
             const filteredbyRate = res.data
-            console.log(filteredbyRate)
             setfiltered(filteredbyRate)
             
         }
@@ -77,7 +74,6 @@ const CorporateCourses = (props) => {
     await axios.get(`http://localhost:9000/course/empty/empty/${choice3}`).then(
         (res) => { 
             const filteredbyRate = res.data
-            console.log(filteredbyRate)
             setfiltered(filteredbyRate)
             
         }
@@ -86,7 +82,6 @@ const CorporateCourses = (props) => {
     await axios.get(`http://localhost:9000/course/empty/${choice2}/${choice3}`).then(
         (res) => { 
             const filteredbyRate = res.data
-            console.log(filteredbyRate)
             setfiltered(filteredbyRate)
             
         }
@@ -95,7 +90,6 @@ const CorporateCourses = (props) => {
     await axios.get(`http://localhost:9000/course/${choice}/empty/${choice3}`).then(
         (res) => { 
             const filteredbyRate = res.data
-            console.log(filteredbyRate)
             setfiltered(filteredbyRate)
             
         }
@@ -104,7 +98,6 @@ const CorporateCourses = (props) => {
     await axios.get(`http://localhost:9000/course/${choice}/${choice2}/empty`).then(
         (res) => { 
             const filteredbyRate = res.data
-            console.log(filteredbyRate)
             setfiltered(filteredbyRate)
             
         }
@@ -114,7 +107,6 @@ else {
     await axios.get(`http://localhost:9000/course/${choice}/${choice2}/${choice3}`).then(
         (res) => { 
             const filteredbyRate = res.data
-            console.log(filteredbyRate)
             setfiltered(filteredbyRate)
             
         }
@@ -127,7 +119,6 @@ const getfilteredbyRate=  async () => {
     await axios.get(`http://localhost:9000/course/r/${choice2}`).then(
         (res) => { 
             const filteredbyRate = res.data
-            console.log(filteredbyRate)
             setfiltered(filteredbyRate)
             
         }

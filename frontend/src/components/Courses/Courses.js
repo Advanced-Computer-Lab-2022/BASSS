@@ -27,7 +27,6 @@ import Payment from '../../Pages/Payment/Payment';
         await axios.get(`http://localhost:9000/course/filter_adsa/empty/empty/empty`).then(
             (res) => { 
                 const filtered = res.data
-                console.log(filtered)
                 setfiltered(filtered)
             }
              );
@@ -35,7 +34,6 @@ import Payment from '../../Pages/Payment/Payment';
             await axios.get(`http://localhost:9000/course/filter_adsa/empty/${choice2}/empty`).then(
                 (res) => { 
                     const filteredbyRate = res.data
-                    console.log(filteredbyRate)
                     setfiltered(filteredbyRate)
                     
                 }
@@ -45,7 +43,6 @@ import Payment from '../../Pages/Payment/Payment';
             await axios.get(`http://localhost:9000/course/filter_adsa/${choice}/empty/empty`).then(
                 (res) => { 
                     const filteredbyRate = res.data
-                    console.log(filteredbyRate)
                     setfiltered(filteredbyRate)
                     
                 }
@@ -55,7 +52,6 @@ import Payment from '../../Pages/Payment/Payment';
             await axios.get(`http://localhost:9000/course/filter_adsa/empty/empty/${choice3}`).then(
                 (res) => { 
                     const filteredbyRate = res.data
-                    console.log(filteredbyRate)
                     setfiltered(filteredbyRate)
                     
                 }
@@ -64,7 +60,6 @@ import Payment from '../../Pages/Payment/Payment';
             await axios.get(`http://localhost:9000/course/filter_adsa/empty/${choice2}/${choice3}`).then(
                 (res) => { 
                     const filteredbyRate = res.data
-                    console.log(filteredbyRate)
                     setfiltered(filteredbyRate)
                     
                 }
@@ -73,7 +68,6 @@ import Payment from '../../Pages/Payment/Payment';
             await axios.get(`http://localhost:9000/course/filter_adsa/${choice}/empty/${choice3}`).then(
                 (res) => { 
                     const filteredbyRate = res.data
-                    console.log(filteredbyRate)
                     setfiltered(filteredbyRate)
                     
                 }
@@ -82,7 +76,6 @@ import Payment from '../../Pages/Payment/Payment';
             await axios.get(`http://localhost:9000/course/filter_adsa/${choice}/${choice2}/empty`).then(
                 (res) => { 
                     const filteredbyRate = res.data
-                    console.log(filteredbyRate)
                     setfiltered(filteredbyRate)
                     
                 }
@@ -92,7 +85,6 @@ import Payment from '../../Pages/Payment/Payment';
             await axios.get(`http://localhost:9000/course/filter_adsa/${choice}/${choice2}/${choice3}`).then(
                     (res) => { 
                         const filteredbyRate = res.data
-                        console.log(filteredbyRate)
                         setfiltered(filteredbyRate)
                         
                     }

@@ -36,7 +36,6 @@ const CoReqDetailsDiv = (props) =>{
 
     const ClickedDivs = () =>{
         Clickedhandler(false)
-        console.log(Clicked)
             var SelectedCourses1 = props.SelectedCoursesProp.concat(props.CourseID)
             props.SelectedCourseshandlerProp(SelectedCourses1)
     }
@@ -44,7 +43,6 @@ const CoReqDetailsDiv = (props) =>{
 
     const UnClickedDivs = () =>{
         Clickedhandler(false)
-        console.log(Clicked)
         for(let i = 0 ; i < props.SelectedCoursesProp.length ; i++){
             if(props.CourseID === props.SelectedCoursesProp[i]){
                 props.SelectedCoursesProp.splice(i,1)

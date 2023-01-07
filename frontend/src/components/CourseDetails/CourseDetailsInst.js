@@ -140,7 +140,6 @@ function CourseDetailsInst() {
       await axios.get(`http://localhost:9000/instructor/reviewInst/${location.state[1]}/${choice55}`).then(
           (res) => { 
               const review = res.data;
-              console.log(review);
 
           }
           );
@@ -149,9 +148,8 @@ function CourseDetailsInst() {
         const getRateCourse =  async () => {
             await axios.get(`http://localhost:9000/course/updateRate/${location.state[0]}/${choice}`).then(
                 (res) => { 
-                    const rateCourse = res.data
-                    console.log(rateCourse)
-                    setRateCourse(rateCourse)
+                    const rateCourse1 = res.data
+                    setRateCourse(rateCourse1)
 
                 }
                 );
@@ -160,9 +158,8 @@ function CourseDetailsInst() {
             const getRateInstructor =  async () => {
                 await axios.get(`http://localhost:9000/instructor/updateRate/${location.state[1]}/${choice2}`).then(
                     (res) => { 
-                        const rateInstructor = res.data
-                        console.log(rateInstructor)
-                        setRateInstructor(rateInstructor)
+                        const rateInstructor1 = res.data
+                        setRateInstructor(rateInstructor1)
     
                     }
                     );
@@ -171,10 +168,9 @@ function CourseDetailsInst() {
         const getCourse =  async () => {
             await axios.get(`http://localhost:9000/course/getCourse/${location.state[0]}`).then(
                 (res) => { 
-                    const course = res.data
-                    console.log(course)
-                    setCourse(course)
-                    setCourseRate(course.Rating.rate)
+                    const course1 = res.data
+                    setCourse(course1)
+                    setCourseRate(course1.Rating.rate)
                 }
                 );
             }
@@ -182,10 +178,9 @@ function CourseDetailsInst() {
             const getInstructor =  async () => {
                 await axios.get(`http://localhost:9000/instructor/getInst/${location.state[1]}`).then(
                     (res) => { 
-                        const instructor = res.data
-                        console.log(instructor)
-                        setInstructor(instructor)
-                        setInstructorRate(instructor.Rating.rate)
+                        const instructor1 = res.data
+                        setInstructor(instructor1)
+                        setInstructorRate(instructor1.Rating.rate)
                     }
                     );
                 }  
@@ -193,8 +188,8 @@ function CourseDetailsInst() {
                 const getSubtitle =  async () => {
                     await axios.get(`http://localhost:9000/course/adham/getsubtitle/${location.state[0]}`).then(
                         (res) => { 
-                            const sub = res.data
-                            setsubtitle(sub)
+                            const sub1 = res.data
+                            setsubtitle(sub1)
                             // alert(subtitle)
                         }
                         );
@@ -206,17 +201,15 @@ function CourseDetailsInst() {
                         {
                         await axios.get(`http://localhost:9000/admin/createReport/hazem123/${location.state[0]}/${choice4}/Empty`).then(
                             (res) => { 
-                                const report = res.data
-                                console.log(report)
-                                setReports(report)
+                                const report1 = res.data
+                                setReports(report1)
                             });
                         }
                         else{
                             await axios.get(`http://localhost:9000/admin/createReport/hazem123/${location.state[0]}/${choice4}/${choice3}`).then(
                             (res) => { 
-                                const report = res.data
-                                console.log(report)
-                                setReports(report)
+                                const report1 = res.data
+                                setReports(report1)
                             });
                         }
                         }
@@ -255,7 +248,7 @@ getSubtitle();
     <p class="Course_rate_adham">{courseRate}</p>
     <h2 class="Ratings_adham1">14,123 Rating</h2>
     <div class="adham_image"></div>
-    <p class="adham">Instructor : {instructor.UserName}</p>
+    <p class="adham">Instructor : {instructor.Username}</p>
     <p class="total_hours_adham">Total Hours For the Course : {course.TotalHours}</p>
     <p class="views_adham">{course.Views} People Have Viewed This Course !</p>
     <p class="views_adham2">Course Price : {course.Price} </p>

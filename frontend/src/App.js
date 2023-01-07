@@ -32,7 +32,7 @@ import Instructor from './Pages/Instructor/Instructor'
 import MyReviews from './components/ViewReviews/ViewReviews';
 import MyCourses from './components/MyCourses/MyCourses';
 import CreateCourse from './Pages/Instructor/CreateCourse/CreateCourse';
-import CourseDetailsInstructor from './components/CourseDetails/CourseDetailsInst';
+import CourseDetailsInst from './components/CourseDetails/CourseDetailsInst';
 import Promotion from './components/Promotion/Promotion';
 import Contract from './components/Contract/Contract';
 import InstructorCourses from './Pages/Instructor/InstructorCourses';
@@ -90,7 +90,7 @@ function App() {
           <Route path='/traineeProfile' element={ <TraineeProfile Who='corporatetrainee'/> }/>
           <Route path='/PrivacyPolicy' element={ <PrivacyPolicy/> }/>
           <Route path='/dowloadcertificate' element={ <Downloadcert/> }/>
-          <Route path='/instCourses' element={ <InstructorMyCourses Link="/instructor/courseDetails"/> }/>
+          <Route path='/instCourses' element={ <InstructorMyCourses Link="/instructor/CourseDetails"/> }/>
           <Route path='/dowloadcertificate' element={ <Downloadcert/> }/>
           <Route path='/PrivacyPolicy' element={ <PrivacyPolicy/> }/>
 
@@ -116,11 +116,11 @@ function App() {
             //   (user)? ((type=='instructor')? <EditmyInfo/>: (type=='corporate trainee')? <CorporateTrainee/> : 
             //   (type=="individual trainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/> :<LoginPage/>) : <Home/>
           }/>
-          <Route path='/instructor/MyCourses/CourseDetails' element={ <CourseDetailsInstructor/>
+          <Route path='/instructor/MyCourses/CourseDetails' element={ <CourseDetailsInst/>
               // (user)? ((type=='instructor')? <CourseDetailsInstructor/>: (type=='corporate trainee')? <CorporateTrainee/> : 
               // (type=="individual trainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/> :<LoginPage/>) : <Home/>
           }/>
-          <Route path='/instructor/CourseDetails' element={  <CourseDetailsInstructor/>
+          <Route path='/instructor/CourseDetails' element={  <CourseDetailsInst/>
               // (user)? ((type=='instructor')? <CourseDetailsInstructor/>: (type=='corporate trainee')? <CorporateTrainee/> : 
               // (type=="individual trainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/> :<LoginPage/>) : <Home/>
           }/>

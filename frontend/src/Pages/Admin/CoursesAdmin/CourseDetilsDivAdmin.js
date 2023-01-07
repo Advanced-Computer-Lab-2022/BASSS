@@ -40,7 +40,6 @@ const CourseDetilsDivAdmin = (props) =>{
 
     const ClickedDivs = () =>{
         Clickedhandler(true)
-        console.log(Clicked)
             var SelectedCourses1 = props.SelectedCoursesProp.concat(props.CourseID)
             props.SelectedCourseshandlerProp(SelectedCourses1)
     }
@@ -48,7 +47,6 @@ const CourseDetilsDivAdmin = (props) =>{
 
     const UnClickedDivs = () =>{
         Clickedhandler(false)
-        console.log(Clicked)
         for(let i = 0 ; i < props.SelectedCoursesProp.length ; i++){
             if(props.CourseID === props.SelectedCoursesProp[i]){
                 props.SelectedCoursesProp.splice(i,1)

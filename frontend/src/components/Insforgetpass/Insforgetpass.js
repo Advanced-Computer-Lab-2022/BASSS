@@ -13,7 +13,6 @@ function EditPass() {
                 await axios.get(`http://localhost:9000/${mysubstring}/myInfo/pass/${choice}`).then(
                     (res) => { 
                         const password = res.data
-                        console.log(password)
                         setpass(password)
                     }
                      );

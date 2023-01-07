@@ -36,14 +36,6 @@ const MyCourses = (props) => {
   var [choice2,setchoice2] = useState([]);
   const [choice3,setchoice3] = useState([]);
 
-    // const getMyCourses=  async () => {
-    //     await axios.get(`http://localhost:9000/course/bassel`).then(
-    //         (res) => { 
-    //             const myCourses = res.data
-    //             console.log(myCourses)
-    //             setMyCourses(myCourses) 
-    //         }
-    //          );
             
   const [filtered,setfiltered] = useState([]);
   const [first,setfirst] = useState(0);
@@ -57,7 +49,6 @@ const MyCourses = (props) => {
     await axios.get(`http://localhost:9000/course/my/salama/empty/empty`).then(
         (res) => { 
             const filtered = res.data
-            console.log(filtered)
             setfiltered(filtered)
         }
          );
@@ -66,7 +57,6 @@ const MyCourses = (props) => {
 await axios.get(`http://localhost:9000/course/my/salama/empty/${choice3}`).then(
     (res) => { 
         const filteredbyRate = res.data
-        console.log(filteredbyRate)
         setfiltered(filteredbyRate)
         
     }
@@ -76,7 +66,6 @@ await axios.get(`http://localhost:9000/course/my/salama/empty/${choice3}`).then(
 await axios.get(`http://localhost:9000/course/my/salama/${choice}/empty`).then(
     (res) => { 
         const filteredbyRate = res.data
-        console.log(filteredbyRate)
         setfiltered(filteredbyRate)
         
     }
@@ -86,7 +75,6 @@ else {
 await axios.get(`http://localhost:9000/course/my/salama/${choice}/${choice3}`).then(
     (res) => { 
         const filteredbyRate = res.data
-        console.log(filteredbyRate)
         setfiltered(filteredbyRate)
         
     }
