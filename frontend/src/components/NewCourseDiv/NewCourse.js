@@ -14,7 +14,7 @@ function NewCourse(props) {
       direction = '/individualtrainee/myCourseDetails'
     }
     else if(props.Instructor){
-        direction='/adham'
+        direction='/instructor/courseDetails'
     }
 
     

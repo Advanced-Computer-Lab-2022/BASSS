@@ -39,7 +39,7 @@ const InstructorNavBar = (props) => {
       <>
       <nav className='navbar'>
           <div className='navbar-container'>
-            <Link to='/instructor' onClick={props.profileHandler} className='navbar-logo' >
+            <Link to='/instructor' className='navbar-logo' >
               BASSS Academy
               <i class='fab fa-typo3' />
             </Link>

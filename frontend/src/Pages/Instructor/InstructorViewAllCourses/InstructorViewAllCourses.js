@@ -77,7 +77,7 @@ function InstructorViewAllCourses() {
   return (
     <div className="InstructorAllCourses">
         <div>
-      <InstructorNavBar profileHandler={profileHandler} setCountry = {setCountry} />
+      {/* <InstructorNavBar profileHandler={profileHandler} setCountry = {setCountry} /> */}
       {profile && <InstructorProfile/>}
         </div>
     {!profile &&

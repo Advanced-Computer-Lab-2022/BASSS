@@ -43,9 +43,13 @@ function Instructor(){
         <InstructorNavBar profileHandler={profileHandler}/>
         {profile && <InstructorProfile/>}
         {!profile &&
-            // <InstructorViewAllCourses/>
         <div>
-            <div class="mostpop-card-adham">
+
+            <InstructorViewAllCourses/>
+
+            {/* </div>
+        <div> */}
+            {/* <div class="mostpop-card-adham">
                 <div class="mostpop-card-adham-details">
                     <p class="text-title">Most Popular Courses</p>
                     <p class="text-body"> there are more than 50K trainee have completed these courses</p>
@@ -53,7 +57,7 @@ function Instructor(){
                 <Link to="/mostViewd">
                     <button class="mostpop-card-adham-button">View Courses</button>
                 </Link>
-            </div>
+            </div> */}
 
         </div>
         }

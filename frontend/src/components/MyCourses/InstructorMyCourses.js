@@ -16,6 +16,7 @@ const InstructorMyCourses = (props) =>{
     const [message,setmessage] = useState('');
     const [error,setError] = useState('')
     const [profile,setProfile] =useState(false);
+    const[coursesFiltered,setCoursesFiltered]=useState(null);
 
 
     const profileHandler = () => {
@@ -25,6 +26,7 @@ const InstructorMyCourses = (props) =>{
     const changehandler = (event) =>{
         setmessage(event.target.value)
     }
+    
 
 
     // const getMyCourses = async () => {
@@ -56,8 +58,21 @@ const InstructorMyCourses = (props) =>{
             }
         );
     }
+    useEffect(()=>{
+        async function getCourses(){
+            if(!coursesFiltered){   
+     
+                await sara();
+            }else{
+                setMyCourses(coursesFiltered);
+            }
+          }
+          getCourses();
+        },[myCourses,coursesFiltered]
+    );
 
-    useEffect( () => {sara()})
+
+    // useEffect( () => {sara()},[coursesFiltered])
 
 
     // getMyCourses()
@@ -68,7 +83,7 @@ const InstructorMyCourses = (props) =>{
         {profile && <InstructorProfile/>}
         {!profile &&
             <div>
-                        <SearchAll Type='searchMyCourses' setCourses={setMyCourses}  />
+                <SearchAll Type='searchMyCourses' setCourses={setCoursesFiltered}  />
 
                     {/* <div class="search-box">
         <button class="btn-search" onClick={search}><i class="fas fa-search"></i></button>

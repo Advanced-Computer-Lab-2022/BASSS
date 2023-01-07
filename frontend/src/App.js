@@ -90,7 +90,7 @@ function App() {
           <Route path='/traineeProfile' element={ <TraineeProfile Who='corporatetrainee'/> }/>
           <Route path='/PrivacyPolicy' element={ <PrivacyPolicy/> }/>
           <Route path='/dowloadcertificate' element={ <Downloadcert/> }/>
-          <Route path='/instCourses' element={ <InstructorMyCourses Link="/adham"/> }/>
+          <Route path='/instCourses' element={ <InstructorMyCourses Link="/instructor/courseDetails"/> }/>
           <Route path='/dowloadcertificate' element={ <Downloadcert/> }/>
           <Route path='/PrivacyPolicy' element={ <PrivacyPolicy/> }/>
 
@@ -253,7 +253,7 @@ function App() {
         } />
           <Route path='/mostViewd' element={<MostViewd/> } />
 
-          <Route path='/adham' element={<CourseDetailsInstructor/> } />
+          {/* <Route path='/instructor/courseDetails' element={<CourseDetailsInstructor/> } /> */}
 
 
         </Routes>
