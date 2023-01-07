@@ -154,7 +154,7 @@ const CourseDetails = () => {
       await axios.get(`http://localhost:9000/instructor/reviewInst/${location.state[1]}/${choice55}`).then(
           (res) => { 
               const review = res.data;
-              console.log(review);
+              //console.log(review);
 
           }
           );
@@ -164,7 +164,7 @@ const CourseDetails = () => {
             await axios.get(`http://localhost:9000/course/updateRate/${location.state[0]}/${choice}`).then(
                 (res) => { 
                     const rateCourse = res.data
-                    console.log(rateCourse)
+                    //console.log(rateCourse)
                     setRateCourse(rateCourse)
 
                 }
@@ -175,7 +175,7 @@ const CourseDetails = () => {
                 await axios.get(`http://localhost:9000/instructor/updateRate/${location.state[1]}/${choice2}`).then(
                     (res) => { 
                         const rateInstructor = res.data
-                        console.log(rateInstructor)
+                        //console.log(rateInstructor)
                         setRateInstructor(rateInstructor)
     
                     }
@@ -186,18 +186,18 @@ const CourseDetails = () => {
             await axios.get(`http://localhost:9000/course/getCourse/${location.state[0]}`).then(
                 (res) => { 
                     const course = res.data
-                    console.log(course)
+                    //console.log(course)
                     setCourse(course)
                     setCourseRate(course.Rating.rate)
                 }
                 );
             }
-
+//${location.state[1]}
             const getInstructor =  async () => {
-                await axios.get(`http://localhost:9000/instructor/getInstructor/${location.state[1]}`).then(
+                await axios.get(`http://localhost:9000/instructor/getInstructor`).then(
                     (res) => { 
                         const instructor = res.data
-                        console.log(instructor)
+                        //console.log(instructor)
                         setInstructor(instructor)
                         setInstructorRate(instructor.Rating.rate)
                     }
@@ -221,7 +221,7 @@ const CourseDetails = () => {
                         await axios.get(`http://localhost:9000/admin/createReport/hazem123/${location.state[0]}/${choice4}/Empty`).then(
                             (res) => { 
                                 const report = res.data
-                                console.log(report)
+                                //console.log(report)
                                 setReports(report)
                             });
                         }
@@ -229,7 +229,7 @@ const CourseDetails = () => {
                             await axios.get(`http://localhost:9000/admin/createReport/hazem123/${location.state[0]}/${choice4}/${choice3}`).then(
                             (res) => { 
                                 const report = res.data
-                                console.log(report)
+                                //console.log(report)
                                 setReports(report)
                             });
                         }
