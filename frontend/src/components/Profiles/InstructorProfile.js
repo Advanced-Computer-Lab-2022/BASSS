@@ -84,7 +84,6 @@ const InstructorProfile =  (props) => {
         await axios.get(`http://localhost:9000/instructor/myInfo/first/${choice}`).then(
             (res) => { 
                 const minibio = res.data
-                console.log(minibio)
                 setmini(minibio)
             }
         );
@@ -93,7 +92,6 @@ const InstructorProfile =  (props) => {
         await axios.get(`http://localhost:9000/instructor/myInfo/second/${choice2}`).then(
             (res) => { 
                 const email = res.data
-                console.log(email)
                 setmail(email)
             }
         );
@@ -102,7 +100,6 @@ const InstructorProfile =  (props) => {
         await axios.get(`http://localhost:9000/instructor/myInfo/third/${choice4}/${choice3}`).then(
             (res) => { 
                 const password = res.data.message
-                console.log(password)
                 setmessage(password)
             }
         );

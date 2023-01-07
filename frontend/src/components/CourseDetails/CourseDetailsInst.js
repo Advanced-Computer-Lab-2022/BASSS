@@ -193,8 +193,8 @@ function CourseDetailsInst() {
                 const getSubtitle =  async () => {
                     await axios.get(`http://localhost:9000/course/adham/getsubtitle/${location.state[0]}`).then(
                         (res) => { 
-                            const sub = res.data
-                            setsubtitle(sub)
+                            const sub1 = res.data
+                            setsubtitle(sub1)
                             // alert(subtitle)
                         }
                         );
@@ -255,7 +255,7 @@ getSubtitle();
     <p class="Course_rate_adham">{courseRate}</p>
     <h2 class="Ratings_adham1">14,123 Rating</h2>
     <div class="adham_image"></div>
-    <p class="adham">Instructor : {instructor.UserName}</p>
+    <p class="adham">Instructor : {instructor.Username}</p>
     <p class="total_hours_adham">Total Hours For the Course : {course.TotalHours}</p>
     <p class="views_adham">{course.Views} People Have Viewed This Course !</p>
     <p class="views_adham2">Course Price : {course.Price} </p>

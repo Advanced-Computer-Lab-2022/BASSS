@@ -235,15 +235,6 @@ const CourseDetails = () => {
                         }
                         }
 
-                    //     const reportCourse2 = async ()=>
-                    // {
-                    //     await axios.get(`http://localhost:9000/admin/createReport/adham123/${location.state[0]}/${choice5}`).then(
-                    //         (res) => { 
-                    //             const report = res.data
-                    //             console.log(report)
-                    //             setReports(report)
-                    //         });
-                    //     }
                     
 
 getCourse();

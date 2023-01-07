@@ -9,7 +9,7 @@ const bcrypt = require('bcrypt')
 var nodemailer = require('nodemailer');
 
 instructorR.get("/getInstructor", async(req,res)=>{
-  const inst = await instructors.findOne({UserName: "salama"})
+  const inst = await instructors.findOne({Username: "salama"})
   res.status(200).json(inst)
 })
 
@@ -54,13 +54,13 @@ instructorR.get("/myInfo/first/:minibio",function(req,res){
     // const name = res.locals.user;
 
     var minibio = req.params.minibio;
-    var query = instructors.find({UserName:'salama'})
+    var query = instructors.find({Username:'salama'})
         query.exec(function(err,result){
             if (err) throw err;
             if(result.length==0){
 
             }else{
-                instructors.findOneAndUpdate({UserName:'salama'},{MiniBio:minibio},{upsert:true},function(err,doc){
+                instructors.findOneAndUpdate({Username:'salama'},{MiniBio:minibio},{upsert:true},function(err,doc){
                     if(err) throw err;
                   });         
             }
@@ -74,13 +74,13 @@ instructorR.get("/myInfo/second/:mail",function(req,res){
   // const name = res.locals.user;
   //usermail??
   var mail = req.params.mail;
-    var query = instructors.find({UserName:"salama"})
+    var query = instructors.find({Username:"salama"})
         query.exec(function(err,result){
             if (err) throw err;
             if(result.length==0){
               //  res.render("../views/instructor.ejs",{title:"instructor country"});
             }else{
-                instructors.findOneAndUpdate({UserName:"salama"},{Email:mail},{upsert:true},function(err,doc){
+                instructors.findOneAndUpdate({Username:"salama"},{Email:mail},{upsert:true},function(err,doc){
                     if(err) throw err;
                   });         
               // res.render("../views/instructor.ejs",{title:"instructor country"});
@@ -116,10 +116,10 @@ instructorR.get("/myInfo/third/:oldpass/:pass",async function(req,res){
 
   var oldpass = req.params.oldpass;
   
-  var oldpass2 =await instructors.findOne({UserName:"salama"})
+  var oldpass2 =await instructors.findOne({Username:"salama"})
 
   if(oldpass==oldpass2.Password){
-  const result =await instructors.findOneAndUpdate({UserName:"salama"},{Password:hashedPassword})
+  const result =await instructors.findOneAndUpdate({Username:"salama"},{Password:hashedPassword})
   //res.json(result)
   res.json({message:"updated successfully"})
   } else
@@ -131,7 +131,7 @@ instructorR.get("/myInfo/pass/:pass",async function(req,res){
     // console.log(req.body)
     var pass = req.params.pass;
 
-    const result =await instructors.findOneAndUpdate({UserName:"salama"},{Password:pass})
+    const result =await instructors.findOneAndUpdate({Username:"salama"},{Password:pass})
     //res.json(result)
     res.json({message:"updated successfully"})
     
@@ -141,7 +141,7 @@ instructorR.get("/viewRating/review",async(req, res) => {
   //token name
   const name = res.locals.user;
 
-  const result =await instructors.findOne({UserName:"salama"})
+  const result =await instructors.findOne({Username:"salama"})
   res.json(result)
 });
 
@@ -149,7 +149,7 @@ instructorR.get("/getInst/:username",async(req, res) => {
   //token name
   const name = req.params.username;
 
-  const result =await instructors.findOne({UserName:name})
+  const result =await instructors.findOne({Username:name})
    res.json(result)
 });
 
@@ -159,10 +159,10 @@ instructorR.get("/updateRate/:name/:newRate",async(req, res) => {
     // const name = res.locals.user;
 
     var newRate = req.params.newRate;
-    var oldResult =await instructors.findOne({UserName:"salama"})
+    var oldResult =await instructors.findOne({Username:"salama"})
     var oldCount = oldResult.Rating.count;
     var oldSum = oldResult.Rating.sum;
-    const result =await instructors.findOneAndUpdate({UserName:"salama"},{Rating:{rate:(Number(oldSum)+Number(newRate))/(oldCount+1), count:(oldCount+1), 
+    const result =await instructors.findOneAndUpdate({Username:"salama"},{Rating:{rate:(Number(oldSum)+Number(newRate))/(oldCount+1), count:(oldCount+1), 
     sum:(Number(oldSum)+Number(newRate))}})
     res.json(result)
     console.log('123')
@@ -173,11 +173,11 @@ instructorR.get("/reviewInst/:instName/:Review", async function(req,res){
   var Review = req.params.Review;
   var instName = req.params.instName;
 
-  var inst = await instructors.findOne({UserName:instName});
+  var inst = await instructors.findOne({Username:instName});
 
   var arr = inst.Reviews.concat(Review);
 
-  const Result = await instructors.findOneAndUpdate({UserName:instName}, {Reviews:arr})
+  const Result = await instructors.findOneAndUpdate({Username:instName}, {Reviews:arr})
 
   res.json(Result);
 
@@ -219,7 +219,7 @@ instructorR.get("/vieMylWallet", async (req,res) => {
   //token name
   // const name = res.locals.user;
 
-  const inst = await instructors.findOne({UserName: "salama"})
+  const inst = await instructors.findOne({Username: "salama"})
   if(inst)
     return res.status(200).json(inst.Wallet)
   else

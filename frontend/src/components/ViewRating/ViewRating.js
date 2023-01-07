@@ -11,7 +11,6 @@ const Rating = () => {
     await axios.get(`http://localhost:9000/instructor/viewRating/review`).then(
             (res) => { 
                 const inst = res.data
-                console.log(inst)
                 setRate(inst.Rating.rate)
             }
              );

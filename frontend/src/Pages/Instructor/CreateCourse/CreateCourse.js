@@ -180,7 +180,6 @@ const CreateExcerciseProp = (InstructorName1,ThisSubtitleNumber1,Question1,Choic
         videoDescriptionhandler(ShortVideoDescription1)
         //Exercisehandler(Exercise)
         ThisSubtitleNumberhandler(ThisSubtitleNumber1)
-        console.log('Sub Prop Done')
         const S = () =>{
             createSubtitle1()
 
@@ -195,7 +194,6 @@ const CreateExcerciseProp = (InstructorName1,ThisSubtitleNumber1,Question1,Choic
                             const Sub = res.data
                             SubtitleIDhandler(Sub.subzeft._id)
                             SubtitlesArray.push(Sub.subzeft._id)
-                            console.log(SubtitlesArray)
                             SubtitlesArrayhandler(SubtitlesArray)
                             //SubtitleIDhandler(Sub.subzeft._id)
                             alert('Subtitle Created')
@@ -213,7 +211,6 @@ const CreateExcerciseProp = (InstructorName1,ThisSubtitleNumber1,Question1,Choic
                 const Sub = res.data
                 SubtitleIDhandler(Sub.subzeft._id)
                 SubtitlesArray.push(Sub.subzeft._id)
-                console.log(SubtitlesArray)
                 SubtitlesArrayhandler(SubtitlesArray)
                 //SubtitleIDhandler(Sub.subzeft._id)
 
@@ -266,24 +263,10 @@ const CreateExcerciseProp = (InstructorName1,ThisSubtitleNumber1,Question1,Choic
           }).then(
             (res) => {
                 const C = res.data.courseahoo._id
-                console.log(C);
                 CourseIDhandler(C) 
-                console.log(CourseID)
                 AddId()
                 alert('Course Created')
 
-                    // for(var i = 0 ; i < SubtitlesArray.length ; i++){
-                    //     var SubOfI = SubtitlesArray[i]
-                    //     var Sub = await axios.get(`http://localhost:9000/getSubtitle1/${SubOfI}`).then(
-                    //     (res) => {
-                    //         const Ex1 = res.data
-                    //         ExerciseIDhandler(Ex1.excercise._id)
-                    //         //alert(ExerciseID._id)
-                    //     })
-                    // }
-
-                //console.log('Course ID ya sara:')
-                //console.log(CourseID)
             })
 
             return CourseID
