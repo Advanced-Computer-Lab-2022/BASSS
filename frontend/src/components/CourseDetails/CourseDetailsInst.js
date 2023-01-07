@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import YoutubeEmbed from '../YoutubeEmbed/YoutubeEmbed';
 import Footer from '../Footer/Footer'
 import InstructorNavBar from '../../Pages/Instructor/InstructorNavBar/InstructorNavBar';
+import InstructorProfile from '../Profiles/InstructorProfile';
 const { useState, useEffect } = require("react");
 
 function CourseDetailsInst() {
@@ -221,7 +222,13 @@ function CourseDetailsInst() {
                         }
 
 
-
+                        const [profile,setProfile] =useState(false);
+                    
+                    
+                        const profileHandler = () => {
+                            setProfile(!profile)
+                        }
+                    
 
 getCourse();
 getInstructor();
@@ -229,7 +236,10 @@ getSubtitle();
 // alert(subtitle[0])
   return (
     <div>
-      <InstructorNavBar/>
+        <InstructorNavBar profileHandler={profileHandler}/>
+        {profile && <InstructorProfile/>}
+        {!profile &&
+          <div>
               <div class="adhaminfo">
 
 <div class="adhaminfo-top">
@@ -402,7 +412,10 @@ getSubtitle();
 <button onClick={clickhandler3} className='repo_btn_adham' >Report A Problem </button>
 
 </div>
+</div>
+}
     </div>
+    
   )
 }
 

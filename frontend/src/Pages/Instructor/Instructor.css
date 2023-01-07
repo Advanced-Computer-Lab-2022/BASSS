@@ -1,13 +1,14 @@
 .Instructor-body{
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7),  rgba(0, 0, 0, 0.7)), url('../../../public/images/instructor.jpg') ;
-
+    /* background-image: linear-gradient(rgba(0, 0, 0, 0.7),  rgba(0, 0, 0, 0.7)); */
+  /*, url('../../../public/images/instructor.jpg') ;*/
     /* background-image: linear-gradient(-100deg,rgba(76, 79, 81, 0.7),rgba(3, 35, 46, 0.7)),url('../../public/images/instructor.jpg'); */
     /* background-color: red; */
-    background-size:cover;
+    /* background-size:auto;
     background-repeat: no-repeat;
     background-position: center;
-    height: 110vh;
-    
+    height: 100%; */
+    background: rgba(237, 237, 237, 0.838);
+    height: 300vh;
 }
 
 .Instructor-body2{

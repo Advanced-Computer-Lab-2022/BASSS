@@ -39,7 +39,7 @@ const InstructorNavBar = (props) => {
       <>
       <nav className='navbar'>
           <div className='navbar-container'>
-            <Link to='/instructor' className='navbar-logo' >
+            <Link to='/instructor' onClick={props.profileHandler} className='navbar-logo' >
               BASSS Academy
               <i class='fab fa-typo3' />
             </Link>
@@ -49,7 +49,7 @@ const InstructorNavBar = (props) => {
             <ul className={click ? 'nav-menu active' : 'nav-menu'}>
             
               <li className='nav-item1'>
-                <Link to='/instProfile' className='nav-links' >
+                <Link className='nav-links' onClick={props.profileHandler} >
                   My Profile
                 </Link>
               </li>

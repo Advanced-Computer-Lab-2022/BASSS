@@ -15,6 +15,7 @@ import Login from '../../components/Login/Login';
 import InstructorMyCourses from '../../components/MyCourses/InstructorMyCourses';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import InstructorViewAllCourses from './InstructorViewAllCourses/InstructorViewAllCourses';
 
 
 function Instructor(){
@@ -39,16 +40,23 @@ function Instructor(){
     return(
         <>
         <div className='Instructor-body'>
-        <InstructorNavBar FirstLinkTo='/instProfile'/>
-        <div class="mostpop-card-adham">
-        <div class="mostpop-card-adham-details">
-            <p class="text-title">Most Popular Courses</p>
-            <p class="text-body"> there are more than 50K trainee have completed these courses</p>
+        <InstructorNavBar profileHandler={profileHandler}/>
+        {profile && <InstructorProfile/>}
+        {!profile &&
+            // <InstructorViewAllCourses/>
+        <div>
+            <div class="mostpop-card-adham">
+                <div class="mostpop-card-adham-details">
+                    <p class="text-title">Most Popular Courses</p>
+                    <p class="text-body"> there are more than 50K trainee have completed these courses</p>
+                </div>
+                <Link to="/mostViewd">
+                    <button class="mostpop-card-adham-button">View Courses</button>
+                </Link>
+            </div>
+
         </div>
-        <Link to="/mostViewd">
-        <button class="mostpop-card-adham-button">View Courses</button>
-        </Link>
-        </div>
+        }
 
 
         </div>

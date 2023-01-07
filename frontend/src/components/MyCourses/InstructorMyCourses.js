@@ -5,13 +5,22 @@ import '../Courses/IndividualCourses.css'
 import '../Login/Login.css'
 import '../../Pages/Instructor/Instructor.css'
 import InstructorNavBar from "../../Pages/Instructor/InstructorNavBar/InstructorNavBar";
+import InstructorProfile from "../Profiles/InstructorProfile";
+import SearchAll from "../NewCourseDiv/SeachAll";
 
 import '../Search/Search.css'
 const InstructorMyCourses = (props) =>{
 
+    
     const [myCourses,setMyCourses] = useState([])
     const [message,setmessage] = useState('');
     const [error,setError] = useState('')
+    const [profile,setProfile] =useState(false);
+
+
+    const profileHandler = () => {
+        setProfile(!profile)
+    }
 
     const changehandler = (event) =>{
         setmessage(event.target.value)
@@ -48,19 +57,23 @@ const InstructorMyCourses = (props) =>{
         );
     }
 
-    useEffect( () => sara())
+    useEffect( () => {sara()})
 
 
     // getMyCourses()
     const navigate = useNavigate()
     return(
         <div className='Instructor-body'>
-        <InstructorNavBar/>
+        <InstructorNavBar profileHandler={profileHandler}/>
+        {profile && <InstructorProfile/>}
+        {!profile &&
+            <div>
+                        <SearchAll Type='searchMyCourses' setCourses={setMyCourses}  />
 
-        <div class="search-box">
+                    {/* <div class="search-box">
         <button class="btn-search" onClick={search}><i class="fas fa-search"></i></button>
         <input type="text" class="input-search" onChange={changehandler} placeholder="Type to Search..."></input>
-        </div>
+        </div> */}
 
 
         <div className='zoz1'>
@@ -99,6 +112,10 @@ const InstructorMyCourses = (props) =>{
         ))}
         </div>
     </div>
+
+        
+        }
+        </div>
   
     )
 }

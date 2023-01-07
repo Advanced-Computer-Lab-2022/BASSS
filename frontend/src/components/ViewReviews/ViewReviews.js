@@ -6,7 +6,7 @@ import InstructorNavBar from '../../Pages/Instructor/InstructorNavBar/Instructor
 
 const { useState, useEffect } = require("react");
 
-const Reviews = () => { 
+const ViewReviews = (props) => { 
 
     const [instuctorReviews,setReview] = useState([]);
 
@@ -14,7 +14,6 @@ const Reviews = () => {
     await axios.get(`http://localhost:9000/instructor/viewRating/review`).then(
             (res) => { 
                 const inst = res.data
-                console.log(inst)
                 setReview(inst.Reviews)
             }
              );
@@ -23,30 +22,25 @@ const Reviews = () => {
     getReview();  
 
     return(
-        <div class='Instructor-body'>
-            <InstructorNavBar/>
-            <div className='Login_bodySara'>
             <div class="instReviewDiv">
                 {instuctorReviews.map((Review) => (
-                    <div>
+                    <div class= 'instReviewLabel'>
                         <label >{Review} </label>
                         <br/>
                     </div>
             ))}
-
+            <i class="fa fa-arrow-left" aria-hidden="true" onClick={props.handleReview}></i>
+            {/* <button class='backReviewbtn' onClick={props.handleReview}>Back</button> */}
             </div>
-            </div>
 
-        <br></br><br></br><br></br>
             
 
 
 
 
-        </div>
 
     )
 
 }
 
-export default Reviews;
+export default ViewReviews;

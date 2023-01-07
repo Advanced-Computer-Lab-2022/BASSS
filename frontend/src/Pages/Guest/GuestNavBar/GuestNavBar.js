@@ -38,7 +38,7 @@ const GuestNavBar = (props) =>{
             <ul className={click ? 'nav-menu active' : 'nav-menu'}>
             
               <li className='nav-item'>
-                <Link to={props.FirstLinkTo} className='nav-links' onClick={closeMobileMenu}>
+                <Link to='/AllCourses' className='nav-links' onClick={closeMobileMenu}>
                   Courses
                 </Link>
               </li>

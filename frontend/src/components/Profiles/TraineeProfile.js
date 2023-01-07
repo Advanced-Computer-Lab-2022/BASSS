@@ -115,30 +115,48 @@ const TraineeProfile = (props) => {    //individual or corporate
                                 <tbody>
                                     {!isCorporate &&
                                         <tr>
-                                            <td className="boldFont">First Name :</td>
+                                            <td className="boldFont">First Name</td>
+                                            <td className="boldFont"> : </td>
                                             <td>{trainee.FirstName}</td>
+                                            <td>                 </td>
                                         </tr>
                                     }
                                     {!isCorporate &&
                                         <tr>
-                                            <td className="boldFont">Last Name :</td>
+                                            <td className="boldFont">Last Name</td>
+                                            <td className="boldFont"> : </td>
+
                                             <td>{trainee.LastName}</td>
+                                            <td>                 </td>
+
                                         </tr>
                                     }
                                     {isCorporate &&
                                         <tr>
-                                            <td className="boldFont">User Name :</td>
+                                            <td className="boldFont">User Name</td>
+                                            <td className="boldFont"> : </td>
+
                                             <td>{trainee.UserName}</td>
+                                            <td>                 </td>
+
                                         </tr>
                                     }
                                     <tr>
-                                        <td className="boldFont">Email :</td>
+                                        <td className="boldFont">Email</td>
+                                        <td className="boldFont"> : </td>
+
                                         <td>{trainee.Email}</td>
+                                        <td>                 </td>
+
                                     </tr>
                                     {!isCorporate &&
                                         <tr>
-                                            <td className="boldFont">Wallet:</td>
+                                            <td className="boldFont">Wallet</td>
+                                            <td className="boldFont"> : </td>
+
                                             <td>{trainee.Wallet}</td>
+                                            <td>                 </td>
+
                                         </tr>
                                     }
                                 </tbody>
@@ -148,15 +166,14 @@ const TraineeProfile = (props) => {    //individual or corporate
                             <table>
                                 <tr>
                                     <td className="boldFont"> Edit Password?</td>
-                                </tr>
-                                <tr>
+                                
                                     <td>
                                         <input type='password' placeholder="old password" class='profile_editInput' onChange={changehandler2} value={choice2}/> 
                                     </td>
-                                </tr>
-                                <tr>
                                     <td>
                                         <input type='password' placeholder="new password" class='profile_editInput' onChange={changehandler} value={choice}/> 
+                                    </td>
+                                    <td>
                                         <button class='profile_editBtn' onClick={clickhandler1}>Edit</button>
                                         <label>{message}</label>
                                     </td>
@@ -171,7 +188,8 @@ const TraineeProfile = (props) => {    //individual or corporate
                         <div class="info_main">
                             <div class="info_card profile_traineeInfo">
                                 <div class="info_card-body">
-                                    <i class="fa fa-pen fa-xs edit " onClick={() => setEdit(!edit)}/>
+                                    {!isCorporate && <i class="fa fa-pen fa-xs edit " style={{top:'-32rem',left: '15rem'}} onClick={() => setEdit(!edit)}/>}
+                                    {isCorporate && <i class="fa fa-pen fa-xs edit " style={{top:'-31rem',left: '15rem'}} onClick={() => setEdit(!edit)}/>}
                                 </div>
                             </div>
                         </div>

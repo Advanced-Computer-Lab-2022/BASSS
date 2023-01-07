@@ -6,13 +6,79 @@
 }
 
 .instReviewDiv{
-    background: white;
-    border-radius: 10px;
-    width:fit-content;
-    height: fit-content;
-    padding: 2rem;
+    /* background: white;
+    padding: 3rem;
     position: relative;
     top: 20%;
+    left: 28%;
+    width: 40%;
+    height: 60%; */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid rgba(0,0,0,.125);
+    border-radius: 0.25rem;
+    width: 35%;
+    /* height: 18%; */
+    align-items: center;
     left: 30%;
+    box-shadow: 5px 2px 11px grey;
+    margin-top: 8%;
+    z-index: 1;
+    padding: 2rem;
 
 }
+    .instReviewDiv .fa{
+        color: lightgray;
+        position: absolute;
+        top: 5%;
+        left: 93%;
+    }
+    .instReviewDiv .fa:hover{
+        color: gray;
+        cursor: pointer;
+    }
+
+
+.instReviewLabel{
+    color: black;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    /* align-content: center; */
+    justify-content: center;
+    align-items: center;
+}
+
+.backReviewbtn{
+    width: 50%;
+    /* margin-right: 15px; */
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 0.5rem;
+    background-color: rgb(3, 48, 76);
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    align-self: center;
+    flex-direction: column;
+    position: relative;
+    left: 20%;
+    margin: 1rem;
+}
+    .backReviewbtn:hover{
+        background: transparent;
+        border-style: solid;
+        border-color: rgb(3, 48, 76);
+        color: rgb(3, 48, 76);
+        cursor: pointer;
+    }
+
+

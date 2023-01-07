@@ -352,6 +352,10 @@ individualTraineeR.post("/enroll", async(req,res) => {
       DateEnrolled: date
     }) 
     const newT = await individualTrainees.findOneAndUpdate({UserName: "adham123"}, {Courses: addedCourse})
+
+    const c = await courses.findOne({_id: course})
+    const cplus  = c.Views +1
+    const newC = await courses.findOneAndUpdate({_id:course},{Views:cplus})
     return res.status(200).json('enrolled')
 
   }catch(error){

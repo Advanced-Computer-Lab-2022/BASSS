@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import  Cookies from 'universal-cookie';
+import Forgetpass from '../Forgetpass/Forgetpass';
 import FirstLogin from './FirstLogin';
 import './Login.css';
 const Login = () => {
@@ -11,7 +12,12 @@ const Login = () => {
     const [passwordShown, setPasswordShown] = useState(false);
     const [error,setError] = useState(null)
     const [firstLogin, setFirstLogin] = useState(false)
+    const [forgot, setForgot] = useState(false)
     var type = ''
+
+    const changeForgot = () => {
+        setForgot(!forgot)
+    }
 
     const togglePassword = () => {
         setPasswordShown(!passwordShown);
@@ -126,7 +132,7 @@ const Login = () => {
     return(
             
         <div className='Login_bodySara'>
-            {!firstLogin && 
+            {!firstLogin && !forgot &&
                 <div class="login-box">
                     <label className='soha_login_h1'>BASSS Academy</label>
                     
@@ -143,7 +149,7 @@ const Login = () => {
                             <i class={passwordShown ? "fa fa-eye-slash" : "fa fa-eye"} onClick={togglePassword}></i>
                             <label className='soha_login_label'>Password</label>
                         </div>
-                        <a className='soha_forgot_password' href='/forgotPass'>Forgot Your Password?</a>
+                        <a className='soha_forgot_password' onClick={changeForgot}>Forgot Your Password?</a>
                         <button className='soha_login_a'>Login</button>
                         {error && <label className='soha_required'>{error} </label>}
                         <br/>
@@ -155,7 +161,8 @@ const Login = () => {
             }
             {firstLogin &&
                 <FirstLogin Who={localStorage.getItem('type')}/>
-            }          
+            }
+            {forgot && <Forgetpass changeForgot={changeForgot}/>}
         </div>
     )
 

@@ -149,6 +149,7 @@
   .login-box .soha_forgot_password:hover {
     color: #12d3ff;
     transition: .5s;
+    cursor: pointer;
   }
 
   .login-box .soha_signup{
@@ -164,6 +165,17 @@
     font-size: small;
     margin-bottom: 3px;
   }
+  .login-box .fa{
+    color: lightgray;
+    position: absolute;
+    top: 5%;
+    left: 93%;
+}
+  .login-box  .fa:hover{
+      color: gray;
+      cursor: pointer;
+  }
+
 
 
 

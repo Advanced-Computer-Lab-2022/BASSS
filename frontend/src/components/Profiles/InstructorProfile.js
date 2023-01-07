@@ -5,6 +5,7 @@ import './Profile.css'
 import '../Login/Login.css'
 import  Cookies from 'universal-cookie';
 import InstructorNavBar from "../../Pages/Instructor/InstructorNavBar/InstructorNavBar";
+import ViewReviews from "../ViewReviews/ViewReviews";
 
 
 const InstructorProfile =  (props) => {
@@ -15,9 +16,14 @@ const InstructorProfile =  (props) => {
     const [reviews,setReviews] = useState(0)
     const [edit, setEdit] = useState(false)
     const [reports,setReports] = useState(0)
+    const [viewReviews, setViewReviews] = useState(false)
+
+    const changeView = () => {
+        setViewReviews(!viewReviews)
+    }
 
 
-    const sara = async () => {
+    const getinst = async () => {
         try{
             await axios.get('http://localhost:9000/instructor/getInstructor').then(
                 (res) => {
@@ -33,7 +39,7 @@ const InstructorProfile =  (props) => {
             setError(error.response.data)
         }
     }
-    useEffect(() => {sara()})   
+    useEffect(() => {getinst()})   
 
 
 
@@ -102,132 +108,11 @@ const InstructorProfile =  (props) => {
         );
     }
 
-    //login
-    const cookies = new Cookies();
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [passwordShown, setPasswordShown] = useState(false);
-    const [firstLogin, setFirstLogin] = useState(false)
-    var type = ''
-
-    const togglePassword = () => {
-        setPasswordShown(!passwordShown);
-      };
-
-    const getUsername = (event) => {
-        setUsername(event.target.value)
-    }
-
-    const getPassword =  (event) => {
-        setPassword(event.target.value)
-    }
-
-    const getType = async (e) => {
-        e.preventDefault()
-        const user = {
-            username: username,
-            pass: password
-        }
-        try{
-            await axios.post("http://localhost:9000/login", user, {withCredentials: false}).then(
-                (res)=> {
-                    type = res.data.type
-                    location()
-                    cookies.set('token', res.data.token, {path: '/'})
-                    localStorage.setItem('type', res.data.type)
-                } 
-            )
-        }
-        catch (error) {
-            setError(error.response.data)
-        }
-    }
-
-    const changeFirstLoginCorporate = async() => {
-        await axios.get("http://localhost:9000/corporateTrainee/changeFirstLogin")
-    }
-
-    const changeFirstLoginInst= async() => {
-        await axios.get("http://localhost:9000/instructor/changeFirstLogin")
-    }
-
-    const changeFirstLoginAdmin= async() => {
-        await axios.get("http://localhost:9000/admin/changeFirstLogin")
-    }
-
-
-    const navigate = useNavigate();
-    const location = async () => {
-        switch(type.toLowerCase()){
-            case "individualtrainee":
-                navigate("/IndividualTrainee")
-                break;
-            case "corporatetrainee":
-                try {
-                    await axios.get("http://localhost:9000/corporateTrainee/firstLogin").then(
-                        (res) => {
-                            if(res.data){
-                                setFirstLogin(true)
-                                changeFirstLoginCorporate()
-                            }
-                            else{
-                                navigate('/corporateTrainee')
-                            }
-                        }
-                    )
-                    
-                } catch (error) {
-                   setError(error.response.data) 
-                }
-                break;
-            case "instructor":
-                try {
-                    await axios.get("http://localhost:9000/instructor/firstLogin").then(
-                        (res) => {
-                            if(res.data){
-                                setFirstLogin(true)
-                                changeFirstLoginInst()
-                            }
-                            else{
-                                navigate('/instructor')
-                            }
-                        }
-                    )
-                    
-                } catch (error) {
-                   setError(error.response.data) 
-                }
-                break;
-            case "admin":
-                try {
-                    await axios.get("http://localhost:9000/admin/firstLogin").then(
-                        (res) => {
-                            if(res.data){
-                                setFirstLogin(true)
-                                changeFirstLoginAdmin()
-                            }
-                            else{
-                                navigate('/admin')
-                            }
-                        }
-                    )
-                    
-                } catch (error) {
-                   setError(error.response.data) 
-                }
-
-                break;
-        }
-    }
-
-
-
     return(
-        <div className='Instructor-body'>
         
-        <InstructorNavBar/>
         <div className='Login_bodySara'>
-
+            {viewReviews && <ViewReviews handleReview={changeView}/>}
+            {!viewReviews &&
             <div class='container'>
                 <div class='main-body'>
                     <div class="profile_card">
@@ -284,7 +169,7 @@ const InstructorProfile =  (props) => {
                                         </div>
                                     }  
                                     <div class="rating-text">
-                                        <span>{countRating} Ratings & {reviews} <a class='a' href="/instructor/MyReviews ">Reviews</a></span>
+                                        <span>{countRating} Ratings & {reviews} <a class='a' onClick={changeView}>Reviews</a></span>
                                     <div class="rating-text report">
                                         <span>{reports} <a class='a' href='/instructor/myReports'> Reports</a></span>
                                     </div>
@@ -295,16 +180,33 @@ const InstructorProfile =  (props) => {
                         {!edit &&
                                         <table>
                                             <tbody>
+                                                {/* <tr>
+                                                <td> </td>
+                                                <td> </td>
+                                                <td> </td>
+                                                <td> </td>
+                                                </tr> */}
                                                 <tr>
-                                                    <td className="boldFont">User Name :</td>
+                                                    <td> </td>
+                                                    <td> </td>
+                                                    <td className="boldFont">User Name</td>
+                                                    <td className="boldFont"> : </td>
                                                     <td>{inst.UserName}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td className="boldFont">Email :</td>
+                                                    <td> </td>
+                                                    <td>  </td>
+
+                                                    <td className="boldFont">Email </td>
+                                                    <td className="boldFont"> : </td>
                                                     <td>{inst.Email}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td className="boldFont">Wallet :</td>
+                                                    <td> </td>
+                                                    <td> </td>
+
+                                                    <td className="boldFont">Wallet </td>
+                                                    <td className="boldFont"> : </td>
                                                     <td>{inst.Wallet}</td>
                                                 </tr>
                                             </tbody>
@@ -316,21 +218,40 @@ const InstructorProfile =  (props) => {
                                             <tr>
                                                 <td className="boldFont">
                                                     Edit Mini Bio?
+                                                </td>
+                                                <td>
                                                     <input type='text' placeholder="new bio" class='profile_editInput' onChange={changehandler} value={choice}/>
+                                                </td>
+                                                <td>
+
+                                                </td>
+                                                <td>
                                                     <button class='profile_editBtn' onClick={clickhandler1}>Edit</button>
+
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td className="boldFont">
                                                     Edit Email?
+                                                </td>
+                                                <td>
                                                     <input type='email' placeholder="new email" class='profile_editInput' onChange={changehandler2} value={choice2}/>
+                                                </td>
+                                                <td>
+
+                                                </td>
+                                                <td>
                                                     <button class='profile_editBtn' onClick={clickhandler2}>Edit</button>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td className="boldFont">
                                                     Edit Password?
+                                                </td>
+                                                <td>
                                                     <input type='password' placeholder="old password" class='profile_editInput' onChange={changehandler4} value={choice4}/> 
+                                                </td>
+                                                <td>
                                                     <input type='password' placeholder="new password" class='profile_editInput' onChange={changehandler3} value={choice3}/> 
                                                 </td>
                                                 <td>
@@ -350,8 +271,7 @@ const InstructorProfile =  (props) => {
                         </div>
                     </div>
                 </div>
-            </div>
-         </div>
+            </div>}
          </div>
 
     )

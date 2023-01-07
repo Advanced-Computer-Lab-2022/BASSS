@@ -11,6 +11,7 @@ import '../../../components/Search/Search.css';
 import '../../../components/NewCourseDiv/SearchAll.css';
 import SearchAll from '../../../components/NewCourseDiv/SeachAll';
 import InstructorNavBar from '../InstructorNavBar/InstructorNavBar';
+import InstructorProfile from '../../../components/Profiles/InstructorProfile';
 
 function InstructorViewAllCourses() {
     const[courses,setCourses]=useState([]);
@@ -19,6 +20,15 @@ function InstructorViewAllCourses() {
     const [Country, setCountry] = useState('');
 
     const [countryNumber,setCountryNumber]=useState();
+
+    const [profile,setProfile] =useState(false);
+
+
+    const profileHandler = () => {
+        setProfile(!profile)
+    }
+
+
     
         useEffect(()=>{
             const handleCountryNumber = () =>{
@@ -67,8 +77,12 @@ function InstructorViewAllCourses() {
   return (
     <div className="InstructorAllCourses">
         <div>
-      <InstructorNavBar  setCountry = {setCountry} />
+      <InstructorNavBar profileHandler={profileHandler} setCountry = {setCountry} />
+      {profile && <InstructorProfile/>}
         </div>
+    {!profile &&
+    <div>
+
         <div> 
         <SearchAll Type='indvidual' setCourses={setCoursesFiltered}  />
 
@@ -79,6 +93,8 @@ function InstructorViewAllCourses() {
         {courses.map((course) => <NewCourse course={course} country={countryNumber} Instructor={true}/>)}
         
       </div>
+      </div>
+}
     </div>
   )
 }
