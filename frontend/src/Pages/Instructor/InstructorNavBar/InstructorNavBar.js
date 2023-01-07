@@ -77,7 +77,7 @@ const InstructorNavBar = (props) => {
                     }
               </li>
               <li className='nav_item_button'>
-                <Button DropDown={true} buttonStyle = 'btn--outline' Text = '...' B1stLinkTo = '/instructor/myReports' B1stLinkText = 'View Reports'/>  
+                <Button sara = 'true' DropDown={true} buttonStyle = 'btn--outline' Text = '...' B1stLinkTo = '/instructor/myReports' B1stLinkText = 'View Reports'/>  
               </li>
               <li className='nav_item_country'>
               <SelectCountry setCountry = {props.setCountry}/>

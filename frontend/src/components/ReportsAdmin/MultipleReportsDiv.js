@@ -49,7 +49,7 @@ const MultipleReportsDiv = (props) => {
             var temp = (
                       <div>
                           <br></br>
-                          {<ReportDetailsDiv  Refund = {Refund[i]._id} Type='Refund'/>}
+                          {/* {<ReportDetailsDiv  Refund = {Refund[i]._id} Type='Refund'/>} */}
                           <br></br>
                       </div>);
                       alert(Refund[i])
@@ -62,7 +62,7 @@ const MultipleReportsDiv = (props) => {
                 var temp = (
                       <div>
                           <br></br>
-                          {<ReportDetailsDiv  Refund = {Refund[i]._id} Type='Refund'/>}
+                          {/* {<ReportDetailsDiv  Refund = {Refund[i]._id} Type='Refund'/>} */}
                           <br></br>
                       </div>);
               usersDiv.push(temp);

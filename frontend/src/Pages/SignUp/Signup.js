@@ -66,8 +66,8 @@ const Signup = (props) => {
         try{
             await axios.post("http://localhost:9000/signup", user, {withCredentials: false}).then(
                 (res)=> {
-                    if(res.data.msg == "Username Already Taken"){
-                        alert('Username Already Taken')
+                    if(res.data.msg == "Username Or Email Already Taken"){
+                        alert('Username OR Email Already Taken')
                     }
                     else if(res.data.msg == "Done"){
                         alert('Yay Your Account has been Created, welcome aboard :D Please Sign in to Explore our services')
@@ -76,11 +76,6 @@ const Signup = (props) => {
                     else if(res.data.msg == "User Could not be created, try again later"){
                         alert("User Could not be created, try again later")
                     }
-                    // alert(res.data)
-                    // if(res.data == 'Done'){
-                    //     setError('Account Created, please sign in')
-                    //     setm(true)
-                    //}
                 } 
             )
         }
