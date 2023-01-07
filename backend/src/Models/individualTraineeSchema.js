@@ -75,10 +75,7 @@ const individualTraineeschema = new Schema({
     },
 
     RefundRequests: {
-        type: [{
-            CourseID:String,
-            Status:String
-        }], //[{Course1.ID,Status},{Course2.ID,Status},{Course3.ID,Status},...... ]
+        type: [String], //[{Course1.ID,Status},{Course2.ID,Status},{Course3.ID,Status},...... ]
         required: true,
         default: []
     },

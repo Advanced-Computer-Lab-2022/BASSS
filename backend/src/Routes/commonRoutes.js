@@ -24,18 +24,15 @@ const signup =  async (req, res) => {
     const { username, password, email, firstname, lastname, gender}= req.body;
     try {   
         const exists = await users.findOne({UserName: username})
-        console.log(exists)
-        if(exists){
+        const exists2 = await users.findOne({Email: email})
+        if(exists || exists2){
             console.log('Taken')
-            return res.json({msg:'Username Already Taken'})
+            return res.json({msg:'Username Or Email Already Taken'})
         }
         const salt = await bcrypt.genSalt();
         const hashedPassword = await bcrypt.hash(password, salt);
-        const user = await users.create({ UserName: username, Password: hashedPassword, Type: "IndividualTrainee" });
+        const user = await users.create({ UserName: username, Password: hashedPassword, Email: email , Type: "IndividualTrainee" });
         const trainee = await individualTrainees.create({UserName: username, FirstName: firstname, LastName: lastname, Email: email,Password: hashedPassword, Gender: gender})
-        console.log(user)
-        console.log(trainee)
-        console.log('Done')
         return res.json({msg:'Done'})
     } catch (error) {
         console.log(error)

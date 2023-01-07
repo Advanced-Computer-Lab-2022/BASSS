@@ -74,7 +74,7 @@ const CorporateTraineeNavBar = (props) => {
                     }
               </li>
               <li className='nav_item_button'>
-                <Button DropDown={true} buttonStyle = 'btn--outline' Text = '...' B1stLinkTo = '/corporateTrainee/myReports' B1stLinkText = 'View Reports'/>  
+                <Button sara = 'true' DropDown={true} buttonStyle = 'btn--outline' Text = '...' B1stLinkTo = '/corporateTrainee/myReports' B1stLinkText = 'View Reports'/>  
               </li>
               <li className='nav_item_country'>
               <SelectCountry/>

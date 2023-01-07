@@ -7,6 +7,7 @@ const corporateTrainee = require('../Models/corporateTraineeSchema');
 const corporateRequest = require('../Models/RequestsSchema');
 const reports = require('../Models/ReportSchema');
 const individualTrainees = require('../Models/individualTraineeSchema');
+const refundSchema = require('../Models/refundSchema');
 
 const adminR = express.Router();
 const bcrypt = require('bcrypt')
@@ -325,145 +326,278 @@ adminR.get("/RejectCoRequest/:RequestID",async function(req,res){   //:Status/
 // User.Wallet += Course.Price
 
 
-adminR.get("/createRefundReq/:Reporter/:CourseID",async function(req,res){   //:Status/
-  var Reporter = req.params.Reporter;
-  var Status = "Unseen";
-  var CourseID = req.params.CourseID;    
+// adminR.get("/createRefundReq/:Reporter/:CourseID",async function(req,res){   //:Status/
+//   var Reporter = req.params.Reporter;
+//   var Status = "Unseen";
+//   var CourseID = req.params.CourseID;    
   
-  var RefundRequest = {CourseID:CourseID , Status:Status};
-  const Trainee = await individualTrainees.findOne({UserName:Reporter});
+//   var RefundRequest = {CourseID:CourseID , Status:Status};
+//   const Trainee = await individualTrainees.findOne({UserName:Reporter});
 
-  const arr = Trainee.RefundRequests.concat(RefundRequest);
+//   const arr = Trainee.RefundRequests.concat(RefundRequest);
+
+//   try{
+  
+//     const RefundReq = await individualTrainees.findOneAndUpdate({UserName:Reporter} , {RefundRequests:arr});
+
+//   console.log("Refund Request Sent")
+//   return res.status(200).json({RefundReq});
+//   }
+//   catch(error)
+//   {
+//     console.log("Couldn't Send Refund Request")
+//     console.log(error);
+//     return res.status(400).json({msg: error});
+//   }        
+// })
+
+adminR.get("/createRefundReqNew/:Reporter/:CourseID",async function(req,res){
+  var Reporter = req.params.Reporter;
+  var CourseID = req.params.CourseID;  
+  
+    try{
+      const Course1 = await courses.findOne({_id: CourseID })
+      const individualTrainee = await individualTrainees.findOne({UserName : Reporter});
+      const refund1 = await refundSchema.findOne({Reporter : Reporter , CourseID : CourseID});
+      const CourseTitle = Course1.Title
+      if(refund1){
+        return res.status(400).json('Course Request Already Sent');
+      }
+
+      const refund = await refundSchema.create({
+          Reporter:Reporter,
+          CourseID:CourseID,
+          CourseTitle:CourseTitle
+    });
+    const arr = individualTrainee.RefundRequests.concat(refund._id);
+    console.log(arr)
+    const UpdatedTrainee = await individualTrainees.findOneAndUpdate({UserName : Reporter} , {RefundRequests:arr});
+    console.log("Refund Request Sent")
+    return res.status(200).json({refund});
+    }
+    catch(error)
+    {
+      console.log("Couldn't Send Refund Request")
+      console.log(error);
+      return res.status(400).json({msg: error.message});
+    }
+})
+
+// adminR.get("/getAllRefundReq",async(req, res) => {
+//   const TraineesArray = await individualTrainees.find({});
+//   var Result = [];
+// //  {UserName, CourseID, Status}
+//   for(let i = 0  ; i<TraineesArray.length ; i++){
+//     var Trainee = TraineesArray[i];
+//     for(let j = 0 ; j < Trainee.RefundRequests.length ; j++){
+//       Result = Result.concat({UserName: Trainee.UserName, CourseID: Trainee.RefundRequests[j].CourseID, Status: Trainee.RefundRequests[j].Status});
+//     }
+//   }
+//   res.send(Result)
+// });
+
+adminR.get("/getAllRefundReqNew",async(req, res) => {
+  const result = await refundSchema.find({})
+  res.send(result)
+});
+
+adminR.get("/getRefundReqByID/:ID",async(req, res) => {
+  var ID = req.params.ID;
+  const result = await refundSchema.findOne({_id: ID})
+  res.send(result)
+});
+
+
+adminR.get("/getRefundReqByName/:Username",async function(req,res){
+  var Username = req.params.Username;
+  
+  const user = await individualTrainees.findOne({UserName: Username })
+  if(user) {
+     return res.json(user.RefundRequests);
+  }
+  else{
+     return res.json("ok"); 
+  }
+})
+
+
+//get amount paid , -80% from instructor wallet , +100% to trainee wallet , change request status 
+adminR.get("/acceptRefundReq/:RequestID",async function(req,res){
+  var RequestID = req.params.RequestID;
+  var Status = "Accepted";
+  console.log('accept')
 
   try{
-  
-    const RefundReq = await individualTrainees.findOneAndUpdate({UserName:Reporter} , {RefundRequests:arr});
+    const Refund = await refundSchema.findOne({_id : RequestID});
+     //console.log(Refund);
+    if(Refund.Status == 'Unseen'){
+      const Reporter = refundSchema.Reporter;
+      // console.log(Reporter);
+      const CourseID = refundSchema.CourseID;
+      // console.log(CourseID);
+      const Trainee = await individualTrainees.findOne({UserName:Reporter});
+      // console.log(Trainee);
+      const Course = await courses.findOne({_id : Refund.CourseID});
+      const Instructor = await instructors.findOne({UserName : Course.InstructorUserName});
 
-  console.log("Refund Request Sent")
-  return res.status(200).json({RefundReq});
-  }
+      for(let i = 0 ; i < Trainee.Courses.length ; i++){
+        if(Trainee.Courses[i].Course == CourseID && Trainee.Courses[i].Progress < 50){
+          var AmountPaid = Trainee.Courses[i].PayedAmount
+        }
+      }
+      const walletInst = Instructor.Wallet - ((80 * AmountPaid)/100) 
+      const walletTrainee = Trainee.Wallet + AmountPaid    
+      const RefundReq = await refundSchema.findOneAndUpdate({_id:RequestID} , {Status:Status});
+      const RefundReq1 = await instructors.findOneAndUpdate({UserName : Course.InstructorUserName} , {Wallet:walletInst});
+      const RefundReq2 = await individualTrainees.findOneAndUpdate({UserName : Reporter} , {Wallet:walletTrainee});
+
+      console.log("Refund Request Accepted");
+      return res.status(200).json({RefundReq});
+    }
+    else{
+      return res.status(400).json('Refund Request Already Handled');
+    }
+}
   catch(error)
   {
-    console.log("Couldn't Send Refund Request")
+    console.log("Couldn't Accept Refund Request");
     console.log(error);
     return res.status(400).json({msg: error});
   }        
 })
 
 
-adminR.get("/getAllRefundReq",async(req, res) => {
-  const TraineesArray = await individualTrainees.find({});
-  var Result = [];
-//  {UserName, CourseID, Status}
-  for(let i = 0  ; i<TraineesArray.length ; i++){
-    var Trainee = TraineesArray[i];
-    for(let j = 0 ; j < Trainee.RefundRequests.length ; j++){
-      Result = Result.concat({UserName: Trainee.UserName, CourseID: Trainee.RefundRequests[j].CourseID, Status: Trainee.RefundRequests[j].Status});
-    }
-  }
-
-  res.send(Result)
-});
-
-adminR.get("/getRefundReq/:Username",async function(req,res){
-    
-  var Username = req.params.Username;
-  const user = await individualTrainees.findOne({UserName: Username })
-  if(user) {
-    console.log('Trainee Found')
-     return res.json(user.RefundRequests);
-  }
-  else{
-    console.log('Trainee Not Found')
-     return res.json("ok"); 
-  }
-})
-
-adminR.get("/getRefundReqByID/:ID",async function(req,res){
-    
-  var ID = req.params.ID;
-  var userList = []
-  try{
-     userList = await individualTrainees.find({})
-      for(let i = 0 ; userList.length ; i++){
-        if(userList[i].RefundRequests !== []) {
-          for(let j = 0 ; j < userList[i].RefundRequests.length ; j++){
-            if(userList[i].RefundRequests[j]._id == ID){
-              return res.json({R : userList[i].RefundRequests[j] , T : userList[i].UserName})
-            }
-          }
-        }
-      }
-      return res.json('not found')
-  }
-  catch(error){
-    return res.json(error.message)
-  }
-})
-
-adminR.get("/acceptRefundReq/:CourseID1/:UserName",async function(req,res){
-  var CourseID1 = req.params.CourseID1;
-  var Username = req.params.UserName;
-
-  // CourseID:String,
-  // Status:String
+adminR.get("/rejectRefundReq/:RequestID",async function(req,res){   //:Status/
+  var RequestID = req.params.RequestID;
+  var Status = "Rejected";
 
   try{
-    const Trainee = await individualTrainees.findOne({UserName: Username })
-    if(Trainee) {
-      console.log('Trainee Found')
-      console.log(Trainee)
-      var RequestArray = Trainee.RefundRequests
-      for(let i = 0 ; RequestArray.length ; i++){
-        if(RequestArray[i].CourseID == CourseID1){
-          var newReq = {CourseID : CourseID1 , Status : 'Accepted'}
-          console.log(newReq)
-          RequestArray[i] = newReq
-          console.log(RequestArray)
-          const UpdatedTrainee = await individualTrainees.findOneAndUpdate({UserName : Username} , {RefundRequests:RequestArray});
-        }
-      }
-      return res.json(UpdatedTrainee);
+    const Refund = await refundSchema.findOne({_id : RequestID});
+     //console.log(Refund);
+
+    if(Refund && Refund.Status == 'Unseen'){
+      const Reporter = refundSchema.Reporter;
+      // console.log(Reporter);
+      const CourseID = refundSchema.CourseID;
+      // console.log(CourseID);
+      const Trainee = await individualTrainees.findOne({UserName:Reporter});
+      // console.log(Trainee);
+    
+      const RefundReq = await refundSchema.findOneAndUpdate({_id:RequestID} , {Status:Status});
+
+      //console.log("Refund Request Accepted");
+      return res.status(200).json({RefundReq});
     }
-  }
+    else{
+      return res.status(400).json('Refund Request Already Handled');
+    }
+}
   catch(error)
   {
-    return res.status(400).json({msg: error.message});
-  }  
-
+    console.log("Couldn't Accept Refund Request");
+    console.log(error);
+    return res.status(400).json({msg: error});
+  }        
 })
+// adminR.get("/getRefundReq/:Username",async function(req,res){
+    
+//   var Username = req.params.Username;
+//   const user = await individualTrainees.findOne({UserName: Username })
+//   if(user) {
+//     console.log('Trainee Found')
+//      return res.json(user.RefundRequests);
+//   }
+//   else{
+//     console.log('Trainee Not Found')
+//      return res.json("ok"); 
+//   }
+// })
 
-adminR.get("/rejectRefundReq/:CourseID1/:UserName",async function(req,res){
-  var CourseID1 = req.params.CourseID1;
-  var Username = req.params.UserName;
+// adminR.get("/getRefundReqByID/:ID",async function(req,res){
+    
+//   var ID = req.params.ID;
+//   var userList = []
+//   try{
+//      userList = await individualTrainees.find({})
+//       for(let i = 0 ; userList.length ; i++){
+//         if(userList[i].RefundRequests !== []) {
+//           for(let j = 0 ; j < userList[i].RefundRequests.length ; j++){
+//             if(userList[i].RefundRequests[j]._id == ID){
+//               return res.json({R : userList[i].RefundRequests[j] , T : userList[i].UserName})
+//             }
+//           }
+//         }
+//       }
+//       return res.json('not found')
+//   }
+//   catch(error){
+//     return res.json(error.message)
+//   }
+// })
 
-  // CourseID:String,
-  // Status:String
+// adminR.get("/acceptRefundReq/:CourseID1/:UserName",async function(req,res){
+//   var CourseID1 = req.params.CourseID1;
+//   var Username = req.params.UserName;
 
-  try{
-    const Trainee = await individualTrainees.findOne({UserName: Username })
-    if(Trainee) {
-      console.log('Trainee Found')
-      console.log(Trainee)
-      var RequestArray = Trainee.RefundRequests
-      for(let i = 0 ; RequestArray.length ; i++){
-        if(RequestArray[i].CourseID == CourseID1){
-          var newReq = {CourseID : CourseID1 , Status : 'Rejected'}
-          console.log(newReq)
-          RequestArray[i] = newReq
-          console.log(RequestArray)
-          const UpdatedTrainee = await individualTrainees.findOneAndUpdate({UserName : Username} , {RefundRequests:RequestArray});
-        }
-      }
-      return res.json(UpdatedTrainee);
-    }
-  }
-  catch(error)
-  {
-    return res.status(400).json({msg: error.message});
-  }  
+//   // CourseID:String,
+//   // Status:String
 
-})
+//   try{
+//     const Trainee = await individualTrainees.findOne({UserName: Username })
+//     if(Trainee) {
+//       console.log('Trainee Found')
+//       console.log(Trainee)
+//       var RequestArray = Trainee.RefundRequests
+//       for(let i = 0 ; RequestArray.length ; i++){
+//         if(RequestArray[i].CourseID == CourseID1){
+//           var newReq = {CourseID : CourseID1 , Status : 'Accepted'}
+//           console.log(newReq)
+//           RequestArray[i] = newReq
+//           console.log(RequestArray)
+//           const UpdatedTrainee = await individualTrainees.findOneAndUpdate({UserName : Username} , {RefundRequests:RequestArray});
+//         }
+//       }
+//       return res.json(UpdatedTrainee);
+//     }
+//   }
+//   catch(error)
+//   {
+//     return res.status(400).json({msg: error.message});
+//   }  
+
+// })
+
+// adminR.get("/rejectRefundReq/:CourseID1/:UserName",async function(req,res){
+//   var CourseID1 = req.params.CourseID1;
+//   var Username = req.params.UserName;
+
+//   // CourseID:String,
+//   // Status:String
+
+//   try{
+//     const Trainee = await individualTrainees.findOne({UserName: Username })
+//     if(Trainee) {
+//       console.log('Trainee Found')
+//       console.log(Trainee)
+//       var RequestArray = Trainee.RefundRequests
+//       for(let i = 0 ; RequestArray.length ; i++){
+//         if(RequestArray[i].CourseID == CourseID1){
+//           var newReq = {CourseID : CourseID1 , Status : 'Rejected'}
+//           console.log(newReq)
+//           RequestArray[i] = newReq
+//           console.log(RequestArray)
+//           const UpdatedTrainee = await individualTrainees.findOneAndUpdate({UserName : Username} , {RefundRequests:RequestArray});
+//         }
+//       }
+//       return res.json(UpdatedTrainee);
+//     }
+//   }
+//   catch(error)
+//   {
+//     return res.status(400).json({msg: error.message});
+//   }  
+
+// })
 
 ///////////////////////////////////////////////////////////////////////// Reports ///////////////////////////////////////////////
 

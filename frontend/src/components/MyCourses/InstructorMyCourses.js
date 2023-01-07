@@ -48,7 +48,7 @@ const InstructorMyCourses = (props) =>{
         );
     }
 
-    useEffect( () => sara())
+    useEffect( () => {sara()})
 
 
     // getMyCourses()

@@ -21,7 +21,8 @@ export const Button = ({
   B3rdLinkTo,
   B3rdLinkText,
   Text,
-  DropDown
+  DropDown,
+  sara
 }) => {
   const checkButtonStyle = STYLES.includes(buttonStyle)
     ? buttonStyle
@@ -53,9 +54,10 @@ const handleMouseOut = () => {
       </button>
     </Link>
     {DropDown && isHovering && <div className='Hover_Div' onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-      <Link to={B1stLinkTo} className='nav_linksButton'>
+      { sara && <Link to={B1stLinkTo} className='nav_linksButton'>
           {B1stLinkText}
       </Link>
+      }
       {/* <Link to={B2ndLinkTo} className='nav_linksButton'>
           {B2ndLinkText}
       </Link>
