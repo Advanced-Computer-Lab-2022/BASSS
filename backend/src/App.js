@@ -41,7 +41,7 @@ app.engine('ejs', require('ejs').renderFile);
 //common routes
 app.post('/signup', signup);
 app.post('/login', login)
-app.get('/logout',requireAuth, logout);
+app.get('/logout',logout);
 app.get('/search/:searchkey', search)
 // app.post('/changePass',requireAuth, changePass) //requireAuth
 

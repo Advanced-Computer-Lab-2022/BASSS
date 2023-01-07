@@ -40,13 +40,15 @@ const InstructorMyCourses = (props) =>{
 
     }
 
-    useEffect(async () => {
+    const sara = async () => {
         await axios.get(`http://localhost:9000/course/my/salama/empty/empty`).then(
             (res) => { 
                 setMyCourses(res.data)
             }
         );
-    }, [])
+    }
+
+    useEffect( () => sara())
 
 
     // getMyCourses()

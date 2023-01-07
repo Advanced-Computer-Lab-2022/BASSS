@@ -66,9 +66,9 @@ import './Pages/Instructor/InstructorViewAllCourses/InstructorViewAllCourses.css
 import InstructorViewAllCourses from './Pages/Instructor/InstructorViewAllCourses/InstructorViewAllCourses';
 
 
-const cookies = new Cookies();
-const user = cookies.get('token')
-const type = localStorage.getItem('type')
+// const cookies = new Cookies();
+// const user = cookies.get('token')
+// const type = localStorage.getItem('type')
 
 function App() {
 
@@ -85,9 +85,9 @@ function App() {
           }/>
           <Route path='/logout' element={ <Logout/> }/>
           <Route path='/forgotPass' element={ <Forgetpass/> }/>
-          <Route path='/firstLogin' element={ <FirstLogin Who={type}/> }/>
+          {/* <Route path='/firstLogin' element={ <FirstLogin Who={type}/> }/> */}
           <Route path='/instProfile' element={ <InstructorProfile/> }/>
-          <Route path='/traineeProfile' element={ <TraineeProfile Who={type}/> }/>
+          {/* <Route path='/traineeProfile' element={ <TraineeProfile Who={type}/> }/> */}
           <Route path='/PrivacyPolicy' element={ <PrivacyPolicy/> }/>
           <Route path='/dowloadcertificate' element={ <Downloadcert/> }/>
           <Route path='/instCourses' element={ <InstructorMyCourses Link="/adham"/> }/>

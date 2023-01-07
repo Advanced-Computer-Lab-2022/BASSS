@@ -79,6 +79,8 @@ const individualTraineeschema = new Schema({
             CourseID:String,
             Status:String
         }], //[{Course1.ID,Status},{Course2.ID,Status},{Course3.ID,Status},...... ]
+        required: true,
+        default: []
     },
     Reviews: {
         type: [{

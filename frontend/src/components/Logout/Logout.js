@@ -8,7 +8,7 @@ const cookies = new Cookies();
 const Logout = () => {
 
     const logout = async () =>{
-        await axios.get('http://localhost:9000/logout',{withCredentials: true}).then(
+        await axios.get('http://localhost:9000/logout').then(
             (res) => {
                 cookies.remove('token')
                 cookies.remove(cookies.getAll())

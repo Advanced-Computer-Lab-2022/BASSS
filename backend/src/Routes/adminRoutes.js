@@ -379,6 +379,28 @@ adminR.get("/getRefundReq/:Username",async function(req,res){
   }
 })
 
+adminR.get("/getRefundReqByID/:ID",async function(req,res){
+    
+  var ID = req.params.ID;
+  var userList = []
+  try{
+     userList = await individualTrainees.find({})
+      for(let i = 0 ; userList.length ; i++){
+        if(userList[i].RefundRequests !== []) {
+          for(let j = 0 ; j < userList[i].RefundRequests.length ; j++){
+            if(userList[i].RefundRequests[j]._id == ID){
+              return res.json({R : userList[i].RefundRequests[j] , T : userList[i].UserName})
+            }
+          }
+        }
+      }
+      return res.json('not found')
+  }
+  catch(error){
+    return res.json(error.message)
+  }
+})
+
 adminR.get("/acceptRefundReq/:CourseID1/:UserName",async function(req,res){
   var CourseID1 = req.params.CourseID1;
   var Username = req.params.UserName;
@@ -546,13 +568,19 @@ catch(error)
 adminR.get("/getReportID/:ID",async function(req,res){
   var ID = req.params.ID;
   
-  const report = await reports.findOne({_id: ID })
+  try{
+    const report = await reports.findOne({_id: ID })
 
-  if(report) {
-     return res.json(report);
+    if(report) {
+      return res.json(report);
+    }
+    else{
+      return res.json("ok"); 
+    }
   }
-  else{
-     return res.json("ok"); 
+
+  catch(error){
+    return res.json(error.message)
   }
 })
 adminR.get("/FollowUp/:ReportID/:Message", async function(req,res){

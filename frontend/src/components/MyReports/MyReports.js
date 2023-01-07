@@ -15,7 +15,6 @@ function MyReports(){
         await axios.get(`http://localhost:9000/admin/getReport/hazem123`).then(
             (res) => { 
                 const reports = res.data
-                console.log(reports)
                 setReports(reports)
             });
         }
@@ -75,8 +74,8 @@ getReports();
                 <h1 className='h1Report'>Created At: {report[0].createdAt}</h1>
 
                 {/* <button onClick={clickhandler} id={report[0]._id} show={report[0].Status}>Follow Up </button> */}
-                <div className='followUpBody'>
-                    <input className='followUpInput' placeholder='follow up message' onChange={changehandler} value={choice}/> 
+                <div className='followUpBody'> {/*value={choice} */}
+                    <input className='followUpInput' placeholder='follow up message' onChange={changehandler} /> 
                     <button className='followUpBttn' onClick={clickhandler} id={report[0]._id} status={report[0].Status}>Follow Up </button>
                 </div>
                 </div>

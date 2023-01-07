@@ -16,31 +16,34 @@ const TraineeProfile = (props) => {    //individual or corporate
     const [edit, setEdit] = useState(false)
     const [isCorporate, setIsCorporate] = useState(false)
 
-    useEffect(async () => {
-        if(props.Who === 'corporatetrainee'){
-            setIsCorporate(true)
-            try{
-                await axios.get('http://localhost:9000/corporateTrainee/getCorporate').then(
-                    (res) => {
-                        setTrainee(res.data)
-                    }
-                )
-            }catch(error){
-                setError(error.response.data)
+
+    const sara = async () => {
+            if(props.Who === 'corporatetrainee'){
+                setIsCorporate(true)
+                try{
+                    await axios.get('http://localhost:9000/corporateTrainee/getCorporate').then(
+                        (res) => {
+                            setTrainee(res.data)
+                        }
+                    )
+                }catch(error){
+                    setError(error.response.data)
+                }
+            }
+            else{
+                try{
+                    await axios.get('http://localhost:9000/individualTrainee/getIndividual').then(
+                        (res) => {
+                            setTrainee(res.data)
+                        }
+                    )
+                }catch(error){
+                    setError(error.response.data)
+                }
             }
         }
-        else{
-            try{
-                await axios.get('http://localhost:9000/individualTrainee/getIndividual').then(
-                    (res) => {
-                        setTrainee(res.data)
-                    }
-                )
-            }catch(error){
-                setError(error.response.data)
-            }
-        }
-    }, [])
+
+    useEffect(() => {sara()})
     
     //bassel's
     const [pass,setpass] = useState('');

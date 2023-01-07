@@ -16,7 +16,8 @@ const InstructorProfile =  (props) => {
     const [edit, setEdit] = useState(false)
     const [reports,setReports] = useState(0)
 
-    useEffect(async () => {
+
+    const sara = async () => {
         try{
             await axios.get('http://localhost:9000/instructor/getInstructor').then(
                 (res) => {
@@ -27,10 +28,13 @@ const InstructorProfile =  (props) => {
                     setReports(res.data.Reports.length)
                 }
             )
-        }catch(error){
+        }
+        catch(error){
             setError(error.response.data)
         }
-    }, [])   
+    }
+    useEffect(() => {sara()})   
+
 
 
     //bassel's
