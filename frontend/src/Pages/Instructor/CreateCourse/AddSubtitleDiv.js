@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 import './CreateCourse.css'
-import { ButtonBlue } from '../../../GeneralCss';
 
 
 const AddSubtitleDiv = (props) => {
@@ -61,7 +60,7 @@ const AddSubtitleDiv = (props) => {
   return (
         <div className='OneSubtitleDiv' id= {props.DivID} > {/* This div will be repeated with each + button click*/}
         <h1 className='ZeftcssDiv'>Subtitle Number : {props.DivID}</h1>
-        {/* <h1 className='createcourse_courseinputs_h1'>{SubtitleHours},{videolink},{VideoDescription},{Question},{MaxGrade},{Choice1},{Choice2},{Choice3},{Choice4},{CorrectAnswer}</h1> */}
+        <h1 className='createcourse_courseinputs_h1'>{SubtitleHours},{videolink},{VideoDescription},{Question},{MaxGrade},{Choice1},{Choice2},{Choice3},{Choice4},{CorrectAnswer}</h1>
 
             <input type='number' placeholder='Subtitle Hours' className='createcourse_courseinputs' name="SubtitleHours" onChange={subtitleHourshandler}></input>
             <input type='url'  placeholder='video link' className='createcourse_courseinputs' name="videolink" onChange={videolinkhandler}></input>
@@ -81,8 +80,7 @@ const AddSubtitleDiv = (props) => {
                     <input type='text' placeholder='Choice #4' className='createcourse_courseinputs' name="Choice4" onChange={Choice4handler}></input>
                 </div>
                 <div>
-                    <ButtonBlue onClick={Add}>Create Subtitle</ButtonBlue>
-                    {/* <button onClick={Add}>Create</button> */}
+                    <button onClick={Add}>button zeft 3ala dema3'y</button>
              {/* {props.CreateButton && props.GetExcercise() && <h1>Aywaa ana hena ahoo</h1>} */}
              </div>
             </div>

@@ -3,14 +3,10 @@ import './CreateCourse.css'
 import InstructorNavBar from '../InstructorNavBar/InstructorNavBar'
 import axios from 'axios';
 import MultipleSubtitleDivs from './MultipleSubtitlesDivs';
-import { Button, ButtonBlue } from '../../../GeneralCss';
-import { Link, useNavigate } from 'react-router-dom';
-import InstructorProfile from '../../../components/Profiles/InstructorProfile';
 
 /*
     createCourseOnClick => 
         1-create course with em
-
 */
 
 function CreateCourse() {
@@ -124,7 +120,7 @@ function CreateCourse() {
     function zeft() {//CreateExcerciseProp('sara saad keda kedaa','ya salam et2alet kam mara fe o3"neyet el fanan el 3azeem ehab tawfeeq?','1','2','3','ehab tawfeeq nafso maya3rfsh',100,'ahmed 3oraby')
         //SubtitlesArrayhandler(SubtitlesArray.push('sara'))
 
-
+        alert(SubtitlesArray)
         AddCourse()
 
     //CreateExcercise()
@@ -151,6 +147,7 @@ const CreateExcerciseProp = (InstructorName1,ThisSubtitleNumber1,Question1,Choic
             await axios.get(`http://localhost:9000/course/createExcercise/${Title1}/${InstructorName1}/${ThisSubtitleNumber1}/${Question1}/${Choice11}/${Choice21}/${Choice31}/${Choice41}/${MaxGrade1}/${CorrectAnswer1}`).then(
                 (res) => {
                     const Ex1 = res.data
+                    alert(Ex1.excercise._id)
                     createSubtitle1(SubtitleHours1,VideoLink1,ShortVideoDescription1,ThisSubtitleNumber1,Ex1.excercise._id)
                     ExerciseIDhandler(Ex1.excercise._id)
                 })
@@ -174,12 +171,14 @@ const CreateExcerciseProp = (InstructorName1,ThisSubtitleNumber1,Question1,Choic
 
 
      const createSubtitleProp = (SubtitleHours1,VideoLink1,ShortVideoDescription1,ThisSubtitleNumber1)=>{
+        alert('SubProp aho')
         //CourseIDhandler(CourseID) 
         subtitleHourshandler(SubtitleHours1)
         videolinkhandler(VideoLink1)
         videoDescriptionhandler(ShortVideoDescription1)
         //Exercisehandler(Exercise)
         ThisSubtitleNumberhandler(ThisSubtitleNumber1)
+        console.log('Sub Prop Done')
         const S = () =>{
             createSubtitle1()
 
@@ -189,14 +188,16 @@ const CreateExcerciseProp = (InstructorName1,ThisSubtitleNumber1,Question1,Choic
 
     const createSubtitle1 = (SubtitleHours1,VideoLink1,ShortVideoDescription1,ThisSubtitleNumber1,ExerciseID1) =>{ 
         const S = async(req,res)=>{
+        alert('sara')
                     await axios.get(`http://localhost:9000/course/createSubtitle/${SubtitleHours1}/${VideoLink1}/${ShortVideoDescription1}/${ExerciseID1}/${ThisSubtitleNumber1}`).then(
                         (res) => {
                             const Sub = res.data
                             SubtitleIDhandler(Sub.subzeft._id)
                             SubtitlesArray.push(Sub.subzeft._id)
+                            console.log(SubtitlesArray)
                             SubtitlesArrayhandler(SubtitlesArray)
+                            alert(SubtitlesArray)
                             //SubtitleIDhandler(Sub.subzeft._id)
-                            alert('Subtitle Created')
             
                         })
                     }
@@ -211,7 +212,9 @@ const CreateExcerciseProp = (InstructorName1,ThisSubtitleNumber1,Question1,Choic
                 const Sub = res.data
                 SubtitleIDhandler(Sub.subzeft._id)
                 SubtitlesArray.push(Sub.subzeft._id)
+                console.log(SubtitlesArray)
                 SubtitlesArrayhandler(SubtitlesArray)
+                alert(SubtitlesArray)
                 //SubtitleIDhandler(Sub.subzeft._id)
 
             })
@@ -230,6 +233,7 @@ const CreateExcerciseProp = (InstructorName1,ThisSubtitleNumber1,Question1,Choic
     }
 
     const AddId = async(req,res)=>{
+        alert(CourseID)
         var C = CourseID
         for(let i = 0 ; i<SubtitlesArray.length-1 ; i++){
             var AOfI = SubtitlesArray[i];
@@ -240,9 +244,8 @@ const CreateExcerciseProp = (InstructorName1,ThisSubtitleNumber1,Question1,Choic
         }         
     }
     
-    const navigate = useNavigate()
     const AddCourse = async(req,res)=>{             //${InstructorName}/${Title}/${Subject}/${TotalHours}/${Price}/${VideoPreviewLink}/${shortSummary}/${CertificateTemplate}/${Subtitles}
-                  //createCourse/:InstructorName/:Title/:Subject/:TotalHours/:Price/:VideoPreviewLink/:shortSummary/:CertificateTemplate/:Subtitles  
+        alert('fe add course aho')                  //createCourse/:InstructorName/:Title/:Subject/:TotalHours/:Price/:VideoPreviewLink/:shortSummary/:CertificateTemplate/:Subtitles  
         const Subtitles1 = ['sara']
         const Data={
             InstructorName: InstructorName,
@@ -264,15 +267,27 @@ const CreateExcerciseProp = (InstructorName1,ThisSubtitleNumber1,Question1,Choic
           }).then(
             (res) => {
                 const C = res.data.courseahoo._id
+                console.log(C);
                 CourseIDhandler(C) 
+                console.log(CourseID)
                 AddId()
-                alert('Course Created')
-                navigate('/instructor')
 
+                    // for(var i = 0 ; i < SubtitlesArray.length ; i++){
+                    //     var SubOfI = SubtitlesArray[i]
+                    //     var Sub = await axios.get(`http://localhost:9000/getSubtitle1/${SubOfI}`).then(
+                    //     (res) => {
+                    //         const Ex1 = res.data
+                    //         ExerciseIDhandler(Ex1.excercise._id)
+                    //         //alert(ExerciseID._id)
+                    //     })
+                    // }
+
+                //console.log('Course ID ya sara:')
+                //console.log(CourseID)
             })
 
             return CourseID
-    }
+     }
      
     //  const FillSubtitlesArray = async(req,res)=>{
     //     //Subtitles = new Array(SubtitleNum) 
@@ -293,47 +308,34 @@ const CreateExcerciseProp = (InstructorName1,ThisSubtitleNumber1,Question1,Choic
         // Subtitles = (await FillSubtitlesArray())
         // await(AddCourse())
     }
-    const [profile,setProfile] =useState(false);
-
-
-    const profileHandler = () => {
-        setProfile(!profile)
-    }
 
   
     return (
     <div>
-        <InstructorNavBar profileHandler={profileHandler}/>
-
-<div className='createcourse_body'>
-            {profile && <InstructorProfile/>}
-        {!profile &&
-        <div>
-        {/* <h1 className='createcourse_courseinputs_h1'> {Title},{Subject},{TotalHours},{Price},{VideoPreviewLink},{shortSummary},{CertificateTemplate}</h1> */}
-        <h1 className='createcourse_courseinputs_h1'>Course Info</h1>
+        <InstructorNavBar/>
+        <div className='createcourse_body'>
+        <h1 className='createcourse_courseinputs_h1'> {Title},{Subject},{TotalHours},{Price},{VideoPreviewLink},{shortSummary},{CertificateTemplate}</h1>
             <div className='AllSubtitlesDiv'>
                 <input type='text' placeholder='Course Title' className='createcourse_courseinputs' name="CourseTitle" onChange={courseTitlehandler}></input> 
                 <input type='text' placeholder='Course Subject' className='createcourse_courseinputs' name="CourseSubject" onChange={courseSubjecthandler}></input> 
                 <input type='number' placeholder='Total Hours' className='createcourse_courseinputs' name="TotalHours" onChange={totalHourshandler}></input> 
                 <input type='number' placeholder='Course Price' className='createcourse_courseinputs' name="CoursePrice" onChange={coursePricehandler}></input> 
-                <input type='url' placeholder=' /Path example : x51jk1h' className='createcourse_courseinputs' name="VideoPreviewLink" onChange={videoPreviewLinkhandler}></input> 
+                <input type='url' placeholder='Video Preview Link' className='createcourse_courseinputs' name="VideoPreviewLink" onChange={videoPreviewLinkhandler}></input> 
                 <input type='text' placeholder='short summary' className='createcourse_courseinputs' name="summary" onChange={summaryhandler}></input> 
                 <input type='text' placeholder='Certificate Template' className='createcourse_courseinputs' name="CertificateTemplate" onChange={certificateTemplatehandler}></input> 
             </div>      
            
             <div className='createcourse_allSubtitles_div'>
-                {/* <h1 className='createcourse_courseinputs_h1'>{SubtitleHours},{videolink},{VideoDescription},{Question},{MaxGrade},{Choice1},{Choice2},{Choice3},{Choice4},{CorrectAnswer}</h1> */}
+                <h1 className='createcourse_courseinputs_h1'>{SubtitleHours},{videolink},{VideoDescription},{Question},{MaxGrade},{Choice1},{Choice2},{Choice3},{Choice4},{CorrectAnswer}</h1>
                 <div>
-                    <h1 className='createcourse_courseinputs_h1'>Subtitles:</h1> <div><ButtonBlue onClick={SubtitleNumhandler}>+</ButtonBlue></div> 
+                    <h1 className='createcourse_courseinputs_h1'>Subtitles:</h1> <button onClick={SubtitleNumhandler}>+</button>
                 </div>
 
                 <div><MultipleSubtitleDivs createSubtitle = {createSubtitle} CreateExcercise = {CreateExcercise} GetExcercise = {GetExcercise} createSubtitleProp = {createSubtitleProp} CreateExcerciseProp = {CreateExcerciseProp} SubtitlesNum = {SubtitleNum} CreateButton = {CreateButton} Title={Title} InstructorName={InstructorName}/></div>
             <br></br>
             </div>
-            </div>
-}
-            <ButtonBlue className='CreateCourse_btn' onClick={AddCourse}>Create Course</ButtonBlue> {/*CreateCoursehandler*/}
-             {/* {<h1 className='createcourse_courseinputs_h1'>hena ahooo,{InstructorName},{ThisSubtitleNumber},{Question},{Choice1},{Choice2},{Choice3},{Choice4},{MaxGrade},{CorrectAnswer}</h1>} */}
+            <button className='CreateCourse_btn' onClick={AddCourse}>Create Course</button> {/*CreateCoursehandler*/}
+             {<h1 className='createcourse_courseinputs_h1'>hena ahooo,{InstructorName},{ThisSubtitleNumber},{Question},{Choice1},{Choice2},{Choice3},{Choice4},{MaxGrade},{CorrectAnswer}</h1>}
         </div>
     </div>
   )
@@ -362,7 +364,5 @@ export default CreateCourse
             }
         return subtitles;
         }
-
         createCourse(with values + (FillSubtitlesArray));
     */
-  
