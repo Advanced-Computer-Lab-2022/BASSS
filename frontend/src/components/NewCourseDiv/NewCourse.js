@@ -58,8 +58,12 @@ function NewCourse(props) {
   return (
     
     <div className={showData?"NewCourse_Details":"NewCourse"} onMouseEnter={()=>setShowData(true)}  onMouseLeave={()=>setShowData(false)}
-    onClick={()=>navigate(direction,{state:[props.course._id,props.course.InstructorUserName]})}
+   
     >
+        {props.Trainee && <button style={{background : "rgb(3, 48, 76)",color:'white', borderRadius: '2rem', border: 'none', padding: '0.3rem', cursor: 'pointer'}}
+         onClick={() => navigate('/pay',{state:[Math.floor(props.course.Price*fares[chosenCountry])-( Math.floor(props.course.Price*fares[chosenCountry]) *(props.course.PromotionPercentage/100)),props.course.Title,props.course._id, currency[chosenCountry]]})}>
+          Enroll</button>}
+
         <div className="NewCourse_Data_Top">
           {props.course.PromotionPercentage>0
           ?
@@ -95,6 +99,7 @@ function NewCourse(props) {
           }
 
         </div>
+
        {
          showDataSub && <div className={"NewCourseSubtitles_data"}>
           <h1 style={{alignItems:'center'}}> Subtitles </h1>

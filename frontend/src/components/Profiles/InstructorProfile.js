@@ -120,7 +120,7 @@ const InstructorProfile =  (props) => {
                                 </div>
                                 <br/>
                                 <div class="profile_info">
-                                    <label class='profile_userName'>{inst.UserName}</label>
+                                    <label class='profile_userName'>{inst.Username}</label>
                                 </div>
 
                                 <div class="profile_info">
@@ -188,7 +188,7 @@ const InstructorProfile =  (props) => {
                                                     <td> </td>
                                                     <td className="boldFont">User Name</td>
                                                     <td className="boldFont"> : </td>
-                                                    <td>{inst.UserName}</td>
+                                                    <td>{inst.Username}</td>
                                                 </tr>
                                                 <tr>
                                                     <td> </td>
