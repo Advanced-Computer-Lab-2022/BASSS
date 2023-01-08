@@ -59,7 +59,7 @@ export default function Reports(){
 }
 
 const GetRefundRequests = async(req,res)=>{
-    await axios.get(`http://localhost:9000/admin/getAllRefundReq/`).then(
+    await axios.get(`http://localhost:9000/admin/getAllRefundReqNew/`).then(
         (res) => {
             const result = res.data
             RefundRequestshandler(result)

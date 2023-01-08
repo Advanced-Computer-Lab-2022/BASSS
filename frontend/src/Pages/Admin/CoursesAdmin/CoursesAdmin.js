@@ -101,7 +101,7 @@ export default function CoursesAdmin(){
             {PromotionDiv && <PromotionsAdmin PromotionDivhandler={PromotionDivhandler} SelectedCourses={SelectedCourses}/>}
             <div className='Admin_CorporateCourses_Div'>
                 <br></br>
-                <h1 className='h1_Admin_Courses'>All Courses</h1>
+                <h1 className='h1_Admin_Courses'>Corporate Requests   </h1>
                 <br></br>    
                 <div className='Admin_CoursesPage_CoReqHeader_btnDiv'>
                     <button className='Admin_CoReqSelect_btn' onClick={AcceptAllHandler}>Accept All</button>

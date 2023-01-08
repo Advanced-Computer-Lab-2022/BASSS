@@ -5,11 +5,6 @@ import { HeadersDiv } from '../../GeneralCss';
 
 const OneReportDetails = (props) => {
 
-  const [CoReq , setCoReq] = useState('')
-  const CoReqhandler = (sara)=>{setCoReq(sara)}
-  useEffect(()=>{CoReqhandler(CoReq)});
-
-
     const AcceptReqHandler = async(req,res)=>{
       await axios.get(`http://localhost:9000/admin/ResolveReport/${props.ReportID}`).then(
           (res) => {
@@ -25,24 +20,39 @@ const OneReportDetails = (props) => {
 }
 
 
+const AcceptRefundHandler = async(req,res)=>{
+  await axios.get(`http://localhost:9000/admin/acceptRefundReq/${props.Refund._id}`).then(
+      (res) => {
+          const result = res.data
+       })
+}
+
+const RejecttRefundHandler = async(req,res)=>{
+await axios.get(`http://localhost:9000/admin/rejectRefundReq/${props.Refund._id}`).then(
+    (res) => {
+        const result = res.data
+     })
+}
+
   return (<div>
 
-{props.Type === 'Refund' && <div className='Admin_OneReportDetails_Div'>
+    {props.Type && props.Type === 'Refund' && <div className='Admin_OneCoReqDetails_Div'>
         <br></br>
-        <HeadersDiv fontLabel='30' fontValue='28' label='Reporter:' value={props.Refund.Status} /> <br></br>
+        <HeadersDiv fontLabel='30' fontValue='28' label='Reporter:' value={props.Refund.Reporter} /> <br></br>
         <HeadersDiv fontLabel='25' fontValue='22' label='CourseID: ' value={props.Refund.CourseID} /> <br></br>
+        <HeadersDiv fontLabel = '25' label = 'Course Title : ' fontValue = '22' value = {props.Refund.CourseTitle}/>
         <br></br><br></br>
-          {props.Refund.Status !== 'Accepted' &&
-          <div className='Admin_OneFinancialDetails_btn_Div'>
-            <button className='Admin_OneFinancialDetailsAccept_btn' onClick={AcceptReqHandler}>Resolved</button>
+          {props.Refund.Status === 'Unseen' &&
+          <div className='Admin_OneCoReqDetails_btn_Div'>
+            <button className='Admin_OneCoReqDetailsAccept_btn' onClick={AcceptRefundHandler}>Accept</button>
             <br></br>
-            <button className='Admin_OneFinancialDetailsReject_btn' onClick={RejecttReqHandler}>Pending</button>
+            <button className='Admin_OneCoReqDetailsReject_btn' onClick={RejecttRefundHandler}>Reject</button>
           </div>}
       </div>}
 
 
 
-      {props.Type !== 'Refund' && props.Report1.Type === 'Financial' && <div className='Admin_OneReportDetails_Div'>
+      {props.Type && props.Type !== 'Refund' && props.Report1.Type === 'Financial' && <div className='Admin_OneReportDetails_Div'>
         <br></br>
         <HeadersDiv fontLabel='30' fontValue='28' label='Reporter:' value={props.Report1.Reporter} /> <br></br>
         <HeadersDiv fontLabel='25' fontValue='22' label='CourseID: ' value={props.Report1.CourseID} /> <br></br>
@@ -52,10 +62,10 @@ const OneReportDetails = (props) => {
           <div className='Admin_OneFinancialDetails_btn_Div'>
             <button className='Admin_OneFinancialDetailsAccept_btn' onClick={AcceptReqHandler}>Resolved</button>
             <br></br>
-            <button className='Admin_OneFinancialDetailsReject_btn' onClick={RejecttReqHandler}>Pending</button>
+            {props.Report1.Status !== 'Pending' && <button className='Admin_OneFinancialDetailsReject_btn' onClick={RejecttReqHandler}>Pending</button>}
           </div>}
       </div>}
-      {props.Report1.Type !== 'Financial' && <div className='Admin_OneReportDetails_Div'>
+      {props.Report1 && props.Report1.Type !== 'Financial' && <div className='Admin_OneReportDetails_Div'>
         <br></br>
         <HeadersDiv fontLabel='35' fontValue='32' label='Reporter:' value={props.Report1.Reporter} /> <br></br>
         <HeadersDiv fontLabel='25' fontValue='22' label='CourseID: ' value={props.Report1.CourseID} /> <br></br>

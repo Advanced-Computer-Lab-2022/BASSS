@@ -47,8 +47,8 @@ const OneCoReqDetails = (props) => {
         <h1 className='Admin_OneCoReqDetails_h1'>Course Title: {props.CoReq.CourseTitle}</h1>
         {props.CoReq.Status === 'Unseen' &&
         <div className='Admin_OneCoReqDetails_btn_Div'>
-          <button className='Admin_OneCoReqDetails_btn' onClick={AcceptReqHandler}>Accept</button>
-          <button className='Admin_OneCoReqDetails_btn' onClick={RejecttReqHandler}>Reject</button>
+          <button className='Admin_OneCoReqDetailsAccept_btn' onClick={AcceptReqHandler}>Accept</button>
+          <button className='Admin_OneCoReqDetailsReject_btn' onClick={RejecttReqHandler}>Reject</button>
         </div>}
     </div>
   )

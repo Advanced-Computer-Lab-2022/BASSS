@@ -11,7 +11,7 @@
     cursor:pointer ;
 }
 
-.NewCourse_Details {
+.NewCourse_Details { /*  Hovered  */
     width:800px;
     height : 350px ;
     background-image: linear-gradient(-90deg,rgba(12, 94, 146, 0.7),rgba(0, 29, 48, 0.7)),url('../../../public/images/CourseBackGround.jpg');

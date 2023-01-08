@@ -402,9 +402,14 @@ adminR.get("/getAllRefundReqNew",async(req, res) => {
 });
 
 adminR.get("/getRefundReqByID/:ID",async(req, res) => {
+  try{
   var ID = req.params.ID;
   const result = await refundSchema.findOne({_id: ID})
-  res.send(result)
+  return res.send(result)
+  }
+  catch(error){
+    return res.json({error})
+  }
 });
 
 
@@ -485,9 +490,9 @@ adminR.get("/rejectRefundReq/:RequestID",async function(req,res){   //:Status/
      //console.log(Refund);
 
     if(Refund && Refund.Status == 'Unseen'){
-      const Reporter = refundSchema.Reporter;
+      const Reporter = Refund.Reporter;
       // console.log(Reporter);
-      const CourseID = refundSchema.CourseID;
+      const CourseID = Refund.CourseID;
       // console.log(CourseID);
       const Trainee = await individualTrainees.findOne({UserName:Reporter});
       // console.log(Trainee);
@@ -712,6 +717,7 @@ adminR.get("/getReportID/:ID",async function(req,res){
   var ID = req.params.ID;
   
   try{
+    if(ID){
     const report = await reports.findOne({_id: ID })
 
     if(report) {
@@ -721,7 +727,7 @@ adminR.get("/getReportID/:ID",async function(req,res){
       return res.json("ok"); 
     }
   }
-
+  }
   catch(error){
     return res.json(error.message)
   }

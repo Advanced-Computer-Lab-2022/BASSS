@@ -12,6 +12,29 @@ const FinancialReports = (props) =>{
     // const [SelectedCourses , setSelectedCourses] = useState([])
     // const SelectedCourseshandler = (sara)=>{setSelectedCourses(sara)}
     // useEffect(()=>{ SelectedCourseshandler(SelectedCourses)},[SelectedCourses]);
+    const AcceptAllHandler = async(req,res)=>{
+        for(let i = 0 ; i < props.RefundRequests.length ; i++){
+            if(props.RefundRequests[i].Status === 'Unseen'){
+                var ReqID = props.RefundRequests[i]._id
+                await axios.get(`http://localhost:9000/admin/acceptRefundReq/${ReqID}`).then(
+                    (res) => {
+                        const result = res.data
+                })
+            }
+        }
+    }
+
+    const RejectAllHandler = async(req,res)=>{
+        for(let i = 0 ; i < props.RefundRequests.length ; i++){
+            if(props.RefundRequests[i].Status === 'Unseen'){
+                var ReqID = props.RefundRequests[i]._id
+                await axios.get(`http://localhost:9000/admin/rejectRefundReq/${ReqID}`).then(
+                    (res) => {
+                        const result = res.data
+                })
+            }
+        }
+    }
 
 
     const [Clicked , setClicked] = useState(false)
@@ -51,10 +74,10 @@ const FinancialReports = (props) =>{
                     <h1 className='h1_Admin_Courses'>Refund Requests</h1>
                     <br></br>    
                     <div className='Admin_ReportsPage_RefundReqHeader_btnDiv'>
-                        <button className='Admin_RefundReqSelect_btn' >Accept All</button>
-                        <button className='Admin_RefundReqSelect_btn' >Reject All</button>
+                        <button className='Admin_RefundReqSelect_btn' onClick={AcceptAllHandler}>Accept All</button>
+                        <button className='Admin_RefundReqSelect_btn' onClick={RejectAllHandler}>Reject All</button>
                     </div>
-                    <div>
+                    <div className='Admin_RefundReq_InnerDiv'>
                         <MultipleReportsDiv RefundRequests = {props.RefundRequests} Type = 'Refund'/>
                     </div>
                 </div>
