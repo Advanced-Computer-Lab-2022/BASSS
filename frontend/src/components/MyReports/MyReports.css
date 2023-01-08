@@ -1,15 +1,17 @@
 .myReportsBody{
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7),  rgba(0, 0, 0, 0.7)), url('../../../public/images/myReports.jpg') ;
+    background-color: rgba(30, 91, 170, 0.052);
     background-size: 100%;
+    width: 205vh;
 }
 
 .h1MyReports{
     position: absolute;
-    left: 850px;
-    top: 80px;
-    border: 10px solid rgba(0, 0, 0, 0.8);
+    left: 650px;
+    top: 100px;
     border-radius: 15px;
-    color: rgb(255, 255, 255);
+    color: rgb(3, 48, 76);
+    font-weight: 800;
+    font-size: 40px;
 }
 
 .allReports{
@@ -28,7 +30,7 @@
     padding: 10px 40px;
     box-sizing: border-box;
     border-radius: 15px;
-    background: rgba(0, 0, 0, 0.8);
+    background-color: rgba(3, 75, 120, 0.884);
     margin: 20px 20px;
 }
 
@@ -53,12 +55,16 @@
 
 .followUpBody{
     position: relative;
-    top: -250px;
+    top: -263px;
     left:700px;
+    width: 500px;
+    height: 283px;
+    border-radius: 25px;
+    background-color: rgba(3, 75, 120, 0.884);
 }
 
 .followUpInput{
-    width: 600px;
+    width: 300px;
     height: 60px;
     padding: 10px 10px;
     margin: 60px 0;
@@ -74,19 +80,22 @@
 .followUpBttn{
     background-color: transparent;
     color: #fff;
-    padding: 10px 10px;
+    padding: 15px 15px;
     border: 2px solid white;
     text-align: center;
     font-size: 20px;
     border-radius: 10px;
-    width: 100px;
+    width: 140px;
+    height: 80px;
+    cursor: pointer;
+    font-weight: 600;
     cursor: pointer;
     position: absolute;
     top: 150px;
     left: 50px; 
 }
 
-.followUpBttn-hover{
+.followUpBttn:hover{
     background-color: #fff;
   color: black;
 }

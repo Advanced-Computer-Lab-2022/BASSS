@@ -56,7 +56,7 @@ getReports();
         <div className='myReportsBody'>
 
 
-        <h1 className='h1MyReports'>My Reports: </h1>
+        <h1 className='h1MyReports'>My Reports</h1>
         <br></br><br></br><br></br><br></br><br></br>
 
         <div className='allReports'>
