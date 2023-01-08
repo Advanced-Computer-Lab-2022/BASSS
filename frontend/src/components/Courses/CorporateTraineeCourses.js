@@ -98,7 +98,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
       <br></br><br></br>
       <h1 className='indtracou-adham  '>MY COURSES</h1>
       <br></br><br></br><br></br> {/*{courses.map((course) => <NewCourse  course={course} country={countryNumber} Instructor={true}/>)}*/}
-      {mycourses && mycourses.map((mycourse)=> <div class="plan-card">
+      {mycourses.length>0 && mycourses.map((mycourse)=> <div class="plan-card">
         <h2>{mycourse[0].Title}<span>{mycourse[0].Subject}</span></h2>
           <ProgressBar bgcolor=" rgb(20, 108, 163)  " progress={`${mycourse[1]}`}  height={24} />
         <div class="etiquet-price">

@@ -15,6 +15,7 @@ const { useState, useEffect } = require("react");
     const [mycourses,setmycourses] = useState([]);
     const individualUsername = 'username'
     const getmycourses = async()=>{
+
         await axios.get(`http://localhost:9000/individualTrainee/individualCourses/${individualUsername}`).then(
             (res) => { 
                 const result = res.data
@@ -22,6 +23,8 @@ const { useState, useEffect } = require("react");
                 // alert(mycourses)
             }
              );
+      
+
     }
     const deleteCourse = async (e)=>{
       const id = e.target.getAttribute("id")
@@ -57,7 +60,7 @@ const { useState, useEffect } = require("react");
       <h1 className='indtracou-adham'>MY COURSES</h1>
       <br></br><br></br><br></br>
       <div className='zoz'>
-      {mycourses.map((mycourse)=>(
+      {mycourses.length>0 && mycourses.map((mycourse)=>(
         <div class="plan-card">
         <h2>{mycourse[0].Title}<span>{mycourse[0].Subject}</span></h2>
           <ProgressBar bgcolor="rgb(20, 108, 163)" progress={`${mycourse[1]}`}  height={24} />
