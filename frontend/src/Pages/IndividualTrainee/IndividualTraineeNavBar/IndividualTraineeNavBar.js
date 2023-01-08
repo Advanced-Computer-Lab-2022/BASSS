@@ -50,7 +50,7 @@ const IndividualTraineeNavBar = (props) => {
             <ul className={click ? 'nav-menu active' : 'nav-menu'}>
             
               <li className='nav-item1' >
-                <Link to='/traineeProfile' className='nav-links' onClick={closeMobileMenu}>
+                <Link className='nav-links' onClick={props.profileHandler}>
                   My Profile
                 </Link>
               </li>

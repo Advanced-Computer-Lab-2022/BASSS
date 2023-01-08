@@ -6,37 +6,25 @@ import Forgetpass from '../../components/Forgetpass/Forgetpass';
 import NavBar from '../../components/Navbar/Navbar';
 import CorporateTraineeNavBar from './CorporateTraineeNavBar/CorporateTraineeNavBar';
 import CorporateCourses from '../../components/CorporateCourses/CorporateCourses';
-import CorporateTraineeCourse from '../../components/Courses/CorporateTraineeCourses'
+import CorporateTraineeCourse from '../../components/Courses/CorporateTraineeCourses';
+import { useState } from 'react';
+import TraineeProfile from '../../components/Profiles/TraineeProfile';
+
 function CorporateTrainee(){
+
+    const [profile,setProfile] = useState(false);
+
+    const profileHandler = () => {
+        setProfile(!profile)
+    }
+
+
     return(
         <>
-        <CorporateTraineeNavBar/>
         <div className='CorporateTrainee-body'>
-
-        {/* <Search Type='corporate'/> */}
-
-        {/* <Link to ="/CorporateTrainee/SelectCountry">
-        <button className='instructor_selectcountrybtn'> select your country</button>
-        </Link> */}
-
-        {/* <Link to ="/CorporateTrainee/myInfo">
-        <button> edit my info</button>
-        </Link> */}
-
-        {/* <Forgetpass Type="corporateTrainee"/> */}
-        
-        {/* <Link to ="/CorporateTrainee/Allcourses">
-        <button> view All Courses </button>
-        </Link> */}
-        <br></br>
-        {/* <Link to ="/mostViewd">
-        <button> view our most viewd Courses </button>
-        </Link> */}
-        {/* <Link to ="/corporateTrainee/myReports">
-        <button >View My Reports </button>
-        </Link> */}
-        {/* <CorporateCourses Link="/corporatetrainee/CourseDetails"/> */}
-        <CorporateTraineeCourse Link="/corporatetrainee/myCourseDetails"/>
+        <CorporateTraineeNavBar profileHandler={profileHandler}/>
+        {profile && <TraineeProfile Who='corporatetrainee'/>}
+        {!profile && <CorporateTraineeCourse Link="/corporatetrainee/myCourseDetails"/>}
         </div>
         </>
     )

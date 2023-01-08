@@ -4,7 +4,7 @@ import InstructorNavBar from '../InstructorNavBar/InstructorNavBar'
 import axios from 'axios';
 import MultipleSubtitleDivs from './MultipleSubtitlesDivs';
 import { Button, ButtonBlue } from '../../../GeneralCss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import InstructorProfile from '../../../components/Profiles/InstructorProfile';
 
 /*
@@ -240,6 +240,7 @@ const CreateExcerciseProp = (InstructorName1,ThisSubtitleNumber1,Question1,Choic
         }         
     }
     
+    const navigate = useNavigate()
     const AddCourse = async(req,res)=>{             //${InstructorName}/${Title}/${Subject}/${TotalHours}/${Price}/${VideoPreviewLink}/${shortSummary}/${CertificateTemplate}/${Subtitles}
                   //createCourse/:InstructorName/:Title/:Subject/:TotalHours/:Price/:VideoPreviewLink/:shortSummary/:CertificateTemplate/:Subtitles  
         const Subtitles1 = ['sara']
@@ -266,11 +267,12 @@ const CreateExcerciseProp = (InstructorName1,ThisSubtitleNumber1,Question1,Choic
                 CourseIDhandler(C) 
                 AddId()
                 alert('Course Created')
+                navigate('/instructor')
 
             })
 
             return CourseID
-     }
+    }
      
     //  const FillSubtitlesArray = async(req,res)=>{
     //     //Subtitles = new Array(SubtitleNum) 
@@ -330,7 +332,7 @@ const CreateExcerciseProp = (InstructorName1,ThisSubtitleNumber1,Question1,Choic
             </div>
             </div>
 }
-            <Link to='/instructor'><ButtonBlue className='CreateCourse_btn' onClick={AddCourse}>Create Course</ButtonBlue> {/*CreateCoursehandler*/}</Link>
+            <ButtonBlue className='CreateCourse_btn' onClick={AddCourse}>Create Course</ButtonBlue> {/*CreateCoursehandler*/}
              {/* {<h1 className='createcourse_courseinputs_h1'>hena ahooo,{InstructorName},{ThisSubtitleNumber},{Question},{Choice1},{Choice2},{Choice3},{Choice4},{MaxGrade},{CorrectAnswer}</h1>} */}
         </div>
     </div>

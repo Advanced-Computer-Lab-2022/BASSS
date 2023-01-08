@@ -78,6 +78,7 @@
     left:52.5%;
     box-shadow:6px 6px 10px rgb(0,0,0,0.3);
     border: 2px solid rgba(196, 196, 196, 0.352);
+    z-index: 2;
 }
 .NewCourseExercises_data{
     width:500px;
@@ -89,6 +90,27 @@
     left:-15%;
     box-shadow:6px 6px 10px rgb(0,0,0,0.3);
     border: 2px solid rgba(171, 171, 171, 0.352);
-
+    z-index: 2;
 
 }
+
+.NewCourseEnrollBtn{
+    position: relative;
+    left: 22rem ;
+    top: 0rem ;
+    height : 2rem ;
+    width : 8rem ;
+    background : rgb(6, 70, 109) ;
+    color:white; 
+    border-radius: 0.5rem;
+    border: none;
+    padding: 0.5rem;
+    margin-bottom: 2.5rem;  
+    z-index: 1;  
+}
+    .NewCourseEnrollBtn:hover{
+        border: 2px solid rgb(6, 70, 109);
+        color:rgb(6, 70, 109);
+        cursor: pointer;
+        background: transparent;
+    }

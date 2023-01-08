@@ -41,8 +41,8 @@ export default function CheckoutForm(props){
         }
         setStatus('Payment Completed')
         setProcessing(false)
-        enroll()
         payInst()
+        enroll()
 
 
 
@@ -57,7 +57,6 @@ export default function CheckoutForm(props){
     const navigate = useNavigate();
     const enroll = async () => {
         //call enroll in backend
-        window.alert('henaaa')
         try{
             await axios.post("http://localhost:9000/individualTrainee/enroll",{amount: parseFloat(props.Price), course: props.CourseId}).then(
                 (res) => {
@@ -80,7 +79,8 @@ export default function CheckoutForm(props){
                await axios.post("http://localhost:9000/individualTrainee/payByWallet",{amount: parseFloat(props.Price)})
                 payInst()
                 enroll()
-           }catch(error){
+                setStatus('Payment Complete')
+            }catch(error){
                window.alert(error.response.data)
            }    
         }
@@ -94,6 +94,7 @@ export default function CheckoutForm(props){
             enroll()
             setStatus('Payment Complete')
             window.alert('Successfully Enrolled')
+            navigate('/IndividualTrainee')
        }catch(error){
            window.alert(error.response.data)
        }

@@ -1,20 +1,20 @@
 
 .indtracou-adham{
-    color: #fff;
+    color: rgb(6, 70, 109);
     position: absolute;
     left: 5.5rem;
     top: 9rem;
     font-family:'Courier New', Courier, monospace;
   }
   .bestins-adham{
-    color: #fff;
+    color: rgb(6, 70, 109);
     position: absolute;
     left: 60rem;
     top: 9rem;
     font-family:'Courier New', Courier, monospace;
   }
   .recomm-adham{
-    color: #fff;
+    color: rgb(6, 70, 109);
     position: relative;
     top: 12rem;
     left: 5rem;
@@ -153,7 +153,7 @@
   .card{
     width: 250px;
     height: 254px;
-    background: #f5f5f5;
+    background: #fff;
     padding: 2rem 1.5rem;
     transition: box-shadow .3s ease, transform .2s ease;
     /* position: relative;
@@ -340,7 +340,7 @@
       width: 500px;
       height: 254px;
       border-radius: 20px;
-      background: #f5f5f5;
+      background: #fff;
       position: relative;
       left: 5rem;
       top: 23rem;
@@ -418,7 +418,7 @@
         width: 500px;
         height: 254px;
         border-radius: 20px;
-        background: #f5f5f5;
+        background: #fff;
         position: relative;
         left: 60rem;
         top: 7rem;

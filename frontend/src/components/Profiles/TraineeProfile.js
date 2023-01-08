@@ -83,9 +83,6 @@ const TraineeProfile = (props) => {    //individual or corporate
 
     
     return(
-        <div className={divName} >
-            {isCorporate&& <CorporateTraineeNavBar/>}
-            {!isCorporate && <IndividualTraineeNavBar/>}
         <div class='Login_bodySara'>
             {/* <div class='container'> */}
                 {/* <div class='main-body'> */}
@@ -136,7 +133,7 @@ const TraineeProfile = (props) => {    //individual or corporate
                                             <td className="boldFont">User Name</td>
                                             <td className="boldFont"> : </td>
 
-                                            <td>{trainee.UserName}</td>
+                                            <td>{trainee.Username}</td>
                                             <td>                 </td>
 
                                         </tr>
@@ -189,7 +186,7 @@ const TraineeProfile = (props) => {    //individual or corporate
                             <div class="info_card profile_traineeInfo">
                                 <div class="info_card-body">
                                     {!isCorporate && <i class="fa fa-pen fa-xs edit " style={{top:'-32rem',left: '15rem'}} onClick={() => setEdit(!edit)}/>}
-                                    {isCorporate && <i class="fa fa-pen fa-xs edit " style={{top:'-31rem',left: '15rem'}} onClick={() => setEdit(!edit)}/>}
+                                    {isCorporate && <i class="fa fa-pen fa-xs edit " style={{top:'-29rem',left: '15rem'}} onClick={() => setEdit(!edit)}/>}
                                 </div>
                             </div>
                         </div>
@@ -197,7 +194,6 @@ const TraineeProfile = (props) => {    //individual or corporate
                 {/* </div> */}
             </div>
 
-        </div>
         </div>
 
 

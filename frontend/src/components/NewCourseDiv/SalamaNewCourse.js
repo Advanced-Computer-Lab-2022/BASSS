@@ -76,12 +76,10 @@ function NewCourse(props) {
 
   return (
     /* onClick={()=>navigate(direction,{state:[props.course._id,props.course.InstructorUserName]})} */
+    <div>
     <div className={showData?"NewCourse_Details":"NewCourse"} onMouseEnter={()=>setShowData(true)}  onMouseLeave={()=>setShowData(false)}
     onClick={()=>navigate(direction,{state:[props.course._id,props.course.InstructorUserName]})}
     >
-        <button style={{background : "rgb(3, 48, 76)",color:'white', borderRadius: '2rem', border: 'none', padding: '0.3rem', cursor: 'pointer', zIndex: '2'}}
-         onClick={request}>Request Access 
-         </button>
         <div className="NewCourse_Data_Top">
 
           <div className='Rating'>
@@ -123,6 +121,11 @@ function NewCourse(props) {
             
       </div>
       }
+    </div>
+    <button className='NewCourseEnrollBtn'
+         onClick={request}>Request Access 
+         </button>
+
     </div>
   )
 }

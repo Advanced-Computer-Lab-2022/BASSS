@@ -12,6 +12,7 @@ import Forgetpass from '../../components/Forgetpass/Forgetpass';
 import Downloadcert from '../../components/Downloadcert/Downloadcert';
 import Writenotes from '../../components/Writenotes/Writenotes';
 import InstructorNavBar from '../Instructor/InstructorNavBar/InstructorNavBar';
+import TraineeProfile from '../../components/Profiles/TraineeProfile';
 
 function IndividualTrainee(){
     const [profile,setProfile] = useState(false);
@@ -22,13 +23,16 @@ function IndividualTrainee(){
 
     return(
         <>
-        <IndividualTraineeNavBar/>
         <div className='IndividualTrainee-body'>
+        <IndividualTraineeNavBar profileHandler={profileHandler}/>
+        {profile && <TraineeProfile Who='individualtrainee'/>}
 
-        {/* <Writenotes/> */}
 
+        {!profile && 
+         <div>
+            
         <IndividualCourses Link = "/individualtrainee/myCourseDetails"/>
-        <br></br><br></br><br></br><br></br><br></br><br></br>
+        </div>}
 
         </div>
         </>

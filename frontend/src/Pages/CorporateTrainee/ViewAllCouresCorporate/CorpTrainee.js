@@ -11,6 +11,7 @@ import '../../../components/Search/Search.css';
 import Search from '../../../components/Search/Search';
 import '../../../components/NewCourseDiv/SearchAll.css';
 import SearchAll from '../../../components/NewCourseDiv/SeachAll';
+import TraineeProfile from '../../../components/Profiles/TraineeProfile';
 
 function CorpTrainee() {
     const[courses,setCourses]=useState([]);
@@ -19,6 +20,12 @@ function CorpTrainee() {
     const [Country, setCountry] = useState('');
 
     const [countryNumber,setCountryNumber]=useState();
+
+    const [profile,setProfile] = useState(false);
+
+    const profileHandler = () => {
+        setProfile(!profile)
+    }
     
         useEffect(()=>{
             const handleCountryNumber = () =>{
@@ -66,19 +73,20 @@ function CorpTrainee() {
        
   return (
     <div className="TraineeAllCourses">
-        <div>
-      <CorporateTraineeNavBar  setCountry = {setCountry} />
-        </div>
-        <div> 
+      <CorporateTraineeNavBar  setCountry={setCountry} profileHandler={profileHandler}/>
+      {profile && <TraineeProfile Who='corporatetrainee'/>}
+      {!profile &&
+      <div>
         <SearchAll Type='indvidual' setCourses={setCoursesFiltered}  />
 
-            </div>
       <div className="TraineeAllCourses_Details1">
             <h1 style={{color:'rgb(3, 48, 76)'}}>All Courses</h1>
 
         {courses.map((course) => <SalamaNewCourse course={course} country={countryNumber} Trainee={true}/>)}
         
       </div>
+      </div>
+    }
     </div>
   )
 }
