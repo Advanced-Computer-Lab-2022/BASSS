@@ -105,7 +105,7 @@ export default function CheckoutForm(props){
 
     return(
         <div class='checkout_div'>
-        <label class='payment_title'>Paying for Course {props.Title} with amount {props.Price}</label>
+        <label class='payment_title'>Paying for Course {props.Title} with amount {props.Price} {props.Currency}</label>
 
         {props.Wallet && 
             <div>

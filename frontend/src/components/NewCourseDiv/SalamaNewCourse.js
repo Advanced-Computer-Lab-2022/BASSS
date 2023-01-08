@@ -6,6 +6,7 @@ import { useEffect } from '../../../node_modules/react/cjs/react.development';
 import Exercise from '../Exercise/Exercise';
 import { useNavigate } from '../../../node_modules/react-router/dist';
 import axios from 'axios';
+import { borderRadius } from '@mui/system';
 
 function NewCourse(props) {
   const navigate = useNavigate();
@@ -29,7 +30,20 @@ function NewCourse(props) {
       setChosenCountry(props.country);  
     },[props.country]);
     
-    
+    const request = async() =>{
+      // axios./createCoReq/:Reporter/:CourseID
+      try{
+        await axios.get(`http://localhost:9000/admin/createCoReq/sarasaad2001/637e73821194304d45a2fe5a`).then(
+          (res) => {
+            window.alert(res.data)
+  
+          })
+      }
+      catch(error){
+        window.alert(error.response.data)
+      }
+
+    }
     const NoOfStars = (starNumber) => {
       var array=[];
       for(var i=0;i<starNumber;i++){
@@ -55,18 +69,27 @@ function NewCourse(props) {
      GetExercises();
   },[showDataExe,showDataSub])
 
+  const style = {
+    background : "transparent"
+
+  }
+
   return (
-    
+    /* onClick={()=>navigate(direction,{state:[props.course._id,props.course.InstructorUserName]})} */
     <div className={showData?"NewCourse_Details":"NewCourse"} onMouseEnter={()=>setShowData(true)}  onMouseLeave={()=>setShowData(false)}
     onClick={()=>navigate(direction,{state:[props.course._id,props.course.InstructorUserName]})}
     >
+        <button style={{background : "rgb(3, 48, 76)",color:'white', borderRadius: '2rem', border: 'none', padding: '0.3rem', cursor: 'pointer', zIndex: '2'}}
+         onClick={request}>Request Access 
+         </button>
         <div className="NewCourse_Data_Top">
-          
+
           <div className='Rating'>
           {NoOfStars(props.course.Rating.rate).map((num)=> <img className="starImg" src={star} alt="."/>)}
           </div>
           <div>
             <h2>{props.course.TotalHours} Hours</h2>
+
           </div>
         </div>
       
