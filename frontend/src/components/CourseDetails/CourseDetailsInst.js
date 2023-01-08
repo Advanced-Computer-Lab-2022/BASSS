@@ -149,9 +149,9 @@ function CourseDetailsInst() {
         const getRateCourse =  async () => {
             await axios.get(`http://localhost:9000/course/updateRate/${location.state[0]}/${choice}`).then(
                 (res) => { 
-                    const rateCourse = res.data
+                    const rateCourse1 = res.data
                     //console.log(rateCourse)
-                    setRateCourse(rateCourse)
+                    setRateCourse(rateCourse1)
 
                 }
                 );
@@ -160,9 +160,9 @@ function CourseDetailsInst() {
             const getRateInstructor =  async () => {
                 await axios.get(`http://localhost:9000/instructor/updateRate/${location.state[1]}/${choice2}`).then(
                     (res) => { 
-                        const rateInstructor = res.data
+                        const rateInstructor1 = res.data
                         //console.log(rateInstructor)
-                        setRateInstructor(rateInstructor)
+                        setRateInstructor(rateInstructor1)
     
                     }
                     );
@@ -171,10 +171,10 @@ function CourseDetailsInst() {
         const getCourse =  async () => {
             await axios.get(`http://localhost:9000/course/getCourse/${location.state[0]}`).then(
                 (res) => { 
-                    const course = res.data
+                    const course1 = res.data
                     //console.log(course)
-                    setCourse(course)
-                    setCourseRate(course.Rating.rate)
+                    setCourse(course1)
+                    setCourseRate(course1.Rating.rate)
                 }
                 );
             }
@@ -185,7 +185,7 @@ function CourseDetailsInst() {
                         const instructor1 = res.data
                         //console.log(instructor)
                         setInstructor(instructor1)
-                        setInstructorRate(instructor.Rating.rate)
+                        setInstructorRate(instructor1.Rating.rate)
                     }
                     );
                 }  
@@ -206,17 +206,17 @@ function CourseDetailsInst() {
                         {
                         await axios.get(`http://localhost:9000/admin/createReport/hazem123/${location.state[0]}/${choice4}/Empty`).then(
                             (res) => { 
-                                const report = res.data
+                                const report1 = res.data
                                 //console.log(report)
-                                setReports(report)
+                                setReports(report1)
                             });
                         }
                         else{
                             await axios.get(`http://localhost:9000/admin/createReport/hazem123/${location.state[0]}/${choice4}/${choice3}`).then(
                             (res) => { 
-                                const report = res.data
+                                const report1 = res.data
                                 //console.log(report)
-                                setReports(report)
+                                setReports(report1)
                             });
                         }
                         }

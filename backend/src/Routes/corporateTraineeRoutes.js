@@ -100,8 +100,11 @@ corporateTraineeR.get("/forgetpass/:username/:email",function(req,res){
 
 corporateTraineeR.get("/CorporateCourses/:username",async(req, res) => {
     const username = req.params.username;
-    const trainee = await corporateTrainees.find({UserName:username})
-    const courseID = trainee[0].courses
+    try{
+    const trainee = await corporateTrainees.findOne({Username:username})
+    //console.log(trainee)
+    const courseID = trainee.courses
+
     var list = []
     for (let i = 0; i < courseID.length; i++) {
         const course = await courses.findOne({_id:courseID[i].Course})
@@ -109,7 +112,12 @@ corporateTraineeR.get("/CorporateCourses/:username",async(req, res) => {
         const progress = courseID[i].Progress
         list = list.concat([[course,progress]])
     }
-  res.json(list)
+      //console.log(list)
+      return res.send(list)
+    }
+    catch(error){
+      return res.json({error})
+    }
 });
 
 

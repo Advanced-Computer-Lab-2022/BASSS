@@ -46,8 +46,9 @@ function NewCourse(props) {
               setExercises(result.SubArray);
 
           })
- 
-}
+    }
+
+
   useEffect(()=>{
     async function GetExercises() {
       await getExercises();
@@ -84,6 +85,7 @@ function NewCourse(props) {
       
       <div className="NewCourse_Title">
       <h1>{props.course.Title}</h1>
+      <button>{props.Type}</button>
       </div>
 
         <div className="NewCourse_Data_Bottom">

@@ -429,26 +429,35 @@ adminR.get("/acceptRefundReq/:RequestID",async function(req,res){
 
   try{
     const Refund = await refundSchema.findOne({_id : RequestID});
-     //console.log(Refund);
-    if(Refund.Status == 'Unseen'){
-      const Reporter = refundSchema.Reporter;
-      // console.log(Reporter);
-      const CourseID = refundSchema.CourseID;
-      // console.log(CourseID);
+      //console.log(Refund);
+    if(Refund && Refund.Status == 'Unseen'){
+      const Reporter = Refund.Reporter;
+      //console.log(Reporter);
+      const CourseID = Refund.CourseID;
+      //console.log(CourseID);
       const Trainee = await individualTrainees.findOne({UserName:Reporter});
-      // console.log(Trainee);
+      //console.log(Trainee.Courses);
       const Course = await courses.findOne({_id : Refund.CourseID});
-      const Instructor = await instructors.findOne({UserName : Course.InstructorUserName});
+      //console.log(Course.InstructorUserName)
+      const Instructor = await instructors.findOne({Username : Course.InstructorUserName});
+      //console.log(Instructor)
 
       for(let i = 0 ; i < Trainee.Courses.length ; i++){
+        //console.log(Trainee.Courses[i].Course)
         if(Trainee.Courses[i].Course == CourseID && Trainee.Courses[i].Progress < 50){
           var AmountPaid = Trainee.Courses[i].PayedAmount
         }
       }
+      //console.log(AmountPaid)
+
       const walletInst = Instructor.Wallet - ((80 * AmountPaid)/100) 
-      const walletTrainee = Trainee.Wallet + AmountPaid    
+      const walletTrainee = Trainee.Wallet + AmountPaid
+
+      //console.log(walletInst)
+      //console.log(walletTrainee)
+
       const RefundReq = await refundSchema.findOneAndUpdate({_id:RequestID} , {Status:Status});
-      const RefundReq1 = await instructors.findOneAndUpdate({UserName : Course.InstructorUserName} , {Wallet:walletInst});
+      const RefundReq1 = await instructors.findOneAndUpdate({Username : Course.InstructorUserName} , {Wallet:walletInst});
       const RefundReq2 = await individualTrainees.findOneAndUpdate({UserName : Reporter} , {Wallet:walletTrainee});
 
       console.log("Refund Request Accepted");

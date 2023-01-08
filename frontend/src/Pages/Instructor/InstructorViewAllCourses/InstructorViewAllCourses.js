@@ -77,7 +77,7 @@ function InstructorViewAllCourses() {
   return (
     <div className="InstructorAllCourses">
         <div>
-      {/* <InstructorNavBar profileHandler={profileHandler} setCountry = {setCountry} /> */}
+      <InstructorNavBar profileHandler={profileHandler} setCountry = {setCountry} />
       {profile && <InstructorProfile/>}
         </div>
     {!profile &&
@@ -90,7 +90,7 @@ function InstructorViewAllCourses() {
       <div className="InstructorAllCourses_Details1">
             <h1 style={{color:'rgb(3, 48, 76)'}}>All Courses</h1>
 
-        {courses.map((course) => <NewCourse course={course} country={countryNumber} Instructor={true}/>)}
+        {courses.map((course) => <NewCourse  course={course} country={countryNumber} Instructor={true}/>)}
         
       </div>
       </div>
@@ -98,5 +98,5 @@ function InstructorViewAllCourses() {
     </div>
   )
 }
-
+// Type={props.Type}
 export default InstructorViewAllCourses
