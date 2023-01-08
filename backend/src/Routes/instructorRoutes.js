@@ -9,7 +9,8 @@ const bcrypt = require('bcrypt')
 var nodemailer = require('nodemailer');
 
 instructorR.get("/getInstructor", async(req,res)=>{
-  const inst = await instructors.findOne({Username: "salama"})
+  const username = res.locals.user;
+  const inst = await instructors.findOne({Username: username})
   res.status(200).json(inst)
 })
 

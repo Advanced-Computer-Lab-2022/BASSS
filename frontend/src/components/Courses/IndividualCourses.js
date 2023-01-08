@@ -13,7 +13,7 @@ const { useState, useEffect } = require("react");
  function IndividualCourses(props) {
    const location = useLocation();
     const [mycourses,setmycourses] = useState([]);
-    const individualUsername = 'kkkkk'
+    const individualUsername = 'username'
     const getmycourses = async()=>{
         await axios.get(`http://localhost:9000/individualTrainee/individualCourses/${individualUsername}`).then(
             (res) => { 

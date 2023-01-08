@@ -139,11 +139,11 @@ const CourseDetails = () => {
      if(mySubString==='corporatetrainee')
      {
 
-         await axios.get(`http://localhost:9000/${mySubString}/updateprogresscorp/sarasaad2001/${location.state[0]}`)
+         await axios.get(`http://localhost:9000/${mySubString}/updateprogresscorp/username/${location.state[0]}`)
      }   
      else if (mySubString === 'individualtrainee')
      {
-        await axios.get(`http://localhost:9000/${mySubString}/updateprogressind/kkkkk/${location.state[0]}`)
+        await axios.get(`http://localhost:9000/${mySubString}/updateprogressind/username/${location.state[0]}`)
      }
 
              
