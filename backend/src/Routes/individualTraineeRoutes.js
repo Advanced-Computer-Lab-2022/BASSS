@@ -64,7 +64,7 @@ individualTraineeR.get("/myInfo/pass/:oldpass/:pass",async function(req,res){
 
  individualTraineeR.get("/unroll_from_course/:username/:couID",async(req,res)=>{
    var couID = req.params.couID;
-   var username = req.params.username;
+   var username = res.locals.user;
    var list = [];
    const trainee =  await individualTrainees.findOne({UserName:username})
    const x = await courses.findOne({_id:couID});
@@ -96,7 +96,7 @@ individualTraineeR.get("/myInfo/pass/:oldpass/:pass",async function(req,res){
 
 
  individualTraineeR.get("/updateprogressind/:username/:couID" , async(req,res)=>{
-  const username = req.params.username;
+  const username = res.locals.user;
   const couID = req.params.couID;
   const trainee = await individualTrainees.find({UserName:username})
   const courseID = trainee[0].Courses
@@ -281,7 +281,7 @@ individualTraineeR.get("/sendcertificate",function(req,res){
 
 
 individualTraineeR.get("/individualCourses/:username",async(req, res) => {
-    const username = req.params.username;
+    const username = res.locals.user;
     const trainee = await individualTrainees.find({UserName:username})
      const courseID = trainee[0].Courses
     var list = []
@@ -390,10 +390,10 @@ individualTraineeR.post("/paymentIntent", async(req,res) => {
 
 individualTraineeR.get("/getIndividual",async(req, res) => {
   //token name
-  // const name = res.locals.user;
+  const name = res.locals.user;
 
 
-  const result =await individualTrainees.findOne({UserName:"adham123"})
+  const result =await individualTrainees.findOne({UserName:name})
   return res.json(result)
 });
 

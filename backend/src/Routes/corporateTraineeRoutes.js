@@ -99,7 +99,7 @@ corporateTraineeR.get("/forgetpass/:username/:email",function(req,res){
     })
 
 corporateTraineeR.get("/CorporateCourses/:username",async(req, res) => {
-    const username = req.params.username;
+    const username = res.locals.user;
     try{
     const trainee = await corporateTrainees.findOne({Username:username})
     //console.log(trainee)
@@ -123,7 +123,7 @@ corporateTraineeR.get("/CorporateCourses/:username",async(req, res) => {
 
 corporateTraineeR.get("/unroll_from_course/:username/:couID",async(req,res)=>{
   var couID = req.params.couID;
-  var username = req.params.username;
+  var username = res.locals.user;
   var list = [];
   const trainee =  await corporateTrainees.findOne({Username:username})
   const x = await courses.findOne({_id:couID});
@@ -154,7 +154,7 @@ corporateTraineeR.get("/unroll_from_course/:username/:couID",async(req,res)=>{
 })
 
 corporateTraineeR.get("/updateprogresscorp/:username/:couID" , async(req,res)=>{
-  const username = req.params.username;
+  const username = res.locals.user;
   const couID = req.params.couID;
   const trainee = await corporateTrainees.find({UserName:username})
   const courseID = trainee[0].courses
@@ -228,9 +228,9 @@ corporateTraineeR.get("/changeFirstLogin", async (req,res) => {
 
 corporateTraineeR.get("/getCorporate",async(req, res) => {
   //token name
-  // const name = res.locals.user;
+  const name = res.locals.user;
 
-  const result =await corporateTrainees.findOne({UserName:"sarasaad2001"})
+  const result =await corporateTrainees.findOne({UserName:name})
    res.json(result)
 });
 
