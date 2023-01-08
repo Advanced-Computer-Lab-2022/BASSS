@@ -140,7 +140,7 @@ function App() {
             //   (user)? ((type=='instructor')? <EditnewPass Type='instructor'/>: (type=='corporate trainee')? <CorporateTrainee/> : 
             //   (type=="individual trainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/> :<LoginPage/>) : <Home/>
           }/>
-          <Route path='/instructor/myReports' element={<MyReports/> } />
+          <Route path='/instructor/myReports' element={<MyReports IN = 'true'/> } />
 
           <Route path='/instructor/allCourses' element={<InstructorViewAllCourses/>} />
 
@@ -202,7 +202,7 @@ function App() {
               // (type=="individual trainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
           }/>
           <Route path='/CorporateTrainee/Allcourses' element = { <CorporateCourses/> } /> 
-          <Route path='/corporateTrainee/myReports' element={<MyReports/> } />
+          <Route path='/corporateTrainee/myReports' element={<MyReports CT = 'true'/> } />
 
 
 
@@ -227,7 +227,7 @@ function App() {
               // (user)? ((type=='instructor')? <Instructor/> : (type=='corporate trainee')? <CorporateTrainee/> : 
               // (type=="individual trainee")? <EditnewPass Type = "individualTrainee"/>  : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
           }/>
-          <Route path='/individualTrainee/myReports' element={<MyReports/> } />
+          <Route path='/individualTrainee/myReports' element={<MyReports IT = 'true'/> } />
 
           <Route path='/individualTrainee/allcourses' element={<TraineeViewAllCourses/> } />
           <Route path='/allcourses' element={<TraineeViewAllCourses/> } />

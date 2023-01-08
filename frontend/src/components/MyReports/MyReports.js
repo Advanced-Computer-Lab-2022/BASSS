@@ -2,9 +2,11 @@ import React from 'react'
 import axios from 'axios';
 import './MyReports.css'
 import IndividualTraineeNavBar from '../../Pages/IndividualTrainee/IndividualTraineeNavBar/IndividualTraineeNavBar';
+import CorporateTraineeNavBar from '../../Pages/CorporateTrainee/CorporateTraineeNavBar/CorporateTraineeNavBar';
+import InstructorNavBar from '../../Pages/Instructor/InstructorNavBar/InstructorNavBar';
 const { useState, useEffect } = require("react");
 
-function MyReports(){
+const MyReports = (props) => {
 
     const [reports,setReports] = useState([]);
     var [choice,setchoice] = useState([]);
@@ -52,7 +54,9 @@ getReports();
 
     return(
         <>
-        <IndividualTraineeNavBar/>
+        {props.IT && <IndividualTraineeNavBar/>}
+        {props.CT && <CorporateTraineeNavBar/>}
+        {props.IN && <InstructorNavBar/>}
         <div className='myReportsBody'>
 
 
