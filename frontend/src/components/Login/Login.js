@@ -41,9 +41,13 @@ const Login = () => {
             await axios.post("http://localhost:9000/login", user, {withCredentials: false}).then(
                 (res)=> {
                     type = res.data.type
-                    location()
                     cookies.set('token', res.data.token, {path: '/'})
                     localStorage.setItem('type', res.data.type)
+                    if(type.toLowerCase() == 'individualtrainee')
+                        navigate("/IndividualTrainee")
+                    else
+                        location()
+
                 } 
             )
         }
@@ -68,9 +72,9 @@ const Login = () => {
     const navigate = useNavigate();
     const location = async () => {
         switch(type.toLowerCase()){
-            case "individualtrainee":
-                navigate("/IndividualTrainee")
-                break;
+            // case "individualtrainee":
+            //     navigate("/IndividualTrainee")
+            //     break;
             case "corporatetrainee":
                 try {
                     await axios.get("http://localhost:9000/corporateTrainee/firstLogin").then(

@@ -9,7 +9,6 @@ const requireAuth = (req,res,next) => {
         return res.status(401).json({error: "You are not logged in"})
       }else{
         res.locals.user = decodedToken.username
-        console.log(res.locals.user)
         next();
       }
     })

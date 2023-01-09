@@ -34,7 +34,8 @@ mongoose.connect(process.env.mongoURl)
 })
 .catch(err => console.log(err));
 
-app.use(cors())
+// app.use(cors())
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}))
 app.set('view engine', 'ejs');
 app.engine('ejs', require('ejs').renderFile);
 

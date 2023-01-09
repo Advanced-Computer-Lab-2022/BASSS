@@ -396,8 +396,7 @@ individualTraineeR.get("/getIndividual",async(req, res) => {
 
 
   const result =await individualTrainees.findOne({UserName:name})
-  console.log(result)
-  res.json(result)
+  return res.json(result)
 });
 
 

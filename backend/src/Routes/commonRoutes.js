@@ -65,7 +65,6 @@ const login =  async (req, res) => {
             const token = createToken(user.UserName, user.Type);
 
             res.cookie('token', token, { httpOnly: true, maxAge: maxAge * 1000 });
-            console.log(user.Type.toLowerCase())
             res.status(200).json({token: token, type: user.Type.toLowerCase()})
         });
     } catch (error) {
@@ -86,9 +85,9 @@ const search = async (req,res) => {
         for(let i = 0 ; i<query.length ; i++)
         {
             course = query[i];
-            if (courses.Title.toLowerCase().includes(key.toLowerCase()) ||
-                courses.Subject.toLowerCase().includes(key.toLowerCase()) ||
-                courses.InstructorUserName.toLowerCase().includes(key.toLowerCase()))
+            if (course.Title.toLowerCase().includes(key.toLowerCase()) ||
+                course.Subject.toLowerCase().includes(key.toLowerCase()) ||
+                course.InstructorUserName.toLowerCase().includes(key.toLowerCase()))
             {
                 array=array.concat(course);
             }
