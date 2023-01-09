@@ -11,7 +11,7 @@ const exercises = require('../Models/exerciseSchema');
 
 courseR.get("/",async(req, res) => {
     const result =await courses.find({})
-    res.send(result)
+    return res.send(result)
 });
 
 
@@ -145,7 +145,7 @@ courseR.get("/filter_adsa/:subject/:rate/:price",async(req, res) => {
 
   courseR.get("/:my/:name/:subject/:price",async(req, res) => {
     // res.render("../views/course.ejs",{title:"courses"})
-    var name = req.params.name;
+    var name = res.locals.user;
     var subject = req.params.subject;
     var price = req.params.price;
     var result = []
@@ -183,7 +183,7 @@ courseR.get("/getInstructor/:username",async function(req,res){
 
 courseR.get("/getExcercise/:CourseTitle/:InstructorName/:SubtitleNumber/:Question",async function(req,res){
     var CourseTitle = req.params.CourseTitle;
-    var InstructorName = req.params.InstructorName;
+    var InstructorName = res.locals.user;
     var SubtitleNumber = req.params.SubtitleNumber;
     var Question = req.params.Question;
 
@@ -200,7 +200,6 @@ courseR.get("/getExcercise/:CourseTitle/:InstructorName/:SubtitleNumber/:Questio
 })
 
 courseR.get("/getSubtitleAndUpdate/:SubID/:CourseID",async function(req,res){
-  console.log('get subtitle hena')
     var SubID = req.params.SubID;
     var CourseID = req.params.CourseID;
     await subtitleSchema.findOneAndUpdate({_id:SubID} , {Course:CourseID})
@@ -216,7 +215,6 @@ courseR.get("/getSubtitleAndUpdate/:SubID/:CourseID",async function(req,res){
 })
 
 courseR.get("/getSubtitleAndUpdate2/:CourseID",async function(req,res){
-  console.log('get subtitle modified')
     var CourseID = req.params.CourseID;
 
     var SubArray = [];
@@ -280,9 +278,7 @@ courseR.post("/createCourse",async (req,res)=>{
     var shortSummary = req.body.shortSummary;
     var CertificateTemplate = req.body.CertificateTemplate;
     var Subtitles = req.body.SubtitlesArray;
-    console.log("Subtitles:")
-    // console.log(Subtitles)
-    var InstructorName = req.body.InstructorName; 
+    var InstructorName = res.locals.user; 
    
     try{
 
@@ -297,19 +293,15 @@ courseR.post("/createCourse",async (req,res)=>{
         ShortSummary: shortSummary,
         CertificateTemplate: CertificateTemplate
     });
-    console.log("Done ya bashaaa course ahoo")
     return res.status(200).json({courseahoo});
     }
     catch(error)
     {
-      console.log("La mesh naf3a")
-     // console.log(error)
       return res.status(400).json({msg: error});
     }        
 })
 
 courseR.get("/createSubtitle/:SubtitleHours/:VideoLink/:ShortVideoDescription/:Exercise/:subtitleNumber",async function(req,res){
-   console.log('Create Sub') 
    var SubtitleHours = req.params.SubtitleHours;
     var VideoLink = req.params.VideoLink;
     var ShortVideoDescription = req.params.ShortVideoDescription;    
@@ -327,13 +319,10 @@ courseR.get("/createSubtitle/:SubtitleHours/:VideoLink/:ShortVideoDescription/:E
         Exercise:Exercise,
         SubtitleNumber:subtitleNumber
     });
-      console.log("Done ya bashaaa subtitle ahoo")
     return res.status(200).json({subzeft});
     }
     catch(error)
     {
-      console.log("La mesh naf3a sub")
-      console.log(error);
       return res.status(400).json({msg: error});
     }        
 })
@@ -341,9 +330,8 @@ courseR.get("/createSubtitle/:SubtitleHours/:VideoLink/:ShortVideoDescription/:E
 
 
 courseR.get("/createExcercise/:CourseTitle/:InstructorName/:SubtitleNumber/:Question/:Choice1/:Choice2/:Choice3/:Choice4/:MaxGrade/:CorrectAnswer",async function(req,res){
-   console.log('wasalt')
     var CourseTitle = req.params.CourseTitle;
-    var InstructorName = req.params.InstructorName;
+    var InstructorName = res.locals.user;
     var SubtitleNumber = req.params.SubtitleNumber;    
     var Question = req.params.Question;
     var Choice1 = req.params.Choice1;
@@ -364,13 +352,10 @@ courseR.get("/createExcercise/:CourseTitle/:InstructorName/:SubtitleNumber/:Ques
         MaxGrade:MaxGrade,
         CorrectAnswer:CorrectAnswer
     });
-      console.log("Done ya bashaaa ex ahoo")
     return res.status(200).json({excercise});
     }
     catch(error)
     {
-      console.log("La mesh naf3a Ex")
-      console.log(error)
       return res.status(400).json({msg: error});
     }        
 })

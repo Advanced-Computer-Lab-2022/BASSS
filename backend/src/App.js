@@ -41,17 +41,17 @@ app.engine('ejs', require('ejs').renderFile);
 //common routes
 app.post('/signup', signup);
 app.post('/login', login)
-app.get('/logout',logout);
+app.get('/logout',requireAuth,logout);
 app.get('/search/:searchkey', search)
 // app.post('/changePass',requireAuth, changePass) //requireAuth
 
 //using authorization first
-app.use('/instructor',instructorR)
-app.use('/individualTrainee', individualTraineeR)
-app.use('/corporateTrainee', corporateTraineeR)
-app.use('/admin', adminR)
+app.use('/instructor',requireAuth,instructorR)
+app.use('/individualTrainee',requireAuth, individualTraineeR)
+app.use('/corporateTrainee',requireAuth, corporateTraineeR)
+app.use('/admin',requireAuth, adminR)
 
 //common??
-app.use('/course', courseR)
-app.use('/report', reportR)
-app.use('/request', requestsR)
+app.use('/course',requireAuth, courseR)
+app.use('/report',requireAuth, reportR)
+app.use('/request',requireAuth, requestsR)

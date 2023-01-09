@@ -10,7 +10,7 @@ const Forgetpass = (props) => {
     const type= props.Type
    
     const forget =  async () => {
-        await axios.get(`http://localhost:9000/individualtrainee/forgetpass/${choice}/${choice2}`).then(
+        await axios.get(`http://localhost:9000/individualtrainee/forgetpass/${choice}/${choice2}`, {withCredentials: false}).then(
             (res) => { 
                 alert('check your mail')
             }

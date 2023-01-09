@@ -170,7 +170,7 @@ adminR.get("/addCoTrainee/:username/:password",async function(req,res){
 
 ////////// Don't Forget to check if the course is already in their accessible courses
 adminR.get("/createCoReq/:Reporter/:CourseID",async function(req,res){   //:Status/
-  var Reporter = req.params.Reporter;
+  var Reporter = res.locals.user;
   var CourseID = req.params.CourseID;    
   
   
@@ -222,7 +222,7 @@ adminR.get("/getCoReqByID/:ID",async(req, res) => {
 
 adminR.get("/getCoReq/:Username",async function(req,res){
     
-  var Username = req.params.Username;
+  var Username = res.locals.user;
   const user = await corporateTrainee.findOne({Username: Username })
   if(user) {
     console.log('CorporateTrainee Found')
@@ -352,7 +352,7 @@ adminR.get("/RejectCoRequest/:RequestID",async function(req,res){   //:Status/
 // })
 
 adminR.get("/createRefundReqNew/:Reporter/:CourseID",async function(req,res){
-  var Reporter = req.params.Reporter;
+  var Reporter = res.locals.user;
   var CourseID = req.params.CourseID;  
   
     try{
@@ -414,7 +414,7 @@ adminR.get("/getRefundReqByID/:ID",async(req, res) => {
 
 
 adminR.get("/getRefundReqByName/:Username",async function(req,res){
-  var Username = req.params.Username;
+  var Username = res.locals.user;
   
   const user = await individualTrainees.findOne({UserName: Username })
   if(user) {

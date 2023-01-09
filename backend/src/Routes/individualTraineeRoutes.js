@@ -40,7 +40,7 @@ individualTraineeR.post("/selectcountry",function(req,res){
 individualTraineeR.get("/myInfo/pass/:pass",async function(req,res){
   // console.log(req.body)
 var pass = req.params.pass;
-const result =await individualTrainees.findOneAndUpdate({UserName:'hazem123'},{Password:pass})
+const result =await individualTrainees.findOneAndUpdate({UserName:res.locals.user},{Password:pass})
 //res.json(result)
 res.json({message:"updated successfully"})
 
@@ -51,10 +51,10 @@ individualTraineeR.get("/myInfo/pass/:oldpass/:pass",async function(req,res){
       var pass = req.params.pass;
       var oldpass = req.params.oldpass;
     
-  var oldpass2 =await individualTrainees.findOne({UserName:'hazem123'})
+  var oldpass2 =await individualTrainees.findOne({UserName:res.locals.user})
   
   if(oldpass==oldpass2.Password){
-  const result =await individualTrainees.findOneAndUpdate({UserName:'hazem123'},{Password:pass})
+  const result =await individualTrainees.findOneAndUpdate({UserName:res.locals.user},{Password:pass})
   //res.json(result)
   res.json({message:"updtaed successfully"})
    } else
@@ -145,6 +145,7 @@ res.json(newarr)
 
  individualTraineeR.get("/submitAnswer/:traineeid/:subtitleid/:answer", async(req,res) => {
     const traineeID = req.params.traineeid;
+    const name =res.locals.user;
     const subid = req.params.subtitleid;
     const answers = req.params.answer;
     var grade = 0;
@@ -160,10 +161,10 @@ res.json(newarr)
         MyGrade: grade
     }
 
-    const trainee = await individualTrainees.findOne({_id: traineeID});
+    const trainee = await individualTrainees.findOne({UserName: name});
     if(trainee){
         const arr = trainee.Exercises.concat(ex)
-        const newT = await individualTrainees.findOneAndUpdate({_id: traineeID},{Exercises:arr}, {new:true});
+        const newT = await individualTrainees.findOneAndUpdate({UserName: name},{Exercises:arr}, {new:true});
         res.status(200).json(grade);
     }
     else{
@@ -266,7 +267,7 @@ individualTraineeR.get("/sendcertificate",function(req,res){
         from: 'acltest321@gmail.com',
         to: 'basselbassel28@gmail.com',
         subject: 'Congratulations ',
-        text: 'Dear '+"user"+', this is your certificate of completion for your course , to download please click here http://localhost:3000/dowloadcertificate'
+        text: 'Dear '+res.locals.user+', this is your certificate of completion for your course , to download please click here http://localhost:3000/dowloadcertificate'
       };
       
       transporter.sendMail(mailOptions, function(error, info){
@@ -301,7 +302,7 @@ individualTraineeR.get("/viewWallet", async(req,res) => {
   //token name
   // const name = res.locals.user;
 
-  const trainee = await individualTrainees.findOne({UserName: 'adham123'})
+  const trainee = await individualTrainees.findOne({UserName: res.locals.user})
   if(trainee){
     res.status(200).json(trainee.Wallet)
   }
@@ -315,10 +316,10 @@ individualTraineeR.post("/payByWallet", async(req,res) => {
   //token name
   // const name = res.locals.user;
   const amount = req.body.amount
-  const trainee = await individualTrainees.findOne({UserName:'adham123'})
+  const trainee = await individualTrainees.findOne({UserName:res.locals.user})
   if(trainee){
     var newWallet = trainee.Wallet - amount
-    await individualTrainees.findOneAndUpdate({UserName:'adham123'}, {Wallet: newWallet})
+    await individualTrainees.findOneAndUpdate({UserName:res.locals.user}, {Wallet: newWallet})
     return res.status(200).json('Payed')
   }
   else{
@@ -345,14 +346,14 @@ individualTraineeR.post("/enroll", async(req,res) => {
   let date = new Date().toLocaleDateString();
   try{
     
-    const trainee = await individualTrainees.findOne({UserName: "adham123"})
+    const trainee = await individualTrainees.findOne({UserName: res.locals.user})
     const addedCourse = trainee.Courses.concat({
       Course: course,
       Progress: 0,
       PayedAmount: amount,
       DateEnrolled: date
     }) 
-    const newT = await individualTrainees.findOneAndUpdate({UserName: "adham123"}, {Courses: addedCourse})
+    const newT = await individualTrainees.findOneAndUpdate({UserName: res.locals.user}, {Courses: addedCourse})
 
     const c = await courses.findOne({_id: course})
     const cplus  = c.Views +1
@@ -395,7 +396,8 @@ individualTraineeR.get("/getIndividual",async(req, res) => {
 
 
   const result =await individualTrainees.findOne({UserName:name})
-  return res.json(result)
+  console.log(result)
+  res.json(result)
 });
 
 

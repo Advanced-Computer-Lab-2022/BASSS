@@ -1,6 +1,7 @@
 import {BrowserRouter,Routes,Route, Navigate, useLocation} from 'react-router-dom'
 import  Cookies from 'universal-cookie';
 import './App.css';
+import axios from 'axios';
 
 /*COMMON IMPORTS */
 import Home from './Pages/Guest/Home'
@@ -77,181 +78,220 @@ function App() {
       <BrowserRouter>
         <Routes>
           {/* common routes */}
-          <Route path='/sara' element = { <Sara/> } /> 
 
           <Route path='/' element = { <Home/> } /> 
-          <Route path='/login' element={ <LoginPage/>
-            // (!user)? <LoginPage/> : <Home/>
+          <Route path='/login' element={ 
+            (!user)? <LoginPage/> : <Home/>
           }/>
           <Route path='/logout' element={ <Logout/> }/>
           <Route path='/forgotPass' element={ <Forgetpass/> }/>
-          {/* <Route path='/firstLogin' element={ <FirstLogin Who={type}/> }/> */}
-          <Route path='/instProfile' element={ <InstructorProfile/> }/>
-          <Route path='/traineeProfile' element={ <TraineeProfile Who='corporatetrainee'/> }/>
+          <Route path='/firstLogin' element={ <FirstLogin Who={type}/> }/>
+          <Route path='/instProfile' element={ 
+              (user)? ((type=='instructor')? <InstructorProfile/> : (type=='corporatetrainee')? <CorporateTrainee/> : 
+              (type=="individualtrainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/> :<LoginPage/>): <Home/>
+          }/>
+          <Route path='/traineeProfile' element={ 
+              (user)? ((type=='instructor')? <InstructorProfile/> : (type=='corporatetrainee')? <TraineeProfile Who='corporatetrainee'/> : 
+              (type=="individualtrainee")? <TraineeProfile Who='individualtrainee'/> : (type=='admin')? <AdminHome/> :<LoginPage/>): <Home/>
+        
+        }/>
           <Route path='/PrivacyPolicy' element={ <PrivacyPolicy/> }/>
-          <Route path='/dowloadcertificate' element={ <Downloadcert/> }/>
-          <Route path='/instCourses' element={ <InstructorMyCourses Link="/instructor/CourseDetails"/> }/>
-          <Route path='/dowloadcertificate' element={ <Downloadcert/> }/>
-          <Route path='/PrivacyPolicy' element={ <PrivacyPolicy/> }/>
+          <Route path='/dowloadcertificate' element={  
+              (user)? ((type=='instructor')? <Instructor/> : (type=='corporatetrainee')? <Downloadcert/>: 
+              (type=="individualtrainee")? <Downloadcert/> : (type=='admin')? <AdminHome/> :<LoginPage/>): <Home/>
+        }/>
+          <Route path='/instCourses' element={  
+              (user)? ((type=='instructor')? <InstructorMyCourses Link="/instructor/CourseDetails"/> : (type=='corporatetrainee')? <CorporateTrainee/> : 
+              (type=="individualtrainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/> :<LoginPage/>): <Home/>
+        }/>
 
           {/* Instructor routes */}
-          <Route path='/instructor' element={<Instructor/>
-            //   (user)? ((type=='instructor')? <Instructor/> : (type=='corporate trainee')? <CorporateTrainee/> : 
-            //   (type=="individual trainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/> :<LoginPage/>): <Home/>
+          <Route path='/instructor' element={
+              (user)? ((type=='instructor')? <Instructor/> : (type=='corporatetrainee')? <CorporateTrainee/> : 
+              (type=="individualtrainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/> :<LoginPage/>): <Home/>
           } />
           <Route path='/instructor/SelectCountry' element = { <SelectCountry/>
-              // (user)? ((type=='instructor')? <SelectCountry/> : (type=='corporate trainee')? <CorporateTrainee/> : 
-              // (type=="individual trainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/> :<LoginPage/>) : <Home/>
+              // (user)? ((type=='instructor')? <SelectCountry/> : (type=='corporatetrainee')? <CorporateTrainee/> : 
+              // (type=="individualtrainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/> :<LoginPage/>) : <Home/>
           } /> 
-          <Route path='/instructor/contract' element={   <Contract/>
-            //   (user)? ((type=='instructor')? <Contract/> : (type=='corporate trainee')? <CorporateTrainee/> : 
-            //   (type=="individual trainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/> :<LoginPage/>) : <Home/>
+          <Route path='/instructor/contract' element={ 
+              (user)? ((type=='instructor')? <Contract/> : (type=='corporatetrainee')? <CorporateTrainee/> : 
+              (type=="individualtrainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/> :<LoginPage/>) : <Home/>
           }/>
-          <Route path='/instructor/MyCourses' element={ <MyCourses/>
+          <Route path='/instructor/MyCourses' element={ 
           // <InstructorCourses/>
-            //   (user)? ((type=='instructor')? <MyCourses/> : (type=='corporate trainee')? <CorporateTrainee/> : 
-            //   (type=="individual trainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/> :<LoginPage/>) : <Home/>
+              (user)? ((type=='instructor')? <MyCourses/> : (type=='corporatetrainee')? <CorporateTrainee/> : 
+              (type=="individualtrainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/> :<LoginPage/>) : <Home/>
           }/>
-          <Route path='/instructor/myInfo' element={<EditmyInfo/>
-            //   (user)? ((type=='instructor')? <EditmyInfo/>: (type=='corporate trainee')? <CorporateTrainee/> : 
-            //   (type=="individual trainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/> :<LoginPage/>) : <Home/>
+          <Route path='/instructor/myInfo' element={
+              (user)? ((type=='instructor')? <EditmyInfo/>: (type=='corporatetrainee')? <CorporateTrainee/> : 
+              (type=="individualtrainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/> :<LoginPage/>) : <Home/>
           }/>
-          <Route path='/instructor/MyCourses/CourseDetails' element={ <CourseDetailsInst/>
-              // (user)? ((type=='instructor')? <CourseDetailsInstructor/>: (type=='corporate trainee')? <CorporateTrainee/> : 
-              // (type=="individual trainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/> :<LoginPage/>) : <Home/>
+          <Route path='/instructor/MyCourses/CourseDetails' element={
+              (user)? ((type=='instructor')? <CourseDetailsInst/>: (type=='corporatetrainee')? <CorporateTrainee/> : 
+              (type=="individualtrainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/> :<LoginPage/>) : <Home/>
           }/>
-          <Route path='/instructor/CourseDetails' element={  <CourseDetailsInst/>
-              // (user)? ((type=='instructor')? <CourseDetailsInstructor/>: (type=='corporate trainee')? <CorporateTrainee/> : 
-              // (type=="individual trainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/> :<LoginPage/>) : <Home/>
+          <Route path='/instructor/CourseDetails' element={  
+              (user)? ((type=='instructor')? <CourseDetailsInst/>: (type=='corporatetrainee')? <CorporateTrainee/> : 
+              (type=="individualtrainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/> :<LoginPage/>) : <Home/>
           }/>
-          <Route path='/instructor/MyReviews' element={ <MyReviews/>
-              // (user)? ((type=='instructor')? <MyReviews/>: (type=='corporate trainee')? <CorporateTrainee/> : 
-              // (type=="individual trainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/> :<LoginPage/>) : <Home/>
+          <Route path='/instructor/MyReviews' element={ 
+              (user)? ((type=='instructor')? <MyReviews/>: (type=='corporatetrainee')? <CorporateTrainee/> : 
+              (type=="individualtrainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/> :<LoginPage/>) : <Home/>
           }/>
-          <Route path='/instructor/CreateCourse' element= { <CreateCourse/>
-              // (user)? ((type=='instructor')? <CreateCourse/> : (type=='corporate trainee')? <CorporateTrainee/> : 
-              // (type=="individual trainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/> :<LoginPage/>) : <Home/>
+          <Route path='/instructor/CreateCourse' element= { 
+              (user)? ((type=='instructor')? <CreateCourse/> : (type=='corporatetrainee')? <CorporateTrainee/> : 
+              (type=="individualtrainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/> :<LoginPage/>) : <Home/>
           }/>
-          <Route path='/instructor/promotion' element={ <Promotion/> 
-              // (user)? ((type=='instructor')? <Promotion/> : (type=='corporate trainee')? <CorporateTrainee/> : 
-              // (type=="individual trainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/> :<LoginPage/>) : <Home/>
+          <Route path='/instructor/promotion' element={
+              (user)? ((type=='instructor')? <Promotion/> : (type=='corporatetrainee')? <CorporateTrainee/> : 
+              (type=="individualtrainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/> :<LoginPage/>) : <Home/>
           }/>
-          <Route path='/instructor/forgetpass' element={ <EditnewPass Type='instructor'/>
-            //   (user)? ((type=='instructor')? <EditnewPass Type='instructor'/>: (type=='corporate trainee')? <CorporateTrainee/> : 
-            //   (type=="individual trainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/> :<LoginPage/>) : <Home/>
+          <Route path='/instructor/forgetpass' element={
+              (user)? ((type=='instructor')? <EditnewPass Type='instructor'/>: (type=='corporatetrainee')? <CorporateTrainee/> : 
+              (type=="individualtrainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/> :<LoginPage/>) : <Home/>
           }/>
-          <Route path='/instructor/myReports' element={<MyReports IN = 'true'/> } />
+          <Route path='/instructor/myReports' element={
+              (user)? ((type=='instructor')? <MyReports IN = 'true'/> : (type=='corporatetrainee')? <CorporateTrainee/> : 
+              (type=="individualtrainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/> :<LoginPage/>) : <Home/>
+        } />
 
-          <Route path='/instructor/allCourses' element={<InstructorViewAllCourses/>} />
+          <Route path='/instructor/allCourses' element={
+              (user)? ((type=='instructor')? <InstructorViewAllCourses/> : (type=='corporatetrainee')? <CorporateTrainee/> : 
+              (type=="individualtrainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/> :<LoginPage/>) : <Home/>
+        } />
 
 
 
           {/* Admin Routes */}
-          <Route path='/Admin'element={ <CoursesAdmin/>
-            //   (user)? ((type=='instructor')? <Instructor/> : (type=='corporate trainee')? <CorporateTrainee/> : 
-            //   (type=="individual trainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/> :<LoginPage/>) : <Home/>
+          <Route path='/Admin'element={ 
+              (user)? ((type=='instructor')? <Instructor/> : (type=='corporatetrainee')? <CorporateTrainee/> : 
+              (type=="individualtrainee")? <IndividualTrainee/> : (type=='admin')? <CoursesAdmin/> :<LoginPage/>) : <Home/>
           }/>
-          <Route path='/AdminProfile' element={ <AdminProfile/> 
-            //   (user)? ((type=='instructor')? <Instructor/> : (type=='corporate trainee')? <CorporateTrainee/> : 
-            //   (type=="individual trainee")? <IndividualTrainee/> : (type=='admin')? <AdminProfile/> :<LoginPage/>) : <Home/>
+          <Route path='/AdminProfile' element={ 
+              (user)? ((type=='instructor')? <Instructor/> : (type=='corporatetrainee')? <CorporateTrainee/> : 
+              (type=="individualtrainee")? <IndividualTrainee/> : (type=='admin')? <AdminProfile/> :<LoginPage/>) : <Home/>
           }/>
-          <Route path='/AdminAddUsers'element={ <AddUsers/>
-            //   (user)? ((type=='instructor')? <Instructor/> : (type=='corporate trainee')? <CorporateTrainee/> : 
-            //   (type=="individual trainee")? <IndividualTrainee/> : (type=='admin')? <AddUsers/> :<LoginPage/>) : <Home/>
+          <Route path='/AdminAddUsers'element={ 
+              (user)? ((type=='instructor')? <Instructor/> : (type=='corporatetrainee')? <CorporateTrainee/> : 
+              (type=="individualtrainee")? <IndividualTrainee/> : (type=='admin')? <AddUsers/> :<LoginPage/>) : <Home/>
           }/>
-          <Route path='/AdminReports' element={ <ReportsAdmin/>
-            //   (user)? ((type=='instructor')? <ReportsAdmin/> : (type=='corporate trainee')? <CorporateTrainee/> : 
-            //   (type=="individual trainee")? <IndividualTrainee/> : (type=='admin')? <Reports/> :<LoginPage/>) : <Home/>
+          <Route path='/AdminReports' element={ 
+              (user)? ((type=='instructor')? <Instructor/>  : (type=='corporatetrainee')? <CorporateTrainee/> : 
+              (type=="individualtrainee")? <IndividualTrainee/> : (type=='admin')? <ReportsAdmin/> :<LoginPage/>) : <Home/>
           }/>
-          <Route path='/AdminAddAdmin'  element={ <AddAdmin/>
-            //   (user)? ((type=='instructor')? <Instructor/> : (type=='corporate trainee')? <CorporateTrainee/> : 
-            //   (type=="individual trainee")? <IndividualTrainee/> : (type=='admin')? <AddAdmin/> :<LoginPage/>) : <Home/>
+          <Route path='/AdminAddAdmin'  element={ 
+              (user)? ((type=='instructor')? <Instructor/> : (type=='corporatetrainee')? <CorporateTrainee/> : 
+              (type=="individualtrainee")? <IndividualTrainee/> : (type=='admin')? <AddAdmin/> :<LoginPage/>) : <Home/>
           }/>
-          <Route path='/AdminAddInstructor'element={  <AddInstructor/>
-            //   (user)? ((type=='instructor')? <Instructor/> : (type=='corporate trainee')? <CorporateTrainee/> : 
-            //   (type=="individual trainee")? <IndividualTrainee/> : (type=='admin')? <AddInstructor/> :<LoginPage/>) : <Home/>
+          <Route path='/AdminAddInstructor'element={  
+              (user)? ((type=='instructor')? <Instructor/> : (type=='corporatetrainee')? <CorporateTrainee/> : 
+              (type=="individualtrainee")? <IndividualTrainee/> : (type=='admin')? <AddInstructor/> :<LoginPage/>) : <Home/>
           }/>
-          <Route path='/AdminAddCoTrainee' element={ <AddCoTrainee/>
-            //   (user)? ((type=='instructor')? <Instructor/> : (type=='corporate trainee')? <CorporateTrainee/> : 
-            //   (type=="individual trainee")? <IndividualTrainee/> : (type=='admin')? <AddCoTrainee/> :<LoginPage/>) : <Home/>
+          <Route path='/AdminAddCoTrainee' element={ 
+              (user)? ((type=='instructor')? <Instructor/> : (type=='corporatetrainee')? <CorporateTrainee/> : 
+              (type=="individualtrainee")? <IndividualTrainee/> : (type=='admin')? <AddCoTrainee/> :<LoginPage/>) : <Home/>
           }/> 
-          <Route path='/CoursesAdmin' element={  <CoursesAdmin/>
-            //   (user)? ((type=='instructor')? <Instructor/> : (type=='corporate trainee')? <CorporateTrainee/> : 
-            //   (type=="individual trainee")? <IndividualTrainee/> : (type=='admin')? <CoursesAdmin/>:<LoginPage/>) : <Home/>
+          <Route path='/CoursesAdmin' element={  
+              (user)? ((type=='instructor')? <Instructor/> : (type=='corporatetrainee')? <CorporateTrainee/> : 
+              (type=="individualtrainee")? <IndividualTrainee/> : (type=='admin')? <CoursesAdmin/>:<LoginPage/>) : <Home/>
           }/>
 
           {/* Corporate Routes */}
-          <Route  path='/CorporateTrainee' element = {<CorporateTrainee/>
-              // (user)? ((type=='instructor')? <Instructor/> : (type=='corporate trainee')? <CorporateTrainee/> : 
-              // (type=="individual trainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
+          <Route  path='/CorporateTrainee' element = {
+              (user)? ((type=='instructor')? <Instructor/> : (type=='corporatetrainee')? <CorporateTrainee/> : 
+              (type=="individualtrainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
           } />
-          <Route path='/CorporateTrainee/SelectCountry' element = {  <SelectCountry/>
-              // (user)? ((type=='instructor')? <Instructor/> : (type=='corporate trainee')? <SelectCountry/> : 
-              // (type=="individual trainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
+          <Route path='/CorporateTrainee/SelectCountry' element = { 
+              (user)? ((type=='instructor')? <Instructor/> : (type=='corporatetrainee')? <SelectCountry/> : 
+              (type=="individualtrainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
           }/> 
-          <Route path='/corporatetrainee/myCourseDetails' element={  <CourseDetails/> 
-              // (user)? ((type=='instructor')? <Instructor/> : (type=='corporate trainee')? <CourseDetails/> : 
-              // (type=="individual trainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
+          <Route path='/corporatetrainee/myCourseDetails' element={ 
+              (user)? ((type=='instructor')? <Instructor/> : (type=='corporatetrainee')? <CourseDetails/> : 
+              (type=="individualtrainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
           }/>
-          <Route path='/corporatetrainee/myInfo' element={   <EditPass Type = "corporateTrainee"/>
-              // (user)? ((type=='instructor')? <Instructor/> : (type=='corporate trainee')? <EditPass Type = "corporateTrainee"/> : 
-              // (type=="individual trainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
+          <Route path='/corporatetrainee/myInfo' element={ 
+              (user)? ((type=='instructor')? <Instructor/> : (type=='corporatetrainee')? <EditPass Type = "corporateTrainee"/> : 
+              (type=="individualtrainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
           }/>
-          <Route path='/corporatetrainee/forgetpass' element={   <EditnewPass Type = "corporateTrainee"/> 
-              // (user)? ((type=='instructor')? <Instructor/> : (type=='corporate trainee')? <EditnewPass Type = "corporateTrainee"/> : 
-              // (type=="individual trainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
+          <Route path='/corporatetrainee/forgetpass' element={  
+              (user)? ((type=='instructor')? <Instructor/> : (type=='corporatetrainee')? <EditnewPass Type = "corporateTrainee"/> : 
+              (type=="individualtrainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
           }/>
-          <Route path='/CorporateTrainee/Allcourses' element = { <CorporateCourses/> } /> 
-          <Route path='/corporateTrainee/myReports' element={<MyReports CT = 'true'/> } />
+          <Route path='/CorporateTrainee/Allcourses' element = {  
+              (user)? ((type=='instructor')? <Instructor/> : (type=='corporatetrainee')? <CorporateCourses/> : 
+              (type=="individualtrainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
+        } /> 
+          <Route path='/corporateTrainee/myReports' element={
+              (user)? ((type=='instructor')? <Instructor/> : (type=='corporatetrainee')? <MyReports CT = 'true'/> : 
+              (type=="individualtrainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
+        } />
 
 
 
           {/* Individual Routes */}
-          <Route path='/IndividualTrainee' element = {  <IndividualTrainee/> 
-            //   (user)? ((type=='instructor')? <Instructor/> : (type=='corporate trainee')? <CorporateTrainee/> : 
-            //   (type=="individual trainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
+          <Route path='/IndividualTrainee' element = { 
+              (user)? ((type=='instructor')? <Instructor/> : (type=='corporatetrainee')? <CorporateTrainee/> : 
+              (type=="individualtrainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
           }/>
-          <Route path='/IndividualTrainee/SelectCountry' element = {  <SelectCountry/>
-              // (user)? ((type=='instructor')? <Instructor/> : (type=='corporate trainee')? <CorporateTrainee/> : 
-              // (type=="individual trainee")? <SelectCountry/> : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
+          <Route path='/IndividualTrainee/SelectCountry' element = {  
+              (user)? ((type=='instructor')? <Instructor/> : (type=='corporatetrainee')? <CorporateTrainee/> : 
+              (type=="individualtrainee")? <SelectCountry/> : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
           }/>
-          <Route path='/individualtrainee/myCourseDetails' element={  <CourseDetails/> 
-              // (user)? ((type=='instructor')? <Instructor/> : (type=='corporate trainee')? <CorporateTrainee/> : 
-              // (type=="individual trainee")? <CourseDetails/> : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
+          <Route path='/individualtrainee/myCourseDetails' element={   
+              (user)? ((type=='instructor')? <Instructor/> : (type=='corporatetrainee')? <CorporateTrainee/> : 
+              (type=="individualtrainee")? <CourseDetails/> : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
           }/>
-          <Route path='/individualtrainee/myInfo' element={ <EditPass Type = "individualTrainee"/> 
-              // (user)? ((type=='instructor')? <Instructor/> : (type=='corporate trainee')? <CorporateTrainee/> : 
-              // (type=="individual trainee")? <EditPass Type = "individualTrainee"/>  : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
+          <Route path='/individualtrainee/myInfo' element={ 
+              (user)? ((type=='instructor')? <Instructor/> : (type=='corporatetrainee')? <CorporateTrainee/> : 
+              (type=="individualtrainee")? <EditPass Type = "individualTrainee"/>  : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
           }/>
-          <Route path='/individualtrainee/forgetpass' element={  <EditnewPass Type = "individualTrainee"/>
-              // (user)? ((type=='instructor')? <Instructor/> : (type=='corporate trainee')? <CorporateTrainee/> : 
-              // (type=="individual trainee")? <EditnewPass Type = "individualTrainee"/>  : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
+          <Route path='/individualtrainee/forgetpass' element={
+              (user)? ((type=='instructor')? <Instructor/> : (type=='corporatetrainee')? <CorporateTrainee/> : 
+              (type=="individualtrainee")? <EditnewPass Type = "individualTrainee"/>  : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
           }/>
-          <Route path='/individualTrainee/myReports' element={<MyReports IT = 'true'/> } />
+          <Route path='/individualTrainee/myReports' element={
+              (user)? ((type=='instructor')? <Instructor/> : (type=='corporatetrainee')? <CorporateTrainee/> : 
+              (type=="individualtrainee")? <MyReports IT = 'true'/>   : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
+        } />
 
-          <Route path='/individualTrainee/allcourses' element={<TraineeViewAllCourses/> } />
-          <Route path='/allcourses' element={<TraineeViewAllCourses/> } />
-          <Route path='Corp/allcourses' element={<CorpTrainee/> } />
+          <Route path='/individualTrainee/allcourses' element={
+              (user)? ((type=='instructor')? <Instructor/> : (type=='corporatetrainee')? <CorporateTrainee/> : 
+              (type=="individualtrainee")? <TraineeViewAllCourses/>    : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
+        
+        } />
+          <Route path='/allcourses' element={ <TraineeViewAllCourses/> 
+            // (user)? ((type=='instructor')? <Instructor/> : (type=='corporatetrainee')? <CorporateTrainee/> : 
+            // (type=="individualtrainee")? <TraineeViewAllCourses/>    : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
+        
+        } />
+          <Route path='Corp/allcourses' element={ 
+                      (user)? ((type=='instructor')? <Instructor/> : (type=='corporatetrainee')? <CorpTrainee/> : 
+                      (type=="individualtrainee")? <IndividualTrainee/>    : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
+        
+        } />
 
 
           {/* IDK Routes */}
-        <Route path='/AllCourses/CourseDetails' element={ <CourseDetails/>
+        <Route path='/AllCourses/CourseDetails' element={ <CourseDetails/> 
             // (user)? <CourseDetails/> : <Home/>
         }/>
-        <Route path='/AllCourses' element={  <AllCourses Link = "/AllCourses/CourseDetails"/>
+        {/* <Route path='/AllCourses' element={ <AllCourses Link = "/AllCourses/CourseDetails"/> 
             // (user)? <AllCourses Link = "/AllCourses/CourseDetails"/> : <Home/>
+        }/> */}
+        <Route path='/exercise' element={  
+            (user)? <ExerciseP/> : <Home/>
         }/>
-        <Route path='/exercise' element={  <ExerciseP/>  
-            // (user)? <ExerciseP/> : <Home/>
-        }/>
-        <Route path='/Courses' element={  <Courses/>
-            // (user)? <Courses/> : <Home/>
+        <Route path='/Courses' element={  
+            (user)? <Courses/> : <Home/>
         }/>
         <Route path='/pay' element={
-            <Payment CourseId='135' Title='ACL' Price= '100' Currency='usd' />
-            // (user)? <Payment/> : <Home/>
+            
+            (user)? <Payment CourseId='135' Title='ACL' Price= '100' Currency='usd' /> : <Home/>
         } />
-          <Route path='/mostViewd' element={<MostViewd/> } />
+          <Route path='/mostViewd' element={ 
+            (user)? <MostViewd/> : <Home/>
+          } />
 
           {/* <Route path='/instructor/courseDetails' element={<CourseDetailsInstructor/> } /> */}
 

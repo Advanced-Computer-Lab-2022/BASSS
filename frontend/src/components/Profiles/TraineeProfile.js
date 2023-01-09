@@ -17,7 +17,7 @@ const TraineeProfile = (props) => {    //individual or corporate
     const [isCorporate, setIsCorporate] = useState(false)
 
 
-    const sara = async () => {
+    const sara = async (req,res) => {
             if(props.Who === 'corporatetrainee'){
                 setIsCorporate(true)
                 try{
@@ -31,15 +31,12 @@ const TraineeProfile = (props) => {    //individual or corporate
                 }
             }
             else{
-                try{
                     await axios.get('http://localhost:9000/individualTrainee/getIndividual').then(
                         (res) => {
                             setTrainee(res.data)
                         }
                     )
-                }catch(error){
-                    setError(error.response.data)
-                }
+               
             }
         }
 

@@ -9,9 +9,10 @@ const bcrypt = require('bcrypt')
 var nodemailer = require('nodemailer');
 
 instructorR.get("/getInstructor", async(req,res)=>{
+  console.log(res.locals.user)
   const username = res.locals.user;
   const inst = await instructors.findOne({Username: username})
-  res.status(200).json(inst)
+  return res.status(200).json(inst)
 })
 
 instructorR.get("/searchmycourses/:searchkey", async function(req,res){
@@ -20,7 +21,7 @@ instructorR.get("/searchmycourses/:searchkey", async function(req,res){
 
     const key = req.params.searchkey;
     var array = [];
-    var query = await courses.find({InstructorUserName:"salama"});
+    var query = await courses.find({InstructorUserName:res.locals.user});
     for(let i = 0 ; i<query.length ; i++)
     {
         course = query[i];
@@ -38,13 +39,13 @@ instructorR.get("/searchmycourses/:searchkey", async function(req,res){
     //token name 
     // const name = res.locals.user;
 
-    var query = courses.find({InstructorUserName:"salama"})
+    var query = courses.find({InstructorUserName:res.locals.user})
     query.exec(function(err,result){
         if (err) throw err;
         if(result.length==0){
 
         }else{
-            courses.find({InstructorUserName:"salama"})            
+            courses.find({InstructorUserName:res.locals.user})            
             res.send(result);
         }
       })
@@ -55,13 +56,13 @@ instructorR.get("/myInfo/first/:minibio",function(req,res){
     // const name = res.locals.user;
 
     var minibio = req.params.minibio;
-    var query = instructors.find({Username:'salama'})
+    var query = instructors.find({Username:res.locals.user})
         query.exec(function(err,result){
             if (err) throw err;
             if(result.length==0){
 
             }else{
-                instructors.findOneAndUpdate({Username:'salama'},{MiniBio:minibio},{upsert:true},function(err,doc){
+                instructors.findOneAndUpdate({Username:res.locals.user},{MiniBio:minibio},{upsert:true},function(err,doc){
                     if(err) throw err;
                   });         
             }
@@ -75,13 +76,13 @@ instructorR.get("/myInfo/second/:mail",function(req,res){
   // const name = res.locals.user;
   //usermail??
   var mail = req.params.mail;
-    var query = instructors.find({Username:"salama"})
+    var query = instructors.find({Username:res.locals.user})
         query.exec(function(err,result){
             if (err) throw err;
             if(result.length==0){
               //  res.render("../views/instructor.ejs",{title:"instructor country"});
             }else{
-                instructors.findOneAndUpdate({Username:"salama"},{Email:mail},{upsert:true},function(err,doc){
+                instructors.findOneAndUpdate({Username:res.locals.user},{Email:mail},{upsert:true},function(err,doc){
                     if(err) throw err;
                   });         
               // res.render("../views/instructor.ejs",{title:"instructor country"});
@@ -117,10 +118,10 @@ instructorR.get("/myInfo/third/:oldpass/:pass",async function(req,res){
 
   var oldpass = req.params.oldpass;
   
-  var oldpass2 =await instructors.findOne({Username:"salama"})
+  var oldpass2 =await instructors.findOne({Username:res.locals.user})
 
   if(oldpass==oldpass2.Password){
-  const result =await instructors.findOneAndUpdate({Username:"salama"},{Password:hashedPassword})
+  const result =await instructors.findOneAndUpdate({Username:res.locals.user},{Password:hashedPassword})
   //res.json(result)
   res.json({message:"updated successfully"})
   } else
@@ -220,7 +221,7 @@ instructorR.get("/vieMylWallet", async (req,res) => {
   //token name
   // const name = res.locals.user;
 
-  const inst = await instructors.findOne({Username: "salama"})
+  const inst = await instructors.findOne({Username: res.locals.user})
   if(inst)
     return res.status(200).json(inst.Wallet)
   else
@@ -232,7 +233,7 @@ instructorR.get("/firstLogin", async (req,res) => {
   //const name = res.locals.user
   const name = 'sara saad'
 
-  const trainee = await instructors.findOne({Username: name})
+  const trainee = await instructors.findOne({Username: res.locals.user})
   if(!trainee){
     return res.status(400).json("User not found")
   }
@@ -246,7 +247,7 @@ instructorR.get("/changeFirstLogin", async (req,res) => {
   //const name = res.locals.user
   const name = 'sara saad'
 
-  const inst = await instructors.findOneAndUpdate({Username: name},{FirstLogin: false})
+  const inst = await instructors.findOneAndUpdate({Username: res.locals.user},{FirstLogin: false})
   if(!inst){
     return res.status(400).json("User not found")
   }
@@ -268,7 +269,7 @@ instructorR.post('/changePass', async (req,res) =>{
       return res.status(400).json('You must enter a new password')
   }
 
-  const user = await users.findOne({UserName: "Hazem Khaled Hegazy"})
+  const user = await users.findOne({UserName: res.locals.user})
 
   try{
     const hashedpass = user.Password;
@@ -282,9 +283,9 @@ instructorR.post('/changePass', async (req,res) =>{
         })
         const salt = await bcrypt.genSalt();
         const hashedPassword = await bcrypt.hash(newPass, salt);
-        const updatedUsers = await users.findOneAndUpdate({UserName: "Hazem Khaled Hegazy"},{Password: hashedPassword})
+        const updatedUsers = await users.findOneAndUpdate({UserName: res.locals.user},{Password: hashedPassword})
       
-        const updatedInsts = await instructors.findOneAndUpdate({Username: 'sara saad'},{Password: hashedPassword})
+        const updatedInsts = await instructors.findOneAndUpdate({Username: res.locals.user},{Password: hashedPassword})
         return res.status(200).json('Password Changed')
         
   } catch (error) {
