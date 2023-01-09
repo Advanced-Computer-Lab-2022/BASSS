@@ -685,7 +685,7 @@ adminR.get("/getAllReports",async(req, res) => {
 
 
 adminR.get("/getReport/:Username",async function(req,res){
-  var Username = req.params.Username;
+  var Username = res.locals.user;
   
   try{
   const reportList = await reports.find({Reporter: Username })

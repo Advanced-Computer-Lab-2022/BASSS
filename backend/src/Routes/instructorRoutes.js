@@ -142,7 +142,7 @@ instructorR.get("/viewRating/review",async(req, res) => {
   //token name
   const name = res.locals.user;
 
-  const result =await instructors.findOne({Username:"salama"})
+  const result =await instructors.findOne({Username:name})
   res.json(result)
 });
 
@@ -157,13 +157,13 @@ instructorR.get("/getInst/:username",async(req, res) => {
 
 instructorR.get("/updateRate/:name/:newRate",async(req, res) => {
     //token name
-    // const name = res.locals.user;
 
+    const name = req.params.name;
     var newRate = req.params.newRate;
-    var oldResult =await instructors.findOne({Username:"salama"})
+    var oldResult =await instructors.findOne({Username:name})
     var oldCount = oldResult.Rating.count;
     var oldSum = oldResult.Rating.sum;
-    const result =await instructors.findOneAndUpdate({Username:"salama"},{Rating:{rate:(Number(oldSum)+Number(newRate))/(oldCount+1), count:(oldCount+1), 
+    const result =await instructors.findOneAndUpdate({Username:name},{Rating:{rate:(Number(oldSum)+Number(newRate))/(oldCount+1), count:(oldCount+1), 
     sum:(Number(oldSum)+Number(newRate))}})
     res.json(result)
     console.log('123')
