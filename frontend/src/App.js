@@ -48,6 +48,7 @@ import MyReports from './components/MyReports/MyReports';
 /*CORPORATE IMPORTS */
 import CorporateTrainee from './Pages/CorporateTrainee/CorporateTrainee';
 import CorporateCourses from './components/CorporateCourses/CorporateCourses';
+import CorporateRequests from './components/CorpReq/CorpReq';
 
 /*INDIVIDUAL IMPORTS */
 import IndividualTrainee from './Pages/IndividualTrainee/IndividualTrainee';
@@ -56,6 +57,7 @@ import Payment from './Pages/Payment/Payment';
 import EditnewPass from './components/Editnewpass/Editnewpass';
 import Forgetpass from './components/Forgetpass/Forgetpass';
 import TraineeProfile from './components/Profiles/TraineeProfile';
+import RefundRequests from './components/RefReq/RefReq';
 
 import Sara from './sara'
 import PrivacyPolicy from './Pages/SignUp/PrivaryPolicy';
@@ -226,6 +228,11 @@ function App() {
               (user)? ((type=='instructor')? <Instructor/> : (type=='corporatetrainee')? <MyReports CT = 'true'/> : 
               (type=="individualtrainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
         } />
+        <Route path='/corporateTrainee/corpReq' element={
+              (user)? ((type=='instructor')? <Instructor/> : (type=='corporatetrainee')? <CorporateRequests/> : 
+              (type=="individualtrainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
+        } />
+
 
 
 
@@ -269,6 +276,11 @@ function App() {
                       (user)? ((type=='instructor')? <Instructor/> : (type=='corporatetrainee')? <CorpTrainee/> : 
                       (type=="individualtrainee")? <IndividualTrainee/>    : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
         
+        } />
+
+        <Route path='/individualTrainee/refReq' element={
+              (user)? ((type=='instructor')? <Instructor/> : (type=='corporatetrainee')? <CorporateTrainee/> : 
+              (type=="individualtrainee")? <RefundRequests/> : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
         } />
 
 

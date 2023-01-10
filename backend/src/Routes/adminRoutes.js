@@ -234,6 +234,52 @@ adminR.get("/getCoReq/:Username",async function(req,res){
   }
 })
 
+// adminR.get("/getAllCoReqByName/:Username",async function(req,res){
+    
+//   var Username = res.locals.users;
+//   try{
+//   const user = await corporateTrainee.findOne({Username: Username })
+//   var RequestsArray = []
+//   if(user) {
+//     console.log('CorporateTrainee Found')
+//     for(let i = 0 ; i < user.courseRequests.length ; i ++){
+//       var Coreq = await Request.findOne({_id : user.courseRequests[i]}) 
+//       RequestsArray = RequestsArray.concat(Coreq)
+//     }
+//      return res.json(RequestsArray);
+//   }
+//   else{
+//     console.log('CorporateTrainee Not Found')
+//      return res.json("ok"); 
+//   }
+// }
+// catch(error){
+//   return res.json({error})
+// }
+// })
+
+adminR.get("/getAllCoReqByName/:Username",async function(req,res){
+  var Username = res.locals.user;
+  
+  try{
+  var requestList = await corporateRequest.find({Reporter: Username })
+
+  if(requestList) {
+    //console.log('report Found')
+     return res.json(requestList);
+  }
+  else{
+    console.log('request Not Found')
+     return res.json("ok"); 
+  }
+}
+catch(error)
+{
+  console.log("Couldn't Get request")
+  console.log(error);
+  return res.status(400).json({msg: error});
+}        
+})
 
 //Change Status + Add to list
 adminR.get("/AcceptCoRequest/:RequestID",async function(req,res){   //:Status/
@@ -423,6 +469,29 @@ adminR.get("/getRefundReqByName/:Username",async function(req,res){
   else{
      return res.json("ok"); 
   }
+})
+
+adminR.get("/getAllRefReqByName/:Username",async function(req,res){
+  var Username = res.locals.user;
+  
+  try{
+  var refundList = await refundSchema.find({Reporter: Username })
+
+  if(refundList) {
+    //console.log('report Found')
+     return res.json(refundList);
+  }
+  else{
+    console.log('refund Not Found')
+     return res.json("ok"); 
+  }
+}
+catch(error)
+{
+  console.log("Couldn't Get refund")
+  console.log(error);
+  return res.status(400).json({msg: error});
+}        
 })
 
 
