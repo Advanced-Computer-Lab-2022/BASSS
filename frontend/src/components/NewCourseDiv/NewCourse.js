@@ -22,6 +22,7 @@ function NewCourse(props) {
     const[showDataSub,setShowDataSub]=useState(false);
     const[showDataExe,setShowDataExe]=useState(false);
     const[exercises,setExercises] = useState([]);
+    const [subs,setSubtitles]= useState([])
     const fares = [26,1,3.67,0.81,0.95];
     const currency = ['LE','$','UAE','£','€'];
      const [chosenCountry,setChosenCountry] = useState(0);
@@ -41,9 +42,8 @@ function NewCourse(props) {
        
       await axios.get(`http://localhost:9000/course/getExercisesByCourseID/637e73821194304d45a2fe5a`).then(
           (res) => {
-              const result = res.data
-      
-              setExercises(result.SubArray);
+              setSubtitles(res.data.subtitles1);
+              setExercises(res.data.Ex1);
 
           })
     }
@@ -105,7 +105,14 @@ function NewCourse(props) {
          showDataSub && <div className={"NewCourseSubtitles_data"}>
           <h1 style={{alignItems:'center'}}> Subtitles </h1>
           <div style={{display:'flex',flexDirection:'Column',padding:'1rem'}}>
-              {exercises && exercises.map((sub,i)=><h2>Subtitle {i}</h2>)}
+              {subs && subs.map((sub,i)=>
+                <div>
+
+                <h2>Subtitle {sub.SubtitleNumber}</h2>
+                <h2>Subtitle Hours : {sub.SubtitleHours}</h2>
+                <br/>
+                </div>
+              )}
             </div>
       </div>
         }

@@ -82,7 +82,7 @@ function CorpTrainee() {
       <div className="TraineeAllCourses_Details1">
             <h1 style={{color:'rgb(3, 48, 76)'}}>All Courses</h1>
 
-        {courses.map((course) => <SalamaNewCourse course={course} country={countryNumber} Trainee={true}/>)}
+        {courses.map((course) => <SalamaNewCourse course={course} country={countryNumber} Trainee={true} cid={course._id}/> )}
         
       </div>
       </div>

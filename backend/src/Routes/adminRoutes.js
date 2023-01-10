@@ -33,14 +33,9 @@ adminR.get("/signup/:username/:password/:email/:firstname/:lastname/:gender",asy
       const salt = await bcrypt.genSalt();
       const hashedPassword = await bcrypt.hash(password, salt);
       const user1 = await user.create({ UserName: username, Password: hashedPassword, Type: "IndividualTrainee" });
-      console.log('user:')
-      console.log(user1)
       const trainee = await individualTrainees.create({UserName: username, FirstName: firstname, LastName: lastname, Email: email,Password: hashedPassword, Gender: gender})
-      console.log('trainee:')
-      console.log(trainee)
       return res.status(200).json('Done')
   } catch (error) {
-    console.log(error)
       return res.status(400).json({msg: 'User Could not be created, try again later'})
   }          
 })
@@ -448,18 +443,13 @@ adminR.get("/acceptRefundReq/:RequestID",async function(req,res){
       //console.log(Instructor)
 
       for(let i = 0 ; i < Trainee.Courses.length ; i++){
-        console.log(Trainee.Courses[i].Course)
         if(Trainee.Courses[i].Course == CourseID && Trainee.Courses[i].Progress < 50){
           var AmountPaid = Trainee.Courses[i].PayedAmount
         }
       }
-      console.log(AmountPaid)
 
       const walletInst = Instructor.Wallet - ((80 * AmountPaid)/100) 
       const walletTrainee = Trainee.Wallet + AmountPaid
-
-      console.log(walletInst)
-      console.log(walletTrainee)
 
       const RefundReq1 = await instructors.findOneAndUpdate({Username : Course.InstructorUserName} , {Wallet:walletInst});
       const RefundReq2 = await individualTrainees.findOneAndUpdate({UserName : Reporter} , {Wallet:walletTrainee});
@@ -645,7 +635,6 @@ adminR.get("/createReport/:Reporter/:CourseID/:Type/:Comment",async function(req
       });
     }
 
-    console.log(user1.Type)
 
     if(user1.Type == "individualTrainee"){
       const individualTrainee = await individualTrainees.findOne({UserName: Reporter })

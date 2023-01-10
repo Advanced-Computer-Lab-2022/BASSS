@@ -17,12 +17,12 @@ function NewCourse(props) {
     else if(props.Instructor){
         direction='/Instructor/Courses'
     }
-
     
     const[showData,setShowData]=useState(false);
     const[showDataSub,setShowDataSub]=useState(false);
     const[showDataExe,setShowDataExe]=useState(false);
     const[exercises,setExercises] = useState([]);
+    const [subs, setSubtitles] = useState([])
     const fares = [26,1,3.67,0.81,0.95];
     const currency = ['LE','$','UAE','£','€'];
      const [chosenCountry,setChosenCountry] = useState(0);
@@ -53,11 +53,13 @@ function NewCourse(props) {
     }
     const getExercises = async(req,res)=>{
        
-      await axios.get(`http://localhost:9000/course/getExercisesByCourseID/${props.course}`).then(
+      await axios.get(`http://localhost:9000/course/getExercisesByCourseID/${props.cid}`).then(
           (res) => {
               const result = res.data
-      
-              setExercises(result.SubArray);
+              setSubtitles(res.data.subtitles1);
+
+              setExercises(res.data.Ex1);
+              
 
           })
  
@@ -108,7 +110,14 @@ function NewCourse(props) {
          showDataSub && <div className={"NewCourseSubtitles_data"}>
           <h1 style={{alignItems:'center'}}> Subtitles </h1>
           <div style={{display:'flex',flexDirection:'Column',padding:'1rem'}}>
-              {exercises && exercises.map((sub,i)=><h2>Subtitle {i}</h2>)}
+              {subs && subs.map((sub)=>
+                <div>
+
+                <h2>Subtitle {sub.SubtitleNumber}</h2>
+                <h2>Subtitle Hours : {sub.SubtitleHours}</h2>
+                <br/>
+                </div>
+              )}
             </div>
       </div>
         }
@@ -116,7 +125,9 @@ function NewCourse(props) {
        showDataExe&&<div className={"NewCourseExercises_data"}>
           <h1 style={{alignItems:'center'}}> Exercises </h1>
           <div style={{display:'flex',flexDirection:'Column',padding:'1rem'}}>
-              {exercises && exercises.map((sub,i)=><h2>Exercise {i}</h2>)}
+              {exercises && exercises.map((sub,i)=>
+                <h2>Exercise {i}</h2>
+              )}
             </div>
             
       </div>

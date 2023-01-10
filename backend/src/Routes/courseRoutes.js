@@ -369,12 +369,14 @@ courseR.get("/getExercisesByCourseID/:Course",async(req, res) => {
       var SubArray = [1,2]
       var Ex1 = []
       SubArray = course1.Subtitles
+      var subtitles1 =[]
   
       for(let i = 0 ; i < SubArray.length ; i++){
         var Sub = await subtitleSchema.findOne({_id : SubArray[i]})
+        subtitles1 = subtitles1.concat(Sub)
         Ex1 = Ex1.concat(Sub.Exercise)
       }
-      return res.status(200).json({SubArray , Ex1});
+      return res.status(200).json({subtitles1 , Ex1});
     }
   }
   catch(error)
