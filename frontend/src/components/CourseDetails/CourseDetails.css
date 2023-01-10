@@ -576,6 +576,35 @@ color: rgb(208, 208, 15);
       top: 130rem;
       left: 4rem;
     }
+    .adhaminfo111 {
+      --width: 500px;
+      --height: 500px;
+      --primary: #00b9ae;
+      --text: #f9f9f9b2;
+      --secondary: #f9f9f933;
+      --radius: 20px;
+      color: #fff;
+      font-family: Arial, Helvetica, sans-serif;
+      width: var(--width);
+      height: var(--height);
+      background: linear-gradient(
+          180deg,
+          rgba(22, 24, 30, 0) 0%,
+          rgba(22, 24, 30, 0.7) 65.28%
+        ),
+        linear-gradient(0deg, rgba(27, 50, 117), rgba(19, 43, 118));
+      background-size: cover;
+      border-radius: var(--radius);
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      padding: 1em;
+      padding-top: 1.4em;
+      position: relative;
+      top: 100rem;
+      left: 4rem;
+    }
+
 
     .adhaminfo21 {
       --width: 900px;
@@ -715,6 +744,25 @@ color: rgb(208, 208, 15);
       cursor: pointer;
     }
     .repo_btn_adham:hover{
+      background-color:  rgb(27, 16, 72);
+    }
+
+    .repo_btn_adham12{
+      position: relative;
+      top: 10rem;
+      left: 8rem;
+      background-color:transparent;
+      color: #fff;
+      padding: 1px 1px;
+      border: 2px solid white;
+      text-align: center;
+      font-size: 20px;
+      border-radius: 15px;
+      width: 10rem;
+      height: 5rem;
+      cursor: pointer;
+    }
+    .repo_btn_adham12:hover{
       background-color:  rgb(27, 16, 72);
     }
 

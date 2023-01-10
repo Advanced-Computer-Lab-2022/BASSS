@@ -66,6 +66,9 @@ individualTraineeR.get("/myInfo/pass/:oldpass/:pass",async function(req,res){
    var couID = req.params.couID;
    var username = res.locals.user;
    var list = [];
+   try{
+
+   
    const trainee =  await individualTrainees.findOne({UserName:username})
    const x = await courses.findOne({_id:couID});
    const courseID = trainee.Courses
@@ -92,6 +95,10 @@ individualTraineeR.get("/myInfo/pass/:oldpass/:pass",async function(req,res){
       }
     }
     res.json(list);
+  }
+  catch(error){
+    return res.json({error})
+  }
 })
 
 

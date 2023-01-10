@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 import './CreateCourse.css'
+import { Button } from '../../../GeneralCss';
 
 
 const AddSubtitleDiv = (props) => {
     const Title = props.Title
     const InstructorName = props.InstructorName
 
-    const [Exercise , setExercise] = useState('')
+    const [Exercise , setExercise] = useState(true)
     const Exercisehandler = (sara)=>{setExercise(sara)}
 
 
@@ -48,6 +49,7 @@ const AddSubtitleDiv = (props) => {
     const Add = () =>{
         //return false                      InstructorName1,ThisSubtitleNumber,Question1,Choice11,Choice21,Choice31,Choice41,MaxGrade1,CorrectAnswer1
         props.CreateExcerciseProp('sara saad keda kedaa',props.DivID,Question,Choice1,Choice2,Choice3,Choice4,MaxGrade,CorrectAnswer,SubtitleHours,videolink,VideoDescription)
+        Exercisehandler(false)
         // props.CreateExcercise()
         //props.createSubtitleProp(SubtitleHours,videolink,VideoDescription,props.DivID)
         // props.createSubtitle()
@@ -60,14 +62,14 @@ const AddSubtitleDiv = (props) => {
   return (
         <div className='OneSubtitleDiv' id= {props.DivID} > {/* This div will be repeated with each + button click*/}
         <h1 className='ZeftcssDiv'>Subtitle Number : {props.DivID}</h1>
-        <h1 className='createcourse_courseinputs_h1'>{SubtitleHours},{videolink},{VideoDescription},{Question},{MaxGrade},{Choice1},{Choice2},{Choice3},{Choice4},{CorrectAnswer}</h1>
+        {/* <h1 className='createcourse_courseinputs_h1'>{SubtitleHours},{videolink},{VideoDescription},{Question},{MaxGrade},{Choice1},{Choice2},{Choice3},{Choice4},{CorrectAnswer}</h1> */}
 
             <input type='number' placeholder='Subtitle Hours' className='createcourse_courseinputs' name="SubtitleHours" onChange={subtitleHourshandler}></input>
             <input type='url'  placeholder='video link' className='createcourse_courseinputs' name="videolink" onChange={videolinkhandler}></input>
             <input type='text' placeholder='Short Video Description' className='createcourse_courseinputs' name="VideoDescription" onChange={videoDescriptionhandler}></input>
 
             <div className='createcourse_excercise_div'>    
-                <h1 className='createcourse_courseinputs_h1'>Excercise:</h1>
+                <h1 className='ZeftcssDiv'>Excercise:</h1>
 
                 <input type='text' placeholder='Question' className='createcourse_courseinputs' name="Question" onChange={questionhandler}></input>
                 <input type='number' placeholder='Max Grade' className='createcourse_courseinputs' name="MaxGrade" onChange={maxGradehandler}></input>
@@ -80,7 +82,7 @@ const AddSubtitleDiv = (props) => {
                     <input type='text' placeholder='Choice #4' className='createcourse_courseinputs' name="Choice4" onChange={Choice4handler}></input>
                 </div>
                 <div>
-                    <button onClick={Add}>button zeft 3ala dema3'y</button>
+                   { Exercise && <Button onClick={Add}>Add Subtitle</Button>}
              {/* {props.CreateButton && props.GetExcercise() && <h1>Aywaa ana hena ahoo</h1>} */}
              </div>
             </div>

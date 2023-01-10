@@ -52,7 +52,7 @@ function InstructorViewAllCourses() {
 
     const GetCourses = async(req,res)=>{
        
-            await axios.get(`http://localhost:9000/course/`).then(
+            await axios.get(`http://localhost:9000/allCourses`).then(
                 (res) => {
                     const result = res.data
                  

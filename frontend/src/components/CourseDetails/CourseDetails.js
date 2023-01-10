@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom'
 import YoutubeEmbed from '../YoutubeEmbed/YoutubeEmbed';
 import Footer from '../Footer/Footer'
 import Exercise from '../Exercise/Exercise';
+import { confirmAlert } from 'react-confirm-alert'; 
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import Writenotes from '../Writenotes/Writenotes';
 import IndividualTraineeNavBar from '../../Pages/IndividualTrainee/IndividualTraineeNavBar/IndividualTraineeNavBar';
 import CorporateTraineeNavBar from '../../Pages/CorporateTrainee/CorporateTraineeNavBar/CorporateTraineeNavBar';
@@ -159,6 +161,40 @@ const CourseDetails = () => {
           }
           );
       }
+      
+      const refund12 = async() =>{
+        await axios.get(`http://localhost:9000/admin/createRefundReqNew/kkkkk/${location.state[0]}`)
+      }
+      const unenroll =  async () => {
+            alert('PS: to unroll , your course Progress must be less than 50 % ! ')
+            confirmAlert({
+              title: 'Confirm to unroll',
+              message: 'Are you sure ?',
+              buttons: [
+                {
+                  label: 'Yes',
+                  onClick: async () => {    
+ 
+                      await axios.get(`http://localhost:9000/${mySubString}/unroll_from_course/username/${location.state[0]}`).then(
+                        (res) => { 
+                          refund12();
+                        }
+                        );
+                    
+
+                  }
+                },
+                {
+                  label: 'No',
+                  //onClick: () => alert('Click No')
+                }
+              ]
+            });
+
+
+        }
+
+
     
         const getRateCourse =  async () => {
             await axios.get(`http://localhost:9000/course/updateRate/${location.state[0]}/${choice}`).then(
@@ -481,6 +517,16 @@ getSubtitle();
 
 <button className='sub_rev_adham' onClick={reviewInst}>Submit Review</button>
 </div>
+
+<div className='adhaminfo111'>
+  <h1 className='report_adham1'>Would you like to unenroll from this course !</h1>
+  <br></br>
+
+<button onClick={unenroll} className='repo_btn_adham12' >unenroll </button>
+
+</div>
+
+
 
         {/* <Footer/> */}
         </div>

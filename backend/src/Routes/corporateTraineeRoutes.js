@@ -18,7 +18,7 @@ corporateTraineeR.get("/myInfo/pass/:pass",async function(req,res){
   // console.log(req.body)
     var pass = req.params.pass;
 
-const result =await corporateTrainees.findOneAndUpdate({Userame:res.locals.user},{Password:pass})
+const result =await corporateTrainees.findOneAndUpdate({Username:res.locals.user},{Password:pass})
 //res.json(result)
 res.json({message:"updated successfully"})
 
@@ -33,7 +33,7 @@ corporateTraineeR.get("/myInfo/pass/:oldpass/:pass",async function(req,res){
 var oldpass2 =await corporateTrainees.findOne({Username:res.locals.user})
 
 if(oldpass==oldpass2.Password){
-const result =await corporateTrainees.findOneAndUpdate({Userame:res.locals.user},{Password:pass})
+const result =await corporateTrainees.findOneAndUpdate({Username:res.locals.user},{Password:pass})
 //res.json(result)
 res.json({message:"updated successfully"})
  } else
@@ -157,7 +157,7 @@ corporateTraineeR.get("/unroll_from_course/:username/:couID",async(req,res)=>{
 corporateTraineeR.get("/updateprogresscorp/:username/:couID" , async(req,res)=>{
   const username = res.locals.user;
   const couID = req.params.couID;
-  const trainee = await corporateTrainees.find({UserName:username})
+  const trainee = await corporateTrainees.find({Username:username})
   const courseID = trainee[0].courses
   // console.log(trainee)
   // console.log(courseID)
@@ -184,7 +184,7 @@ corporateTraineeR.get("/updateprogresscorp/:username/:couID" , async(req,res)=>{
         const obj = {'Course':couID , Progress:prog}
         var newarr = courseID 
         newarr[i]=obj
-        corporateTrainees.findOneAndUpdate({UserName:username},{courses:newarr},{upsert:true},function(err,doc){
+        corporateTrainees.findOneAndUpdate({Username:username},{courses:newarr},{upsert:true},function(err,doc){
             if(err) throw err;
           });         
       }
@@ -204,7 +204,7 @@ corporateTraineeR.get("/firstLogin", async (req,res) => {
   //const name = req.locals.user
   const name = res.locals.user;
 
-  const trainee = await corporateTrainees.findOne({UserName: name})
+  const trainee = await corporateTrainees.findOne({Username: name})
   if(!trainee){
     return res.status(400).json("User not found")
   }
@@ -218,7 +218,7 @@ corporateTraineeR.get("/changeFirstLogin", async (req,res) => {
   //const name = req.locals.user
   const name = res.locals.user
 
-  const trainee = await corporateTrainees.findOneAndUpdate({UserName: name},{FirstLogin: false})
+  const trainee = await corporateTrainees.findOneAndUpdate({Username: name},{FirstLogin: false})
   if(!trainee){
     return res.status(400).json("User not found")
   }
@@ -231,7 +231,7 @@ corporateTraineeR.get("/getCorporate",async(req, res) => {
   //token name
   const name = res.locals.user;
 
-  const result =await corporateTrainees.findOne({UserName:name})
+  const result =await corporateTrainees.findOne({Username:name})
    res.json(result)
 });
 
@@ -264,7 +264,7 @@ corporateTraineeR.post('/changePass', async (req,res) =>{
         const hashedPassword = await bcrypt.hash(newPass, salt);
         const updateUsers= await users.findOneAndUpdate({UserName: res.locals.user},{Password: hashedPassword})
       
-        const updateTrainees = await corporateTrainees.findOneAndUpdate({UserName: res.locals.user},{Password: hashedPassword})      
+        const updateTrainees = await corporateTrainees.findOneAndUpdate({Username: res.locals.user},{Password: hashedPassword})      
         return res.status(200).json('Password Changed')
         
   } catch (error) {

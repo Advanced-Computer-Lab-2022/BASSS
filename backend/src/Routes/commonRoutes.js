@@ -146,4 +146,9 @@ const changePass = async (req,res) => {
 
 }
 
-module.exports = { signup, logout, login, search, changePass };
+const getCourses = async (req,res) => {
+        const result =await courses.find({})
+        return res.send(result)
+}
+
+module.exports = { signup, logout, login, search, changePass, getCourses };

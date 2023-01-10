@@ -47,7 +47,7 @@ const FirstLogin = (props) => {
                     await axios.post("http://localhost:9000/corporateTrainee/changePass", {newPass: newPass}).then(
                         (res) => {
                             window.alert(res.data)
-                            navigate('/instructor')
+                            navigate('/corporateTrainee')
                         }
                     )
                 }catch(error){

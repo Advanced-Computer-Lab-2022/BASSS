@@ -16,7 +16,7 @@ const nodemailer = require('nodemailer');
 const cors = require('cors');
 
 const { requireAuth } = require('./Authenticator/authenticator');
-const {login, signup, logout, search, changePass}= require('./Routes/commonRoutes')
+const {login, signup, logout, search, changePass, getCourses}= require('./Routes/commonRoutes')
 
 const app = express();
 
@@ -40,6 +40,7 @@ app.set('view engine', 'ejs');
 app.engine('ejs', require('ejs').renderFile);
 
 //common routes
+app.get('/allCourses', getCourses)
 app.post('/signup', signup);
 app.post('/login', login)
 app.get('/logout',requireAuth,logout);

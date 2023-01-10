@@ -33,9 +33,9 @@ function NewCourse(props) {
     const request = async() =>{
       // axios./createCoReq/:Reporter/:CourseID
       try{
-        await axios.get(`http://localhost:9000/admin/createCoReq/sarasaad2001/637e73821194304d45a2fe5a`).then(
+        await axios.get(`http://localhost:9000/admin/createCoReq/sarasaad2001/${props.course}`).then(
           (res) => {
-            window.alert(res.data)
+            window.alert("Request Sent")
   
           })
       }
@@ -53,7 +53,7 @@ function NewCourse(props) {
     }
     const getExercises = async(req,res)=>{
        
-      await axios.get(`http://localhost:9000/course/getExercisesByCourseID/637e73821194304d45a2fe5a`).then(
+      await axios.get(`http://localhost:9000/course/getExercisesByCourseID/${props.course}`).then(
           (res) => {
               const result = res.data
       
@@ -78,7 +78,7 @@ function NewCourse(props) {
     /* onClick={()=>navigate(direction,{state:[props.course._id,props.course.InstructorUserName]})} */
     <div>
     <div className={showData?"NewCourse_Details":"NewCourse"} onMouseEnter={()=>setShowData(true)}  onMouseLeave={()=>setShowData(false)}
-    onClick={()=>navigate(direction,{state:[props.course._id,props.course.InstructorUserName]})}
+    // onClick={()=>navigate(direction,{state:[props.course._id,props.course.InstructorUserName]})}
     >
         <div className="NewCourse_Data_Top">
 

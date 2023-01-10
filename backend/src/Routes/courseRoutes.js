@@ -9,10 +9,10 @@ const subtitles = require('../Models/subtitleSchema');
 const exercises = require('../Models/exerciseSchema');
 
 
-courseR.get("/",async(req, res) => {
-    const result =await courses.find({})
-    return res.send(result)
-});
+// courseR.get("/",async(req, res) => {
+//     const result =await courses.find({})
+//     return res.send(result)
+// });
 
 
 

@@ -430,7 +430,7 @@ adminR.get("/getRefundReqByName/:Username",async function(req,res){
 adminR.get("/acceptRefundReq/:RequestID",async function(req,res){
   var RequestID = req.params.RequestID;
   var Status = "Accepted";
-  console.log('accept')
+  //console.log('accept')
 
   try{
     const Refund = await refundSchema.findOne({_id : RequestID});
@@ -448,22 +448,22 @@ adminR.get("/acceptRefundReq/:RequestID",async function(req,res){
       //console.log(Instructor)
 
       for(let i = 0 ; i < Trainee.Courses.length ; i++){
-        //console.log(Trainee.Courses[i].Course)
+        console.log(Trainee.Courses[i].Course)
         if(Trainee.Courses[i].Course == CourseID && Trainee.Courses[i].Progress < 50){
           var AmountPaid = Trainee.Courses[i].PayedAmount
         }
       }
-      //console.log(AmountPaid)
+      console.log(AmountPaid)
 
       const walletInst = Instructor.Wallet - ((80 * AmountPaid)/100) 
       const walletTrainee = Trainee.Wallet + AmountPaid
 
-      //console.log(walletInst)
-      //console.log(walletTrainee)
+      console.log(walletInst)
+      console.log(walletTrainee)
 
-      const RefundReq = await refundSchema.findOneAndUpdate({_id:RequestID} , {Status:Status});
       const RefundReq1 = await instructors.findOneAndUpdate({Username : Course.InstructorUserName} , {Wallet:walletInst});
       const RefundReq2 = await individualTrainees.findOneAndUpdate({UserName : Reporter} , {Wallet:walletTrainee});
+      const RefundReq = await refundSchema.findOneAndUpdate({_id:RequestID} , {Status:Status});
 
       console.log("Refund Request Accepted");
       return res.status(200).json({RefundReq});
