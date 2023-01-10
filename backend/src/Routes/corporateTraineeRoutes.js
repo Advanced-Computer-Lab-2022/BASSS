@@ -295,15 +295,17 @@ corporateTraineeR.get("/myCourses", async (req,res) => {
   const name = res.locals.user;
 
   const trainee = await corporateTrainees.findOne({Username:name})
-  const courses1 = trainee.AccessibleCourses
+  if(!trainee){
+    return res.status(404).json("Trainee not found")
+  }
+  const courses1 = trainee.courses
   var mycourses = []
 
   courses1.map((course) => 
-    mycourses=mycourses.concat(course)
+    mycourses=mycourses.concat(course.Course)
   )
 
   if(courses1){
-    console.log(mycourses)
     return res.json(mycourses)
   }
   else{

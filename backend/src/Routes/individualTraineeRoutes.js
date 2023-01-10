@@ -290,18 +290,23 @@ individualTraineeR.get("/sendcertificate",function(req,res){
 
 individualTraineeR.get("/individualCourses/:username",async(req, res) => {
     const username = res.locals.user;
-    const trainee = await individualTrainees.find({UserName:username})
-      const courseID = trainee[0].Courses
-     var list = []
-     for (let i = 0; i < courseID.length; i++) {
-       if(courseID[i].Course != null)
-       {
-         const course = await courses.findOne({_id:courseID[i].Course})
-         const progress = courseID[i].Progress
-         list = list.concat([[course,progress]])
+    try{
+      const trainee = await individualTrainees.find({UserName:username})
+        const courseID = trainee[0].Courses
+       var list = []
+       for (let i = 0; i < courseID.length; i++) {
+         if(courseID[i].Course != null)
+         {
+           const course = await courses.findOne({_id:courseID[i].Course})
+           const progress = courseID[i].Progress
+           list = list.concat([[course,progress]])
+         }
        }
-     }
-     res.json(list)
+      return res.json(list)
+
+    }catch(error){
+      return res.status(400).json("Error Occured")
+    }
 
 });
 
@@ -410,6 +415,10 @@ individualTraineeR.get("/myCourses", async (req,res) => {
   const name = res.locals.user;
 
   const trainee = await individualTrainees.findOne({UserName:name})
+  if(!trainee){
+    return res.status(404).json("Trainee not found")
+  }
+
   const courses1 = trainee.Courses
   var mycourses = []
 
@@ -418,7 +427,6 @@ individualTraineeR.get("/myCourses", async (req,res) => {
   )
 
   if(courses1){
-    console.log(mycourses)
     return res.json(mycourses)
   }
   else{

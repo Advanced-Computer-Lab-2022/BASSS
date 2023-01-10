@@ -94,6 +94,10 @@ const TraineeProfile = (props) => {    //individual or corporate
                                 <br/>
                                 <div class="profile_info">
                                     <label class='profile_userName'>{trainee.UserName}</label>
+                                    <div class="rating-text">
+                                        <span><a class='a' >Requests</a></span>
+                                    </div>
+
                                 </div>
 
                                 <div class="profile_info">
