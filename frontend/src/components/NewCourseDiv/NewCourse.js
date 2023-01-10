@@ -59,7 +59,7 @@ function NewCourse(props) {
   return (
     <div>
     <div className={showData?"NewCourse_Details":"NewCourse"} onMouseEnter={()=>setShowData(true)}  onMouseLeave={()=>setShowData(false)}
-    onClick={()=>navigate(direction,{state:[props.course._id,props.course.InstructorUserName]})}
+    // onClick={()=>navigate(direction,{state:[props.course._id,props.course.InstructorUserName]})}
     >
         {/* <button style={{background : "rgb(3, 48, 76)",color:'white', borderRadius: '2rem', border: 'none', padding: '0.3rem', cursor: 'pointer',zIndex:'1'}}
          onClick={() => navigate('/pay',{state:[Math.floor(props.course.Price*fares[chosenCountry])-( Math.floor(props.course.Price*fares[chosenCountry]) *(props.course.PromotionPercentage/100)),props.course.Title,props.course._id, currency[chosenCountry]]})}>

@@ -78,7 +78,7 @@ function NewCourse(props) {
     /* onClick={()=>navigate(direction,{state:[props.course._id,props.course.InstructorUserName]})} */
     <div>
     <div className={showData?"NewCourse_Details":"NewCourse"} onMouseEnter={()=>setShowData(true)}  onMouseLeave={()=>setShowData(false)}
-    onClick={()=>navigate(direction,{state:[props.course._id,props.course.InstructorUserName]})}
+    // onClick={()=>navigate(direction,{state:[props.course._id,props.course.InstructorUserName]})}
     >
         <div className="NewCourse_Data_Top">
 

@@ -123,7 +123,7 @@ corporateTraineeR.get("/CorporateCourses/:username",async(req, res) => {
 
 corporateTraineeR.get("/unroll_from_course/:username/:couID",async(req,res)=>{
   var couID = req.params.couID;
-  var username = req.params.username;
+  var username = res.locals.user;
   var list = [];
   const trainee =  await corporateTrainees.findOne({Username:username})
   const x = await courses.findOne({_id:couID});

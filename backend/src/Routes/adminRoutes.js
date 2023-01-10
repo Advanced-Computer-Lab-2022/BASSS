@@ -430,7 +430,7 @@ adminR.get("/getRefundReqByName/:Username",async function(req,res){
 adminR.get("/acceptRefundReq/:RequestID",async function(req,res){
   var RequestID = req.params.RequestID;
   var Status = "Accepted";
-  console.log('accept')
+  //console.log('accept')
 
   try{
     const Refund = await refundSchema.findOne({_id : RequestID});

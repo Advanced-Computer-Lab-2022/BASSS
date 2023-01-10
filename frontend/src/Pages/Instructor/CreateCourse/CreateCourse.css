@@ -8,7 +8,7 @@
     background-position: center;
     height: 100%; */
     background: rgba(237, 237, 237, 0.838);
-    height: 300vh;
+    height: 100%;
 }
 
     
@@ -46,9 +46,9 @@
   .OneSubtitleDiv{
     position: relative;
      width: 90%;
-     /* background-color: rgba(0,0,0,0.3); */
+     background-color: rgba(255, 255, 255, 0.121);
      border-radius: 25px;
-     margin-bottom: 1%;
+     margin-bottom: 15px;
      margin-top: 2%;
      margin-left: 5%;
 }
@@ -61,7 +61,8 @@
   border-radius: 25px;
   position: relative;
   top: 80px;
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(3, 75, 120, 0.884);
+  margin-top: 90px;
 }
 
 .CreateCourse_btn{

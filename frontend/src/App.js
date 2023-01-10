@@ -143,6 +143,8 @@ function App() {
           <Route path='/instructor/myReports' element={<MyReports IN = 'true'/> } />
 
           <Route path='/instructor/allCourses' element={<InstructorViewAllCourses/>} />
+          <Route path='/AllCourses' element={<InstructorViewAllCourses/>} />
+          
 
 
 

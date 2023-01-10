@@ -122,10 +122,10 @@ export default function CoursesAdmin(){
                     <h1 className='h1_Admin_AllCourses_Header'>All Courses</h1>
                     <br></br>
                     <div className='Admin_AllCoursesSearch_Div'>
-                        <SearchAdminAllCourses AllCoursesArrayhandler={AllCoursesArrayhandler} Searchhandler={Searchhandler}/>
+                        {/* <SearchAdminAllCourses AllCoursesArrayhandler={AllCoursesArrayhandler} Searchhandler={Searchhandler}/> */}
                     </div>
                     <br></br>
-                    <button className='Admin_AllCoursesFilter_Div'> Filter</button>
+                    {/* <button className='Admin_AllCoursesFilter_Div'> Filter</button> */}
                 </div>
                 <br></br>
                 <div className='Admin_AllCourses_InnerDiv'>
