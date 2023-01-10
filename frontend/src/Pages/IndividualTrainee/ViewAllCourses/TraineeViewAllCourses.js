@@ -21,6 +21,8 @@ function TraineeViewAllCourses() {
     const [countryNumber,setCountryNumber]=useState();
 
     const [profile,setProfile] = useState(false);
+    const [myCourses, setMyCourses] = useState([])
+
 
     const profileHandler = () => {
         setProfile(!profile)
@@ -54,10 +56,25 @@ function TraineeViewAllCourses() {
                     const result = res.data
                  
                     setCourses(result);
-                })
-       
+                })       
     }
 
+    const gethiscourses = async () => {
+        await axios.get(`http://localhost:9000/individualTrainee/myCourses`).then(
+            (res) => {
+              setMyCourses(res.data)
+            }
+          )
+
+    }
+
+    useEffect(()=>{
+        async function GetMyCourses() {
+          await gethiscourses();
+        }
+         GetMyCourses();
+      },[])
+    
     useEffect(()=>{
         async function getCourses(){
             if(!coursesFiltered){   
@@ -69,8 +86,8 @@ function TraineeViewAllCourses() {
           }
           getCourses();
         },[courses,coursesFiltered]
-    );
-       
+        );
+        
   return (
     <div className="TraineeAllCourses">
         <IndividualTraineeNavBar  setCountry = {setCountry} profileHandler={profileHandler}/>
@@ -81,7 +98,7 @@ function TraineeViewAllCourses() {
 
                 <div className="TraineeAllCourses_Details1">
                     <h1 style={{color:'rgb(3, 48, 76)'}}>All Courses</h1>
-                    {courses.map((course) => <NewCourse course={course} country={countryNumber} Trainee={true}/>)}
+                    {courses.map((course) => <NewCourse course={course} country={countryNumber} Trainee={true} My={myCourses.includes(course._id)}/>)}
                 </div>
             </div>
         }

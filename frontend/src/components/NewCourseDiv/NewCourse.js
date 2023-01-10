@@ -16,7 +16,6 @@ function NewCourse(props) {
     else if(props.Instructor){
         direction='/instructor/CourseDetails'
     }
-
     
     const[showData,setShowData]=useState(false);
     const[showDataSub,setShowDataSub]=useState(false);
@@ -40,7 +39,7 @@ function NewCourse(props) {
     }
     const getExercises = async(req,res)=>{
        
-      await axios.get(`http://localhost:9000/course/getExercisesByCourseID/637e73821194304d45a2fe5a`).then(
+      await axios.get(`http://localhost:9000/course/getExercisesByCourseID/${props.course._id}`).then(
           (res) => {
               setSubtitles(res.data.subtitles1);
               setExercises(res.data.Ex1);
@@ -129,8 +128,9 @@ function NewCourse(props) {
     {props.Trainee && 
       <button className='NewCourseEnrollBtn'
         onClick={() => navigate('/pay',{state:[Math.floor(props.course.Price*fares[chosenCountry])-( Math.floor(props.course.Price*fares[chosenCountry]) *(props.course.PromotionPercentage/100)),props.course.Title,props.course._id, currency[chosenCountry]]})}
+        disabled={props.My}
       >
-        Enroll
+        {(props.My)? "Already Enrolled" : "Enroll"}
       </button>}
     </div>
 

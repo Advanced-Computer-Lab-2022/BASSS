@@ -133,9 +133,9 @@ function NewCourse(props) {
       </div>
       }
     </div>
-    <button className='NewCourseEnrollBtn'
-         onClick={request}>Request Access 
-         </button>
+    <button className='NewCourseEnrollBtn' onClick={request} disabled={props.My} >
+        {(props.My)? "Already Enrolled" : "Request Access"}
+    </button>
 
     </div>
   )

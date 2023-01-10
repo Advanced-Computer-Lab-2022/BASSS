@@ -71,7 +71,9 @@ const FirstLogin = (props) => {
 
     return(
         <div class="login-box">
-            <label className='soha_login_h2'>Change Your Password</label>
+            <label className='soha_login_h1'>Welcome! to BASSS Academy</label>
+
+            <label className='soha_login_h2'>Change Your Password to start</label>
             <br/>
             <form className='soha_login_form' onSubmit={handleSubmit}>
                 <div className="user-box">

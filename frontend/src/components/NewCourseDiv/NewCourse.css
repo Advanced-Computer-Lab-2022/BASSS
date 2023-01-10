@@ -112,3 +112,9 @@
         cursor: pointer;
         background: transparent;
     }
+    .NewCourseEnrollBtn:disabled{
+        border: 2px solid rgb(44, 48, 50);
+        background: transparent;
+        color:rgb(44, 48, 50);
+        cursor: auto;
+    }
