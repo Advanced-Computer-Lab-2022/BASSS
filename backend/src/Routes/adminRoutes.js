@@ -12,6 +12,7 @@ const refundSchema = require('../Models/refundSchema');
 const adminR = express.Router();
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken');
+const Request = require("../Models/RequestsSchema");
 
 require('dotenv').config();
 
@@ -227,6 +228,25 @@ adminR.get("/getCoReq/:Username",async function(req,res){
   if(user) {
     console.log('CorporateTrainee Found')
      return res.json(user.courseRequests);
+  }
+  else{
+    console.log('CorporateTrainee Not Found')
+     return res.json("ok"); 
+  }
+})
+
+adminR.get("/getAllCoReqByName/:Username",async function(req,res){
+    
+  var Username = req.params.Username;
+  const user = await corporateTrainee.findOne({Username: Username })
+  var RequestsArray = []
+  if(user) {
+    console.log('CorporateTrainee Found')
+    for(let i = 0 ; i < user.courseRequests.length ; i ++){
+      var Coreq = await Request.findOne({_id : user.courseRequests[i]}) 
+      RequestsArray = RequestsArray.concat(Coreq)
+    }
+     return res.json(RequestsArray);
   }
   else{
     console.log('CorporateTrainee Not Found')
