@@ -163,7 +163,7 @@ const CourseDetails = () => {
       }
       
       const refund12 = async() =>{
-        await axios.get(`http://localhost:9000/admin/createRefundReqNew/kkkkk/${location.state[0]}`)
+        await axios.get(`http://localhost:9000/${mySubString}/unroll_from_course/username/${location.state[0]}`)
       }
       const unenroll =  async () => {
             alert('PS: to unroll , your course Progress must be less than 50 % ! ')
@@ -175,7 +175,7 @@ const CourseDetails = () => {
                   label: 'Yes',
                   onClick: async () => {    
  
-                      await axios.get(`http://localhost:9000/${mySubString}/unroll_from_course/username/${location.state[0]}`).then(
+                    await axios.get(`http://localhost:9000/admin/createRefundReqNew/kkkkk/${location.state[0]}`).then(
                         (res) => { 
                           refund12();
                         }
