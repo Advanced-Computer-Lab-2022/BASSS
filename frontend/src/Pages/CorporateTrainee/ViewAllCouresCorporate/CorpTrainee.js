@@ -22,6 +22,8 @@ function CorpTrainee() {
     const [countryNumber,setCountryNumber]=useState();
 
     const [profile,setProfile] = useState(false);
+    const [myCourses, setMyCourses] = useState([])
+
 
     const profileHandler = () => {
         setProfile(!profile)
@@ -58,6 +60,23 @@ function CorpTrainee() {
        
     }
 
+    const gethiscourses = async () => {
+      await axios.get(`http://localhost:9000/corporateTrainee/myCourses`).then(
+          (res) => {
+            setMyCourses(res.data)
+          }
+        )
+
+  }
+
+  useEffect(()=>{
+      async function GetMyCourses() {
+        await gethiscourses();
+      }
+       GetMyCourses();
+    },[])
+
+
     useEffect(()=>{
         async function getCourses(){
             if(!coursesFiltered){   
@@ -82,7 +101,7 @@ function CorpTrainee() {
       <div className="TraineeAllCourses_Details1">
             <h1 style={{color:'rgb(3, 48, 76)'}}>All Courses</h1>
 
-        {courses.map((course) => <SalamaNewCourse course={course} country={countryNumber} Trainee={true} cid={course._id}/> )}
+        {courses.map((course) => <SalamaNewCourse course={course} country={countryNumber} Trainee={true} cid={course._id} My={myCourses.includes(course._id)}/> )}
         
       </div>
       </div>

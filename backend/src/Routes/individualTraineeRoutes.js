@@ -406,5 +406,24 @@ individualTraineeR.get("/getIndividual",async(req, res) => {
   return res.json(result)
 });
 
+individualTraineeR.get("/myCourses", async (req,res) => {
+  const name = res.locals.user;
+
+  const trainee = await individualTrainees.findOne({UserName:name})
+  const courses1 = trainee.Courses
+  var mycourses = []
+
+  courses1.map((course) => 
+    mycourses=mycourses.concat(course.Course)
+  )
+
+  if(courses1){
+    console.log(mycourses)
+    return res.json(mycourses)
+  }
+  else{
+    return res.status(400).json("no courses found")
+  }
+})
 
 module.exports = individualTraineeR;

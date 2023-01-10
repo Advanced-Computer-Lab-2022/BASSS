@@ -291,4 +291,25 @@ corporateTraineeR.get("/:country",function(req,res){
 })
 })
 
+corporateTraineeR.get("/myCourses", async (req,res) => {
+  const name = res.locals.user;
+
+  const trainee = await corporateTrainees.findOne({Username:name})
+  const courses1 = trainee.AccessibleCourses
+  var mycourses = []
+
+  courses1.map((course) => 
+    mycourses=mycourses.concat(course)
+  )
+
+  if(courses1){
+    console.log(mycourses)
+    return res.json(mycourses)
+  }
+  else{
+    return res.status(400).json("no courses found")
+  }
+})
+
+
 module.exports = corporateTraineeR;

@@ -43,7 +43,7 @@ import YoutubeEmbed from '../YoutubeEmbed/YoutubeEmbed';
       </div>
     </div>
           
-          <h1 className='aloo'>Our Most Viewd Courses</h1>
+          <h1 className='aloo'>Our Most Viewed Courses</h1>
           <br></br><br></br>
       {mostViewd.length>0 &&mostViewd.map((course) => (
           <div class="plan-card">
