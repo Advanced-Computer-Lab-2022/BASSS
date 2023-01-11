@@ -78,12 +78,27 @@ courseR.get("/allcourses/mostviewd",async(req, res) => {
 courseR.get("/exercise/:courseID/:subtitleID", async(req,res) => {
     const courseId = req.params.courseID;
     const subtitleId = req.params.subtitleID;
-
+  try{
     const course = await courses.findOne({_id:courseId});
-    const subtitle = await subtitles.findById(course.Subtitles.find(element => element==subtitleId))
-    const exercise = await exercises.findById(subtitle.Exercise);
+    if(!course){
+      return res.status(400).json("No course found")
+    }
+    const subtitle = await subtitles.findOne({_id: course.Subtitles.find(element => element==subtitleId)})
+    if(!subtitle){
+      return res.status(400).json("No subtitle found")
+    }
+    const exercise = await exercises.findOne({_id: subtitle.Exercise});
+    if(!exercise){
+      return res.status(400).json("No exercise found")
+    }
 
-    res.status(200).json(exercise);
+
+    return res.status(200).json(exercise);
+
+  }catch(error){
+    return res.status(400).json(error.message);
+  }
+
 });
 
 courseR.get("/correctAnswer/:courseID/:subtitleID", async(req,res) => {

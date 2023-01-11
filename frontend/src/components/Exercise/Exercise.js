@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useState, useEffect} from 'react';
 import './Exercise.css';
 import '../Login/Login.css'
-
+import { useNavigate } from 'react-router-dom';
 const Exercise = (props) =>{
 
     const courseID = '637e73821194304d45a2fe5a' //props.Course
@@ -20,16 +20,28 @@ const Exercise = (props) =>{
     const [maxGrade, setMaxGrade] = useState(0);
     const [showGrade, setShowGrade] = useState(false);
 
-    useEffect(async () => {
-        await axios.get(`http://localhost:9000/course/exercise/${courseID}/${subtitleID}`).then(
-            (res)=> {
-                setExercise(res.data);
-                setChoices(res.data.Choices)
-                setMaxGrade(res.data.MaxGrade)
-            }
-        )
-    }, [])
+    const getexe = async () => {
+        try{
+            await axios.get(`http://localhost:9000/course/exercise/${courseID}/${subtitleID}`).then(
+                (res)=> {
+                    setExercise(res.data);
+                    setChoices(res.data.Choices)
+                    setMaxGrade(res.data.MaxGrade)
+                }
+            )
+        }catch(error){
+            window.alert(error.response.data)
+        }
+    }
 
+    // useEffect(() => {getexe()}, [exercise])
+    useEffect(()=>{
+        async function GetExercise() {
+          await getexe();
+        }
+         GetExercise();
+      },[])
+    
 
     const changeShowAns = () => {
         setShowAns(!showAns);
@@ -74,7 +86,7 @@ const Exercise = (props) =>{
     const submitAnswer= async() =>{
         if(props.Type === 'corporate'){
             //call method in corporate route
-            await axios.get(`http://localhost:9000/corporateTrainee/submit/${corporateID}/${subtitleID}/${answer}`).then(
+            await axios.get(`http://localhost:9000/corporateTrainee/submit/54545/${subtitleID}/${answer}`).then(
                 (res) => {
                     // setGrade(res.data);
                     // Your Grade: {grade}
@@ -86,7 +98,7 @@ const Exercise = (props) =>{
         else{
             if(props.Type === 'individual'){
                 //call method in indvidual route
-                await axios.get(`http://localhost:9000/individualTrainee/submitAnswer/${individualID}/${subtitleID}/${answer}`).then(
+                await axios.get(`http://localhost:9000/individualTrainee/submitAnswer/545465/${subtitleID}/${answer}`).then(
                     (res) => {
                         setGrade(res.data);
                         changeSuccess();
@@ -107,11 +119,15 @@ const Exercise = (props) =>{
     }
 
     // {getExercise()};
-    
+    const navigate = useNavigate();
     return(
             <div class='Login_bodySara'>
 
             <div class='exercise_div'>
+            <i class="fa fa-arrow-left" 
+            style={{color: 'black'}}
+            aria-hidden="true" onClick={() => navigate('/IndividualTrainee')}></i>
+
                 <label class='exercise_question'>{exercise.Question}?</label>
                 {choices.map((choice) => (
                     <label class="rad-label">
