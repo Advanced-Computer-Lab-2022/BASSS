@@ -57,7 +57,7 @@
 }
 
 .NewCourse_Subtitles{
-    width: 50%;
+    width: 33.33%;
     height: 100%;
     background-color: rgba(0,0,0,0.2);
 
@@ -117,4 +117,12 @@
         background: transparent;
         color:rgb(44, 48, 50);
         cursor: auto;
+    }
+    .videoPre_adham{
+        position: relative;
+        display: flex;
+        left: 28rem;
+        top: 10rem;
+        width: 80rem;
+        /* height: auto; */
     }

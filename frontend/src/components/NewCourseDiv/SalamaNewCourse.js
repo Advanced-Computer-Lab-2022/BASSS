@@ -102,6 +102,7 @@ function NewCourse(props) {
             <>
             <button className="NewCourse_Subtitles"  onMouseEnter={()=>setShowDataSub(true)}  onMouseLeave={()=>setShowDataSub(false)}>Subtitles</button>
             <button className="NewCourse_Subtitles"  onMouseEnter={()=>setShowDataExe(true)}  onMouseLeave={()=>setShowDataExe(false)}>Exercises</button>
+            <button className="NewCourse_Subtitles" onClick={()=> navigate('/corporatetrainee/PreviewVideo',{state:[props.course.VideoPreviewLink]} )} >Preview Video !</button>
             </>
           }
 
