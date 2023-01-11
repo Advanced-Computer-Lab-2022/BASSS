@@ -31,7 +31,7 @@ function Home (){
         {Login1 && <Login/>}
         {Signup1 && <Signup setSignup1 = {setSignup1}/>}
         <Landing/>
-        <Cards/>
+        {/* <Cards/> */}
         <Footer/>
         </div>
         </>

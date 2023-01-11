@@ -92,7 +92,7 @@ const InstructorViewAllCourses = (props) => {
             <InstructorNavBar profileHandler={profileHandler} setCountry = {setCountry} />
             {profile && <InstructorProfile/>}
         </div>}
-        {props.G && <div> <GuestNavBar/> </div>}
+        {props.G && <div> <GuestNavBar setCountry = {setCountry}/> </div>}
     {!profile &&
     <div>
 
