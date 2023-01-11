@@ -11,6 +11,7 @@ import Search from '../../../components/Search/Search';
 import '../../../components/NewCourseDiv/SearchAll.css';
 import SearchAll from '../../../components/NewCourseDiv/SeachAll';
 import TraineeProfile from '../../../components/Profiles/TraineeProfile';
+import { ButtonBlue } from '../../../GeneralCss';
 
 function TraineeViewAllCourses() {
     const[courses,setCourses]=useState([]);
@@ -21,6 +22,9 @@ function TraineeViewAllCourses() {
     const [countryNumber,setCountryNumber]=useState();
 
     const [profile,setProfile] = useState(false);
+
+    const[mostViewed,setmostViewed]=useState([]);
+    const[mostViewedFlag,setmostViewedFlag]=useState(false);
 
     const profileHandler = () => {
         setProfile(!profile)
@@ -55,8 +59,16 @@ function TraineeViewAllCourses() {
                  
                     setCourses(result);
                 })
-       
     }
+
+    const MostViewed = async(req,res)=>{
+        await axios.get(`http://localhost:9000/course/allcourses/mostViewedSara`).then(
+            (res) => {
+                const result = res.data
+                setmostViewed(result);
+                setmostViewedFlag(!mostViewedFlag)
+            })   
+}
 
     useEffect(()=>{
         async function getCourses(){
@@ -77,13 +89,23 @@ function TraineeViewAllCourses() {
         {profile && <TraineeProfile Who='individualtrainee'/>}
         {!profile &&
             <div> 
-                <SearchAll Type='indvidual' setCourses={setCoursesFiltered}  />
+                <div className='SearchSaraAllCourses'> 
+           {!mostViewedFlag && <SearchAll Type='indvidual' setCourses={setCoursesFiltered}  />}
+        </div>
+        <div style={{position:'absolute' , top:'11rem' , left: '77rem' , zIndex:'100'}}>
+            <ButtonBlue onClick={MostViewed} font = "28" width = "10rem">{mostViewedFlag? "Return To All Courses": "View Most Popular Courses"}</ButtonBlue>
+        </div>
+      <div className="InstructorAllCourses_Details1">
+            {!mostViewedFlag && <h1 style={{color:'rgb(3, 48, 76)'}}>All Courses</h1>}
+            {mostViewedFlag && <h1 style={{color:'rgb(3, 48, 76)'}}>Top Courses</h1>}
 
-                <div className="TraineeAllCourses_Details1">
-                    <h1 style={{color:'rgb(3, 48, 76)'}}>All Courses</h1>
-                    {courses.map((course) => <NewCourse course={course} country={countryNumber} Trainee={true}/>)}
-                </div>
-            </div>
+        {mostViewedFlag?mostViewed.map((course) => <div style={{position:'relative'}}>
+             <NewCourse course={course} country={countryNumber} Trainee={true}/> 
+        </div>): courses.map((course) => <div style={{position:'relative'}}>
+             <NewCourse course={course} country={countryNumber} Trainee={true}/> 
+        </div>)}
+        
+      </div>            </div>
         }
     </div>
   )

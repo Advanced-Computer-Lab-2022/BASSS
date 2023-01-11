@@ -64,6 +64,7 @@ import TraineeViewAllCourses from './Pages/IndividualTrainee/ViewAllCourses/Trai
 import CorpTrainee from './Pages/CorporateTrainee/ViewAllCouresCorporate/CorpTrainee';
 import './Pages/Instructor/InstructorViewAllCourses/InstructorViewAllCourses.css';
 import InstructorViewAllCourses from './Pages/Instructor/InstructorViewAllCourses/InstructorViewAllCourses';
+import PreviewVideo from './components/Preview/PreviewVideo';
 
 
 const cookies = new Cookies();
@@ -144,6 +145,8 @@ function App() {
 
           <Route path='/instructor/allCourses' element={<InstructorViewAllCourses/>} />
           <Route path='/AllCourses' element={<InstructorViewAllCourses G = 'true'/>} />
+          <Route path='/individualtrainee/PreviewVideo' element={<PreviewVideo/>}/>
+        <Route path='/corporatetrainee/PreviewVideo' element={<PreviewVideo/>}/>
           
 
 

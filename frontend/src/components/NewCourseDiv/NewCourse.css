@@ -57,7 +57,7 @@
 }
 
 .NewCourse_Subtitles{
-    width: 50%;
+    width: 33.33%;
     height: 100%;
     background-color: rgba(0,0,0,0.2);
 
@@ -112,3 +112,38 @@
         cursor: pointer;
         background: transparent;
     }
+    .NewCourseEnrollBtn:disabled{
+        border: 2px solid rgb(44, 48, 50);
+        background: transparent;
+        color:rgb(44, 48, 50);
+        cursor: auto;
+    }
+    .videoPre_adham{
+        position: relative;
+        display: flex;
+        left: 28rem;
+        top: 10rem;
+        width: 50rem;
+        /* height: auto; */
+    }
+
+    .Sara_ViewPreviewVideo_DoneButtonDiv{
+        position: relative;
+        left: 30rem;
+        top: 15rem;
+      }
+
+      .ViewPreview_sara_mainDiv {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        background-color: rgba(0, 0, 0, 0.866);
+        height: 550vh;
+        width: 99rem;
+        z-index: 150;
+        left: -23rem;
+        top: -13rem;
+        padding-left: 15rem;
+        padding-top: -17rem;
+        }
+      

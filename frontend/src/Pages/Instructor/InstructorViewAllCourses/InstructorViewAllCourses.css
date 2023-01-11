@@ -1,6 +1,7 @@
 .InstructorAllCourses{
     width: 100%;
     height:100vh;
+    padding-top: 2rem;
 }
 .InstructorAllCourses_Details1{
     display:flex;
@@ -8,4 +9,11 @@
     align-items:center;
     transform: translate(0,80px);
     padding: 1rem;
+}
+
+.SearchSaraAllCourses{
+    position: absolute;
+    top: 2.5rem;
+    left: 55rem;
+    z-index: 100;
 }

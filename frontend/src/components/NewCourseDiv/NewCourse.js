@@ -6,6 +6,7 @@ import { useEffect } from '../../../node_modules/react/cjs/react.development';
 import Exercise from '../Exercise/Exercise';
 import { useNavigate } from '../../../node_modules/react-router/dist';
 import axios from 'axios';
+import PreviewVideo from '../Preview/PreviewVideo';
 
 function NewCourse(props) {
   const navigate = useNavigate();
@@ -17,11 +18,14 @@ function NewCourse(props) {
         direction='/instructor/CourseDetails'
     }
 
+    const[Preview,setPreview]=useState(false);
+    const Previewhandler = ()=>{setPreview(!Preview)}
     
     const[showData,setShowData]=useState(false);
     const[showDataSub,setShowDataSub]=useState(false);
     const[showDataExe,setShowDataExe]=useState(false);
     const[exercises,setExercises] = useState([]);
+    const [subs,setSubtitles]= useState([])
     const fares = [26,1,3.67,0.81,0.95];
     const currency = ['LE','$','UAE','£','€'];
      const [chosenCountry,setChosenCountry] = useState(0);
@@ -37,13 +41,13 @@ function NewCourse(props) {
       }
       return array
     }
+    
     const getExercises = async(req,res)=>{
        
-      await axios.get(`http://localhost:9000/course/getExercisesByCourseID/637e73821194304d45a2fe5a`).then(
+      await axios.get(`http://localhost:9000/course/getExercisesByCourseID/${props.course._id}`).then(
           (res) => {
-              const result = res.data
-      
-              setExercises(result.SubArray);
+              setSubtitles(res.data.subtitles1);
+              setExercises(res.data.Ex1);
 
           })
     }
@@ -66,7 +70,7 @@ function NewCourse(props) {
          Enroll</button> */}
 
         <div className="NewCourse_Data_Top">
-          {props.course.PromotionPercentage>0
+          {!props. Co && props.course.PromotionPercentage>0
           ?
           <div style={{display:'flex',flexDirection:'Column'}}>
           <h2 className="NewCourse_PriceBefore">{ Math.floor(props.course.Price*fares[chosenCountry])} {currency[chosenCountry]}</h2>
@@ -96,6 +100,7 @@ function NewCourse(props) {
             <>
             <button className="NewCourse_Subtitles"  onMouseEnter={()=>setShowDataSub(true)}  onMouseLeave={()=>setShowDataSub(false)}>Subtitles</button>
             <button className="NewCourse_Subtitles"  onMouseEnter={()=>setShowDataExe(true)}  onMouseLeave={()=>setShowDataExe(false)}>Exercises</button>
+            <button className="NewCourse_Subtitles" onClick={Previewhandler} >Preview Video !</button>
             </>
           }
 
@@ -105,7 +110,14 @@ function NewCourse(props) {
          showDataSub && <div className={"NewCourseSubtitles_data"}>
           <h1 style={{alignItems:'center'}}> Subtitles </h1>
           <div style={{display:'flex',flexDirection:'Column',padding:'1rem'}}>
-              {exercises && exercises.map((sub,i)=><h2>Subtitle {i}</h2>)}
+              {subs && subs.map((sub,i)=>
+                <div>
+
+                <h2>Subtitle {sub.SubtitleNumber}</h2>
+                <h2>Subtitle Hours : {sub.SubtitleHours}</h2>
+                <br/>
+                </div>
+              )}
             </div>
       </div>
         }
@@ -115,15 +127,16 @@ function NewCourse(props) {
           <div style={{display:'flex',flexDirection:'Column',padding:'1rem'}}>
               {exercises && exercises.map((sub,i)=><h2>Exercise {i}</h2>)}
             </div>
-            
       </div>
       }
+         {Preview &&<div> <PreviewVideo Previewhandler = {Previewhandler} VLink = {props.course.VideoPreviewLink}/> </div>}
     </div>
     {props.Trainee && 
       <button className='NewCourseEnrollBtn'
         onClick={() => navigate('/pay',{state:[Math.floor(props.course.Price*fares[chosenCountry])-( Math.floor(props.course.Price*fares[chosenCountry]) *(props.course.PromotionPercentage/100)),props.course.Title,props.course._id, currency[chosenCountry]]})}
+        disabled={props.My}
       >
-        Enroll
+        {(props.My)? "Already Enrolled" : "Enroll"}
       </button>}
     </div>
 
@@ -131,3 +144,4 @@ function NewCourse(props) {
 }
 
 export default NewCourse
+//()=> navigate('/individualtrainee/PreviewVideo' ,{state:[props.course.VideoPreviewLink]})
