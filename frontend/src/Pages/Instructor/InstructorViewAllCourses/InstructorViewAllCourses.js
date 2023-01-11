@@ -12,8 +12,9 @@ import '../../../components/NewCourseDiv/SearchAll.css';
 import SearchAll from '../../../components/NewCourseDiv/SeachAll';
 import InstructorNavBar from '../InstructorNavBar/InstructorNavBar';
 import InstructorProfile from '../../../components/Profiles/InstructorProfile';
+import GuestNavBar from '../../Guest/GuestNavBar/GuestNavBar';
 
-function InstructorViewAllCourses() {
+const InstructorViewAllCourses = (props) => {
     const[courses,setCourses]=useState([]);
     const[coursesFiltered,setCoursesFiltered]=useState(null);
     
@@ -76,10 +77,11 @@ function InstructorViewAllCourses() {
        
   return (
     <div className="InstructorAllCourses">
-        <div>
-      <InstructorNavBar profileHandler={profileHandler} setCountry = {setCountry} />
-      {profile && <InstructorProfile/>}
-        </div>
+        {!props.G && <div>
+            <InstructorNavBar profileHandler={profileHandler} setCountry = {setCountry} />
+            {profile && <InstructorProfile/>}
+        </div>}
+        {props.G && <div> <GuestNavBar/> </div>}
     {!profile &&
     <div>
 
