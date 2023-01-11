@@ -273,14 +273,14 @@ function App() {
         
         } />
           <Route path='Corp/allcourses' element={ 
-                      (user)? ((type=='instructor')? <Instructor/> : (type=='corporatetrainee')? <CorpTrainee/> : 
-                      (type=="individualtrainee")? <IndividualTrainee/>    : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
+            (user)? ((type=='instructor')? <Instructor/> : (type=='corporatetrainee')? <CorpTrainee/> : 
+            (type=="individualtrainee")? <IndividualTrainee/>    : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
         
         } />
 
         <Route path='/individualTrainee/refReq' element={
-              (user)? ((type=='instructor')? <Instructor/> : (type=='corporatetrainee')? <CorporateTrainee/> : 
-              (type=="individualtrainee")? <RefundRequests/> : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
+          (user)? ((type=='instructor')? <Instructor/> : (type=='corporatetrainee')? <CorporateTrainee/> : 
+          (type=="individualtrainee")? <RefundRequests/> : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
         } />
 
 

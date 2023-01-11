@@ -48,8 +48,8 @@ const { useState, useEffect } = require("react");
 
 
     }
-
-    getmycourses()
+    useEffect(()=>{getmycourses()},[mycourses])
+    // getmycourses()
     const navigate = useNavigate()
    return (
      <div className='sara'>

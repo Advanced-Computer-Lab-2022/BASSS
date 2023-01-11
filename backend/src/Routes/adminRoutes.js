@@ -260,7 +260,6 @@ adminR.get("/getAllCoReqByName/:Username",async function(req,res){
   var requestList = await corporateRequest.find({Reporter: Username })
 
   if(requestList) {
-    //console.log('report Found')
      return res.json(requestList);
   }
   else{

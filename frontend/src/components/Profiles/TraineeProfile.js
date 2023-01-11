@@ -15,7 +15,7 @@ const TraineeProfile = (props) => {    //individual or corporate
     const [error,setError]= useState('')
     const [edit, setEdit] = useState(false)
     const [isCorporate, setIsCorporate] = useState(false)
-
+    const [reqs,setReqs] = useState(0)
 
     const sara = async (req,res) => {
             if(props.Who === 'corporatetrainee'){
@@ -38,8 +38,28 @@ const TraineeProfile = (props) => {    //individual or corporate
                     )
                
             }
-        }
+    }
 
+    const req = async () => {
+        if(props.Who === 'corporatetrainee'){
+            await axios.get(`http://localhost:9000/admin/getAllCoReqByName/hazem123`).then(
+                (res) => { 
+                    const reports = res.data
+                    setReqs(reports.length)
+            });
+    
+        }
+        else{
+            await axios.get(`http://localhost:9000/admin/getAllRefReqByName/hazem123`).then(
+                (res) => { 
+                    const reports = res.data
+                    setReqs(reports.length)
+            });
+    
+        }
+    }
+
+    useEffect(() => {req()},[reqs])
     useEffect(() => {sara()})
     
     //bassel's
@@ -94,9 +114,16 @@ const TraineeProfile = (props) => {    //individual or corporate
                                 <br/>
                                 <div class="profile_info">
                                     <label class='profile_userName'>{trainee.UserName}</label>
-                                    <div class="rating-text">
-                                        <span><a class='a' >Requests</a></span>
-                                    </div>
+                                    {!isCorporate &&
+                                        <div class="rating-text">
+                                            <span>{reqs} <a class='a' href="/individualTrainee/refReq" >Refund Requests</a></span>
+                                        </div>
+                                    }
+                                    {isCorporate &&
+                                        <div class="rating-text">
+                                            <span>{reqs} <a class='a' href="/corporateTrainee/corpReq" >Course Requests</a></span>
+                                        </div>
+                                    }
 
                                 </div>
 
@@ -176,18 +203,13 @@ const TraineeProfile = (props) => {    //individual or corporate
                                         <label>{message}</label>
                                     </td>
                                 </tr>
-                                {/* <tr>
-                                    <td>
-                                    </td>    
-                                </tr> */}
-
                             </table>
                         }
                         <div class="info_main">
                             <div class="info_card profile_traineeInfo">
                                 <div class="info_card-body">
-                                    {!isCorporate && <i class="fa fa-pen fa-xs edit " style={{top:'-32rem',left: '15rem'}} onClick={() => setEdit(!edit)}/>}
-                                    {isCorporate && <i class="fa fa-pen fa-xs edit " style={{top:'-29rem',left: '15rem'}} onClick={() => setEdit(!edit)}/>}
+                                    {!isCorporate && <i class="fa fa-pen fa-xs edit " style={{top:'-33rem',left: '15rem'}} onClick={() => setEdit(!edit)}/>}
+                                    {isCorporate && <i class="fa fa-pen fa-xs edit " style={{top:'-30rem',left: '15rem'}} onClick={() => setEdit(!edit)}/>}
                                 </div>
                             </div>
                         </div>

@@ -66,7 +66,8 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 
     }
-    getmycourses()
+    useEffect(()=>{getmycourses()},[mycourses])
+
     const navigate = useNavigate()
    return (
      <div>

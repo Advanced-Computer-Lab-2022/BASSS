@@ -33,9 +33,9 @@ function NewCourse(props) {
     const request = async() =>{
       // axios./createCoReq/:Reporter/:CourseID
       try{
-        await axios.get(`http://localhost:9000/admin/createCoReq/sarasaad2001/${props.course}`).then(
+        await axios.get(`http://localhost:9000/admin/createCoReq/sarasaad2001/${props.course._id}`).then(
           (res) => {
-            window.alert("Request Sent")
+              window.alert("Request Sent")
   
           })
       }

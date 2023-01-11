@@ -292,6 +292,9 @@ individualTraineeR.get("/individualCourses/:username",async(req, res) => {
     const username = res.locals.user;
     try{
       const trainee = await individualTrainees.find({UserName:username})
+      if(!trainee){
+        return res.status(404).json("User not found")
+      }
         const courseID = trainee[0].Courses
        var list = []
        for (let i = 0; i < courseID.length; i++) {
