@@ -65,6 +65,7 @@ import TraineeViewAllCourses from './Pages/IndividualTrainee/ViewAllCourses/Trai
 import CorpTrainee from './Pages/CorporateTrainee/ViewAllCouresCorporate/CorpTrainee';
 import './Pages/Instructor/InstructorViewAllCourses/InstructorViewAllCourses.css';
 import InstructorViewAllCourses from './Pages/Instructor/InstructorViewAllCourses/InstructorViewAllCourses';
+import PreviewVideo from './components/Preview/PreviewVideo';
 
 
 const cookies = new Cookies();
@@ -218,10 +219,13 @@ function App() {
               (user)? ((type=='instructor')? <Instructor/> : (type=='corporatetrainee')? <EditnewPass Type = "corporateTrainee"/> : 
               (type=="individualtrainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
           }/>
-          <Route path='/CorporateTrainee/Allcourses' element = {  
-              (user)? ((type=='instructor')? <Instructor/> : (type=='corporatetrainee')? <CorporateCourses/> : 
-              (type=="individualtrainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
-        } /> 
+          //badal ely kan hena
+                    <Route path='Corp/allcourses' element={ 
+                      (user)? ((type=='instructor')? <Instructor/> : (type=='corporatetrainee')? <CorpTrainee/> : 
+                      (type=="individualtrainee")? <IndividualTrainee/>    : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
+        
+        } />
+
           <Route path='/corporateTrainee/myReports' element={
               (user)? ((type=='instructor')? <Instructor/> : (type=='corporatetrainee')? <MyReports CT = 'true'/> : 
               (type=="individualtrainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/>:<LoginPage/>) : <Home/>
@@ -279,6 +283,9 @@ function App() {
         {/* <Route path='/AllCourses' element={ <AllCourses Link = "/AllCourses/CourseDetails"/> 
             // (user)? <AllCourses Link = "/AllCourses/CourseDetails"/> : <Home/>
         }/> */}
+        <Route path='/individualtrainee/PreviewVideo' element={<PreviewVideo/>}/>
+        <Route path='/corporatetrainee/PreviewVideo' element={<PreviewVideo/>}/>
+
         <Route path='/exercise' element={  
             (user)? <ExerciseP/> : <Home/>
         }/>
