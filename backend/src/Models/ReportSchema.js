@@ -46,6 +46,7 @@ const ReportSchema = new Schema({
             Date:String,
             Time:String
         }], //[{Course1.ID,Status},{Course2.ID,Status},{Course3.ID,Status},...... ]
+        default: []
     }
     
 }, { timestamps: true });

@@ -6,6 +6,7 @@ import { useEffect } from '../../../node_modules/react/cjs/react.development';
 import Exercise from '../Exercise/Exercise';
 import { useNavigate } from '../../../node_modules/react-router/dist';
 import axios from 'axios';
+import PreviewVideo from '../Preview/PreviewVideo';
 
 function NewCourse(props) {
   const navigate = useNavigate();
@@ -16,6 +17,9 @@ function NewCourse(props) {
     else if(props.Instructor){
         direction='/instructor/CourseDetails'
     }
+
+    const[Preview,setPreview]=useState(false);
+    const Previewhandler = ()=>{setPreview(!Preview)}
     
     const[showData,setShowData]=useState(false);
     const[showDataSub,setShowDataSub]=useState(false);
@@ -37,6 +41,7 @@ function NewCourse(props) {
       }
       return array
     }
+    
     const getExercises = async(req,res)=>{
        
       await axios.get(`http://localhost:9000/course/getExercisesByCourseID/${props.course._id}`).then(
@@ -65,7 +70,7 @@ function NewCourse(props) {
          Enroll</button> */}
 
         <div className="NewCourse_Data_Top">
-          {props.course.PromotionPercentage>0
+          {!props. Co && props.course.PromotionPercentage>0
           ?
           <div style={{display:'flex',flexDirection:'Column'}}>
           <h2 className="NewCourse_PriceBefore">{ Math.floor(props.course.Price*fares[chosenCountry])} {currency[chosenCountry]}</h2>
@@ -95,7 +100,7 @@ function NewCourse(props) {
             <>
             <button className="NewCourse_Subtitles"  onMouseEnter={()=>setShowDataSub(true)}  onMouseLeave={()=>setShowDataSub(false)}>Subtitles</button>
             <button className="NewCourse_Subtitles"  onMouseEnter={()=>setShowDataExe(true)}  onMouseLeave={()=>setShowDataExe(false)}>Exercises</button>
-            <button className="NewCourse_Subtitles" onClick={()=> navigate('/individualtrainee/PreviewVideo' ,{state:[props.course.VideoPreviewLink]})} >Preview Video !</button>
+            <button className="NewCourse_Subtitles" onClick={Previewhandler} >Preview Video !</button>
             </>
           }
 
@@ -122,9 +127,9 @@ function NewCourse(props) {
           <div style={{display:'flex',flexDirection:'Column',padding:'1rem'}}>
               {exercises && exercises.map((sub,i)=><h2>Exercise {i}</h2>)}
             </div>
-            
       </div>
       }
+         {Preview &&<div> <PreviewVideo Previewhandler = {Previewhandler} VLink = {props.course.VideoPreviewLink}/> </div>}
     </div>
     {props.Trainee && 
       <button className='NewCourseEnrollBtn'
@@ -139,3 +144,4 @@ function NewCourse(props) {
 }
 
 export default NewCourse
+//()=> navigate('/individualtrainee/PreviewVideo' ,{state:[props.course.VideoPreviewLink]})

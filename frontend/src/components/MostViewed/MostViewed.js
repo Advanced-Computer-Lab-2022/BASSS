@@ -13,9 +13,8 @@ import SearchAll from '../../../components/NewCourseDiv/SeachAll';
 import InstructorNavBar from '../InstructorNavBar/InstructorNavBar';
 import InstructorProfile from '../../../components/Profiles/InstructorProfile';
 import GuestNavBar from '../../Guest/GuestNavBar/GuestNavBar';
-import { ButtonBlue } from '../../../GeneralCss';
 
-const InstructorViewAllCourses = (props) => {
+const MostViewed = (props) => {
     const[courses,setCourses]=useState([]);
     const[coursesFiltered,setCoursesFiltered]=useState(null);
     
@@ -25,8 +24,6 @@ const InstructorViewAllCourses = (props) => {
 
     const [profile,setProfile] =useState(false);
 
-    const[mostViewed,setmostViewed]=useState([]);
-    const[mostViewedFlag,setmostViewedFlag]=useState(false);
 
     const profileHandler = () => {
         setProfile(!profile)
@@ -56,22 +53,14 @@ const InstructorViewAllCourses = (props) => {
 
     const GetCourses = async(req,res)=>{
        
-            await axios.get(`http://localhost:9000/allCourses`).then(
+            await axios.get(`http://localhost:9000/course/allcourses/mostViewedSara`).then(
                 (res) => {
                     const result = res.data
                  
                     setCourses(result);
-                })  
+                })
+       
     }
-
-    const MostViewed = async(req,res)=>{
-        await axios.get(`http://localhost:9000/course/allcourses/mostViewedSara`).then(
-            (res) => {
-                const result = res.data
-                setmostViewed(result);
-                setmostViewedFlag(!mostViewedFlag)
-            })   
-}
 
     useEffect(()=>{
         async function getCourses(){
@@ -92,23 +81,18 @@ const InstructorViewAllCourses = (props) => {
             <InstructorNavBar profileHandler={profileHandler} setCountry = {setCountry} />
             {profile && <InstructorProfile/>}
         </div>}
-        {props.G && <div> <GuestNavBar setCountry = {setCountry}/> </div>}
+        {props.G && <div> <GuestNavBar/> </div>}
     {!profile &&
     <div>
 
-        <div className='SearchSaraAllCourses'> 
-           {!mostViewedFlag && <SearchAll Type='indvidual' setCourses={setCoursesFiltered}  />}
-        </div>
-        <div style={{position:'absolute' , top:'11rem' , left: '77rem' , zIndex:'100'}}>
-            <ButtonBlue onClick={MostViewed} font = "28" width = "10rem">{mostViewedFlag? "Return To All Courses": "View Most Popular Courses"}</ButtonBlue>
-        </div>
-      <div className="InstructorAllCourses_Details1">
-            {!mostViewedFlag && <h1 style={{color:'rgb(3, 48, 76)'}}>All Courses</h1>}
-            {mostViewedFlag && <h1 style={{color:'rgb(3, 48, 76)'}}>Top Courses</h1>}
+        <div> 
+        <SearchAll Type='indvidual' setCourses={setCoursesFiltered}  />
 
-        {mostViewedFlag?mostViewed.map((course) => <div style={{position:'relative'}}>
-             <NewCourse course={course} country={countryNumber} Instructor={true}/> 
-        </div>): courses.map((course) => <div style={{position:'relative'}}>
+            </div>
+      <div className="InstructorAllCourses_Details1">
+            <h1 style={{color:'rgb(3, 48, 76)'}}>All Courses</h1>
+
+        {courses.map((course) => <div style={{position:'relative'}}>
              <NewCourse course={course} country={countryNumber} Instructor={true}/> 
         </div>)}
         
@@ -119,4 +103,4 @@ const InstructorViewAllCourses = (props) => {
   )
 }
 // Type={props.Type}
-export default InstructorViewAllCourses
+export default MostViewed

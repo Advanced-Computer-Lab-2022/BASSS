@@ -75,6 +75,20 @@ courseR.get("/allcourses/mostviewd",async(req, res) => {
   res.json(list)
 });
 
+courseR.get("/allcourses/mostViewedSara",async(req, res) => {
+  try{
+  console.log("sara")
+  var list = await courses.find({})
+  list = list.sort(function(a, b){return a.Views - b.Views});
+  list = list.slice(list.length - 5)
+  console.log(list)
+  return res.json(list)
+  }
+  catch(error){
+    return res.json({error})
+  }
+});
+
 courseR.get("/exercise/:courseID/:subtitleID", async(req,res) => {
     const courseId = req.params.courseID;
     const subtitleId = req.params.subtitleID;

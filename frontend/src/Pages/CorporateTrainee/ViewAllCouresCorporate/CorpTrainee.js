@@ -12,6 +12,8 @@ import Search from '../../../components/Search/Search';
 import '../../../components/NewCourseDiv/SearchAll.css';
 import SearchAll from '../../../components/NewCourseDiv/SeachAll';
 import TraineeProfile from '../../../components/Profiles/TraineeProfile';
+import NewCourse from '../../../components/NewCourseDiv/NewCourse';
+import { ButtonBlue } from '../../../GeneralCss';
 
 function CorpTrainee() {
     const[courses,setCourses]=useState([]);
@@ -24,6 +26,9 @@ function CorpTrainee() {
     const [profile,setProfile] = useState(false);
     const [myCourses, setMyCourses] = useState([])
 
+
+    const[mostViewed,setmostViewed]=useState([]);
+    const[mostViewedFlag,setmostViewedFlag]=useState(false);
 
     const profileHandler = () => {
         setProfile(!profile)
@@ -57,7 +62,6 @@ function CorpTrainee() {
                  
                     setCourses(result);
                 })
-       
     }
 
     const gethiscourses = async () => {
@@ -76,6 +80,14 @@ function CorpTrainee() {
        GetMyCourses();
     },[])
 
+    const MostViewed = async(req,res)=>{
+      await axios.get(`http://localhost:9000/course/allcourses/mostViewedSara`).then(
+          (res) => {
+              const result = res.data
+              setmostViewed(result);
+              setmostViewedFlag(!mostViewedFlag)
+          })   
+    }
 
     useEffect(()=>{
         async function getCourses(){
@@ -96,14 +108,28 @@ function CorpTrainee() {
       {profile && <TraineeProfile Who='corporatetrainee'/>}
       {!profile &&
       <div>
-        <SearchAll Type='indvidual' setCourses={setCoursesFiltered}  />
+<div className='SearchSaraAllCourses'> 
+            {!mostViewedFlag && <SearchAll Type='indvidual' setCourses={setCoursesFiltered}/>}
+        </div>
+        <div style={{position:'absolute' , top:'11rem' , left: '77rem' , zIndex:'50'}}>
+            <ButtonBlue onClick={MostViewed} font = "28" width = "10rem">{mostViewedFlag? "Return To All Courses": "View Most Popular Courses"}</ButtonBlue>
+        </div>
+      <div className="InstructorAllCourses_Details1">
+            {!mostViewedFlag && <h1 style={{color:'rgb(3, 48, 76)'}}>All Courses</h1>}
+            {mostViewedFlag && <h1 style={{color:'rgb(3, 48, 76)'}}>Top Courses</h1>}
+        </div>
+      {/* <div className="TraineeAllCourses_Details1">
+            <h1 style={{color:'rgb(3, 48, 76)'}}>All Courses</h1> */}
 
-      <div className="TraineeAllCourses_Details1">
-            <h1 style={{color:'rgb(3, 48, 76)'}}>All Courses</h1>
-
-        {courses.map((course) => <SalamaNewCourse course={course} country={countryNumber} Trainee={true} cid={course._id} My={myCourses.includes(course._id)}/> )}
+        {/* {courses.map((course) => <SalamaNewCourse course={course} country={countryNumber} Trainee={true} cid={course._id} My={myCourses.includes(course._id)}/> )} */}
+        {/* </div> */}
+        {mostViewedFlag?mostViewed.map((course) => <div style={{position:'relative'}}>
+        <SalamaNewCourse course={course} country={countryNumber} Trainee={true} cid={course._id} My={myCourses.includes(course._id)} /> 
+        </div>): courses.map((course) => 
+        <div style={{position:'relative'}}>
+        <SalamaNewCourse course={course} country={countryNumber} Trainee={true} cid={course._id} My={myCourses.includes(course._id)} /> 
+        </div>)}
         
-      </div>
       </div>
     }
     </div>
@@ -111,3 +137,4 @@ function CorpTrainee() {
 }
 
 export default CorpTrainee
+//NewCourse Co = 'true'

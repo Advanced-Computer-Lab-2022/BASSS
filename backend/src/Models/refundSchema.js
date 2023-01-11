@@ -21,7 +21,12 @@ const refundSchema = new Schema({
 
     CourseTitle:{
         type:String,
-    }
+    },
+
+    AmountPaid:{
+        type:Number,
+        required:true,
+    } 
     
 }, { timestamps: true });
 

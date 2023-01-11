@@ -163,6 +163,12 @@ function App() {
               (user)? ((type=='instructor')? <InstructorViewAllCourses/> : (type=='corporatetrainee')? <CorporateTrainee/> : 
               (type=="individualtrainee")? <IndividualTrainee/> : (type=='admin')? <AdminHome/> :<LoginPage/>) : <Home/>
         } />
+          <Route path='/AllCourses' element={
+          <InstructorViewAllCourses G = 'true'/>} 
+          />
+          <Route path='/individualtrainee/PreviewVideo' element={<PreviewVideo/>}/>
+        <Route path='/corporatetrainee/PreviewVideo' element={<PreviewVideo/>}/>
+          
 
 
 

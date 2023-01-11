@@ -12,6 +12,7 @@ const refundSchema = require('../Models/refundSchema');
 const adminR = express.Router();
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken');
+const Request = require("../Models/RequestsSchema");
 
 require('dotenv').config();
 
@@ -400,6 +401,13 @@ adminR.get("/createRefundReqNew/:Reporter/:CourseID",async function(req,res){
       const individualTrainee = await individualTrainees.findOne({UserName : Reporter});
       const refund1 = await refundSchema.findOne({Reporter : Reporter , CourseID : CourseID});
       const CourseTitle = Course1.Title
+
+      for(let i = 0 ; i < individualTrainee.Courses.length ; i++){
+        //console.log(Trainee.Courses[i].Course)
+        if(individualTrainee.Courses[i].Course == CourseID && individualTrainee.Courses[i].Progress < 50){
+          var AmountPaid1 = individualTrainee.Courses[i].PayedAmount
+        }
+      }
       if(refund1){
         return res.status(400).json('Course Request Already Sent');
       }
@@ -407,10 +415,11 @@ adminR.get("/createRefundReqNew/:Reporter/:CourseID",async function(req,res){
       const refund = await refundSchema.create({
           Reporter:Reporter,
           CourseID:CourseID,
-          CourseTitle:CourseTitle
+          CourseTitle:CourseTitle,
+          AmountPaid:AmountPaid1
     });
     const arr = individualTrainee.RefundRequests.concat(refund._id);
-    console.log(arr)
+    //console.log(arr)
     const UpdatedTrainee = await individualTrainees.findOneAndUpdate({UserName : Reporter} , {RefundRequests:arr});
     console.log("Refund Request Sent")
     return res.status(200).json({refund});
@@ -503,6 +512,8 @@ adminR.get("/acceptRefundReq/:RequestID",async function(req,res){
       //console.log(Reporter);
       const CourseID = Refund.CourseID;
       //console.log(CourseID);
+      const AmountPaid = Refund.AmountPaid;
+      //console.log(AmountPaid);
       const Trainee = await individualTrainees.findOne({UserName:Reporter});
       //console.log(Trainee.Courses);
       const Course = await courses.findOne({_id : Refund.CourseID});
@@ -510,14 +521,19 @@ adminR.get("/acceptRefundReq/:RequestID",async function(req,res){
       const Instructor = await instructors.findOne({Username : Course.InstructorUserName});
       //console.log(Instructor)
 
-      for(let i = 0 ; i < Trainee.Courses.length ; i++){
-        if(Trainee.Courses[i].Course == CourseID && Trainee.Courses[i].Progress < 50){
-          var AmountPaid = Trainee.Courses[i].PayedAmount
-        }
-      }
+      // for(let i = 0 ; i < Trainee.Courses.length ; i++){
+      //   //console.log(Trainee.Courses[i].Course)
+      //   if(Trainee.Courses[i].Course == CourseID && Trainee.Courses[i].Progress < 50){
+      //     var AmountPaid = Trainee.Courses[i].PayedAmount
+      //   }
+      // }
+      //console.log(AmountPaid)
 
       const walletInst = Instructor.Wallet - ((80 * AmountPaid)/100) 
       const walletTrainee = Trainee.Wallet + AmountPaid
+
+      //console.log(walletInst)
+      //console.log(walletTrainee)
 
       const RefundReq1 = await instructors.findOneAndUpdate({Username : Course.InstructorUserName} , {Wallet:walletInst});
       const RefundReq2 = await individualTrainees.findOneAndUpdate({UserName : Reporter} , {Wallet:walletTrainee});

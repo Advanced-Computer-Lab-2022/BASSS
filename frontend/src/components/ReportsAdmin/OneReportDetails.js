@@ -57,6 +57,7 @@ await axios.get(`http://localhost:9000/admin/rejectRefundReq/${props.Refund._id}
         <HeadersDiv fontLabel='30' fontValue='28' label='Reporter:' value={props.Report1.Reporter} /> <br></br>
         <HeadersDiv fontLabel='25' fontValue='22' label='CourseID: ' value={props.Report1.CourseID} /> <br></br>
         <HeadersDiv fontLabel='25' fontValue='22' label='Course Title:' value={props.Report1.CourseTitle} /> <br></br>
+        {props.Report1.FollowUps && props.Report1.FollowUps.length>0 && props.Report1.FollowUps.map((Report) => <HeadersDiv fontLabel='25' fontValue='22' label='Follow Ups:' value={Report.Message}/>)}
         <br></br><br></br>
           {props.Report1.Status !== 'Resolved' &&
           <div className='Admin_OneFinancialDetails_btn_Div'>
@@ -70,6 +71,8 @@ await axios.get(`http://localhost:9000/admin/rejectRefundReq/${props.Refund._id}
         <HeadersDiv fontLabel='35' fontValue='32' label='Reporter:' value={props.Report1.Reporter} /> <br></br>
         <HeadersDiv fontLabel='25' fontValue='22' label='CourseID: ' value={props.Report1.CourseID} /> <br></br>
         <HeadersDiv fontLabel='25' fontValue='22' label='Course Title:' value={props.Report1.CourseTitle} /> <br></br>
+        {props.Report1.FollowUps && props.Report1.FollowUps.length>0 && props.Report1.FollowUps.map((Report) => <HeadersDiv fontLabel='25' fontValue='22' label='Follow Ups:' value={Report.Message}/>)}
+        <br></br>
           {props.Report1.Status !== 'Resolved' &&
           <div className='Admin_OneReportDetails_btn_Div'>
             <button className='Admin_OneReportDetailsAccept_btn' onClick={AcceptReqHandler}>Resolved</button>

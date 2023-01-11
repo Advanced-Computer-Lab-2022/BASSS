@@ -7,6 +7,7 @@ import Exercise from '../Exercise/Exercise';
 import { useNavigate } from '../../../node_modules/react-router/dist';
 import axios from 'axios';
 import { borderRadius } from '@mui/system';
+import PreviewVideo from '../Preview/PreviewVideo';
 
 function NewCourse(props) {
   const navigate = useNavigate();
@@ -17,6 +18,9 @@ function NewCourse(props) {
     else if(props.Instructor){
         direction='/Instructor/Courses'
     }
+
+    const[Preview,setPreview]=useState(false);
+    const Previewhandler = ()=>{setPreview(!Preview)}
     
     const[showData,setShowData]=useState(false);
     const[showDataSub,setShowDataSub]=useState(false);
@@ -102,7 +106,7 @@ function NewCourse(props) {
             <>
             <button className="NewCourse_Subtitles"  onMouseEnter={()=>setShowDataSub(true)}  onMouseLeave={()=>setShowDataSub(false)}>Subtitles</button>
             <button className="NewCourse_Subtitles"  onMouseEnter={()=>setShowDataExe(true)}  onMouseLeave={()=>setShowDataExe(false)}>Exercises</button>
-            <button className="NewCourse_Subtitles" onClick={()=> navigate('/corporatetrainee/PreviewVideo',{state:[props.course.VideoPreviewLink]} )} >Preview Video !</button>
+            <button className="NewCourse_Subtitles" onClick={Previewhandler} >Preview Video !</button>
             </>
           }
 
@@ -130,9 +134,8 @@ function NewCourse(props) {
                 <h2>Exercise {i}</h2>
               )}
             </div>
-            
-      </div>
-      }
+      </div>}
+      {Preview &&<div> <PreviewVideo Previewhandler = {Previewhandler} VLink = {props.course.VideoPreviewLink}/> </div>}
     </div>
     <button className='NewCourseEnrollBtn' onClick={request} disabled={props.My} >
         {(props.My)? "Already Enrolled" : "Request Access"}
@@ -143,3 +146,4 @@ function NewCourse(props) {
 }
 
 export default NewCourse
+//<button className="NewCourse_Subtitles" onClick={()=> navigate('/corporatetrainee/PreviewVideo',{state:[props.course.VideoPreviewLink]} )} >Preview Video !</button>
