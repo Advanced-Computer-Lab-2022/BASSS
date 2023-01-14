@@ -23,7 +23,6 @@ function PreviewVideo() {
     }
   return (
     <div className='General_Body'>
-        {/* <h1>ssdsdsd</h1> */}
         {ind&&<IndividualTraineeNavBar/>}
         {corp&&<CorporateTraineeNavBar/>}
         <div className='videoPre_adham'>
